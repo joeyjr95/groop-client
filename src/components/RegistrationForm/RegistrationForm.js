@@ -10,13 +10,18 @@ class RegistrationForm extends Component {
     onRegistrationSuccess: () => {}
   };
 
-  state = { error: null };
+  state = { 
+    error: null,
+   };
 
   firstInput = React.createRef();
 
   handleSubmit = ev => {
     ev.preventDefault();
-    const { name, username, email, password } = ev.target;
+    const { name, username, email, password, confirmPassword } = ev.target;
+    if(password.value !== confirmPassword.value){
+      alert('passwords do not match');
+    }else{
     AuthApiService.postUser({
       name: name.value,
       username: username.value,
@@ -33,6 +38,7 @@ class RegistrationForm extends Component {
       .catch(res => {
         this.setState({ error: res.error });
       });
+    }
   };
 
   componentDidMount() {
@@ -98,16 +104,16 @@ class RegistrationForm extends Component {
         </div>
         <div>
           <Label
-            htmlFor="registration-password-input"
+            htmlFor="registration-confirmPassword-input"
             className="register-label"
           >
             Confirm password
             <Required />
           </Label>
           <Input
-            id="registration-password-input"
-            name="password"
-            type="password"
+            id="registration-confirmPassword-input"
+            name="confirmPassword"
+            type="confirmPassword"
             autoComplete="off"
             aria-required="true"
             required
