@@ -23,7 +23,7 @@ class RegistrationForm extends Component {
       alert('passwords do not match');
     }else{
     AuthApiService.postUser({
-      name: name.value,
+      fullname: name.value,
       username: username.value,
       email: email.value,
       password: password.value
