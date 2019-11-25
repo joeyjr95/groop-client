@@ -16,9 +16,6 @@ class RegistrationRoute extends Component {
   render() {
     return (
       <section className="signup">
-        <p className="app-description">
-          Keep your groop in the loop
-        </p>
         <h2 className="signup-h2">Sign up</h2>
         <RegistrationForm
           onRegistrationSuccess={this.handleRegistrationSuccess}

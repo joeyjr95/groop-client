@@ -96,6 +96,23 @@ class RegistrationForm extends Component {
             required
           />
         </div>
+        <div>
+          <Label
+            htmlFor="registration-password-input"
+            className="register-label"
+          >
+            Confirm password
+            <Required />
+          </Label>
+          <Input
+            id="registration-password-input"
+            name="password"
+            type="password"
+            autoComplete="off"
+            aria-required="true"
+            required
+          />
+        </div>
         <footer>
           <Button type="submit">Sign up</Button>{" "}
           <Link to="/login" className="toLogin-link">
