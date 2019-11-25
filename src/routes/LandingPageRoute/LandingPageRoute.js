@@ -10,7 +10,7 @@ export default class LandingPageRoute extends Component {
      <>
      <div className="landing-page">
          <h2>groop</h2>
-         <h3>Keep your groop in the loop</h3>
+         <h3>Keep your groop in the loop.</h3>
          <Link
                to='/register'>
                Sign up
