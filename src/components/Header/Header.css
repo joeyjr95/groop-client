@@ -17,7 +17,7 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: rgb(15, 141, 3);
+  background-color: rgb(3, 24, 141);
   height: 55px;
 }
 
@@ -28,7 +28,7 @@ header a {
 }
 
 header a:hover {
-  color: rgb(221, 3, 3);
+  color: rgb(246, 216, 46);
 }
 
 .loginLinks {
