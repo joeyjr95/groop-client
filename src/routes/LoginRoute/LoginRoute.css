@@ -1,0 +1,26 @@
+.loginSection {
+  margin-top: 20vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-h2 {
+  margin-bottom: 1.5%;
+}
+
+.login-label {
+  font-size: 13px;
+}
+
+@media only screen and (min-width: 750px) {
+  .login-label {
+    font-size: 15px;
+  }
+}
+
+@media only screen and (min-width: 1300px) {
+  .login-label {
+    font-size: 18px;
+  }
+}

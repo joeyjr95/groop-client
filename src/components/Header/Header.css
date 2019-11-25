@@ -13,14 +13,6 @@ header {
   
 }
 
-#first {
-    color: rgb(221, 3, 3);
-}
-
-#last {
-    color:rgb(232, 178, 3);
-}
-
 .flexBody {
   display: flex;
   flex-direction: row;
