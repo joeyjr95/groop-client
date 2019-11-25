@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
+import NotFoundRoute from "../../routes/NotFoundRoute/NotFoundRoute";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PublicOnlyRoute from "../PublicOnlyRoute/PublicOnlyRoute";
 import RegistrationRoute from "../../routes/RegistrationRoute/RegistrationRoute";
@@ -41,5 +43,3 @@ export default class App extends Component {
     );
   }
 }
-
-export default App;
