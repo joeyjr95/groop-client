@@ -22,9 +22,12 @@
     font-weight: 100;
 }
 .landing-page a{
-    margin-top: 8vh;
+    margin-top: 2vh;
     font-size: 1.9vw;
     color: white;
     text-decoration: none;
   cursor: pointer;
+}
+#icon{
+    margin-top: 2vh;
 }
