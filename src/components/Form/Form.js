@@ -1,6 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
-import './Form.css'
+import './Form.scss'
 
 export function Label({ className, ...props }) {
   return (

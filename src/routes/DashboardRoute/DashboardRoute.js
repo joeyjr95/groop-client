@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import "./DashboardRoute.css";
+import "./DashboardRoute.scss";
 
 export default class DashBoardRoute extends Component {
   render() {

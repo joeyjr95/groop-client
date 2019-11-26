@@ -1,9 +1,11 @@
+@import '../../variables.scss';
+
 .loginSection {
   margin-top: 20vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: white;
+  color: $color-font-normal;
 }
 
 .login-h2 {
