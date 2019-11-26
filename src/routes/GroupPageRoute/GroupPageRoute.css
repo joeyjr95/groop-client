@@ -87,6 +87,9 @@ width: 100%;
 }
 
 @media screen and (min-width: 1200px) {
+    .members-section-mobile{
+        display:none;
+    }
     .groop-page-list{
         display: flex;
         flex-direction: row;
