@@ -50,7 +50,7 @@ class Header extends Component {
       <header>
         <div className="flexBody">
           <h1 className="app-h1">
-            <Link to="/">groop</Link>
+            <Link to="/dashboard">groop</Link>
           </h1>
           <div className="loginLinks" aria-live="polite">
             {TokenService.hasAuthToken()

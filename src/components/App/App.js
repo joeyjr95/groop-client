@@ -9,6 +9,8 @@ import PublicOnlyRoute from "../PublicOnlyRoute/PublicOnlyRoute";
 import RegistrationRoute from "../../routes/RegistrationRoute/RegistrationRoute";
 import LoginRoute from "../../routes/LoginRoute/LoginRoute";
 import './App.css';
+import DashBoardRoute from "../../routes/DashboardRoute/DashboardRoute";
+import GroupPageRoute from "../../routes/GroupPageRoute/GroupPageRoute";
 
 export default class App extends Component {
   state = { 
@@ -39,6 +41,14 @@ export default class App extends Component {
               path={"/login"} 
               component={LoginRoute} 
             />
+            <PrivateRoute 
+            path={"/dashboard"}
+             component={DashBoardRoute}
+             />
+             <PrivateRoute 
+            path={"/group"}
+             component={GroupPageRoute}
+             />
             <Route 
               component={NotFoundRoute} 
             />
