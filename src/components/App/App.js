@@ -8,7 +8,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PublicOnlyRoute from "../PublicOnlyRoute/PublicOnlyRoute";
 import RegistrationRoute from "../../routes/RegistrationRoute/RegistrationRoute";
 import LoginRoute from "../../routes/LoginRoute/LoginRoute";
-import './App.css';
+import './App.scss';
 import DashBoardRoute from "../../routes/DashboardRoute/DashboardRoute";
 import GroupPageRoute from "../../routes/GroupPageRoute/GroupPageRoute";
 import TaskFormComponent from "../../components/TaskForm/TaskForm";
