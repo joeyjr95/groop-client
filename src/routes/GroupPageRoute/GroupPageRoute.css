@@ -10,12 +10,37 @@
     padding-bottom: 0px;
     margin-bottom: 0px;
 }
+#label-task-list{
+
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-bottom: 20px;
+z-index: 1;
+background-color:#1F4CBF;
+text-align: center;
+color: white;
+font-size: 20px; 
+width: 100%;
+
+}
+#fixed-container{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+}
+
+
 #date{
     font-size: 20px;
+}
+#label-menu{
+    display: none;
 }
 .menu{
     display: flex;
     flex-direction: row;
+    justify-content: center;
 
 }
 .menu li{
@@ -25,7 +50,10 @@
     background-color: white;
     border: 3px solid #1F4CBF;
     border-radius: 10px;
-    height: 460px;
+    height: 470px;
+    overflow-y: auto;
+    margin-left: 1.2%;
+    margin-right: 1.2%;
 }
 .task-list{
    list-style-type: none;
@@ -34,12 +62,92 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    
+    
 }
 .task-list li{
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #1F4CBF;
     width: 100%;
     text-align: left;
 }
 .task-list li:not(:first-child){
     padding-top: 10px;
+}
+#task-link{
+    text-decoration: none;
+    color: white;
+    padding-top: 25px;
+    font-size: 20px;
+}
+
+@media screen and (min-width: 1200px) {
+    .groop-page-list{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+    }
+    .task-list-container{
+        width: 35%;
+        height: 660px;
+        border: none;
+        border-radius: 0px;
+    }
+    .task-list li{
+        border-bottom: 2px solid #1F4CBF;
+
+        
+    }
+    .task-list li:not(:first-child){
+        padding-top: 25px;
+    }
+    #label-menu{
+        display: inherit;
+        font-size: 20px;
+        background-color: #1F4CBF;
+        color: white;
+        width: 100%;
+    }
+    .menu li{
+        font-size: 18px; 
+    }
+    .scores-section{
+        display: flex;
+        flex-direction: row;
+    }
+    .scores-section1{
+        display: flex;
+        flex-direction: column;
+        margin-top: 5%;
+        background-color: white;
+        color: black;
+        margin-right: 5%;
+        width:52.5%
+
+    }
+    .scores-section2{
+        display: flex;
+        flex-direction: column;
+        margin-top: 5%;
+        background-color: white;
+        color: black;
+        width:42.5%
+
+    }
+    .members-section{
+        width: 25%
+    }
+    .members{
+        width: 100%;
+        background-color: white;
+        color: black;
+        padding-bottom: 0.6%;
+    }
+    #weekly-scores-label, #total-scores-label{
+        font-size: 17px;
+        background-color: #1F4CBF;
+        color: white;
+        width: 100%;
+
+    }
 }
