@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 header {
   width: 100%;
   position: fixed;
@@ -9,7 +11,6 @@ header {
   font-weight: 100;
   margin-left: 1.5vw;
   font-size: 18px;
-  
 }
 
 .flexBody {
@@ -17,12 +18,12 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #1F4CBF;
+  background-color: $color-bg-secondary;
   height: 55px;
 }
 
 header a {
-  color: white;
+  color: $color-font-normal;
   text-decoration: none;
   cursor: pointer;
 }
@@ -37,10 +38,13 @@ header a:hover {
   justify-content: space-around;
 }
 
-.login-nav, .signup-nav, .logout-nav {
+.login-nav,
+.signup-nav,
+.logout-nav {
   font-size: 14px;
 }
-.login-nav, .signup-nav{
+.login-nav,
+.signup-nav {
   margin-right: 12px;
 }
 
@@ -50,22 +54,23 @@ header a:hover {
   align-items: center;
   justify-content: flex-end;
   width: 200px;
-  color: white;
+  color: $color-font-normal;
   font-size: 14px;
   margin-right: 10px;
 }
 
 .div-span {
-    color:rgb(232, 178, 3);
-    margin-right: 20px;
+  color: rgb(232, 178, 3);
+  margin-right: 20px;
 }
-
 
 @media only screen and (min-width: 500px) {
   .app-h1 {
     font-size: 20px;
   }
-  .login-nav, .signup-nav, .logout-nav {
+  .login-nav,
+  .signup-nav,
+  .logout-nav {
     margin-right: 12px;
     font-size: 15px;
   }
@@ -78,7 +83,9 @@ header a:hover {
   .app-h1 {
     font-size: 22px;
   }
-  .login-nav, .signup-nav, .logout-nav {
+  .login-nav,
+  .signup-nav,
+  .logout-nav {
     margin-right: 15px;
     font-size: 16.5px;
   }
@@ -94,7 +101,9 @@ header a:hover {
   .app-h1 {
     font-size: 25px;
   }
-  .login-nav, .signup-nav, .logout-nav {
+  .login-nav,
+  .signup-nav,
+  .logout-nav {
     margin-right: 25px;
     font-size: 18px;
   }
@@ -105,8 +114,8 @@ header a:hover {
 }
 
 @media only screen and (min-width: 1400px) {
-    .div-span{
-        color:rgb(232, 178, 3);
-        margin-right: 30px;
-    }
+  .div-span {
+    color: rgb(232, 178, 3);
+    margin-right: 30px;
+  }
 }

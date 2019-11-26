@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './GroupPageRoute.css'
+import './GroupPageRoute.scss'
 
 export default class GroupPageRoute extends Component {
 render(){
