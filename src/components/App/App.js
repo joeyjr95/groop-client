@@ -11,6 +11,8 @@ import LoginRoute from "../../routes/LoginRoute/LoginRoute";
 import './App.css';
 import DashBoardRoute from "../../routes/DashboardRoute/DashboardRoute";
 import GroupPageRoute from "../../routes/GroupPageRoute/GroupPageRoute";
+import TaskFormComponent from "../../components/TaskForm/TaskForm";
+
 
 export default class App extends Component {
   state = { 
@@ -48,6 +50,10 @@ export default class App extends Component {
              <PrivateRoute 
             path={"/group"}
              component={GroupPageRoute}
+             />
+             <PrivateRoute 
+            path={"/add-task"}
+             component={TaskFormComponent}
              />
             <Route 
               component={NotFoundRoute} 
