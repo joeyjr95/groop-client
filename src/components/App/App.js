@@ -48,7 +48,7 @@ export default class App extends Component {
              component={DashBoardRoute}
              />
              <PrivateRoute 
-            path={"/group"}
+            path={"/groop"}
              component={GroupPageRoute}
              />
              <PrivateRoute 
