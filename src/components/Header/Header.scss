@@ -60,7 +60,7 @@ header a:hover {
 }
 
 .div-span {
-  color: rgb(238, 210, 51);
+  color: $color-alt-main;
   margin-right: 20px;
 }
 
@@ -115,7 +115,6 @@ header a:hover {
 
 @media only screen and (min-width: 1400px) {
   .div-span {
-    color: rgb(232, 178, 3);
     margin-right: 30px;
   }
 }
