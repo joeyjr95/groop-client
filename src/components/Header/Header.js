@@ -12,7 +12,6 @@ class Header extends Component {
   };
 
   renderLogoutLink() {
-    console.log(this.context.user)
     return (
       <div className="link-logout" aria-live="polite">
         <span className="div-span">{this.context.user.username}</span>
