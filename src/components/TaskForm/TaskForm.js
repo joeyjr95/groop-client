@@ -39,9 +39,7 @@ export default class TaskForm extends Component {
       group_id: parseInt(1)
     };
     console.log(newTask)
-    GroopService.postTask(newTask).then( res => {
-      console.log(res)
-    })
+    GroopService.postTask(newTask)
 
   }
 
