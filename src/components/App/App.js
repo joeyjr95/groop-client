@@ -47,11 +47,6 @@ export default class App extends Component {
               component={LoginRoute} 
             />
             <PrivateRoute 
-<<<<<<< HEAD
-              path={"/dashboard"}
-              component={DashBoardRoute}
-            />
-=======
             path={"/dashboard"}
              component={DashBoardRoute}
              />
@@ -59,7 +54,6 @@ export default class App extends Component {
             path={"/groop"}
              component={GroupPageRoute}
              />
->>>>>>> d7f0aff9b05f1f4053c238750d93a1c16f3c6567
              <PrivateRoute 
               path={"/group"}
               component={GroupPageRoute}
