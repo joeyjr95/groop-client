@@ -70,8 +70,8 @@ render(){
       labelsStyle={{fontSize: 16}}
       showLabels
       style={{stroke: '#fff', strokeWidth: 2}}
-      width={300}
-      height={300}
+      width={window.innerWidth/4.4}
+      height={window.innerWidth/4.4}
         
       >
       </RadialChart>
