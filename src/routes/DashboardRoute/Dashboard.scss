@@ -1,0 +1,76 @@
+@import '../../variables.scss';
+
+.dashboard-c{
+    color: white;
+}
+.dashboard-c h2{
+    font-size: 40px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+#label-group-menu{
+    display: none;
+}
+.group-menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+.group-menu li{
+    margin-right: 30px;
+}
+#dashboard-label-task-list{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    z-index: 1;
+    background-color:#1F4CBF;
+    text-align: center;
+    color: white;
+    font-size: 20px; 
+    width: 100%;
+    
+}
+#dashboard-fixed-container{
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+}
+
+.dashboard-task-list-container{
+    background-color: white;
+    border: 3px solid #1F4CBF;
+    border-radius: 10px;
+    height: 470px;
+    overflow-y: auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 40px;
+}
+.dashboard-task-list{
+   list-style-type: none;
+    padding-left: 0px;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    
+}
+.dashboard-task-list li{
+    border-bottom: 2px solid #1F4CBF;
+    width: 100%;
+    text-align: left;
+}
+.dashboard-task-list li:not(:first-child){
+    padding-top: 10px;
+}
+#group-link{
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
+    
