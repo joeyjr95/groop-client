@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
-import './GroupPageRoute.css'
+import './GroupPageRoute.scss'
 import GroopPage from "../../components/GroopPage/GroopPage";
 
 export default class GroupPageRoute extends Component {
