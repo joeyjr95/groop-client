@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import './GroupPageRoute.scss'
 import GroopPage from "../../components/GroopPage/GroopPage";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 export default class GroupPageRoute extends Component {
 render(){
@@ -11,6 +12,7 @@ render(){
     < GroopPage />
     {/* add in the correct link below */}
     <Link to="/newtask" id="task-link">Add to list</Link>
+    <Sidebar/>
     </div>
     )
 }

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import Header from "../Header/Header";
 
+
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PublicOnlyRoute from "../PublicOnlyRoute/PublicOnlyRoute";
 import NotFoundRoute from "../../routes/NotFoundRoute/NotFoundRoute";
@@ -72,6 +73,7 @@ export default class App extends Component {
               component={NotFoundRoute} 
             />
           </Switch>
+          
          
         </main>
       </div>
