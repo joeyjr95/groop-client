@@ -63,7 +63,7 @@ export default class GroopPage extends Component {
 
 
         </div>
-        <Link id="group-link" to="/groupspage">Groups</Link>
+        <Link id="group-link" to="/hub">Groups</Link>
             </section>
         )
     }
