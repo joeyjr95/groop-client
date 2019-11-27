@@ -1,3 +1,5 @@
+/// <reference path='../../react-vis.d.ts'/>
+
 import React, { Component } from 'react'
 import {XYPlot,
     XAxis,
