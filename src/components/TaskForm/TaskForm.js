@@ -123,7 +123,7 @@ export default class TaskForm extends Component {
           <br />
           <label htmlFor="taskdescription">Task description</label>
           <br />
-          <textarea
+          <input
             name="taskdescription"
             id="taskdescription"
             onChange={this.handleChangeTaskdescription}
