@@ -2,6 +2,7 @@
 
 .dashboard-c{
     color: white;
+    padding-top: 40px;
 }
 .dashboard-c h2{
     font-size: 40px;
@@ -80,7 +81,7 @@
         height: 400px;
     }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1400px) {
     .dashboard-task-list-container{
         margin-left: 25%;
         margin-right: 25%;
