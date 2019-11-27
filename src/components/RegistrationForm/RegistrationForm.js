@@ -113,7 +113,7 @@ class RegistrationForm extends Component {
           <Input
             id="registration-confirmPassword-input"
             name="confirmPassword"
-            type="confirmPassword"
+            type="password"
             autoComplete="off"
             aria-required="true"
             required
