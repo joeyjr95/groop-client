@@ -1,25 +1,28 @@
 import React, { Component } from "react";
 import config from "../../config";
 import TokenService from "../../services/token-service";
+import GroopService from "../../services/groop-service";
+import UserContext from "../../contexts/UserContext";
 import "./TaskForm.scss";
 
 export default class TaskForm extends Component {
+  static contextType = UserContext;
   state = {
     tasks: [],
     error: null,
-    title: {
+    name: {
       value: "",
       touched: false
     },
-    info: {
+    description: {
       value: "",
       touched: false
     },
-    due_date: {
+    date_due: {
       value: "",
       touched: false
     },
-    task_assignee: {
+    creator_id: {
       value: "",
       touched: false
     }
@@ -28,87 +31,83 @@ export default class TaskForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const newTask = {
-      title: this.state.title.value,
-      info: this.state.info.value,
-      due_date: this.state.due_date.value,
-      assignee: this.state.task_assignee.value,
-      groop_id: parseInt(this.props.location.state.collection_id)
+      name: this.state.name.value,
+      description: this.state.description.value,
+      creator_id: this.context.user.id,
+      date_due: this.state.date_due.value,
+      // user_assigned_id: this.state.user_assigned_id.value,
+      group_id: parseInt(1)
     };
-    fetch(`${config.API_ENDPOINT}/tasks`, {
-      method: "POST",
-      body: JSON.stringify(newTask),
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${TokenService.getAuthToken()}`
-      }
+    console.log(newTask)
+    GroopService.postTask(newTask).then( res => {
+      console.log(res)
     })
-      .then(res => {
-        if (!res.ok) return res.json().then(error => Promise.reject(error));
-        return res.json();
-      })
-      .then(resData => {
-        this.setState({
-          tasks: resData
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        this.setState({ error });
-      });
+
   }
 
-  handleChangeTaskTitle = e => {
-    this.setState({ title: { value: e.target.value, touched: true } });
+  handleChangeTaskname = e => {
+    this.setState({ name: { value: e.target.value, touched: true } });
   };
 
-  handleChangeTaskInfo = e => {
-    this.setState({ info: { value: e.target.value, touched: true } });
+  handleChangeTaskdescription = e => {
+    this.setState({ description: { value: e.target.value, touched: true } });
+  };
+  // handleChangeTaskuser_assigned_id = e => {
+  //   this.setState({ user_assigned_id: { value: e.target.value, touched: true } });
+  // };
+  handleChangeTaskDueDate = e => {
+    this.setState({ date_due: { value: e.target.value, touched: true } });
   };
 
-  validateTitle() {
-    const title = this.state.title.value.trim();
-    if (title.length === 0) {
-      return "Name is required";
-    }
-  }
 
-  validateInfo() {
-    const info = this.state.info.value.trim();
-    if (info.length === 0) {
-      return "Info is required";
-    }
-  }
+  // validatename() {
+  //   const name = this.state.name.value.trim();
+  //   if (name.length === 0) {
+  //     return "Name is required";
+  //   }
+  // }
+
+  // validatedescription() {
+  //   const description = this.state.description.value.trim();
+  //   if (description.length === 0) {
+  //     return "description is required";
+  //   }
+  // }
   
   render() {
+    // console.log(this.state.name.value)
+    // console.log(this.state.user_assigned_id.value)
+    // console.log(this.state.date_due.value)
+    // console.log(this.state.description.value)
     return (
       <section className="AddTaskForm">
         <form>
           <h2>Add Task</h2>< br/>
-          <label htmlFor="addTasktitle" className="AddTaskLabel">
-            Task Title
+          <label htmlFor="addTaskname" className="AddTaskLabel">
+            Task name
           </label>
           <input
             type="text"
-            id="addtasktitle"
-            name="addtasktitle"
-            onChange={this.handleChangeTaskTitle}
+            id="addtaskname"
+            name="addtaskname"
+            onChange={this.handleChangeTaskname}
           />
-          {this.state.title.touched && (
-            <div className="error">{this.validateTitle()}</div>
-          )}
+          {/* {this.state.name.touched && (
+            <div className="error">{this.validatename()}</div>
+          )} */}
           <br />
-          <label htmlFor="addtaskassignee" className="AddTaskAssignee">
-            Task Assignee
+          {/* <label htmlFor="addtaskuser_assigned_id" className="AddTaskuser_assigned_id">
+            user assigned id
           </label>
           <input
             type="text"
-            id="addtaskassignee"
-            name="addtaskassignee"
-            onChange={this.handleChangeTaskAssignee}
-          />
-          {this.state.image_url.touched && (
-            <div className="error">{this.validateAssignee()}</div>
-          )}
+            id="addtaskuser_assigned_id"
+            name="addtaskuser_assigned_id"
+            onChange={this.handleChangeTaskuser_assigned_id}
+          /> */}
+          {/* {this.state.image_url.touched && (
+            <div className="error">{this.validateuser_assigned_id()}</div>
+          )} */}
           <br />
           <label htmlFor="addtaskduedate" className="AddTaskDueDate">
             Due Date
@@ -120,31 +119,31 @@ export default class TaskForm extends Component {
             name="addtaskduedate"
             onChange={this.handleChangeTaskDueDate}
           />
-          {this.state.year_released.touched && (
+          {/* {this.state.year_released.touched && (
             <div className="error">{this.validateDueDate()}</div>
-          )}
+          )} */}
           <br />
-          <label htmlFor="taskInfo">Task Info</label>
+          <label htmlFor="taskdescription">Task description</label>
           <br />
           <textarea
-            name="taskInfo"
-            id="taskInfo"
-            onChange={this.handleChangeTaskInfo}
+            name="taskdescription"
+            id="taskdescription"
+            onChange={this.handleChangeTaskdescription}
           />
-          {this.state.info.touched && (
-            <div className="error">{this.validateInfo()}</div>
-          )}
+          {/* {this.state.description.touched && (
+            <div className="error">{this.validatedescription()}</div>
+          )} */}
           <br />
           <br />
           <button
             type="submit"
             onClick={this.handleSubmit}
-            disabled={
-              this.validateTitle() ||
-              this.validateDueDate() ||
-              this.validateInfo() ||
-              this.validateAssignee()
-            }
+            // disabled={
+            //   // this.validatename() ||
+            //   // this.validateDueDate() ||
+            //   // this.validatedescription() ||
+            //   // this.validateuser_assigned_id()
+            // }
             className="AddTaskButton"
           >
             Create New Task
