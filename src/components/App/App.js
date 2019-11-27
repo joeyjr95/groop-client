@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PublicOnlyRoute from "../PublicOnlyRoute/PublicOnlyRoute";
 import NotFoundRoute from "../../routes/NotFoundRoute/NotFoundRoute";
+import GroopsHubRoute from "../../routes/GroopsHubRoute/GroopsHubRoute";
 
 import TaskFormComponent from "../../components/TaskForm/TaskForm";
 import LandingPageRoute from "../../routes/LandingPageRoute/LandingPageRoute";
@@ -50,6 +51,7 @@ export default class App extends Component {
              component={DashBoardRoute}
              />
              <PrivateRoute 
+             exact
               path={"/group"}
               component={GroupPageRoute}
             />
@@ -61,6 +63,11 @@ export default class App extends Component {
               path={'/settings'}
               component={SettingsRoute}
             />
+            <PrivateRoute 
+            exact
+            path={"/hub"}
+             component={GroopsHubRoute}
+             />
             <Route 
               component={NotFoundRoute} 
             />
