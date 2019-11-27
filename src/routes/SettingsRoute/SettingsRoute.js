@@ -1,6 +1,8 @@
 import React from 'react';
 import { Label, Input } from '../../components/Form/Form';
 
+import './SettingsRoute.scss';
+
 export default class SettingsRoute extends React.Component {
   state = {
     editEmail: false,
@@ -9,10 +11,20 @@ export default class SettingsRoute extends React.Component {
 
   render() {
     return (
-      <section>
+      <section className='settings-page'>
         <h1>Account Settings</h1>
-        <h3>Email</h3>
-        <input type='email' placeholder='email' require disabled />
+        <div className='account-item'>
+          <h3>Email</h3>
+          <input
+            type='email'
+            className='input-disabled'
+            placeholder="user's email"
+            require
+            disabled
+          />
+          <button className={this.state.editEmail}>Edit</button>
+          <button disabled={this.state.editEmail ? 0 : 1}>Save</button>
+        </div>
         <h2>Change Your Password</h2>
 
         <form className='form-pass'>
