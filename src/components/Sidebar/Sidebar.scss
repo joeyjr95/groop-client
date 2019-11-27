@@ -34,3 +34,18 @@
     align-items: flex-start;
     justify-content: space-evenly;
 }
+@media only screen and (min-width: 1400px) {
+    .sidenav {
+        height: 92%;
+        width: 150px;
+        border-top-left-radius: 65px;
+        border-bottom-left-radius: 65px;
+    }
+    .sidenav a {
+    padding-right: 45px;
+    padding-left: 32px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    font-size: 22px;
+    }
+}
