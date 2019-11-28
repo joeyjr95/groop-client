@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 
 
+
 export default class GroopPage extends Component {
     render(){
         return(
@@ -63,6 +64,7 @@ export default class GroopPage extends Component {
 
 
         </div>
+        
         <Link id="group-link" to="/hub">Groups</Link>
             </section>
         )
