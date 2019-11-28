@@ -43,14 +43,14 @@ const GroopService = {
 
       /// GROUP SECTION
 
-    async postGroups({ groups }) {
+    async postGroup( group ) {
         const res = await fetch(`${config.API_ENDPOINT}/groups`, {
             method: "POST",
             headers: {
                 "content-type": "application/json",
                 'Authorization': `bearer ${TokenService.getAuthToken()}`
             },
-            body: JSON.stringify({ groups })
+            body: JSON.stringify( group )
         });
         return await (!res.ok ? res.json().then(err => Promise.reject(err)) : res.json());
       },

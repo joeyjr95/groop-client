@@ -7,7 +7,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import PublicOnlyRoute from "../PublicOnlyRoute/PublicOnlyRoute";
 import NotFoundRoute from "../../routes/NotFoundRoute/NotFoundRoute";
 import GroopsHubRoute from "../../routes/GroopsHubRoute/GroopsHubRoute";
-
+import GroupForm from "../../components/GroupForm/GroupForm";
 import TaskFormComponent from "../../components/TaskForm/TaskForm";
 import LandingPageRoute from "../../routes/LandingPageRoute/LandingPageRoute";
 import RegistrationRoute from "../../routes/RegistrationRoute/RegistrationRoute";
@@ -59,6 +59,10 @@ export default class App extends Component {
             <PrivateRoute 
               path={"/add-task"}
               component={TaskFormComponent}
+            />
+            <PrivateRoute 
+              path={"/add-group"}
+              component={GroupForm}
             />
             <PrivateRoute
               path={'/settings'}

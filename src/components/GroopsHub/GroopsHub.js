@@ -13,7 +13,7 @@ export default class GroopsHub extends Component {
             <li   id="groop2"><Link to="/group">Group2</Link></li>
             <li   id="groop3"><Link to="/group">Group3</Link></li>
             <li   id="groop4"><Link to="/group">Group4</Link></li>
-            <li   id="groop4"><Link to="/group"> Add Groop</Link></li>
+            <li   id="groop4"><Link to="/add-group"> Add Groop</Link></li>
             </ul>
             </div>
             </section>
