@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 
 
-export default class GroopPage extends Component {
+export default class Dashboard extends Component {
     render(){
         return(
         <section className="dashboard-c">

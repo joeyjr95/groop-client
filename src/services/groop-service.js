@@ -1,13 +1,18 @@
 import config from '../config'
+import TokenService from '../services/token-service'
+
 
 const GroopService = {
+
+    ///TASK SECTION
 
     async postTask( task ) {
         console.log(task)
         const res = await fetch(`${config.API_ENDPOINT}/tasks`, {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
             },
             body: JSON.stringify( task )
             
@@ -15,15 +20,85 @@ const GroopService = {
         console.log(task)
         return await (!res.ok ? res.json().then(err => Promise.reject(err)) : res.json());
       },
+      async getAllTasks() {
+        const res = await fetch(`${config.API_ENDPOINT}/tasks`, {
+              headers: {
+                  'Authorization': `bearer ${TokenService.getAuthToken()}`,
+              },
+          });
+          return await ((!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json());
+      },
+      async getGroupTasks(currentGroup) {
+        const res = await fetch(`${config.API_ENDPOINT}/tasks/${currentGroup.id}`, {
+              headers: {
+                  'Authorization': `bearer ${TokenService.getAuthToken()}`,
+              },
+          });
+          return await ((!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json());
+      },
+
+      /// GROUP SECTION
+
     async postGroups({ groups }) {
         const res = await fetch(`${config.API_ENDPOINT}/groups`, {
             method: "POST",
             headers: {
-                "content-type": "application/json"
+                "content-type": "application/json",
+                'Authorization': `bearer ${TokenService.getAuthToken()}`
             },
             body: JSON.stringify({ groups })
         });
         return await (!res.ok ? res.json().then(err => Promise.reject(err)) : res.json());
       },
+      deleteGroup(currentGroup) {
+        return fetch(`${config.API_ENDPOINT}/groups/${currentGroup.id}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `bearer ${TokenService.getAuthToken()}`,
+          },
+         
+        })
+      },
+
+      ///GROUP MEMBERS SECTION
+
+      deleteGroupMember(currentGroup, selectedMember) {
+        return fetch(`${config.API_ENDPOINT}/groupsmembers/${currentGroup.id}/${selectedMember.id}`, {
+          method: 'DELETE',
+          headers: {
+            'Authorization': `bearer ${TokenService.getAuthToken()}`,
+          },
+         
+        })
+      },
+      async getGroupMembers(currentGroup) {
+        const res = await fetch(`${config.API_ENDPOINT}/groupsmembers/${currentGroup.id}`, {
+              headers: {
+                  'Authorization': `bearer ${TokenService.getAuthToken()}`,
+              },
+          });
+          return await ((!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json());
+      },
+      async addNewGroupMember(currentGroup, newMember) {
+        const res = await fetch(`${config.API_ENDPOINT}/groupmembers`, {
+              method: 'POST',
+              headers: {
+                  'content-type': 'application/json',
+                  'Authorization': `bearer ${TokenService.getAuthToken()}`,
+              },
+              body: JSON.stringify(currentGroup.id, newMember.id),
+          });
+          return await ((!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json());
+      },
+
+    
 }
 export default GroopService
