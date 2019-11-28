@@ -30,8 +30,8 @@ const GroopService = {
               ? res.json().then(e => Promise.reject(e))
               : res.json());
       },
-      async getGroupTasks(currentGroup) {
-        const res = await fetch(`${config.API_ENDPOINT}/tasks/${currentGroup.id}`, {
+      async getGroupTasks(currentGroupid) {
+        const res = await fetch(`${config.API_ENDPOINT}/tasks/${currentGroupid}`, {
               headers: {
                   'Authorization': `bearer ${TokenService.getAuthToken()}`,
               },
