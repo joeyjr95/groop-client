@@ -56,21 +56,6 @@ export default class TaskForm extends Component {
   handleChangeTaskDueDate = e => {
     this.setState({ date_due: { value: e.target.value, touched: true } });
   };
-
-
-  // validatename() {
-  //   const name = this.state.name.value.trim();
-  //   if (name.length === 0) {
-  //     return "Name is required";
-  //   }
-  // }
-
-  // validatedescription() {
-  //   const description = this.state.description.value.trim();
-  //   if (description.length === 0) {
-  //     return "description is required";
-  //   }
-  // }
   
   render() {
     // console.log(this.state.name.value)
@@ -78,58 +63,45 @@ export default class TaskForm extends Component {
     // console.log(this.state.date_due.value)
     // console.log(this.state.description.value)
     return (
-      <section className="AddTaskForm">
-        <form>
+      <section>
+        <form className="AddTaskForm">
           <h2>Add Task</h2>< br/>
           <label htmlFor="addTaskname" className="AddTaskLabel">
-            Task name
+            Task Name
           </label>
+          <br />
           <input
             type="text"
             id="addtaskname"
             name="addtaskname"
             onChange={this.handleChangeTaskname}
           />
-          {/* {this.state.name.touched && (
-            <div className="error">{this.validatename()}</div>
-          )} */}
           <br />
+          <label htmlFor="taskdescription">Task Description</label>
+          <br />
+          <input
+            type="textarea"
+            name="taskdescription"
+            id="taskdescription"
+            onChange={this.handleChangeTaskdescription}
+          />
+
           <br />
           <label htmlFor="addtaskduedate" className="AddTaskDueDate">
             Due Date
           </label>
           <br />
           <input
+            className="dateInput"
             type="date"
             id="addtaskduedate"
             name="addtaskduedate"
+            value="1980-08-26"
             onChange={this.handleChangeTaskDueDate}
           />
-          {/* {this.state.year_released.touched && (
-            <div className="error">{this.validateDueDate()}</div>
-          )} */}
-          <br />
-          <label htmlFor="taskdescription">Task description</label>
-          <br />
-          <input
-            name="taskdescription"
-            id="taskdescription"
-            onChange={this.handleChangeTaskdescription}
-          />
-          {/* {this.state.description.touched && (
-            <div className="error">{this.validatedescription()}</div>
-          )} */}
-          <br />
-          <br />
           <button
             type="submit"
             onClick={this.handleSubmit}
-            // disabled={
-            //   // this.validatename() ||
-            //   // this.validateDueDate() ||
-            //   // this.validatedescription() ||
-            //   // this.validateuser_assigned_id()
-            // }
             className="AddTaskButton"
           >
             Create New Task
