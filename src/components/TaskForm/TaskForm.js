@@ -34,6 +34,7 @@ export default class TaskForm extends Component {
       name: this.state.name.value,
       description: this.state.description.value,
       creator_id: this.context.user.id,
+      user_assigned_id: this.context.user.id,
       date_due: this.state.date_due.value,
       // user_assigned_id: this.state.user_assigned_id.value,
       group_id: parseInt(1)
