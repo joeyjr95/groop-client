@@ -32,8 +32,8 @@ render(){
             <label htmlFor="menu" id="label-menu">Members</label>
             <ul className="menu" role="menu">
             {currentGroupMembers.map(member => (
-              <li key={member.id} id={member.id} aria-live="polite">
-                <p>{member.member_id}</p>
+              <li key={member.member_id} id={member.member_id} aria-live="polite">
+                <p>{member.username}</p>
               </li>
             ))}
             </ul>
@@ -46,8 +46,8 @@ render(){
             <label htmlFor="menu" id="label-menu">Members</label>
             <ul className="menu" role="menu">
             {currentGroupMembers.map(member => (
-              <li key={member.id} id={member.id} aria-live="polite">
-               {member.member_id}
+              <li key={member.member_id} id={member.member_id} aria-live="polite">
+               {member.username}
               </li>
             ))}
             </ul>
