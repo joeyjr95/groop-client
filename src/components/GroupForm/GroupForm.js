@@ -43,12 +43,13 @@ export default class GroupForm extends Component {
   render() {
      console.log(this.state.name.value)
     return (
-      <section className="AddGroupForm">
-        <form>
+      <section>
+        <form className="AddGroupForm">
           <h2>Add Group</h2>< br/>
           <label htmlFor="addGroupname" className="AddGroupLabel">
-            Group name
+            Group Name
           </label>
+          <br />
           <input
             type="text"
             id="addGroupname"
