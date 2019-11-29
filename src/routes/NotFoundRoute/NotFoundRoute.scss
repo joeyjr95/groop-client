@@ -1,0 +1,23 @@
+@import "../../variables.scss";
+
+.NotFoundContainer {
+  border: 2px solid white;
+  height: auto;
+  padding: 15px;
+  color: white;
+  width: 92%;
+  margin: 60px auto;
+  border-radius: 5px;
+}
+
+@media only screen and (min-width: 750px) {
+  .NotFoundContainer {
+    border: 2px solid white;
+    height: auto;
+    padding: 15px;
+    color: white;
+    width: 40%;
+    margin: 60px auto;
+    border-radius: 5px;
+  }
+}
