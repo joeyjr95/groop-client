@@ -42,6 +42,16 @@ const GroopService = {
       },
 
       /// GROUP SECTION
+      async getGroup(currentGroup) {
+        const res = await fetch(`${config.API_ENDPOINT}/groups/${currentGroup}`, {
+              headers: {
+                  'Authorization': `bearer ${TokenService.getAuthToken()}`,
+              },
+          });
+          return await ((!res.ok)
+              ? res.json().then(e => Promise.reject(e))
+              : res.json());
+      },
 
     async postGroup( group ) {
         const res = await fetch(`${config.API_ENDPOINT}/groups`, {

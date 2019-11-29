@@ -11,11 +11,6 @@ export default class GroopsHub extends Component {
       this.context.setGroups(data);
     });
   }
-  // onGroupClick = e =>{
-  //   e.preventDefault()
-  //   this.context.setCurrentGroup(e.target.id)
-  //   console.log(this.context.currentGroup)
-  // }
   render() {
     const {groups =[]} = this.context;
     return (
@@ -28,7 +23,7 @@ export default class GroopsHub extends Component {
                 {group.name}
               </li></Link>
             ))}
-            <li id="groop4">
+            <li id="add-group">
               <Link to="/add-group"> Add Groop</Link>
             </li>
           </ul>
