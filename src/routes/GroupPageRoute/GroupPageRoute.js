@@ -14,7 +14,7 @@ render(){
     />
      
     <Link to="/add-task" id="task-link">Add to list</Link>
-    <Sidebar/>
+    <Sidebar />
     </div>
     )
 }
