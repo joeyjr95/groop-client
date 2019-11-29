@@ -10,11 +10,16 @@ export default class Dashboard extends Component {
       .then( data => {
             this.context.setUserTasks(data)
       })
+      GroopService.getUserGroups()
+      .then(data =>{
+        console.log(data)
+        this.context.setGroups(data)
+      })
 
   }
   render() {
       
-    const { userTasks = []} = this.context;
+    const { userTasks = [], groups =[]} = this.context;
     console.log(userTasks)
     return (
       <section className="dashboard-c">
@@ -25,10 +30,11 @@ export default class Dashboard extends Component {
             Members
           </label>
           <ul className="group-menu" role="menu">
-            <li id="group1">Group1</li>
-            <li id="group2">Group2</li>
-            <li id="group3">Group3</li>
-            <li id="group4">Group4</li>
+          {groups.map(group => (
+              <li key={group.group_id} id={group.group_id} aria-live="polite">
+                {group.group_id}
+              </li>
+            ))}
           </ul>
         </div>
         <div className="dashboard-task-list-container">
