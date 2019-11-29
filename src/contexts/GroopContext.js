@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 const GroopContext = React.createContext({
-  currentGroup: {},
+  currentGroup: null,
   groups: [],
   currentGroupTasks: [],
   currentGroupMembers: [],
@@ -19,7 +19,7 @@ export default GroopContext;
 
 export class GroopProvider extends Component {
   state = {
-    currentGroup: {},
+    currentGroup: null,
     groups: [],
     currentGroupTasks: [],
     currentGroupMembers: [],

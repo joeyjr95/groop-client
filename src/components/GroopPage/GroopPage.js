@@ -9,22 +9,31 @@ import {
 
 export default class GroopPage extends Component {
     static contextType = GroopContext;
+   
     componentDidMount() {
-        
-        GroopService.getGroupTasks(1)
+      
+        GroopService.getGroup(this.props.group_id)
+        .then(data => {
+          let groupId = parseInt(data.id)
+          this.context.setCurrentGroup(groupId)
+          console.log(this.context.currentGroup)
+        })
+      
+        GroopService.getGroupTasks(this.props.group_id)
         .then( data => {
               this.context.setCurrentGroupTasks(data)
         })
-        GroopService.getGroupMembers(1)
+        GroopService.getGroupMembers(this.props.group_id)
         .then( data =>{
             this.context.setCurrentGroupMembers(data)
         })
+
   
     }
 render(){
     const { currentGroupTasks = [], currentGroupMembers = []} = this.context;
-    console.log(currentGroupTasks)
-    console.log(currentGroupMembers)
+      
+
     return (
         <>
         <div className="members-section-mobile">

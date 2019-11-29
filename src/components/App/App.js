@@ -53,7 +53,7 @@ export default class App extends Component {
              />
              <PrivateRoute 
              exact
-              path={"/group"}
+              path={"/group/:group_id"}
               component={GroupPageRoute}
             />
             <PrivateRoute 
