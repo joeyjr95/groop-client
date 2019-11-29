@@ -31,10 +31,11 @@ render(){
         <div className="members-mobile">
             <label htmlFor="menu" id="label-menu">Members</label>
             <ul className="menu" role="menu">
-            <li   id="name1">User</li>
-            <li   id="name2">Allie</li>
-            <li   id="name3">Derek</li>
-            <li   id="name4">Brian</li>
+            {currentGroupMembers.map(member => (
+              <li key={member.id} id={member.id} aria-live="polite">
+                <p>{member.member_id}</p>
+              </li>
+            ))}
             </ul>
             </div>
         </div>
@@ -44,10 +45,11 @@ render(){
             <div className="members">
             <label htmlFor="menu" id="label-menu">Members</label>
             <ul className="menu" role="menu">
-            <li   id="name1">User</li>
-            <li   id="name2">Allie</li>
-            <li   id="name3">Derek</li>
-            <li   id="name4">Brian</li>
+            {currentGroupMembers.map(member => (
+              <li key={member.id} id={member.id} aria-live="polite">
+               {member.member_id}
+              </li>
+            ))}
             </ul>
             </div>
             <div className ="scores-section">

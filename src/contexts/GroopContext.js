@@ -49,6 +49,7 @@ export class GroopProvider extends Component {
     const value = {
       currentGroup: this.state.currentGroup,
       groups: this.state.groups,
+      currentGroupMembers: this.state.currentGroupMembers,
       currentGroupTasks: this.state.currentGroupTasks,
       userTasks: this.state.userTasks,
       error: this.state.error,
