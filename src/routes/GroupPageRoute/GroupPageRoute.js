@@ -9,8 +9,10 @@ render(){
     return (<div className="groop-page"> 
     <h2>groop title</h2>
     <p id="date">today's date</p>
-    < GroopPage />
-    {/* add in the correct link below */}
+    < GroopPage 
+    group_id = {this.props.match.params.group_id}
+    />
+     
     <Link to="/add-task" id="task-link">Add to list</Link>
     <Sidebar/>
     </div>
