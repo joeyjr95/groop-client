@@ -94,18 +94,6 @@ export default class TaskForm extends Component {
             <div className="error">{this.validatename()}</div>
           )} */}
           <br />
-          {/* <label htmlFor="addtaskuser_assigned_id" className="AddTaskuser_assigned_id">
-            user assigned id
-          </label>
-          <input
-            type="text"
-            id="addtaskuser_assigned_id"
-            name="addtaskuser_assigned_id"
-            onChange={this.handleChangeTaskuser_assigned_id}
-          /> */}
-          {/* {this.state.image_url.touched && (
-            <div className="error">{this.validateuser_assigned_id()}</div>
-          )} */}
           <br />
           <label htmlFor="addtaskduedate" className="AddTaskDueDate">
             Due Date
