@@ -4,12 +4,14 @@ const GroopContext = React.createContext({
   currentGroup: {},
   groups: [],
   currentGroupTasks: [],
+  currentGroupMembers: [],
   userTasks: [],
   error: null,
   setError: () => {},
   setGroups: () => {},
   setCurrentGroup: () => {},
   setCurrentGroupTasks: () => {},
+  setCurrentGroupMembers: () => {},
   setUserTasks: () => {}
 });
 
@@ -20,6 +22,7 @@ export class GroopProvider extends Component {
     currentGroup: {},
     groups: [],
     currentGroupTasks: [],
+    currentGroupMembers: [],
     userTasks: [],
     error: null
   };
@@ -36,6 +39,9 @@ export class GroopProvider extends Component {
   setCurrentGroupTasks = currentGroupTasks => {
     this.setState({ currentGroupTasks });
   };
+  setCurrentGroupMembers = currentGroupMembers => {
+    this.setState({ currentGroupMembers });
+  };
   setUserTasks = userTasks => {
     this.setState({ userTasks });
   };
@@ -50,6 +56,7 @@ export class GroopProvider extends Component {
       setGroups: this.setGroups,
       setCurrentGroup: this.setCurrentGroup,
       setCurrentGroupTasks: this.setCurrentGroupTasks,
+      setCurrentGroupMembers: this.setCurrentGroupMembers,
       setUserTasks: this.setUserTasks 
     };
     return (

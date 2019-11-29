@@ -76,7 +76,7 @@ const GroopService = {
         })
       },
       async getGroupMembers(currentGroup) {
-        const res = await fetch(`${config.API_ENDPOINT}/groupsmembers/${currentGroup.id}`, {
+        const res = await fetch(`${config.API_ENDPOINT}/groupsmembers/${currentGroup}`, {
               headers: {
                   'Authorization': `bearer ${TokenService.getAuthToken()}`,
               },

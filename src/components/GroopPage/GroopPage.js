@@ -15,11 +15,16 @@ export default class GroopPage extends Component {
         .then( data => {
               this.context.setCurrentGroupTasks(data)
         })
+        GroopService.getGroupMembers(1)
+        .then( data =>{
+            this.context.setCurrentGroupMembers(data)
+        })
   
     }
 render(){
-    const { currentGroupTasks = []} = this.context;
+    const { currentGroupTasks = [], currentGroupMembers = []} = this.context;
     console.log(currentGroupTasks)
+    console.log(currentGroupMembers)
     return (
         <>
         <div className="members-section-mobile">
