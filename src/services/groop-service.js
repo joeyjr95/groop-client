@@ -12,13 +12,13 @@ const GroopService = {
         });
         return await (!res.ok ? res.json().then(err => Promise.reject(err)) : res.json());
       },
-    async postGroups({ groups }) {
+    async postGroup({ newGroup }) {
         const res = await fetch(`${config.API_ENDPOINT}/groups`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
             },
-            body: JSON.stringify({ groups })
+            body: JSON.stringify(newGroup)
         });
         return await (!res.ok ? res.json().then(err => Promise.reject(err)) : res.json());
       },
