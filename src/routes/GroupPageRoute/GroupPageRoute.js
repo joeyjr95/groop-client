@@ -11,7 +11,7 @@ render(){
     <p id="date">today's date</p>
     < GroopPage />
     {/* add in the correct link below */}
-    <Link to="/newtask" id="task-link">Add to list</Link>
+    <Link to="/add-task" id="task-link">Add to list</Link>
     <Sidebar/>
     </div>
     )
