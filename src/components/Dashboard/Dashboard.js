@@ -31,8 +31,8 @@ export default class Dashboard extends Component {
           </label>
           <ul className="group-menu" role="menu">
           {groups.map(group => (
-              <li key={group.group_id} id={group.group_id} aria-live="polite">
-                {group.group_id}
+              <li key={group.name} id={group.name} aria-live="polite">
+                {group.name}
               </li>
             ))}
           </ul>

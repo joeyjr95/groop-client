@@ -10,12 +10,13 @@ import {
 export default class GroopPage extends Component {
     static contextType = GroopContext;
     componentDidMount() {
+      console.log(this.context.currentGroup)
         
-        GroopService.getGroupTasks(1)
+        GroopService.getGroupTasks(this.context.currentGroup)
         .then( data => {
               this.context.setCurrentGroupTasks(data)
         })
-        GroopService.getGroupMembers(1)
+        GroopService.getGroupMembers(this.context.currentGroup)
         .then( data =>{
             this.context.setCurrentGroupMembers(data)
         })

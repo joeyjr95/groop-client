@@ -11,6 +11,11 @@ export default class GroopsHub extends Component {
       this.context.setGroups(data);
     });
   }
+  // onGroupClick = e =>{
+  //   e.preventDefault()
+  //   this.context.setCurrentGroup(e.target.id)
+  //   console.log(this.context.currentGroup)
+  // }
   render() {
     const {groups =[]} = this.context;
     return (
@@ -19,9 +24,9 @@ export default class GroopsHub extends Component {
         <div className="groops-hub">
           <ul className="groops-hub-menu" role="menu">  
               {groups.map(group => (
-              <li key={group.group_id} id={group.group_id} aria-live="polite">
-                <Link to="/group">{group.group_id}</Link>
-              </li>
+             <Link to={`/group/${group.group_id}`}><li key={group.group_id} id={group.group_id} aria-live="polite">
+                {group.name}
+              </li></Link>
             ))}
             <li id="groop4">
               <Link to="/add-group"> Add Groop</Link>
