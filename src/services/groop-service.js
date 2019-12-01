@@ -65,7 +65,7 @@ const GroopService = {
         return await (!res.ok ? res.json().then(err => Promise.reject(err)) : res.json());
       },
       deleteGroup(currentGroup) {
-        return fetch(`${config.API_ENDPOINT}/groups/${currentGroup.id}`, {
+        return fetch(`${config.API_ENDPOINT}/groups/${currentGroup}`, {
           method: 'DELETE',
           headers: {
             'Authorization': `bearer ${TokenService.getAuthToken()}`,
@@ -105,14 +105,14 @@ const GroopService = {
               ? res.json().then(e => Promise.reject(e))
               : res.json());
       },
-      async addNewGroupMember(currentGroupid, newMemberid) {
-        const res = await fetch(`${config.API_ENDPOINT}/groupmembers`, {
+      async addNewGroupMember(body) {
+        const res = await fetch(`${config.API_ENDPOINT}/groupmembers/${body.member_id}`, {
               method: 'POST',
               headers: {
                   'content-type': 'application/json',
                   'Authorization': `bearer ${TokenService.getAuthToken()}`,
               },
-              body: JSON.stringify(currentGroupid, newMemberid),
+              body: JSON.stringify(body),
           });
           return await ((!res.ok)
               ? res.json().then(e => Promise.reject(e))

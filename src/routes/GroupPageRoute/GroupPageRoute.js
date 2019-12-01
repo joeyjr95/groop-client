@@ -15,6 +15,7 @@ render(){
      
     <Link to="/add-task" id="task-link">Add to list</Link>
     <Sidebar />
+    <Link to={`/groupsettings/${this.props.match.params.group_id}`}>Group Settings</Link>
     </div>
     )
 }
