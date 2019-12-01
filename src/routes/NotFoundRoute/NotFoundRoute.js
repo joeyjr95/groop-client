@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import './NotFoundRoute.scss'
 
 class NotFoundRoute extends Component {
   render() {
     return (
-      <section>
-        <h2>404 - Page not found</h2>
+      <section className="NotFoundContainer">
+        <h2>OOPS! looks like you got lost.</h2>
         <p>Try going back to your previous page.</p>
       </section>
     );
