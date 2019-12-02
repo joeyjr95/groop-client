@@ -93,6 +93,15 @@ const GroopService = {
         'content-type': 'application/json',
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
+      body: JSON.stringify(group)
+    });
+    if (!res.ok) {
+      return res.json().then(err => Promise.reject(err));
+    } else {
+      return res.json();
+    }
+  },
+
       deleteGroup(currentGroup) {
         return fetch(`${config.API_ENDPOINT}/groups/${currentGroup}`, {
           method: 'DELETE',
@@ -102,9 +111,6 @@ const GroopService = {
          
         })
       },
-    });
-  },
-
   ///GROUP MEMBERS SECTION
 
       deleteGroupMember(body) {
