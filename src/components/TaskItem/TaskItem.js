@@ -13,29 +13,53 @@ export default class TaskItem extends React.Component {
     completed: false,
   };
 
-  async componentDidMount() {
+  componentDidMount = () => {
     this.setState({
       completed: this.props.task.completed,
     });
-  }
+  };
 
-  async toggleTaskCompleted() {
-    let newTask;
-    this.setState(
-      {
-        completed: !this.state.completed,
-      },
-      (newTask = await GroopService.apiPatchTask(this.props.task.id, {
-        completed: this.state.completed,
-      })),
+  toggleTaskCompleted = async () => {
+    let newStatus;
+    if (this.state.completed === true) {
+      newStatus = false;
+    } else {
+      newStatus = true;
+    }
+    console.log(typeof newStatus);
+    // const newStatus = this.state.completed == true ? false : true;
+    // const newStatus = !this.state.completed;
+    //
+    // console.log(newStatus);
+    // console.log(typeof newStatus);
+    const toggledTask = {
+      completed: true,
+    };
+
+    // this.setState(
+    //   {
+    //     completed: !this.state.completed,
+    //   },
+    //   (newTask = await GroopService.apiPatchTask(this.props.task.id, {
+    //     completed: this.state.completed,
+    //   })),
+    // );
+    //
+    const newTask = await GroopService.apiPatchTask(
+      this.props.task.id,
+      toggledTask,
     );
+
+    console.log(newTask.completed);
+    console.log(typeof newTask.completed);
 
     if (!newTask) {
       console.log(`toggle didn't work`);
     } else {
       console.log(`toggle worked`);
+      this.setState({ completed: newTask.completed });
     }
-  }
+  };
 
   render() {
     return (
