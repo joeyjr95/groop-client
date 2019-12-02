@@ -1,5 +1,5 @@
-import config from '../config';
-import TokenService from '../services/token-service';
+import config from "../config";
+import TokenService from "../services/token-service";
 
 const GroopService = {
   ///TASK SECTION
@@ -7,12 +7,12 @@ const GroopService = {
   async postTask(task) {
     console.log(task);
     const res = await fetch(`${config.API_ENDPOINT}/tasks`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
+        "content-type": "application/json",
+        Authorization: `bearer ${TokenService.getAuthToken()}`
       },
-      body: JSON.stringify(task),
+      body: JSON.stringify(task)
     });
     console.log(task);
     return await (!res.ok
@@ -22,8 +22,8 @@ const GroopService = {
   async getAllTasks() {
     const res = await fetch(`${config.API_ENDPOINT}/tasks`, {
       headers: {
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
+        Authorization: `bearer ${TokenService.getAuthToken()}`
+      }
     });
     return await (!res.ok
       ? res.json().then(e => Promise.reject(e))
@@ -32,8 +32,8 @@ const GroopService = {
   async getGroupTasks(currentGroupid) {
     const res = await fetch(`${config.API_ENDPOINT}/tasks/${currentGroupid}`, {
       headers: {
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
+        Authorization: `bearer ${TokenService.getAuthToken()}`
+      }
     });
     return await (!res.ok
       ? res.json().then(e => Promise.reject(e))
@@ -42,8 +42,8 @@ const GroopService = {
   async getTaskById(taskId) {
     const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId}`, {
       headers: {
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
+        Authorization: `bearer ${TokenService.getAuthToken()}`
+      }
     });
     return await (!res.ok
       ? res.json().then(e => Promise.reject(e))
@@ -51,12 +51,12 @@ const GroopService = {
   },
   async apiPatchTask(taskId, newTask) {
     const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId}`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'content-type': 'application/json',
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
+        "content-type": "application/json",
+        Authorization: `bearer ${TokenService.getAuthToken()}`
       },
-      body: JSON.stringify(newTask),
+      body: JSON.stringify(newTask)
     });
     return await (!res.ok
       ? res.json().then(e => Promise.reject(e))
@@ -64,22 +64,20 @@ const GroopService = {
   },
   async apiDeleteTask(taskId) {
     const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
+        Authorization: `bearer ${TokenService.getAuthToken()}`
+      }
     });
-    return await (!res.ok
-      ? res.json().then(e => Promise.reject(e))
-      : null);
+    return await (!res.ok ? res.json().then(e => Promise.reject(e)) : null);
   },
 
   /// GROUP SECTION
   async getGroup(currentGroup) {
     const res = await fetch(`${config.API_ENDPOINT}/groups/${currentGroup}`, {
       headers: {
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
+        Authorization: `bearer ${TokenService.getAuthToken()}`
+      }
     });
     return await (!res.ok
       ? res.json().then(e => Promise.reject(e))
@@ -88,10 +86,10 @@ const GroopService = {
 
   async postGroup(group) {
     const res = await fetch(`${config.API_ENDPOINT}/groups`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'content-type': 'application/json',
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
+        "content-type": "application/json",
+        Authorization: `bearer ${TokenService.getAuthToken()}`
       },
       body: JSON.stringify(group)
     });
@@ -102,33 +100,33 @@ const GroopService = {
     }
   },
 
-      deleteGroup(currentGroup) {
-        return fetch(`${config.API_ENDPOINT}/groups/${currentGroup}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `bearer ${TokenService.getAuthToken()}`,
-          },
-         
-        })
-      },
+  deleteGroup(currentGroup) {
+    return fetch(`${config.API_ENDPOINT}/groups/${currentGroup}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `bearer ${TokenService.getAuthToken()}`
+      }
+    });
+  },
   ///GROUP MEMBERS SECTION
 
-      deleteGroupMember(body) {
-        return fetch(`${config.API_ENDPOINT}/groupsmembers/${body.group_id}/${body.member_id}`, {
-          method: 'DELETE',
-          headers: {
-            'Authorization': `bearer ${TokenService.getAuthToken()}`,
-          },
-         
-        })
-      },
-
+  deleteGroupMember(body) {
+    return fetch(
+      `${config.API_ENDPOINT}/groupsmembers/${body.group_id}/${body.member_id}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `bearer ${TokenService.getAuthToken()}`
+        }
+      }
+    );
+  },
 
   async getUserGroups() {
     const res = await fetch(`${config.API_ENDPOINT}/groupsmembers`, {
       headers: {
-        Authorization: `bearer ${TokenService.getAuthToken()}`,
-      },
+        Authorization: `bearer ${TokenService.getAuthToken()}`
+      }
     });
     return await (!res.ok
       ? res.json().then(e => Promise.reject(e))
@@ -139,9 +137,9 @@ const GroopService = {
       `${config.API_ENDPOINT}/groupsmembers/${currentGroup}`,
       {
         headers: {
-          Authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-      },
+          Authorization: `bearer ${TokenService.getAuthToken()}`
+        }
+      }
     );
     return await (!res.ok
       ? res.json().then(e => Promise.reject(e))
@@ -149,16 +147,16 @@ const GroopService = {
   },
   addNewGroupMember(body) {
     return fetch(`${config.API_ENDPOINT}/groupsmembers`, {
-          method: 'POST',
-          headers: {
-              'content-type': 'application/json',
-              'Authorization': `bearer ${TokenService.getAuthToken()}`,
-          },
-          body: JSON.stringify(body),
-      });
-      // return  ((!res.ok)
-      //     ? res.json().then(e => Promise.reject(e))
-      //     : res.json());
-}
-      }
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        Authorization: `bearer ${TokenService.getAuthToken()}`
+      },
+      body: JSON.stringify(body)
+    });
+    // return  ((!res.ok)
+    //     ? res.json().then(e => Promise.reject(e))
+    //     : res.json());
+  }
+};
 export default GroopService;
