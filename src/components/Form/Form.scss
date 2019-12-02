@@ -13,6 +13,7 @@ form {
 
 input {
   border: 1px solid darkgrey;
+  line-height: 1.5rem;
   display: block;
   font-size: 1.1em;
   margin-bottom: 10px;
@@ -30,4 +31,9 @@ input {
   padding: 8px 12px;
   font-weight: bold;
   cursor: pointer;
+}
+
+textarea {
+  width: 100%;
+  min-height: 8rem;
 }

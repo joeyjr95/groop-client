@@ -1,0 +1,16 @@
+.edit-task-form{
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  flex: 0 0 auto;
+}
+
+select {
+  line-height: 1.5rem;
+  flex: 0 0 auto;
+  option {
+  }
+}
+

@@ -1,26 +1,24 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import GroopContext from "../../contexts/GroopContext";
-import GroopService from "../../services/groop-service";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import GroopContext from '../../contexts/GroopContext';
+import GroopService from '../../services/groop-service';
+
+import TaskItem from '../../components/TaskItem/TaskItem';
 
 export default class Dashboard extends Component {
   static contextType = GroopContext;
   componentDidMount() {
-      GroopService.getAllTasks()
-      .then( data => {
-            this.context.setUserTasks(data)
-      })
-      GroopService.getUserGroups()
-      .then(data =>{
-        console.log(data)
-        this.context.setGroups(data)
-      })
-
+    GroopService.getAllTasks().then(data => {
+      this.context.setUserTasks(data);
+    });
+    GroopService.getUserGroups().then(data => {
+      console.log(data);
+      this.context.setGroups(data);
+    });
   }
   render() {
-      
-    const { userTasks = [], groups =[]} = this.context;
-    console.log(userTasks)
+    const { userTasks = [], groups = [] } = this.context;
+    console.log(userTasks);
     return (
       <section className="dashboard-c">
         <h2>My Taskboard</h2>
@@ -30,7 +28,7 @@ export default class Dashboard extends Component {
             Members
           </label>
           <ul className="group-menu" role="menu">
-          {groups.map(group => (
+            {groups.map(group => (
               <li key={group.name} id={group.name} aria-live="polite">
                 {group.name}
               </li>
@@ -44,10 +42,8 @@ export default class Dashboard extends Component {
             </label>
           </div>
           <ul className="dashboard-task-list">
-          {userTasks.map(task => (
-              <li key={task.id} id={task.id} aria-live="polite">
-                <p>{task.name}: {task.description}</p>
-              </li>
+            {userTasks.map((task, i) => (
+              <TaskItem task={task} {...this.props} key={`task${i}`} />
             ))}
           </ul>
         </div>
