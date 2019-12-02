@@ -77,7 +77,7 @@ export default class GroopSettings extends Component {
             onClick={this.handleDeleteMember}
             className="AddGroupMemberButton"
           >
-            Add New Member
+            Remove Member
           </button>
 
         </form>
