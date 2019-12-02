@@ -89,7 +89,6 @@ export default class GroopSettings extends Component {
           >
             Delete Group
           </button>
-        </form>
       </section>     
     )
   }
