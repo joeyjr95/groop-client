@@ -106,7 +106,7 @@ const GroopService = {
               : res.json());
       },
       addNewGroupMember(body) {
-        return fetch(`${config.API_ENDPOINT}/groupmembers`, {
+        return fetch(`${config.API_ENDPOINT}/groupsmembers`, {
               method: 'POST',
               headers: {
                   'content-type': 'application/json',
