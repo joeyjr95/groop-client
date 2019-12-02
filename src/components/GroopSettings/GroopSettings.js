@@ -80,6 +80,13 @@ export default class GroopSettings extends Component {
           </button>
 
         </form>
+        <button
+            type="submit"
+            onClick={this.handleDeleteGroup}
+            className="DeleteGroupButton"
+          >
+            Delete Group
+          </button>
 
       </section>
       

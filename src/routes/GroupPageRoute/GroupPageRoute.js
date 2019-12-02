@@ -4,6 +4,7 @@ import './GroupPageRoute.scss'
 import GroopPage from "../../components/GroopPage/GroopPage";
 import Sidebar from "../../components/Sidebar/Sidebar";
 
+
 export default class GroupPageRoute extends Component {
 render(){
     return (<div className="groop-page"> 
