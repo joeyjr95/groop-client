@@ -18,7 +18,7 @@ export default class GroopSettings extends Component {
     handleDeleteMember = (e) =>{
       e.preventDefault();
       let body ={
-        group_id: this.state.group_id, 
+        group_id: parseInt(this.state.group_id), 
         member_id: parseInt(this.state.deletedMember)
       }
       GroopService.deleteGroupMember(body)
@@ -26,7 +26,7 @@ export default class GroopSettings extends Component {
     handleAddMember = (e) =>{
       e.preventDefault();
       let body ={
-        group_id: this.state.group_id, 
+        group_id: parseInt(this.state.group_id), 
         member_id: parseInt(this.state.newMember)
       }
       console.log(body)
@@ -35,11 +35,12 @@ export default class GroopSettings extends Component {
     handleChangeAddMember = e => {
       this.setState({ newMember: e.target.value});
     };
-    handleChangeAddMember = e => {
+    handleChangeDeleteMember = e => {
       this.setState({ deletedMember: e.target.value});
     };
   render(){
     console.log(this.context.currentGroup)
+    console.log(this.state.newMember)
     return(
       <section className="GroupSettingsSection">
         <form className="addGroupMember">
@@ -69,7 +70,7 @@ export default class GroopSettings extends Component {
             type="text"
             id="addGroupMember"
             name="addGroupMember"
-            onChange={this.handleChangeAddMember}
+            onChange={this.handleChangeDeleteMember}
           />
           <button
             type="submit"
