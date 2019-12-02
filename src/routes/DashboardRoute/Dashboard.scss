@@ -67,7 +67,8 @@
     text-align: left;
 }
 .dashboard-task-list li:not(:first-child){
-    padding-top: 10px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 #group-link{
     text-decoration: none;

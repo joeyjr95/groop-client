@@ -78,7 +78,8 @@ width: 100%;
     text-align: left;
 }
 .task-list li:not(:first-child){
-    padding-top: 10px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 #task-link{
     text-decoration: none;

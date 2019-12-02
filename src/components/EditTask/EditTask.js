@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 // import TokenService from "../../services/token-service";
 import GroopService from '../../services/groop-service';
 import UserContext from '../../contexts/UserContext';
+import Button from '../Button/Button';
+import { Label, Input, Textarea } from '../Form/Form';
 import './EditTask.scss';
 
-export default class TaskForm extends Component {
+export default class EditTask extends Component {
   static contextType = UserContext;
   state = {
-    tasks: [],
+    task: null,
     error: null,
     name: {
       value: '',
@@ -22,50 +24,77 @@ export default class TaskForm extends Component {
       value: '',
       touched: false,
     },
+    user_assigned_id: {
+      value: '',
+      touched: false,
+    },
+    members: [],
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  async componentDidMount() {
+    const taskId = this.props.location.pathname.split('/')[2];
+    const task = await GroopService.getTaskById(taskId);
+    const members = await GroopService.getGroupMembers(task.group_id);
+
+    this.setState({
+      name: { value: task.name, touched: false },
+      description: { value: task.description, touched: false },
+      date_due: { value: task.date_due.substring(0, 10), touched: false },
+      user_assigned_id: { value: task.user_assigned_id, touched: false },
+      members,
+      taskId,
+    });
+  }
+
+  async handleSubmit() {
     const editedTask = {
       name: this.state.name.value,
       description: this.state.description.value,
       date_due: this.state.date_due.value,
       user_assigned_id: this.state.user_assigned_id.value,
-      completed: this.state.completed.value,
     };
-    console.log(editedTask);
-    GroopService.postTask(editedTask);
+    const returnedTask = await GroopService.apiPatchTask(
+      this.state.taskId,
+      editedTask,
+    );
+    if (!returnedTask) {
+
+    } else {
+      this.props.history.goBack();
+    }
+  }
+
+  handleChangeTaskname = value => {
+    this.setState({ name: { value, touched: true } });
   };
 
-  handleChangeTaskname = e => {
-    this.setState({ name: { value: e.target.value, touched: true } });
+  handleChangeTaskdescription = value => {
+    this.setState({ description: { value, touched: true } });
   };
-
-  handleChangeTaskdescription = e => {
-    this.setState({ description: { value: e.target.value, touched: true } });
+  handleChangeTaskAssignment = value => {
+    this.setState({ user_assigned_id: { value, touched: true } });
   };
-  // handleChangeTaskuser_assigned_id = e => {
-  //   this.setState({ user_assigned_id: { value: e.target.value, touched: true } });
-  // };
-  handleChangeTaskDueDate = e => {
-    this.setState({ date_due: { value: e.target.value, touched: true } });
+  handleChangeTaskDueDate = value => {
+    this.setState({ date_due: { value, touched: true } });
   };
 
   render() {
-    // console.log(this.state.name.value)
-    // console.log(this.state.user_assigned_id.value)
-    // console.log(this.state.date_due.value)
-    // console.log(this.state.description.value)
+    const memberOptions = this.state.members.map(member => (
+      <option key={`member${member.member_id}`} value={member.member_id}>
+        {member.fullname}
+      </option>
+    ));
     return (
       <section className="edit-task-form">
         <form>
           <h2>Edit Task</h2>
           <label htmlFor="edit-task-name">Task name</label>
-          <input
+          <Input
             type="text"
             id="edit-task-name"
             name="edit-task-name"
-            onChange={this.handleChangeTaskname}
+            onChange={e => this.handleChangeTaskname(e.target.value)}
+            value={this.state.name.value}
           />
           {/* {this.state.name.touched && (
             <div className="error">{this.validatename()}</div>
@@ -75,46 +104,52 @@ export default class TaskForm extends Component {
             type="date"
             id="edit-task-due-date"
             name="edit-task-due-date"
-            onChange={this.handleChangeTaskDueDate}
+            onChange={e => this.handleChangeTaskDueDate(e.target.value)}
+            value={this.state.date_due.value}
           />
           {/* {this.state.year_released.touched && (
             <div className="error">{this.validateDueDate()}</div>
           )} */}
-          <label htmlFor="edit-task-completed">Status</label>
-          <input
-            type="checkbox"
-            id="edit-task-completed"
-            name="edit-task-completed"
-            onChange={this.handleChangeTaskCompleted}
-          />
           <label htmlFor="edit-task-assignment">Assigned to</label>
           <select
             id="edit-task-assignment"
             name="edit-task-assignment"
-            onChange={this.handleChangeTaskAssignment}
-          ></select>
+            onChange={e => this.handleChangeTaskAssignment(e.target.value)}
+            value={this.state.user_assigned_id.value}
+          >
+            {memberOptions}
+          </select>
+
           <label htmlFor="edit-task-desc">Task description</label>
-          <input
+          <Textarea
             id="edit-task-desc"
             name="edit-task-desc"
-            onChange={this.handleChangeTaskdescription}
+            onChange={e => this.handleChangeTaskdescription(e.target.value)}
+            value={this.state.description.value}
           />
           {/* {this.state.description.touched && (
             <div className="error">{this.validatedescription()}</div>
           )} */}
-          <button
-            type="submit"
-            onClick={this.handleSubmit}
+          <Button
+            type="button"
+            onClick={() => this.handleSubmit()}
             // disabled={
             //   // this.validatename() ||
             //   // this.validateDueDate() ||
             //   // this.validatedescription() ||
             //   // this.validateuser_assigned_id()
             // }
-            className="AddTaskButton"
+            className="editTaskButton"
           >
-            Create New Task
-          </button>
+            Save
+          </Button>
+          <Button
+            type="button"
+            onClick={() => this.props.history.goBack()}
+            className="cancelEditTaskButton"
+          >
+            Cancel
+          </Button>
         </form>
       </section>
     );
