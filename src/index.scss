@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Serif+Pro');
+@import './variables.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  z-index: 200;
+  width: 100%;
+  height: 100vh;
+  font-family: 'Source Serif Pro', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $color-bg-main;
+}
+.sidenav{
+  display: none;
+}
+
+:root {
+  --font-size: calc(10px + 1vmin);
+}
+
+.alert {
+  color: $color-error;
+}
+
+@media only screen and (min-width: 1200px){
+.sidenav{
+  display: inherit
+}
+
+}

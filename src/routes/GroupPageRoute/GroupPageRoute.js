@@ -1,8 +1,27 @@
-import React, { Component } from 'react'
-import './GroupPageRoute.css'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './GroupPageRoute.scss';
+import GroopPage from '../../components/GroopPage/GroopPage';
+import Sidebar from '../../components/Sidebar/Sidebar';
+
 
 export default class GroupPageRoute extends Component {
 render(){
-    return <div className="group-page"> implement me </div>
-}
+    return (
+      <div className="groop-page">
+        <h2>groop title</h2>
+        <p id="date">today's date</p>
+        <GroopPage
+          {...this.props}
+          group_id={this.props.match.params.group_id}
+        />
+
+        <Link to="/add-task" id="task-link">
+          Add to list
+        </Link>
+        <Sidebar {...this.props} />
+        <Link to={`/groupsettings/${this.props.match.params.group_id}`}>Group Settings</Link>
+      </div>
+    );
+  }
 }

@@ -1,154 +1,121 @@
-import React, { Component } from "react";
-import config from "../../config";
-import TokenService from "../../services/token-service";
-import "./TaskForm.css";
+import React, { Component } from 'react';
+// import config from "../../config";
+// import TokenService from "../../services/token-service";
+import GroopService from '../../services/groop-service';
+import UserContext from '../../contexts/UserContext';
+import Button from '../Button/Button';
+import './TaskForm.scss';
 
 export default class TaskForm extends Component {
+  static contextType = UserContext;
   state = {
     tasks: [],
     error: null,
-    title: {
-      value: "",
-      touched: false
+    name: {
+      value: '',
+      touched: false,
     },
-    info: {
-      value: "",
-      touched: false
+    description: {
+      value: '',
+      touched: false,
     },
-    due_date: {
-      value: "",
-      touched: false
+    date_due: {
+      value: '2049-06-30',
+      touched: false,
     },
-    task_assignee: {
-      value: "",
-      touched: false
-    }
   };
 
-  handleSubmit = (e) => {
-    e.preventDefault();
+  componentDidMount = () => {
+    const group_id = Number(this.props.location.pathname.split('/')[2]);
+    this.setState({
+      group_id,
+    });
+  };
+
+  handleSubmit = async () => {
     const newTask = {
-      title: this.state.title.value,
-      info: this.state.info.value,
-      due_date: this.state.due_date.value,
-      assignee: this.state.task_assignee.value,
-      groop_id: parseInt(this.props.location.state.collection_id)
+      name: this.state.name.value,
+      description: this.state.description.value,
+      user_assigned_id: this.context.user.id,
+      date_due: this.state.date_due.value,
+      group_id: this.state.group_id,
     };
-    fetch(`${config.API_ENDPOINT}/tasks`, {
-      method: "POST",
-      body: JSON.stringify(newTask),
-      headers: {
-        "content-type": "application/json",
-        Authorization: `Bearer ${TokenService.getAuthToken()}`
-      }
-    })
-      .then(res => {
-        if (!res.ok) return res.json().then(error => Promise.reject(error));
-        return res.json();
-      })
-      .then(resData => {
-        this.setState({
-          tasks: resData
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        this.setState({ error });
-      });
-  }
 
-  handleChangeTaskTitle = e => {
-    this.setState({ title: { value: e.target.value, touched: true } });
+    const returnedNewTask = await GroopService.postTask(newTask);
+    if (!returnedNewTask) {
+      this.setState({ error: 'error creating new task' });
+    } else {
+      this.props.history.goBack();
+    }
   };
 
-  handleChangeTaskInfo = e => {
-    this.setState({ info: { value: e.target.value, touched: true } });
+  handleChangeTaskname= (value)  => {
+    this.setState({ name: { value, touched: true } });
   };
 
-  validateTitle() {
-    const title = this.state.title.value.trim();
-    if (title.length === 0) {
-      return "Name is required";
-    }
-  }
+  handleChangeTaskdescription =(value)  => {
+    this.setState({ description: { value, touched: true } });
+  };
 
-  validateInfo() {
-    const info = this.state.info.value.trim();
-    if (info.length === 0) {
-      return "Info is required";
-    }
-  }
-  
+  handleChangeTaskDueDate = (value) => {
+    this.setState({ date_due: { value, touched: true } });
+  };
+
   render() {
     return (
-      <section className="AddTaskForm">
-        <form>
-          <h2>Add Task</h2>< br/>
-          <label htmlFor="addTasktitle" className="AddTaskLabel">
-            Task Title
-          </label>
-          <input
-            type="text"
-            id="addtasktitle"
-            name="addtasktitle"
-            onChange={this.handleChangeTaskTitle}
-          />
-          {this.state.title.touched && (
-            <div className="error">{this.validateTitle()}</div>
-          )}
+      <section>
+        <form className="AddTaskForm">
+          <h2>Add Task</h2>
           <br />
-          <label htmlFor="addtaskassignee" className="AddTaskAssignee">
-            Task Assignee
+          <label htmlFor="addTaskname" className="AddTaskLabel">
+            Task Name
           </label>
+          <br />
           <input
             type="text"
-            id="addtaskassignee"
-            name="addtaskassignee"
-            onChange={this.handleChangeTaskAssignee}
+            id="addtaskname"
+            name="addtaskname"
+            onChange={e => this.handleChangeTaskname(e.target.value)}
+            value={this.state.name.value}
           />
-          {this.state.image_url.touched && (
-            <div className="error">{this.validateAssignee()}</div>
-          )}
+          <br />
+          <label htmlFor="taskdescription">Task Description</label>
+          <br />
+          <input
+            type="textarea"
+            name="taskdescription"
+            id="taskdescription"
+            onChange={e => this.handleChangeTaskdescription(e.target.value)}
+            value ={this.state.description.value}
+          />
+
           <br />
           <label htmlFor="addtaskduedate" className="AddTaskDueDate">
             Due Date
           </label>
           <br />
           <input
+            className="dateInput"
             type="date"
             id="addtaskduedate"
             name="addtaskduedate"
-            onChange={this.handleChangeTaskDueDate}
+            value={this.state.date_due.value}
+            onChange={e => this.handleChangeTaskDueDate(e.target.value)}
           />
-          {this.state.year_released.touched && (
-            <div className="error">{this.validateDueDate()}</div>
-          )}
-          <br />
-          <label htmlFor="taskInfo">Task Info</label>
-          <br />
-          <textarea
-            name="taskInfo"
-            id="taskInfo"
-            onChange={this.handleChangeTaskInfo}
-          />
-          {this.state.info.touched && (
-            <div className="error">{this.validateInfo()}</div>
-          )}
-          <br />
-          <br />
-          <button
-            type="submit"
+          <Button
+            type="button"
             onClick={this.handleSubmit}
-            disabled={
-              this.validateTitle() ||
-              this.validateDueDate() ||
-              this.validateInfo() ||
-              this.validateAssignee()
-            }
             className="AddTaskButton"
           >
             Create New Task
-          </button>
+          </Button>
+          <Button
+            type="button"
+            onClick={() => this.props.history.goBack()}
+            className="cancelAddTaskButton"
+          >
+            Cancel
+          </Button>
         </form>
       </section>
     );

@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 footer {
   display: flex;
   flex-direction: column;
@@ -12,7 +14,7 @@ button {
 
 button:hover {
   background-color: rgb(206, 206, 206);
-  color: white;
+  color: $color-font-normal;
 }
 
 .signup {
@@ -20,18 +22,17 @@ button:hover {
   flex-direction: column;
   align-items: center;
   margin-top: 9vh;
-  color: white;
+  color: $color-font-normal;
 }
-.signup a{
-  color: white;
-  text-decoration: white;
+.signup a {
+  color: $color-font-normal;
+  text-decoration: $color-font-normal;
 }
+
 
 .Required {
-  color: red;
+  color: $color-error;
 }
-
-
 
 .signup-h2 {
   margin-bottom: 1.5%;
@@ -46,7 +47,6 @@ button:hover {
   width: 200px;
   font-size: 15px;
 }
-
 
 @media only screen and (min-width: 750px) {
   .register-label {

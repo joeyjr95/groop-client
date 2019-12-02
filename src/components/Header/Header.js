@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import TokenService from "../../services/token-service";
 import UserContext from "../../contexts/UserContext";
-import "./Header.css";
+import "./Header.scss";
 
 class Header extends Component {
   static contextType = UserContext;
@@ -12,7 +12,6 @@ class Header extends Component {
   };
 
   renderLogoutLink() {
-    console.log(this.context.user)
     return (
       <div className="link-logout" aria-live="polite">
         <span className="div-span">{this.context.user.username}</span>

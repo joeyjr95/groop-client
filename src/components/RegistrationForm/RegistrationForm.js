@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Input, Required, Label } from "../Form/Form";
 import AuthApiService from "../../services/auth-api-service";
 import Button from "../Button/Button";
-import "./RegistrationForm.css";
+import "./RegistrationForm.scss";
 
 class RegistrationForm extends Component {
   static defaultProps = {
@@ -113,7 +113,7 @@ class RegistrationForm extends Component {
           <Input
             id="registration-confirmPassword-input"
             name="confirmPassword"
-            type="confirmPassword"
+            type="password"
             autoComplete="off"
             aria-required="true"
             required
