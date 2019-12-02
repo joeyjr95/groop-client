@@ -1,7 +1,7 @@
 .task-item {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
 }
@@ -43,11 +43,11 @@
 .task-item__actions {
   width: 75px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 
   > button {
-    margin: 0.25rem auto;
+    margin: 0.25rem 0.25rem;
   }
 }

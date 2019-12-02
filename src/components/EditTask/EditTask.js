@@ -24,42 +24,66 @@ export default class EditTask extends Component {
       value: '',
       touched: false,
     },
+    user_assigned_id: {
+      value: '',
+      touched: false,
+    },
+    members: [],
   };
 
-  componentDidMount = () => {
- GroopService.getTaskById() 
+  async componentDidMount() {
+    const taskId = this.props.location.pathname.split('/')[2];
+    const task = await GroopService.getTaskById(taskId);
+    const members = await GroopService.getGroupMembers(task.group_id);
 
-  };
+    this.setState({
+      name: { value: task.name, touched: false },
+      description: { value: task.description, touched: false },
+      date_due: { value: task.date_due.substring(0, 10), touched: false },
+      user_assigned_id: { value: task.user_assigned_id, touched: false },
+      members,
+      taskId,
+    });
+  }
 
-  handleSubmit = e => {
-    e.preventDefault();
+  async handleSubmit() {
     const editedTask = {
       name: this.state.name.value,
       description: this.state.description.value,
       date_due: this.state.date_due.value,
       user_assigned_id: this.state.user_assigned_id.value,
-      completed: this.state.completed.value,
     };
-    console.log(editedTask);
-    GroopService.postTask(editedTask);
+    const returnedTask = await GroopService.apiPatchTask(
+      this.state.taskId,
+      editedTask,
+    );
+    if (!returnedTask) {
+
+    } else {
+      this.props.history.goBack();
+    }
+  }
+
+  handleChangeTaskname = value => {
+    this.setState({ name: { value, touched: true } });
   };
 
-  handleChangeTaskname = e => {
-    this.setState({ name: { value: e.target.value, touched: true } });
+  handleChangeTaskdescription = value => {
+    this.setState({ description: { value, touched: true } });
   };
-
-  handleChangeTaskdescription = e => {
-    this.setState({ description: { value: e.target.value, touched: true } });
+  handleChangeTaskAssignment = value => {
+    this.setState({ user_assigned_id: { value, touched: true } });
   };
-  // handleChangeTaskuser_assigned_id = e => {
-  //   this.setState({ user_assigned_id: { value: e.target.value, touched: true } });
-  // };
-  handleChangeTaskDueDate = e => {
-    this.setState({ date_due: { value: e.target.value, touched: true } });
+  handleChangeTaskDueDate = value => {
+    this.setState({ date_due: { value, touched: true } });
   };
 
   render() {
-    // const groupMemberOptions =
+    const memberOptions = this.state.members.map(member => (
+      <option key={`member${member.member_id}`} value={member.member_id}>
+        {member.fullname}
+      </option>
+    ));
     return (
       <section className="edit-task-form">
         <form>
@@ -69,7 +93,8 @@ export default class EditTask extends Component {
             type="text"
             id="edit-task-name"
             name="edit-task-name"
-            onChange={this.handleChangeTaskname}
+            onChange={e => this.handleChangeTaskname(e.target.value)}
+            value={this.state.name.value}
           />
           {/* {this.state.name.touched && (
             <div className="error">{this.validatename()}</div>
@@ -79,35 +104,34 @@ export default class EditTask extends Component {
             type="date"
             id="edit-task-due-date"
             name="edit-task-due-date"
-            onChange={this.handleChangeTaskDueDate}
+            onChange={e => this.handleChangeTaskDueDate(e.target.value)}
+            value={this.state.date_due.value}
           />
           {/* {this.state.year_released.touched && (
             <div className="error">{this.validateDueDate()}</div>
           )} */}
-          <label htmlFor="edit-task-completed">Status</label>
-          <Input
-            type="checkbox"
-            id="edit-task-completed"
-            name="edit-task-completed"
-            onChange={this.handleChangeTaskCompleted}
-          />
           <label htmlFor="edit-task-assignment">Assigned to</label>
           <select
             id="edit-task-assignment"
             name="edit-task-assignment"
-            onChange={this.handleChangeTaskAssignment}
-          ></select>
+            onChange={e => this.handleChangeTaskAssignment(e.target.value)}
+            value={this.state.user_assigned_id.value}
+          >
+            {memberOptions}
+          </select>
+
           <label htmlFor="edit-task-desc">Task description</label>
           <Textarea
             id="edit-task-desc"
             name="edit-task-desc"
-            onChange={this.handleChangeTaskdescription}
+            onChange={e => this.handleChangeTaskdescription(e.target.value)}
+            value={this.state.description.value}
           />
           {/* {this.state.description.touched && (
             <div className="error">{this.validatedescription()}</div>
           )} */}
           <Button
-            type="submit"
+            type="button"
             onClick={() => this.handleSubmit()}
             // disabled={
             //   // this.validatename() ||

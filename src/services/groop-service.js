@@ -40,7 +40,7 @@ const GroopService = {
       : res.json());
   },
   async getTaskById(taskId) {
-    const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId})`, {
+    const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId}`, {
       headers: {
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
@@ -50,7 +50,7 @@ const GroopService = {
       : res.json());
   },
   async apiPatchTask(taskId, newTask) {
-    const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId})`, {
+    const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -63,7 +63,7 @@ const GroopService = {
       : res.json());
   },
   async apiDeleteTask(taskId) {
-    const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId})`, {
+    const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId}`, {
       method: 'DELETE',
       headers: {
         Authorization: `bearer ${TokenService.getAuthToken()}`,
