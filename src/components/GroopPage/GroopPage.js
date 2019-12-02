@@ -13,7 +13,7 @@ export default class GroopPage extends Component {
     GroopService.getGroup(this.props.group_id).then(data => {
       let groupId = parseInt(data.id);
       this.context.setCurrentGroup(groupId);
-      console.log(this.context.currentGroup);
+      console.log(this.props.group_id);
     });
 
     GroopService.getGroupTasks(this.props.group_id).then(data => {
@@ -25,7 +25,7 @@ export default class GroopPage extends Component {
   }
   render() {
     const { currentGroupTasks = [], currentGroupMembers = [] } = this.context;
-
+    console.log(currentGroupMembers)
     return (
       <>
         <div className="members-section-mobile">

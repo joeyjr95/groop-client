@@ -4,8 +4,9 @@ import './GroupPageRoute.scss';
 import GroopPage from '../../components/GroopPage/GroopPage';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
+
 export default class GroupPageRoute extends Component {
-  render() {
+render(){
     return (
       <div className="groop-page">
         <h2>groop title</h2>
@@ -19,6 +20,7 @@ export default class GroupPageRoute extends Component {
           Add to list
         </Link>
         <Sidebar {...this.props} />
+        <Link to={`/groupsettings/${this.props.match.params.group_id}`}>Group Settings</Link>
       </div>
     );
   }
