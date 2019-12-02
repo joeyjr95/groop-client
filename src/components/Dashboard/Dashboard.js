@@ -29,9 +29,9 @@ export default class Dashboard extends Component {
           </label>
           <ul className="group-menu" role="menu">
             {groups.map(group => (
-              <li key={group.name} id={group.name} aria-live="polite">
+              <Link key={group.name} id={group.name} to={`/group/${group.group_id}`} aria-live="polite">
                 {group.name}
-              </li>
+              </Link>
             ))}
           </ul>
         </div>

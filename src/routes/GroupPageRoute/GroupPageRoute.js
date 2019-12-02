@@ -18,7 +18,7 @@ export default class GroupPageRoute extends Component {
         <Link to="/add-task" id="task-link">
           Add to list
         </Link>
-        <Sidebar />
+        <Sidebar {...this.props} />
       </div>
     );
   }

@@ -20,47 +20,48 @@ export default class TaskForm extends Component {
       touched: false,
     },
     date_due: {
-      value: '',
-      touched: false,
-    },
-    creator_id: {
-      value: '',
+      value: '2049-06-30',
       touched: false,
     },
   };
 
-  handleSubmit = e => {
-    e.preventDefault();
+  componentDidMount = () => {
+    const group_id = Number(this.props.location.pathname.split('/')[2]);
+    this.setState({
+      group_id,
+    });
+  };
+
+  handleSubmit = async () => {
     const newTask = {
       name: this.state.name.value,
       description: this.state.description.value,
       user_assigned_id: this.context.user.id,
       date_due: this.state.date_due.value,
-      group_id: parseInt(1),
+      group_id: this.state.group_id,
     };
-    console.log(newTask);
-    GroopService.postTask(newTask);
+
+    const returnedNewTask = await GroopService.postTask(newTask);
+    if (!returnedNewTask) {
+      this.setState({ error: 'error creating new task' });
+    } else {
+      this.props.history.goBack();
+    }
   };
 
-  handleChangeTaskname = e => {
-    this.setState({ name: { value: e.target.value, touched: true } });
+  handleChangeTaskname= (value)  => {
+    this.setState({ name: { value, touched: true } });
   };
 
-  handleChangeTaskdescription = e => {
-    this.setState({ description: { value: e.target.value, touched: true } });
+  handleChangeTaskdescription =(value)  => {
+    this.setState({ description: { value, touched: true } });
   };
-  // handleChangeTaskuser_assigned_id = e => {
-  //   this.setState({ user_assigned_id: { value: e.target.value, touched: true } });
-  // };
-  handleChangeTaskDueDate = e => {
-    this.setState({ date_due: { value: e.target.value, touched: true } });
+
+  handleChangeTaskDueDate = (value) => {
+    this.setState({ date_due: { value, touched: true } });
   };
 
   render() {
-    // console.log(this.state.name.value)
-    // console.log(this.state.user_assigned_id.value)
-    // console.log(this.state.date_due.value)
-    // console.log(this.state.description.value)
     return (
       <section>
         <form className="AddTaskForm">
@@ -74,7 +75,8 @@ export default class TaskForm extends Component {
             type="text"
             id="addtaskname"
             name="addtaskname"
-            onChange={this.handleChangeTaskname}
+            onChange={e => this.handleChangeTaskname(e.target.value)}
+            value={this.state.name.value}
           />
           <br />
           <label htmlFor="taskdescription">Task Description</label>
@@ -83,7 +85,8 @@ export default class TaskForm extends Component {
             type="textarea"
             name="taskdescription"
             id="taskdescription"
-            onChange={this.handleChangeTaskdescription}
+            onChange={e => this.handleChangeTaskdescription(e.target.value)}
+            value ={this.state.description.value}
           />
 
           <br />
@@ -96,11 +99,11 @@ export default class TaskForm extends Component {
             type="date"
             id="addtaskduedate"
             name="addtaskduedate"
-            value="1980-08-26"
-            onChange={this.handleChangeTaskDueDate}
+            value={this.state.date_due.value}
+            onChange={e => this.handleChangeTaskDueDate(e.target.value)}
           />
           <Button
-            type="submit"
+            type="button"
             onClick={this.handleSubmit}
             className="AddTaskButton"
           >
