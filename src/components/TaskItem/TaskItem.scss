@@ -1,0 +1,53 @@
+.task-item {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.task-item__check-label {
+  border: 2px solid red;
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.task-item__check {
+  width: 50px;
+  position: absolute;
+  left: -999px;
+  display: hidden;
+
+  &:checked + label {
+    background-color: red;
+  }
+}
+
+.task-item__info {
+  width: 75%;
+}
+
+.task-item__name {
+  margin-bottom: 0.25rem;
+}
+.task-item__description {
+  margin-top: 0.25rem;
+}
+
+.task-item__actions {
+  width: 75px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > button {
+    margin: 0.25rem auto;
+  }
+}

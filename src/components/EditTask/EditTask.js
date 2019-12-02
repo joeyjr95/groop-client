@@ -3,12 +3,14 @@ import React, { Component } from 'react';
 // import TokenService from "../../services/token-service";
 import GroopService from '../../services/groop-service';
 import UserContext from '../../contexts/UserContext';
+import Button from '../Button/Button';
+import { Label, Input, Textarea } from '../Form/Form';
 import './EditTask.scss';
 
-export default class TaskForm extends Component {
+export default class EditTask extends Component {
   static contextType = UserContext;
   state = {
-    tasks: [],
+    task: null,
     error: null,
     name: {
       value: '',
@@ -22,6 +24,11 @@ export default class TaskForm extends Component {
       value: '',
       touched: false,
     },
+  };
+
+  componentDidMount = () => {
+ GroopService.getTaskById() 
+
   };
 
   handleSubmit = e => {
@@ -52,16 +59,13 @@ export default class TaskForm extends Component {
   };
 
   render() {
-    // console.log(this.state.name.value)
-    // console.log(this.state.user_assigned_id.value)
-    // console.log(this.state.date_due.value)
-    // console.log(this.state.description.value)
+    // const groupMemberOptions =
     return (
       <section className="edit-task-form">
         <form>
           <h2>Edit Task</h2>
           <label htmlFor="edit-task-name">Task name</label>
-          <input
+          <Input
             type="text"
             id="edit-task-name"
             name="edit-task-name"
@@ -81,7 +85,7 @@ export default class TaskForm extends Component {
             <div className="error">{this.validateDueDate()}</div>
           )} */}
           <label htmlFor="edit-task-completed">Status</label>
-          <input
+          <Input
             type="checkbox"
             id="edit-task-completed"
             name="edit-task-completed"
@@ -94,7 +98,7 @@ export default class TaskForm extends Component {
             onChange={this.handleChangeTaskAssignment}
           ></select>
           <label htmlFor="edit-task-desc">Task description</label>
-          <input
+          <Textarea
             id="edit-task-desc"
             name="edit-task-desc"
             onChange={this.handleChangeTaskdescription}
@@ -102,19 +106,26 @@ export default class TaskForm extends Component {
           {/* {this.state.description.touched && (
             <div className="error">{this.validatedescription()}</div>
           )} */}
-          <button
+          <Button
             type="submit"
-            onClick={this.handleSubmit}
+            onClick={() => this.handleSubmit()}
             // disabled={
             //   // this.validatename() ||
             //   // this.validateDueDate() ||
             //   // this.validatedescription() ||
             //   // this.validateuser_assigned_id()
             // }
-            className="AddTaskButton"
+            className="editTaskButton"
           >
-            Create New Task
-          </button>
+            Save
+          </Button>
+          <Button
+            type="button"
+            onClick={() => this.props.history.goBack()}
+            className="cancelEditTaskButton"
+          >
+            Cancel
+          </Button>
         </form>
       </section>
     );

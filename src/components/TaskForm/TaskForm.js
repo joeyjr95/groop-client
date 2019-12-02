@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import config from "../../config";
 // import TokenService from "../../services/token-service";
-import GroopService from "../../services/groop-service";
-import UserContext from "../../contexts/UserContext";
-import "./TaskForm.scss";
+import GroopService from '../../services/groop-service';
+import UserContext from '../../contexts/UserContext';
+import Button from '../Button/Button';
+import './TaskForm.scss';
 
 export default class TaskForm extends Component {
   static contextType = UserContext;
@@ -11,36 +12,35 @@ export default class TaskForm extends Component {
     tasks: [],
     error: null,
     name: {
-      value: "",
-      touched: false
+      value: '',
+      touched: false,
     },
     description: {
-      value: "",
-      touched: false
+      value: '',
+      touched: false,
     },
     date_due: {
-      value: "",
-      touched: false
+      value: '',
+      touched: false,
     },
     creator_id: {
-      value: "",
-      touched: false
-    }
+      value: '',
+      touched: false,
+    },
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     const newTask = {
       name: this.state.name.value,
       description: this.state.description.value,
       user_assigned_id: this.context.user.id,
       date_due: this.state.date_due.value,
-      group_id: parseInt(1)
+      group_id: parseInt(1),
     };
-    console.log(newTask)
-    GroopService.postTask(newTask)
-
-  }
+    console.log(newTask);
+    GroopService.postTask(newTask);
+  };
 
   handleChangeTaskname = e => {
     this.setState({ name: { value: e.target.value, touched: true } });
@@ -55,7 +55,7 @@ export default class TaskForm extends Component {
   handleChangeTaskDueDate = e => {
     this.setState({ date_due: { value: e.target.value, touched: true } });
   };
-  
+
   render() {
     // console.log(this.state.name.value)
     // console.log(this.state.user_assigned_id.value)
@@ -64,7 +64,8 @@ export default class TaskForm extends Component {
     return (
       <section>
         <form className="AddTaskForm">
-          <h2>Add Task</h2>< br/>
+          <h2>Add Task</h2>
+          <br />
           <label htmlFor="addTaskname" className="AddTaskLabel">
             Task Name
           </label>
@@ -98,13 +99,20 @@ export default class TaskForm extends Component {
             value="1980-08-26"
             onChange={this.handleChangeTaskDueDate}
           />
-          <button
+          <Button
             type="submit"
             onClick={this.handleSubmit}
             className="AddTaskButton"
           >
             Create New Task
-          </button>
+          </Button>
+          <Button
+            type="button"
+            onClick={() => this.props.history.goBack()}
+            className="cancelAddTaskButton"
+          >
+            Cancel
+          </Button>
         </form>
       </section>
     );
