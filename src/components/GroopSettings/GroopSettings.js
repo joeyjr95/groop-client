@@ -43,6 +43,7 @@ export default class GroopSettings extends Component {
     console.log(this.state.newMember)
     return(
       <section className="GroupSettingsSection">
+        <h2>Group Settings</h2>
         <form className="addGroupMember">
         <label htmlFor="addGroupMember" className="AddGroupMemberLabel">
           Add Member to Group
@@ -56,7 +57,7 @@ export default class GroopSettings extends Component {
           <button
             type="submit"
             onClick={this.handleAddMember}
-            className="AddGroupMemberButton"
+            className="AddGroopMemberButton"
           >
             Add New Member
           </button>
@@ -72,15 +73,6 @@ export default class GroopSettings extends Component {
             name="addGroupMember"
             onChange={this.handleChangeDeleteMember}
           />
-          <button
-            type="submit"
-            onClick={this.handleDeleteMember}
-            className="AddGroupMemberButton"
-          >
-            Add New Member
-          </button>
-
-        </form>
         <button
             type="submit"
             onClick={this.handleDeleteGroup}
@@ -88,9 +80,8 @@ export default class GroopSettings extends Component {
           >
             Delete Group
           </button>
-
-      </section>
-      
+        </form>
+      </section>     
     )
   }
 }
