@@ -14,6 +14,7 @@ export default class TaskItem extends React.Component {
     id: '',
     name: '',
     description: '',
+    date_due: '',
     user_assigned_id: '',
     delete_confirm: false,
   };
@@ -24,6 +25,7 @@ export default class TaskItem extends React.Component {
       id: this.props.task.id,
       name: this.props.task.name,
       description: this.props.task.description,
+      date_due: this.props.task.date_due.substring(0, 10),
       user_assigned_id: this.props.task.user_assigned_id,
     });
   };
@@ -47,7 +49,7 @@ export default class TaskItem extends React.Component {
 
   handleDeleteActions = () => {
     if (this.state.delete_confirm) {
-      this.deleteTask();
+      this.props.deleteTask(this.state.id);
     } else {
       this.tryDelete();
     }
@@ -61,6 +63,20 @@ export default class TaskItem extends React.Component {
   };
 
   render() {
+    // this is unused, just keeping it here temporarily in case want to try again
+    const deleteButton = (
+      <Button
+        type="button"
+        onClick={() => this.handleDeleteActions()}
+        className={
+          this.state.delete_confirm
+            ? 'task-item__delete--confirm'
+            : 'task-item__delete'
+        }
+      >
+        {this.state.delete_confirm ? 'confirm' : 'delete'}
+      </Button>
+    );
     return (
       <li className="task-item">
         <input
@@ -68,6 +84,7 @@ export default class TaskItem extends React.Component {
           type="checkbox"
           className="task-item__check"
           onChange={() => this.toggleTaskCompleted()}
+          onMouseDown={e => e.preventDefault()}
           value={this.state.completed}
           checked={this.state.completed ? 1 : 0}
         />
@@ -75,9 +92,11 @@ export default class TaskItem extends React.Component {
           id={`task-item-check-label-${this.props.task.id}`}
           className="task-item__check-label"
           htmlFor={`task-item-check-${this.props.task.id}`}
+          onMouseDown={e => e.preventDefault()}
         ></label>
         <div className="task-item__info">
           <h3 className="task-item__name">{this.state.name} </h3>
+          <h4 className="task-item__date_due">{this.state.date_due}</h4>
           <p className="task-item__description">{this.state.description}</p>
         </div>
         <div className="task-item__actions">
@@ -87,20 +106,6 @@ export default class TaskItem extends React.Component {
             className="task-item__edit"
           >
             Edit
-          </Button>
-          <Button type="button" className="task-item__more">
-            More
-          </Button>
-          <Button
-            type="button"
-            onClick={() => this.handleDeleteActions()}
-            className={
-              this.state.delete_confirm
-                ? 'task-item__delete--confirm'
-                : 'task-item__delete'
-            }
-          >
-            {this.state.delete_confirm ? 'confirm' : 'delete'}
           </Button>
         </div>
       </li>
