@@ -4,7 +4,6 @@ import GroopContext from "../../contexts/GroopContext";
 export default class Filter extends Component {
   static contextType = GroopContext;
   state = {
-    filteredTasks: [],
     selectedUser: null
   };
 
@@ -33,19 +32,7 @@ export default class Filter extends Component {
     console.log(this.state.selectedUser)
     return (
       <div className="filter">
-        <label htmlFor="member-select"> Filter By:</label>
-        {/* <select className="member-select" onChange={(e) => this.onSelectChange(e.target.value)}>
-          {currentGroupMembers.map(member => (
-            <option
-              key={member.member_id}
-              
-              aria-live="polite"
-              value={member.member_id}
-            >
-              {member.username}
-            </option>
-          ))}
-        </select> */}
+        <label htmlFor="member-select"> Search Tasks:</label>
         <form className="member-select" onSubmit={(e) =>this.filterTasksByUser(e)} >
         <input type="text"
             id="member-select"
