@@ -5,7 +5,6 @@ import GroopSettings from '../../components/GroopSettings/GroopSettings'
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import PublicOnlyRoute from '../PublicOnlyRoute/PublicOnlyRoute';
 import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute';
-import GroopsHubRoute from '../../routes/GroopsHubRoute/GroopsHubRoute';
 import GroupForm from '../../components/GroupForm/GroupForm';
 import TaskFormComponent from '../../components/TaskForm/TaskForm';
 import EditTask from '../../components/EditTask/EditTask';
@@ -52,7 +51,6 @@ export default class App extends Component {
             <PrivateRoute path={'/edit-task'} component={EditTask} />
             <PrivateRoute path={'/add-group'} component={GroupForm} />
             <PrivateRoute path={'/settings'} component={SettingsRoute} />
-            <PrivateRoute exact path={'/hub'} component={GroopsHubRoute} />
             <Route component={NotFoundRoute} />
           </Switch>
         </main>

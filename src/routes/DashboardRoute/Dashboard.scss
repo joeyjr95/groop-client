@@ -76,17 +76,78 @@
     font-size: 20px;
 }
 @media screen and (min-width: 1200px) {
-    .dashboard-task-list-container{
-        margin-left: 18%;
-        margin-right: 18%;
-        height: 400px;
+    .dashboard-task-list{
+        background-color: rgba(255, 255, 255, 0.739);
+        width: 98%;
+        margin-left: 2%;
+        margin-top: 0px;
     }
-}
-@media screen and (min-width: 1400px) {
-    .dashboard-task-list-container{
-        margin-left: 25%;
-        margin-right: 25%;
-        height: 600px;
+    #label-group-menu{
+        display: inherit;
+        font-size: 18px;
+        background-color: #1F4CBF;
+        color: white;
+        width: 100%;
+        border-top-right-radius: 10px ;
+        border-bottom-right-radius: 10px;
+        
     }
+    .groups{
+        height: 450px;
+        width: 15%;
+    }
+    .group-menu{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .group-list-item{
+        text-align: left;
+        margin-left: -10px;
+    }
+    .group-list-item:not(:first-child){
+        margin-top: 20px;
+        
+    }
+    .group-list-item a{
+        text-decoration: none;
+        color: white;
+        font-size: 18px;
+    }
+    .group-list-item a:hover{
+        color: rgb(218, 152, 54);
+    }
+    .main-dashboard-section{
+        display: flex;
+        flex-direction: row-reverse;
+        width: 90%;
+        justify-content: center;
+        margin-top: 40px;
+    }
+    .dashboard-task-list-container{
+        width: 70%;
+        height: 450px;
+        border: none;
+        border-radius: 0px;
+        margin-left: 1.2%;
+        margin-right: 1.2%;
+        background-color: #143380;
+        border-right: 1px solid white;
+    }
+    #dashboard-label-task-list{
+        font-size: 18px;
+        border-top-left-radius: 10px ;
+        border-bottom-left-radius: 10px;
+        color: white;
+        margin-bottom: 0px;
+    }
+    
 }
+// @media screen and (min-width: 1400px) {
+//     .dashboard-task-list-container{
+//         margin-left: 25%;
+//         margin-right: 25%;
+//         height: 600px;
+//     }
+// }
 
