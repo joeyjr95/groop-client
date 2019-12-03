@@ -8,6 +8,29 @@
   border-radius: 5px;
 }
 
+.TaskContanier {
+  display: flex;
+  width: 40%;
+  margin: 0 auto;
+}
+
+input[type=checkbox] {
+  margin: 5px 30px;
+}
+
+.LeftCont {
+  margin-right: 15%;
+}
+
+.dateInput{
+  margin-top: 10px;
+}
+
+.AddTaskDueDate, .AddTaskPriority {
+  font-size: 1.5rem;
+}
+
+
 .AddTaskButton {
   background: #3d94f6;
   background-image: -webkit-linear-gradient(top, #3d94f6, #1e62d0);
