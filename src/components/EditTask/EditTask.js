@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import config from "../../config";
 // import TokenService from "../../services/token-service";
+import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
 import UserContext from '../../contexts/UserContext';
 import Button from '../Button/Button';
@@ -29,6 +30,7 @@ export default class EditTask extends Component {
       touched: false,
     },
     members: [],
+    confirmDelete: false,
   };
 
   async componentDidMount() {
@@ -58,11 +60,25 @@ export default class EditTask extends Component {
       editedTask,
     );
     if (!returnedTask) {
-
     } else {
       this.props.history.goBack();
     }
   }
+
+  deleteTask = async () => {
+    const deleted = await GroopService.apiDeleteTask(this.state.taskId);
+    if (deleted == null) {
+      this.props.history.goBack();
+    }
+  };
+
+  requestDelete = () => {
+    this.setState({ confirmDelete: true });
+  };
+
+  cancelDelete = () => {
+    this.setState({ confirmDelete: false });
+  };
 
   handleChangeTaskname = value => {
     this.setState({ name: { value, touched: true } });
@@ -79,6 +95,32 @@ export default class EditTask extends Component {
   };
 
   render() {
+    const deleteUi = this.state.confirmDelete ? (
+      <div className="delete-confirmation">
+        <Button
+          type="button"
+          onClick={() => this.deleteTask()}
+          className="confirmDeleteButton"
+        >
+          Confirm
+        </Button>
+        <Button
+          type="button"
+          onClick={() => this.cancelDelete()}
+          className="cancelDeleteButton"
+        >
+          Cancel
+        </Button>
+      </div>
+    ) : (
+      <Button
+        type="button"
+        onClick={() => this.requestDelete()}
+        className="deleteTaskButton"
+      >
+        Delete
+      </Button>
+    );
     const memberOptions = this.state.members.map(member => (
       <option key={`member${member.member_id}`} value={member.member_id}>
         {member.fullname}
@@ -88,6 +130,7 @@ export default class EditTask extends Component {
       <section className="edit-task-form">
         <form>
           <h2>Edit Task</h2>
+          {deleteUi}
           <label htmlFor="edit-task-name">Task name</label>
           <Input
             type="text"
