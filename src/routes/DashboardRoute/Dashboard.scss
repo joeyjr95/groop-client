@@ -78,7 +78,7 @@
 @media screen and (min-width: 1200px) {
     .dashboard-c{
         
-        padding-top: 80px;
+        padding-top: 50px;
     }
     .dashboard-task-list{
         background-color: rgba(255, 255, 255, 0.739);
@@ -108,6 +108,7 @@
     .group-list-item{
         text-align: left;
         margin-left: -10px;
+        list-style: square;
     }
     .group-list-item:not(:first-child){
         margin-top: 20px;
