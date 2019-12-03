@@ -13,9 +13,7 @@ export default class GroopPage extends Component {
     GroopService.getGroup(this.props.group_id).then(data => {
       let groupId = parseInt(data.id);
       this.context.setCurrentGroup(groupId);
-     
     });
-
     this.getGroupTasks();
     this.getGroupMembers();
   }
@@ -23,6 +21,7 @@ export default class GroopPage extends Component {
   getGroupTasks = () => {
     GroopService.getGroupTasks(this.props.group_id).then(data => {
       this.context.setCurrentGroupTasks(data);
+      this.context.setFilteredTasks(data)
       
     });
   };
@@ -33,10 +32,11 @@ export default class GroopPage extends Component {
       
     });
   };
+  
 
   render() {
-    const { currentGroupTasks = [], currentGroupMembers = [] } = this.context;
-    
+    const { currentGroupTasks = [], currentGroupMembers = [], filteredTasks =[] } = this.context;
+    console.log(filteredTasks)
     return (
       <>
       <Filter/>
@@ -127,14 +127,25 @@ export default class GroopPage extends Component {
               </label>
             </div>
             <ul className="task-list">
-              {currentGroupTasks.map((task, i) => (
-                <TaskItem
-                  getTasks={() => this.getGroupTasks()}
-                  task={task}
-                  {...this.props}
-                  key={`task${i}`}
-                />
-              ))}
+              {filteredTasks === [] ? (
+                currentGroupTasks.map((task, i) => (
+                  <TaskItem
+                    getTasks={() => this.getGroupTasks()}
+                    task={task}
+                    {...this.props}
+                    key={`task${i}`}
+                  />
+                ))):(
+                  filteredTasks.map((task, i) => (
+                    <TaskItem
+                      getTasks={() => this.getGroupTasks()}
+                      task={task}
+                      {...this.props}
+                      key={`task${i}`}
+                    />
+                )))}
+              
+             
             </ul>
           </div>
         </section>
