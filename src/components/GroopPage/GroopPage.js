@@ -32,6 +32,14 @@ export default class GroopPage extends Component {
     });
   };
 
+  deleteTask = async id => {
+    const deleted = await GroopService.apiDeleteTask(id);
+    if (deleted == null) {
+      let updatedTasks = await GroopService.getGroupTasks(this.props.group_id);
+      this.context.setCurrentGroupTasks(updatedTasks);
+    }
+  };
+
   render() {
     const { currentGroupTasks = [], currentGroupMembers = [] } = this.context;
     console.log(currentGroupMembers);
@@ -127,6 +135,7 @@ export default class GroopPage extends Component {
               {currentGroupTasks.map((task, i) => (
                 <TaskItem
                   getTasks={() => this.getGroupTasks()}
+                  deleteTask={id => this.deleteTask(id)}
                   task={task}
                   {...this.props}
                   key={`task${i}`}

@@ -2,22 +2,31 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './GroupPageRoute.scss';
 import GroopPage from '../../components/GroopPage/GroopPage';
+import GroopService from '../../services/groop-service';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
-
 export default class GroupPageRoute extends Component {
-  date = (separator=" / ") =>{
-    const date = new Date()
-    const today = date.getDate()
-    const month = date.getMonth()
-    const year = date.getFullYear()
-    return `${month}${separator}${today}${separator}${year}`
-  }
-render(){
-  
+  state = {
+    group_name: '',
+  };
+
+  componentDidMount = async () => {
+    let group = await GroopService.getGroup(this.props.match.params.group_id);
+    if (group) this.setState({ group_name: group.name });
+  };
+
+  date = (separator = ' / ') => {
+    const date = new Date();
+    const today = date.getDate();
+    const month = date.getMonth();
+    const year = date.getFullYear();
+    return `${month}${separator}${today}${separator}${year}`;
+  };
+
+  render() {
     return (
       <div className="groop-page">
-        <h2>groop title</h2>
+        <h2>{this.state.group_name}</h2>
         <p id="date">{this.date()}</p>
         <GroopPage
           {...this.props}
@@ -28,7 +37,9 @@ render(){
           Add to list
         </Link>
         <Sidebar {...this.props} />
-        <Link to={`/groupsettings/${this.props.match.params.group_id}`}>Group Settings</Link>
+        <Link to={`/groupsettings/${this.props.match.params.group_id}`}>
+          Group Settings
+        </Link>
       </div>
     );
   }
