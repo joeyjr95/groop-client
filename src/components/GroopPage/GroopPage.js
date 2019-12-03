@@ -1,7 +1,7 @@
 /// <reference path='../../react-vis.d.ts'/>
 import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
-
+import Filter from '../../components/Filter/Filter'
 import React, { Component } from 'react';
 import { RadialChart } from 'react-vis';
 import TaskItem from '../TaskItem/TaskItem';
@@ -13,7 +13,7 @@ export default class GroopPage extends Component {
     GroopService.getGroup(this.props.group_id).then(data => {
       let groupId = parseInt(data.id);
       this.context.setCurrentGroup(groupId);
-      console.log(this.props.group_id);
+     
     });
 
     this.getGroupTasks();
@@ -23,20 +23,23 @@ export default class GroopPage extends Component {
   getGroupTasks = () => {
     GroopService.getGroupTasks(this.props.group_id).then(data => {
       this.context.setCurrentGroupTasks(data);
+      
     });
   };
 
   getGroupMembers = () => {
     GroopService.getGroupMembers(this.props.group_id).then(data => {
       this.context.setCurrentGroupMembers(data);
+      
     });
   };
 
   render() {
     const { currentGroupTasks = [], currentGroupMembers = [] } = this.context;
-    console.log(currentGroupMembers);
+    
     return (
       <>
+      <Filter/>
         <div className="members-section-mobile">
           <div className="members-mobile">
             <label htmlFor="menu" id="label-menu">
