@@ -16,16 +16,25 @@ export default class GroopPage extends Component {
       console.log(this.props.group_id);
     });
 
+    this.getGroupTasks();
+    this.getGroupMembers();
+  }
+
+  getGroupTasks = () => {
     GroopService.getGroupTasks(this.props.group_id).then(data => {
       this.context.setCurrentGroupTasks(data);
     });
+  };
+
+  getGroupMembers = () => {
     GroopService.getGroupMembers(this.props.group_id).then(data => {
       this.context.setCurrentGroupMembers(data);
     });
-  }
+  };
+
   render() {
     const { currentGroupTasks = [], currentGroupMembers = [] } = this.context;
-    console.log(currentGroupMembers)
+    console.log(currentGroupMembers);
     return (
       <>
         <div className="members-section-mobile">
@@ -116,7 +125,12 @@ export default class GroopPage extends Component {
             </div>
             <ul className="task-list">
               {currentGroupTasks.map((task, i) => (
-                <TaskItem task={task} {...this.props} key={`task${i}`} />
+                <TaskItem
+                  getTasks={() => this.getGroupTasks()}
+                  task={task}
+                  {...this.props}
+                  key={`task${i}`}
+                />
               ))}
             </ul>
           </div>
