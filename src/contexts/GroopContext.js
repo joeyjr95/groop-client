@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 
+
 const GroopContext = React.createContext({
   currentGroup: null,
   groups: [],
   currentGroupTasks: [],
   currentGroupMembers: [],
+  filteredTasks: [],
   userTasks: [],
   error: null,
   setError: () => {},
@@ -12,7 +14,8 @@ const GroopContext = React.createContext({
   setCurrentGroup: () => {},
   setCurrentGroupTasks: () => {},
   setCurrentGroupMembers: () => {},
-  setUserTasks: () => {}
+  setUserTasks: () => {},
+  setFilteredTasks: () => {}
 });
 
 export default GroopContext;
@@ -24,8 +27,13 @@ export class GroopProvider extends Component {
     currentGroupTasks: [],
     currentGroupMembers: [],
     userTasks: [],
+    filteredTasks:[],
     error: null
   };
+  
+  setFilteredTasks = filteredTasks =>{
+    this.setState({filteredTasks})
+  }
   setError = error => {
     console.error(error);
     this.setState({ error });
@@ -52,9 +60,11 @@ export class GroopProvider extends Component {
       currentGroupMembers: this.state.currentGroupMembers,
       currentGroupTasks: this.state.currentGroupTasks,
       userTasks: this.state.userTasks,
+      filteredTasks: this.state.filteredTasks,
       error: this.state.error,
       setError: this.setError,
       setGroups: this.setGroups,
+      setFilteredTasks: this.setFilteredTasks,
       setCurrentGroup: this.setCurrentGroup,
       setCurrentGroupTasks: this.setCurrentGroupTasks,
       setCurrentGroupMembers: this.setCurrentGroupMembers,

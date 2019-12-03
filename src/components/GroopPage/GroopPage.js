@@ -1,7 +1,7 @@
 /// <reference path='../../react-vis.d.ts'/>
 import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
-
+import Filter from '../../components/Filter/Filter'
 import React, { Component } from 'react';
 import { RadialChart } from 'react-vis';
 import TaskItem from '../TaskItem/TaskItem';
@@ -13,9 +13,7 @@ export default class GroopPage extends Component {
     GroopService.getGroup(this.props.group_id).then(data => {
       let groupId = parseInt(data.id);
       this.context.setCurrentGroup(groupId);
-      console.log(this.props.group_id);
     });
-
     this.getGroupTasks();
     this.getGroupMembers();
   }
@@ -23,28 +21,25 @@ export default class GroopPage extends Component {
   getGroupTasks = () => {
     GroopService.getGroupTasks(this.props.group_id).then(data => {
       this.context.setCurrentGroupTasks(data);
+      this.context.setFilteredTasks(data)
+      
     });
   };
 
   getGroupMembers = () => {
     GroopService.getGroupMembers(this.props.group_id).then(data => {
       this.context.setCurrentGroupMembers(data);
+      
     });
   };
-
-  deleteTask = async id => {
-    const deleted = await GroopService.apiDeleteTask(id);
-    if (deleted == null) {
-      let updatedTasks = await GroopService.getGroupTasks(this.props.group_id);
-      this.context.setCurrentGroupTasks(updatedTasks);
-    }
-  };
+  
 
   render() {
-    const { currentGroupTasks = [], currentGroupMembers = [] } = this.context;
-    console.log(currentGroupMembers);
+    const { currentGroupTasks = [], currentGroupMembers = [], filteredTasks =[] } = this.context;
+    console.log(filteredTasks)
     return (
       <>
+      <Filter/>
         <div className="members-section-mobile">
           <div className="members-mobile">
             <label htmlFor="menu" id="label-menu">
@@ -132,15 +127,25 @@ export default class GroopPage extends Component {
               </label>
             </div>
             <ul className="task-list">
-              {currentGroupTasks.map((task, i) => (
-                <TaskItem
-                  getTasks={() => this.getGroupTasks()}
-                  deleteTask={id => this.deleteTask(id)}
-                  task={task}
-                  {...this.props}
-                  key={`task${i}`}
-                />
-              ))}
+              {filteredTasks === [] ? (
+                currentGroupTasks.map((task, i) => (
+                  <TaskItem
+                    getTasks={() => this.getGroupTasks()}
+                    task={task}
+                    {...this.props}
+                    key={`task${i}`}
+                  />
+                ))):(
+                  filteredTasks.map((task, i) => (
+                    <TaskItem
+                      getTasks={() => this.getGroupTasks()}
+                      task={task}
+                      {...this.props}
+                      key={`task${i}`}
+                    />
+                )))}
+              
+             
             </ul>
           </div>
         </section>
