@@ -14,7 +14,7 @@
     position: fixed; /* Fixed Sidebar (stay in place on scroll) */
     z-index: 1; /* Stay on top */
     bottom: 0; 
-    right: 0;
+    left: 0;
     overflow-x: hidden; /* Disable horizontal scroll */
 }
   .sidenav a {
@@ -48,10 +48,14 @@
     display: flex;
     background-color: #112377;
     width: 100%;
-    border-top-left-radius: 70px;
-    border-bottom-left-radius: 70px;
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 70px;
     
     
+  }
+  .dashboard-sidenav a:hover{
+    background-color: #1F4CBF;
+    font-style: oblique;
   }
   .sidenav a:hover{
     background-color: #1F4CBF;
@@ -77,5 +81,8 @@
     padding-top: 45px;
     padding-bottom: 45px;
     font-size: 22px;
+    }
+    .dashboard-sidenav{
+      height: 95%
     }
 }
