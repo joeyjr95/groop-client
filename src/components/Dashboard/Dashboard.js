@@ -8,14 +8,24 @@ import TaskItem from '../../components/TaskItem/TaskItem';
 export default class Dashboard extends Component {
   static contextType = GroopContext;
   componentDidMount() {
+    this.getAllTasks();
+    this.getUserGroups();
+  }
+
+  getAllTasks = () => {
+    console.log('getting all tasks');
     GroopService.getAllTasks().then(data => {
       this.context.setUserTasks(data);
     });
+  };
+
+  getUserGroups = () => {
     GroopService.getUserGroups().then(data => {
       console.log(data);
       this.context.setGroups(data);
     });
-  }
+  };
+
   render() {
     const { userTasks = [], groups = [] } = this.context;
     console.log(userTasks);
@@ -29,7 +39,12 @@ export default class Dashboard extends Component {
           </label>
           <ul className="group-menu" role="menu">
             {groups.map(group => (
-              <Link key={group.name} id={group.name} to={`/group/${group.group_id}`} aria-live="polite">
+              <Link
+                key={group.name}
+                id={group.name}
+                to={`/group/${group.group_id}`}
+                aria-live="polite"
+              >
                 {group.name}
               </Link>
             ))}
@@ -43,7 +58,12 @@ export default class Dashboard extends Component {
           </div>
           <ul className="dashboard-task-list">
             {userTasks.map((task, i) => (
-              <TaskItem task={task} {...this.props} key={`task${i}`} />
+              <TaskItem
+                getTasks={() => this.getAllTasks()}
+                task={task}
+                {...this.props}
+                key={`task${i}`}
+              />
             ))}
           </ul>
         </div>
