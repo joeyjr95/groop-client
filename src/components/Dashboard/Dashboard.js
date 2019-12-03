@@ -16,22 +16,31 @@ export default class Dashboard extends Component {
       this.context.setGroups(data);
     });
   }
+  date = (separator=" / ") =>{
+    const date = new Date()
+    const today = date.getDate()
+    const month = date.getMonth()
+    const year = date.getFullYear()
+    return `${month}${separator}${today}${separator}${year}`
+  }
   render() {
+    
     const { userTasks = [], groups = [] } = this.context;
     console.log(userTasks);
     return (
       <section className="dashboard-c">
         <h2>My Taskboard</h2>
-        <p id="date">Today's date</p>
+        <p id="date">{this.date()}</p>
+      <div className="main-dashboard-section">
         <div className="groups">
           <label htmlFor="group-menu" id="label-group-menu">
-            Members
+            Groups
           </label>
           <ul className="group-menu" role="menu">
             {groups.map(group => (
-              <Link key={group.name} id={group.name} to={`/group/${group.group_id}`} aria-live="polite">
+              <li className="group-list-item"><Link key={group.name} id={group.name} to={`/group/${group.group_id}`} aria-live="polite">
                 {group.name}
-              </Link>
+              </Link></li>
             ))}
           </ul>
         </div>
@@ -47,10 +56,7 @@ export default class Dashboard extends Component {
             ))}
           </ul>
         </div>
-
-        <Link id="group-link" to="/hub">
-          Groups
-        </Link>
+        </div>
       </section>
     );
   }

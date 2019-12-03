@@ -6,11 +6,19 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 
 
 export default class GroupPageRoute extends Component {
+  date = (separator=" / ") =>{
+    const date = new Date()
+    const today = date.getDate()
+    const month = date.getMonth()
+    const year = date.getFullYear()
+    return `${month}${separator}${today}${separator}${year}`
+  }
 render(){
+  
     return (
       <div className="groop-page">
         <h2>groop title</h2>
-        <p id="date">today's date</p>
+        <p id="date">{this.date()}</p>
         <GroopPage
           {...this.props}
           group_id={this.props.match.params.group_id}
