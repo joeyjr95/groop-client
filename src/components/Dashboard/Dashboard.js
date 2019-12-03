@@ -8,13 +8,23 @@ import TaskItem from '../../components/TaskItem/TaskItem';
 export default class Dashboard extends Component {
   static contextType = GroopContext;
   componentDidMount() {
+    this.getAllTasks();
+    this.getUserGroups();
+  }
+
+  getAllTasks = () => {
+    console.log('getting all tasks');
     GroopService.getAllTasks().then(data => {
       this.context.setUserTasks(data);
     });
+  };
+
+  getUserGroups = () => {
     GroopService.getUserGroups().then(data => {
       console.log(data);
       this.context.setGroups(data);
     });
+
   }
   date = (separator=" / ") =>{
     const date = new Date()
@@ -52,7 +62,12 @@ export default class Dashboard extends Component {
           </div>
           <ul className="dashboard-task-list">
             {userTasks.map((task, i) => (
-              <TaskItem task={task} {...this.props} key={`task${i}`} />
+              <TaskItem
+                getTasks={() => this.getAllTasks()}
+                task={task}
+                {...this.props}
+                key={`task${i}`}
+              />
             ))}
           </ul>
         </div>
