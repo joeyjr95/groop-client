@@ -76,6 +76,10 @@
     font-size: 20px;
 }
 @media screen and (min-width: 1200px) {
+    .dashboard-c{
+        
+        padding-top: 80px;
+    }
     .dashboard-task-list{
         background-color: rgba(255, 255, 255, 0.739);
         width: 98%;
@@ -143,11 +147,27 @@
     }
     
 }
-// @media screen and (min-width: 1400px) {
-//     .dashboard-task-list-container{
-//         margin-left: 25%;
-//         margin-right: 25%;
-//         height: 600px;
-//     }
-// }
+@media screen and (min-width: 1400px) {
+    .dashboard-task-list-container{
+        width: 70%;
+        height: 600px;
+    }
+    #dashboard-label-task-list{
+        font-size: 20px;
+    }
+    #label-group-menu{
+        font-size: 20px;
+    }
+    .group-list-item a{
+       
+        font-size: 20px;
+    }
+    .groups{
+        height: 600px;
+        width: 18%;
+    }
+    .main-dashboard-section{
+        margin-top:70px;
+    }
+}
 
