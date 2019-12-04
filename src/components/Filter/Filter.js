@@ -1,26 +1,35 @@
 import React, { Component } from "react";
 import GroopContext from "../../contexts/GroopContext";
-
+import './Filter.scss'
 export default class Filter extends Component {
   static contextType = GroopContext;
   state = {
-    selectedUser: null
+    selectedUser: ""
   };
 
 
   filterTasksByUser = (e) => {
       e.preventDefault()
+    let group = this.context.currentGroupMembers
     let groupTasks = this.context.currentGroupTasks;
     let selectedUser = this.state.selectedUser;
-     let filterTasks = groupTasks.filter(tasks => {
-         console.log(tasks.user_assigned_id)
-      return tasks.user_assigned_id == selectedUser
-        })
-        if(!selectedUser){
-          this.context.setFilteredTasks(groupTasks)
-        }else{
-          this.context.setFilteredTasks(filterTasks)
-        }
+    let user = group.find( u => u.username === this.state.selectedUser)
+
+    if(!selectedUser){
+      this.context.setFilteredTasks(groupTasks)
+    }else if(!user){
+      this.context.setFilteredTasks(groupTasks)
+      alert('user not in group')
+      this.setState({
+        selectedUser: ""
+    })
+    }else if(user.username === selectedUser){
+      let filterTasks = groupTasks.filter(tasks => {
+        return tasks.user_assigned_id == user.member_id
+          })
+      this.context.setFilteredTasks(filterTasks)
+     }
+        
     
      
   };
@@ -32,22 +41,33 @@ export default class Filter extends Component {
       })
       
   }
-
+  onReset = (e) =>{
+    let groupTasks = this.context.currentGroupTasks;
+    e.preventDefault()
+    this.setState({
+      selectedUser: ""
+  })
+  this.context.setFilteredTasks(groupTasks)
+  
+  }
 
 
   render() {
-    
-    console.log(this.state.selectedUser)
     console.log(this.context.filteredTasks)
     return (
       <div className="filter">
-        <label htmlFor="member-select"> Search Tasks(by user id for now):</label>
-        <form className="member-select" onSubmit={(e) =>this.filterTasksByUser(e)} >
+        <label htmlFor="member-select"> Search Tasks by User:</label>
+        <form className="member-select"  >
         <input type="text"
             id="member-select"
             name="member-select"
-            onChange={(e) => this.onSelectChange(e.target.value)} />
+            placeholder="enter username here"
+            value={this.state.selectedUser}
+            onChange={(e) => this.onSelectChange(e.target.value)}/>
+            <button onClick={(e) =>this.filterTasksByUser(e)}>Search</button>
+            <button onClick={(e) =>this.onReset(e)}>Clear</button>
         </form>
+        
       </div>
     );
   }
