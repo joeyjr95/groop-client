@@ -5,6 +5,8 @@ import Filter from '../../components/Filter/Filter'
 import React, { Component } from 'react';
 import { RadialChart } from 'react-vis';
 import TaskItem from '../TaskItem/TaskItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMedal } from '@fortawesome/free-solid-svg-icons'
 
 export default class GroopPage extends Component {
   static contextType = GroopContext;
@@ -71,7 +73,8 @@ export default class GroopPage extends Component {
                     id={member.member_id}
                     aria-live="polite"
                   >
-                    {member.username}
+                    {member.username}<br />
+                    <FontAwesomeIcon icon={faMedal} id="pointsIcon"/> 3{member.points}
                   </li>
                 ))}
               </ul>
