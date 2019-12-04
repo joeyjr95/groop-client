@@ -26,7 +26,7 @@ export default class GroupForm extends Component {
     };
     console.log(newGroup)
     GroopService.postGroup(newGroup)
-
+    this.props.history.goBack()
   }
 
   handleChangeGroupname = e => {
@@ -41,7 +41,6 @@ export default class GroupForm extends Component {
   // }
   
   render() {
-     console.log(this.state.name.value)
     return (
       <section>
         <form className="AddGroupForm">

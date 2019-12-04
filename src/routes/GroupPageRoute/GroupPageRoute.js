@@ -18,7 +18,7 @@ export default class GroupPageRoute extends Component {
   date = (separator = ' / ') => {
     const date = new Date();
     const today = date.getDate();
-    const month = date.getMonth();
+    const month = (date.getMonth() + 1);
     const year = date.getFullYear();
     return `${month}${separator}${today}${separator}${year}`;
   };

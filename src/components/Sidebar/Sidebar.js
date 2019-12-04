@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./Sidebar.scss";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUsersCog } from '@fortawesome/free-solid-svg-icons'
 
 export default class Sidebar extends Component {
   
@@ -13,8 +15,8 @@ export default class Sidebar extends Component {
         <div className="dashboard-sidenav">
         <div className='flexbox-container'>
         <Link to="/add-group">Add Groop</Link>
-        <Link to="/calender">Calender</Link>
-        <Link to="/settings">Settings</Link>
+        <Link to="">Calender</Link>
+
         </div>
         </div>
        )
@@ -23,11 +25,10 @@ export default class Sidebar extends Component {
         <div className="sidenav">
         <div className='flexbox-container'>
         <Link to="/dashboard">Dashboard</Link>
-        <Link to={`/groupsettings/${this.props.match.params.group_id}`}>
-          Group Settings
-        </Link>
         <Link to={`/add-task/${this.props.match.params.group_id}`}>Add Task</Link>
-        <Link to="/settings">Settings</Link>
+        <Link to={`/groupsettings/${this.props.match.params.group_id}`}>
+        <FontAwesomeIcon icon={faUsersCog} id="groupSettingsIcon"/>
+        </Link>
         </div>
         </div>
        )

@@ -51,7 +51,7 @@ export default class App extends Component {
             <PrivateRoute path={'/add-task'} component={TaskFormComponent} />
             <PrivateRoute path={'/calender'} component={Calender} />
             <PrivateRoute path={'/edit-task'} component={EditTask} />
-            <PrivateRoute path={'/add-group'} component={GroupForm} />
+            <PrivateRoute path={'/add-group'} component={GroupForm} {...this.props}/>
             <PrivateRoute path={'/settings'} component={SettingsRoute} />
             <Route component={NotFoundRoute} />
           </Switch>
