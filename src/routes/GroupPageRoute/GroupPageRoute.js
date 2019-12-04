@@ -37,9 +37,7 @@ export default class GroupPageRoute extends Component {
           Add to list
         </Link>
         <Sidebar {...this.props} />
-        <Link to={`/groupsettings/${this.props.match.params.group_id}`}>
-          Group Settings
-        </Link>
+        
       </div>
     );
   }

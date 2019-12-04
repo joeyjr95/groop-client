@@ -127,15 +127,7 @@ export default class GroopPage extends Component {
               </label>
             </div>
             <ul className="task-list">
-              {filteredTasks === [] ? (
-                currentGroupTasks.map((task, i) => (
-                  <TaskItem
-                    getTasks={() => this.getGroupTasks()}
-                    task={task}
-                    {...this.props}
-                    key={`task${i}`}
-                  />
-                ))):(
+              {
                   filteredTasks.map((task, i) => (
                     <TaskItem
                       getTasks={() => this.getGroupTasks()}
@@ -143,7 +135,7 @@ export default class GroopPage extends Component {
                       {...this.props}
                       key={`task${i}`}
                     />
-                )))}
+                ))}
               
              
             </ul>
