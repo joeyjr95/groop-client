@@ -14,6 +14,7 @@ export default class GroopSettings extends Component {
     handleDeleteGroup = (e) =>{
       e.preventDefault();
       GroopService.deleteGroup(this.state.group_id)
+      this.props.history.go(-2);
     }
     handleDeleteMember = (e) =>{
       e.preventDefault();
@@ -22,6 +23,7 @@ export default class GroopSettings extends Component {
         member_id: parseInt(this.state.deletedMember)
       }
       GroopService.deleteGroupMember(body)
+      
     }
     handleAddMember = (e) =>{
       e.preventDefault();
