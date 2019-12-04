@@ -14,7 +14,6 @@ export default class Filter extends Component {
     let groupTasks = this.context.currentGroupTasks;
     let selectedInput = this.state.selectedInput;
     let user = group.find(u => u.username === this.state.selectedInput);
-    console.log(groupTasks);
     if (!selectedInput) {
       this.context.setFilteredTasks(groupTasks);
     } else if (!user) {
@@ -55,25 +54,23 @@ export default class Filter extends Component {
   };
 
   search = e => {
-    e.preventDefault()
-    let groupTasks = this.context.currentGroupTasks
-    this.context.setFilteredTasks(groupTasks)
-    let filter = this.state.filter
-    if(filter === "Task Name"){
-      this.searchTaskName(e)
-    }else if(filter === "Description"){
-      this.searchDescription(e)
-    }else if(filter === "User Name"){
-      this.filterTasksByUser(e)
+    e.preventDefault();
+    let groupTasks = this.context.currentGroupTasks;
+    this.context.setFilteredTasks(groupTasks);
+    let filter = this.state.filter;
+    if (filter === "Task Name") {
+      this.searchTaskName(e);
+    } else if (filter === "Description") {
+      this.searchDescription(e);
+    } else if (filter === "User Name") {
+      this.filterTasksByUser(e);
     }
-
-  }
-
+  };
   onFilterChange = e => {
     this.setState({
       filter: e
     });
-  }
+  };
 
   onSelectChange = e => {
     this.setState({
@@ -97,13 +94,13 @@ export default class Filter extends Component {
       <div className="filter">
         <label htmlFor="member-select"> Search Tasks by:</label>
         <select
-                name="Categories"
-                onChange={e => this.onFilterChange(e.target.value)}
-              >
-                <option value="User Name">User Name</option>
-                <option value="Task Name">Task Name</option>
-                <option value="Description">Description</option>
-              </select>
+          name="Categories"
+          onChange={e => this.onFilterChange(e.target.value)}
+        >
+          <option value="User Name">User Name</option>
+          <option value="Task Name">Task Name</option>
+          <option value="Description">Description</option>
+        </select>
         <form className="member-select">
           <input
             type="text"
