@@ -41,7 +41,7 @@ export default class GroopPage extends Component {
     console.log(filteredTasks)
     return (
       <>
-      <Filter/>
+      <Filter {...this.props}/>
         <div className="members-section-mobile">
           <div className="members-mobile">
             <label htmlFor="menu" id="label-menu">

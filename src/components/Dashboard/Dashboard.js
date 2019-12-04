@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import GroopContext from '../../contexts/GroopContext';
-import GroopService from '../../services/groop-service';
-
-import TaskItem from '../../components/TaskItem/TaskItem';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import GroopContext from "../../contexts/GroopContext";
+import GroopService from "../../services/groop-service";
+import Filter from "../../components/Filter/Filter";
+import TaskItem from "../../components/TaskItem/TaskItem";
 
 export default class Dashboard extends Component {
   static contextType = GroopContext;
@@ -13,9 +13,10 @@ export default class Dashboard extends Component {
   }
 
   getAllTasks = () => {
-    console.log('getting all tasks');
+    console.log("getting all tasks");
     GroopService.getAllTasks().then(data => {
       this.context.setUserTasks(data);
+      this.context.setFilteredTasks(data);
     });
   };
 
@@ -31,23 +32,28 @@ export default class Dashboard extends Component {
     if (deleted == null) {
       let updatedTasks = await GroopService.getAllTasks();
       this.context.setUserTasks(updatedTasks);
+      this.context.setFilteredTasks(updatedTasks);
     }
   };
 
-  date = (separator = ' / ') => {
+  date = (separator = " / ") => {
     const date = new Date();
     const today = date.getDate();
-    const month = date.getMonth();
+    const month = date.getMonth() + 1;
     const year = date.getFullYear();
     return `${month}${separator}${today}${separator}${year}`;
   };
+
   render() {
-    const { userTasks = [], groups = [] } = this.context;
+    const { userTasks = [], groups = [], filteredTasks = [] } = this.context;
     console.log(userTasks);
     return (
       <section className="dashboard-c">
         <h2>My Taskboard</h2>
         <p id="date">{this.date()}</p>
+        <div className="filter">
+          <Filter {...this.props} />
+        </div>
         <div className="main-dashboard-section">
           <div className="groups">
             <label htmlFor="group-menu" id="label-group-menu">
@@ -78,7 +84,18 @@ export default class Dashboard extends Component {
               </label>
             </div>
             <ul className="dashboard-task-list">
-              {userTasks.map((task, i) => (
+              {filteredTasks.map((task, i) => {
+                console.log(task);
+                return (
+                  <TaskItem
+                    getTasks={() => this.getAllTasks()}
+                    task={task}
+                    {...this.props}
+                    key={`task${i}`}
+                  />
+                );
+              })}
+              {/* {userTasks.map((task, i) => (
                 <TaskItem
                   getTasks={() => this.getAllTasks()}
                   deleteTask={id => this.deleteTask(id)}
@@ -86,7 +103,7 @@ export default class Dashboard extends Component {
                   {...this.props}
                   key={`task${i}`}
                 />
-              ))}
+              ))} */}
             </ul>
           </div>
         </div>
