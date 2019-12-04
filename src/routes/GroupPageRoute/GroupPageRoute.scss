@@ -1,4 +1,7 @@
 @import '../../variables.scss';
+#pointsIcon {
+  color: rgb(235, 208, 57);
+}
 .groop-page {
   display: flex;
   flex-direction: column;
@@ -53,6 +56,7 @@
 }
 .menu li {
   margin-right: 30px;
+  list-style-type:none;
 }
 .task-list-container {
   background-color: white;
