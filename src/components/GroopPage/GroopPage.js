@@ -29,6 +29,7 @@ export default class GroopPage extends Component {
 
   getGroupMembers = () => {
     GroopService.getGroupMembers(this.props.group_id).then(data => {
+      console.log(data)
       this.context.setCurrentGroupMembers(data);
     });
   };
