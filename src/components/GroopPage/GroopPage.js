@@ -82,7 +82,7 @@ export default class GroopPage extends Component {
             <div className="scores-section">
               <div className="scores-section1">
                 <label htmlFor="weekly-scores" id="weekly-scores-label">
-                  Top Scores for this week
+                  Top Scores for today
                 </label>
                 <ol className="weekly-scores">
                   <li id="weekly-scores-name1">User: 22</li>
@@ -120,7 +120,7 @@ export default class GroopPage extends Component {
                 width={window.innerWidth / 5}
                 height={window.innerWidth / 5}
               ></RadialChart>
-              <p> How tasks have been split this week</p>
+              <p> How tasks have been split today</p>
             </div>
           </div>
           <div className="task-list-container">
@@ -131,14 +131,15 @@ export default class GroopPage extends Component {
             </div>
             <ul className="task-list">
               {
-                  filteredTasks.map((task, i) => (
-                    <TaskItem
+                  filteredTasks.map((task, i) => {
+                    console.log(task)
+                     return <TaskItem
                       getTasks={() => this.getGroupTasks()}
                       task={task}
                       {...this.props}
                       key={`task${i}`}
                     />
-                ))}
+                  })}
               
              
             </ul>

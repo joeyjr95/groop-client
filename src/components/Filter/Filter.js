@@ -4,25 +4,25 @@ import "./Filter.scss";
 export default class Filter extends Component {
   static contextType = GroopContext;
   state = {
-    selectedUser: ""
+    selectedInput: "",
+    filter: "User Name"
   };
 
   filterTasksByUser = e => {
     e.preventDefault();
     let group = this.context.currentGroupMembers;
     let groupTasks = this.context.currentGroupTasks;
-    let selectedUser = this.state.selectedUser;
-    let user = group.find(u => u.username === this.state.selectedUser);
-    console.log(groupTasks)
-    if (!selectedUser) {
+    let selectedInput = this.state.selectedInput;
+    let user = group.find(u => u.username === this.state.selectedInput);
+    if (!selectedInput) {
       this.context.setFilteredTasks(groupTasks);
     } else if (!user) {
       this.context.setFilteredTasks(groupTasks);
       alert("user not in group");
       this.setState({
-        selectedUser: ""
+        selectedInput: ""
       });
-    } else if (user.username === selectedUser) {
+    } else if (user.username === selectedInput) {
       let filterTasks = groupTasks.filter(tasks => {
         return tasks.user_assigned_id == user.member_id;
       });
@@ -30,59 +30,87 @@ export default class Filter extends Component {
     }
   };
 
-  searchDescription = e =>{
+  searchDescription = e => {
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
-    
-    let selectedUser = this.state.selectedUser;
+
+    let selectedInput = this.state.selectedInput;
     let filterTasks = groupTasks.filter(tasks => {
-      return tasks.description.includes(selectedUser)  
+      return tasks.description.includes(selectedInput);
     });
-    console.log(filterTasks)
+    console.log(filterTasks);
     this.context.setFilteredTasks(filterTasks);
-  }
-  searchTaskName = e =>{
+  };
+  searchTaskName = e => {
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
-    
-    let selectedUser = this.state.selectedUser;
+
+    let selectedInput = this.state.selectedInput;
     let filterTasks = groupTasks.filter(tasks => {
-      return tasks.name.includes(selectedUser)  
+      return tasks.name.includes(selectedInput);
     });
-    console.log(filterTasks)
+    console.log(filterTasks);
     this.context.setFilteredTasks(filterTasks);
-  }
-  // searchUsername = e =>
+  };
+
+  search = e => {
+    e.preventDefault();
+    let groupTasks = this.context.currentGroupTasks;
+    this.context.setFilteredTasks(groupTasks);
+    let filter = this.state.filter;
+    if (filter === "Task Name") {
+      this.searchTaskName(e);
+    } else if (filter === "Description") {
+      this.searchDescription(e);
+    } else if (filter === "User Name") {
+      this.filterTasksByUser(e);
+    }
+  };
+  onFilterChange = e => {
+    this.setState({
+      filter: e
+    });
+  };
 
   onSelectChange = e => {
     this.setState({
-      selectedUser: e
+      selectedInput: e
     });
   };
   onReset = e => {
     let groupTasks = this.context.currentGroupTasks;
     e.preventDefault();
     this.setState({
-      selectedUser: ""
+      selectedInput: ""
     });
     this.context.setFilteredTasks(groupTasks);
   };
 
   render() {
+    console.log(this.state.selectedInput);
+    console.log(this.state.filter);
     console.log(this.context.filteredTasks);
     return (
       <div className="filter">
-        <label htmlFor="member-select"> Search Tasks by User:</label>
+        <label htmlFor="member-select"> Search Tasks by:</label>
+        <select
+          name="Categories"
+          onChange={e => this.onFilterChange(e.target.value)}
+        >
+          <option value="User Name">User Name</option>
+          <option value="Task Name">Task Name</option>
+          <option value="Description">Description</option>
+        </select>
         <form className="member-select">
           <input
             type="text"
             id="member-select"
             name="member-select"
             placeholder="enter username here"
-            value={this.state.selectedUser}
+            value={this.state.selectedInput}
             onChange={e => this.onSelectChange(e.target.value)}
           />
-          <button onClick={e => this.filterTasksByUser(e)}>Search</button>
+          <button onClick={e => this.search(e)}>Search</button>
           <button onClick={e => this.onReset(e)}>Clear</button>
         </form>
       </div>
