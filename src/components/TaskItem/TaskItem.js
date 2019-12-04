@@ -10,25 +10,26 @@ export default class TaskItem extends React.Component {
   };
 
   state = {
-    completed: true,
-    id: '',
-    name: '',
-    description: '',
-    date_due: '',
-    user_assigned_id: '',
+    completed: this.props.task.completed,
+    id: this.props.task.id,
+    name: this.props.task.name,
+    description: this.props.task.description,
+    date_due: this.props.task.date_due.substring(0, 10),
+    user_assigned_id: this.props.task.user_assigned_id,
     delete_confirm: false,
   };
 
-  componentDidMount = () => {
-    this.setState({
-      completed: this.props.task.completed,
-      id: this.props.task.id,
-      name: this.props.task.name,
-      description: this.props.task.description,
-      date_due: this.props.task.date_due.substring(0, 10),
-      user_assigned_id: this.props.task.user_assigned_id,
-    });
-  };
+  // componentDidMount = () => {
+  //   this.setState({
+  //     completed: this.props.task.completed,
+  //     id: this.props.task.id,
+  //     name: this.props.task.name,
+  //     description: this.props.task.description,
+  //     date_due: this.props.task.date_due.substring(0, 10),
+  //     user_assigned_id: this.props.task.user_assigned_id,
+  //   });
+  // };
+  
 
   toggleTaskCompleted = async () => {
     const newStatus = this.state.completed ? false : true;
@@ -77,10 +78,11 @@ export default class TaskItem extends React.Component {
         {this.state.delete_confirm ? 'confirm' : 'delete'}
       </Button>
     );
+    const task = this.props.task
     return (
       <li className="task-item">
         <input
-          id={`task-item-check-${this.props.task.id}`}
+          id={`task-item-check-${task.id}`}
           type="checkbox"
           className="task-item__check"
           onChange={() => this.toggleTaskCompleted()}
@@ -89,20 +91,20 @@ export default class TaskItem extends React.Component {
           checked={this.state.completed ? 1 : 0}
         />
         <label
-          id={`task-item-check-label-${this.props.task.id}`}
+          id={`task-item-check-label-${task.id}`}
           className="task-item__check-label"
-          htmlFor={`task-item-check-${this.props.task.id}`}
+          htmlFor={`task-item-check-${task.id}`}
           onMouseDown={e => e.preventDefault()}
         ></label>
         <div className="task-item__info">
-          <h3 className="task-item__name">{this.state.name} </h3>
-          <h4 className="task-item__date_due">{this.state.date_due}</h4>
-          <p className="task-item__description">{this.state.description}</p>
+          <h3 className="task-item__name">{task.name} </h3>
+          <h4 className="task-item__date_due">{task.date_due.substring(0, 10)}</h4>
+          <p className="task-item__description">{task.description}</p>
         </div>
         <div className="task-item__actions">
           <Button
             type="button"
-            onClick={() => this.goEdit(this.props.task.id)}
+            onClick={() => this.goEdit(task.id)}
             className="task-item__edit"
           >
             Edit
