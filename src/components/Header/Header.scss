@@ -1,5 +1,16 @@
 @import '../../variables.scss';
 
+#settingsIcon {
+  margin-right: 25px;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+
+#settingsIcon:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
 header {
   width: 100%;
   position: fixed;
