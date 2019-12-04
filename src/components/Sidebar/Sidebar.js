@@ -13,7 +13,7 @@ export default class Sidebar extends Component {
         <div className="dashboard-sidenav">
         <div className='flexbox-container'>
         <Link to="/add-group">Add Groop</Link>
-        <Link to="">Calender</Link>
+        <Link to="/calender">Calender</Link>
         <Link to="/settings">Settings</Link>
         </div>
         </div>

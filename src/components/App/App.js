@@ -14,6 +14,7 @@ import LoginRoute from '../../routes/LoginRoute/LoginRoute';
 import DashBoardRoute from '../../routes/DashboardRoute/DashboardRoute';
 import GroupPageRoute from '../../routes/GroupPageRoute/GroupPageRoute';
 import SettingsRoute from '../../routes/SettingsRoute/SettingsRoute';
+import Calender from '../../components/Calender/Calender';
 
 import './App.scss';
 
@@ -48,6 +49,7 @@ export default class App extends Component {
              component={GroopSettings}
              />
             <PrivateRoute path={'/add-task'} component={TaskFormComponent} />
+            <PrivateRoute path={'/calender'} component={Calender} />
             <PrivateRoute path={'/edit-task'} component={EditTask} />
             <PrivateRoute path={'/add-group'} component={GroupForm} />
             <PrivateRoute path={'/settings'} component={SettingsRoute} />
