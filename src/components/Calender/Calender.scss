@@ -1,0 +1,11 @@
+@import '../../variables.scss';
+ 
+.CalenderContainer {
+  width: 97%;
+  margin: 65px auto;
+  color: white;
+}
+
+.rbc-calendar, .rbc-toolbar span button{
+  color: white;
+}
