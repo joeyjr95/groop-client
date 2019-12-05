@@ -77,8 +77,8 @@ export default class GroopPage extends Component {
                   >
                     {member.username}
                     <br />
-                    <FontAwesomeIcon icon={faMedal} id="pointsIcon" /> 3
-                    {member.points}
+                    <FontAwesomeIcon icon={faMedal} id="pointsIcon" />
+                    {member.score}
                   </li>
                 ))}
               </ul>
