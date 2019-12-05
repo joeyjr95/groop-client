@@ -2,10 +2,81 @@
  
 .CalenderContainer {
   width: 97%;
-  margin: 65px auto;
+  margin: 25px auto;
+}
+
+.rbc-month-view, .rbc-time-view{
+  border-radius: 3px;
+}
+
+.rbc-toolbar span button{
+  color: white;
+}
+.rbc-calendar{
+  color: rgb(78, 76, 76);
+
+}
+
+.rbc-show-more {
+  background-color: rgba(235, 168, 43, 0.3) !important;
+  font-family: 'Source Serif Pro', serif;
+  text-decoration: none;
+  color: rgb(80, 79, 79);
+}
+
+.rbc-show-more:visited {
+  background-color: rgba(235, 168, 43, 0.3) !important;
+  font-family: 'Source Serif Pro', serif;
+  text-decoration: none;
   color: white;
 }
 
-.rbc-calendar, .rbc-toolbar span button{
+.rbc-month-header, .rbc-time-header-content {
+  background-color: azure;
+}
+
+.rbc-btn-group button:nth-child(4) {
+  display: none;
+}
+
+.rbc-month-row {
+  border: 1px solid white;
+}
+
+.rbc-day-bg, .rbc-time-header-gutter {
+  background-color: rgb(235, 237, 240);
+}
+
+.rbc-event-allday {
+  box-shadow: 3px 3px 5px rgb(46, 46, 46) !important;
+}
+
+.rbc-today {
+  background-color: rgb(218, 252, 216) !important;
+}
+
+.rbc-toolbar button.rbc-active {
+  color:rgb(80, 79, 79);
+}
+
+.rbc-timeslot-group {
+  background-color: rgb(237, 243, 227) !important;
+}
+
+.rbc-time-column{
+  background-color: rgb(201, 206, 193);
+}
+
+.rbc-toolbar-label {
+  font-size: 1em;
   color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+@media only screen and (min-width: 750px) {
+  .rbc-toolbar-label {
+    font-size: 2em;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
 }

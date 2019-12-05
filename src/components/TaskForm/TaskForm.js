@@ -16,6 +16,14 @@ export default class TaskForm extends Component {
       value: "",
       touched: false
     },
+    time_start: {
+      value: "",
+      touched: false
+    },
+    time_end: {
+      value: "",
+      touched: false
+    },
     description: {
       value: "",
       touched: false
@@ -49,8 +57,10 @@ export default class TaskForm extends Component {
       date_due: this.state.date_due.value,
       group_id: this.state.group_id,
       priority: this.state.priority.value,
-      category: this.state.category.value
+      category: this.state.category.value,
+      time_start: this.state.time_start.value
     };
+
     console.log(newTask);
 
     const returnedNewTask = await GroopService.postTask(newTask);
@@ -79,6 +89,10 @@ export default class TaskForm extends Component {
 
   handleChangeTaskDueDate = value => {
     this.setState({ date_due: { value, touched: true } });
+  };
+
+  handleChangeTaskStartDate = value => {
+    this.setState({ time_start: { value, touched: true } });
   };
 
   render() {
@@ -124,6 +138,18 @@ export default class TaskForm extends Component {
                 name="addtaskduedate"
                 value={this.state.date_due.value}
                 onChange={e => this.handleChangeTaskDueDate(e.target.value)}
+              />
+              <label htmlFor="addtaskstartdate" className="AddTaskStartDate">
+                Start Date
+              </label>
+              <br />
+              <input
+                className="dateInput"
+                type="date"
+                id="addtaskstartdate"
+                name="addtaskstartdate"
+                value={this.state.time_start.value}
+                onChange={e => this.handleChangeTaskStartDate(e.target.value)}
               />
               <label htmlFor="addtaskcategory" className="AddTaskCategory">
                 Category
