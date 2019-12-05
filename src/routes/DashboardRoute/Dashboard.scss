@@ -1,5 +1,15 @@
 @import '../../variables.scss';
 
+.group-list-item a {
+    background-color: transparent;
+    text-decoration: none;
+    color: white;
+    font-size: x-large;
+    list-style: none;
+    font-weight: bolder;
+    text-shadow: 4px 3px 11px black;
+    }
+
 .dashboard-c{
     color: white;
     padding-top: 40px;
@@ -22,7 +32,6 @@
     margin-right: 30px;
 }
 #dashboard-label-task-list{
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,7 +93,6 @@
 
     }
     .dashboard-c{
-        
         padding-top: 50px;
     }
     .dashboard-task-list{
@@ -155,8 +163,9 @@
         margin-bottom: 0px;
     }
     
+    
 }
-@media screen and (min-width: 1400px) {
+@media screen and (min-width: 1300px) {
     .dashboard-task-list-container{
         width: 70%;
         height: 600px;
@@ -167,10 +176,7 @@
     #label-group-menu{
         font-size: 20px;
     }
-    .group-list-item a{
-       
-        font-size: 20px;
-    }
+    
     .groups{
         height: 600px;
         width: 18%;
@@ -179,5 +185,6 @@
         margin-top:70px;
         margin-left: 8%;
     }
+    
 }
 
