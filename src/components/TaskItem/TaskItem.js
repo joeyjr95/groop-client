@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import GroopService from '../../services/groop-service';
 import Button from '../Button/Button';
 import './TaskItem.scss';
@@ -18,18 +17,6 @@ export default class TaskItem extends React.Component {
     user_assigned_id: this.props.task.user_assigned_id,
     delete_confirm: false,
   };
-
-  // componentDidMount = () => {
-  //   this.setState({
-  //     completed: this.props.task.completed,
-  //     id: this.props.task.id,
-  //     name: this.props.task.name,
-  //     description: this.props.task.description,
-  //     date_due: this.props.task.date_due.substring(0, 10),
-  //     user_assigned_id: this.props.task.user_assigned_id,
-  //   });
-  // };
-  
 
   toggleTaskCompleted = async () => {
     const newStatus = this.state.completed ? false : true;
@@ -65,7 +52,7 @@ export default class TaskItem extends React.Component {
 
   render() {
     // this is unused, just keeping it here temporarily in case want to try again
-    const deleteButton = (
+    /* const deleteButton = (
       <Button
         type="button"
         onClick={() => this.handleDeleteActions()}
@@ -77,7 +64,7 @@ export default class TaskItem extends React.Component {
       >
         {this.state.delete_confirm ? 'confirm' : 'delete'}
       </Button>
-    );
+    ); */
     const task = this.props.task
     return (
       <li className="task-item">

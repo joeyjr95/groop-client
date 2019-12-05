@@ -38,7 +38,7 @@ class Calender extends Component{
     if(path === dashboard){
       let newEvents = userTasks.map(task => {
         return {
-          start: task.time_start,
+          start: Date(task.time_start),
           end: moment(task.date_due).add(1, 'days'),
           title: task.name
         }
@@ -48,7 +48,7 @@ class Calender extends Component{
     else {
       const newEvents = groupTasks.map(task => {
         return {
-          start: task.time_start,
+          start: Date(moment(task.time_start)),
           end: moment(task.date_due).add(1, 'days'),
           title: task.name
         }
@@ -67,7 +67,7 @@ class Calender extends Component{
   };
 
   render() {
-    const { userTasks = [] } = this.context;
+    //const { userTasks = [] } = this.context;
     //console.log(userTasks);
     return (
       <div className="CalenderContainer">

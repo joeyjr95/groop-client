@@ -36,7 +36,7 @@ export default class GroopPage extends Component {
 
   render() {
     const {
-      currentGroupTasks = [],
+      //currentGroupTasks = [],
       currentGroupMembers = [],
       filteredTasks = []
     } = this.context;
