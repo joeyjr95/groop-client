@@ -7,7 +7,7 @@
     font-size: x-large;
     list-style: none;
     font-weight: bolder;
-    text-shadow: 4px 3px 11px black;
+    text-shadow: 4px 3px 11px rgba(0, 0, 0, 0.437);
     }
 
 .dashboard-c{
@@ -84,14 +84,21 @@
     color: white;
     font-size: 20px;
 }
-@media screen and (min-width: 1200px) {
-    .filter{
-        display:flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-
+// .button {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     margin: 2px;
+// }
+@media screen and (min-width: 800px) {
+    .filter {
+    display: flex;
+    float: right;
+    flex-direction: column;
     }
+    
+   
     .dashboard-c{
         padding-top: 50px;
     }
@@ -166,6 +173,7 @@
     
 }
 @media screen and (min-width: 1300px) {
+    
     .dashboard-task-list-container{
         width: 70%;
         height: 600px;
