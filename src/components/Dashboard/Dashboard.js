@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
-import './Dashboard.scss';
 
 import TaskItem from '../../components/TaskItem/TaskItem';
 
