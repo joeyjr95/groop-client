@@ -23,9 +23,7 @@ class Calender extends Component {
   };
 
   state = {
-    events: [
-
-    ]
+    events: []
   };
 
   reMap(){
@@ -40,7 +38,7 @@ class Calender extends Component {
       let newEvents = userTasks.map(task => {
         return {
           start: task.time_start,
-          end: task.date_due,
+          end: moment(task.date_due).add(1, 'days'),
           title: task.name
         }
       })
@@ -50,7 +48,7 @@ class Calender extends Component {
       const newEvents = groupTasks.map(task => {
         return {
           start: task.time_start,
-          end: task.date_due,
+          end: moment(task.date_due).add(1, 'days'),
           title: task.name
         }
       })
@@ -78,7 +76,7 @@ class Calender extends Component {
           events={this.state.events}
           localizer={localizer}
           resizable
-          style={{ height: "70vh" }}
+          style={{ height: "80vh" }}
         />
       </div>
     );
