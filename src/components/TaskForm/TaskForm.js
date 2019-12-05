@@ -26,11 +26,11 @@ export default class TaskForm extends Component {
       touched: false
     },
     date_due: {
-      value: "2049-06-30",
+      value: "",
       touched: false
     },
     time_start: {
-      value: "2049-06-29",
+      value: "",
       touched: false
     },
     category: {
@@ -102,7 +102,7 @@ export default class TaskForm extends Component {
 
   render() {
     const {categories = []} = this.state
-    console.log(categories)
+    
     return (
       <section>
         <form className="AddTaskForm">
@@ -139,7 +139,7 @@ export default class TaskForm extends Component {
               <br />
               <input
                 className="dateInput"
-                type="date"
+                type="datetime-local"
                 id="addTaskTimeStart"
                 name="addTaskTimeStart"
                 value={this.state.time_start.value}
@@ -151,7 +151,7 @@ export default class TaskForm extends Component {
               <br />
               <input
                 className="dateInput"
-                type="date"
+                type="datetime-local"
                 id="addtaskduedate"
                 name="addtaskduedate"
                 value={this.state.date_due.value}

@@ -43,7 +43,7 @@ class Calender extends Component{
       let newEvents = userTasks.map(task => {
         return {
           start: new Date(task.time_start),
-          end: this.addDays(task.date_due, 1),
+          end: new Date(task.date_due),
           title: task.name
         }
       })
@@ -53,7 +53,7 @@ class Calender extends Component{
       const newEvents = groupTasks.map(task => {
         return {
           start: new Date(task.time_start),
-          end: this.addDays(task.date_due, 1),
+          end: new Date(task.date_due),
           title: task.name
         }
       })
