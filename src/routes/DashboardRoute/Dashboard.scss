@@ -84,8 +84,14 @@
     color: white;
     font-size: 20px;
 }
-@media screen and (min-width: 800px) {
-    
+@media screen and (min-width: 1200px) {
+    .filter{
+        display:flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+    }
     .dashboard-c{
         padding-top: 50px;
     }

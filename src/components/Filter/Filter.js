@@ -7,6 +7,13 @@ export default class Filter extends Component {
     selectedInput: "",
     filter: "User Name"
   };
+  componentDidMount() {
+    const path = this.props.match.path;
+    const dashboard = "/dashboard";
+    if (path === dashboard) {
+      this.setState({ filter: "Task Name" });
+    }
+  }
 
   filterTasksByUser = e => {
     e.preventDefault();
@@ -31,26 +38,41 @@ export default class Filter extends Component {
   };
 
   searchDescription = e => {
+    const path = this.props.match.path;
+    const dashboard = "/dashboard";
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
-
     let selectedInput = this.state.selectedInput;
-    let filterTasks = groupTasks.filter(tasks => {
-      return tasks.description.includes(selectedInput);
-    });
-    console.log(filterTasks);
-    this.context.setFilteredTasks(filterTasks);
+    if (path === dashboard) {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return tasks.description.includes(selectedInput);
+      });
+      this.context.setFilteredTasks(filterTasks);
+    } else {
+      let filterTasks = groupTasks.filter(tasks => {
+        return tasks.description.includes(selectedInput);
+      });
+      this.context.setFilteredTasks(filterTasks);
+    }
   };
   searchTaskName = e => {
+    const path = this.props.match.path;
+    const dashboard = "/dashboard";
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
 
     let selectedInput = this.state.selectedInput;
-    let filterTasks = groupTasks.filter(tasks => {
-      return tasks.name.includes(selectedInput);
-    });
-    console.log(filterTasks);
-    this.context.setFilteredTasks(filterTasks);
+    if (path === dashboard) {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return tasks.name.includes(selectedInput);
+      });
+      this.context.setFilteredTasks(filterTasks);
+    } else {
+      let filterTasks = groupTasks.filter(tasks => {
+        return tasks.name.includes(selectedInput);
+      });
+      this.context.setFilteredTasks(filterTasks);
+    }
   };
 
   search = e => {
@@ -66,6 +88,7 @@ export default class Filter extends Component {
       this.filterTasksByUser(e);
     }
   };
+
   onFilterChange = e => {
     this.setState({
       filter: e
@@ -78,42 +101,82 @@ export default class Filter extends Component {
     });
   };
   onReset = e => {
+    const path = this.props.match.path;
+    const dashboard = "/dashboard";
     let groupTasks = this.context.currentGroupTasks;
     e.preventDefault();
     this.setState({
       selectedInput: ""
     });
-    this.context.setFilteredTasks(groupTasks);
+    if (path === dashboard) {
+      this.context.setFilteredTasks(this.context.userTasks);
+    } else {
+      this.context.setFilteredTasks(groupTasks);
+    }
   };
-
   render() {
-    console.log(this.state.selectedInput);
-    console.log(this.state.filter);
-    console.log(this.context.filteredTasks);
-    return (
-      <div className="filter">
-        <label htmlFor="member-select"> Search Tasks by:</label>
-        <select
-          name="Categories"
-          onChange={e => this.onFilterChange(e.target.value)}
-        >
-          <option value="User Name">User Name</option>
-          <option value="Task Name">Task Name</option>
-          <option value="Description">Description</option>
-        </select>
-        <form className="member-select">
-          <input
-            type="text"
-            id="member-select"
-            name="member-select"
-            placeholder="enter username here"
-            value={this.state.selectedInput}
-            onChange={e => this.onSelectChange(e.target.value)}
-          />
-          <button onClick={e => this.search(e)}>Search</button>
-          <button onClick={e => this.onReset(e)}>Clear</button>
-        </form>
-      </div>
-    );
+    const path = this.props.match.path;
+    const dashboard = "/dashboard";
+
+    if (path === dashboard) {
+      return (
+        <div className="filter">
+          <label htmlFor="member-select"> Search Tasks by:</label>
+          <select
+            name="Categories"
+            onChange={e => this.onFilterChange(e.target.value)}
+          >
+            <option value="Task Name">Task Name</option>
+            <option value="Description">Description</option>
+          </select>
+          <form className="member-select">
+            <input
+              type="text"
+              id="member-select"
+              name="member-select"
+              placeholder="search here"
+              value={this.state.selectedInput}
+              onChange={e => this.onSelectChange(e.target.value)}
+            />
+            <button onClick={e => this.search(e)}>Search</button>
+            <button onClick={e => this.onReset(e)}>Clear</button>
+          </form>
+        </div>
+      );
+    } else {
+      return (
+        <div className="filter">
+          <label htmlFor="member-select"> Search Tasks by:</label>
+          <select
+            name="Categories"
+            onChange={e => this.onFilterChange(e.target.value)}
+          >
+            <option value="User Name">User Name</option>
+            <option value="Task Name">Task Name</option>
+            <option value="Description">Description</option>
+          </select>
+          <form className="member-select">
+            <input
+              type="text"
+              id="member-select"
+              name="member-select"
+              placeholder="search here"
+              value={this.state.selectedInput}
+              onChange={e => this.onSelectChange(e.target.value)}
+            />
+            <button onClick={e => this.search(e)}>Search</button>
+            <button onClick={e => this.onReset(e)}>Clear</button>
+          </form>
+        </div>
+      );
+    }
   }
+
+  // render() {
+  //   console.log(this.state.selectedInput);
+  //   console.log(this.state.filter);
+  //   console.log(this.context.filteredTasks);
+  //   return this.renderFilter()
+
+  // }
 }
