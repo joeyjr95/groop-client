@@ -36,5 +36,16 @@ body {
 .sidenav{
   display: inherit
 }
-
 }
+@media only screen and (min-width: 765px){
+  a {
+    background-color: transparent;
+    text-decoration: none;
+    color: white;
+    font-size: x-large;
+    list-style: none;
+    font-weight: bolder;
+    text-shadow: 4px 3px 11px black;
+    }
+}
+
