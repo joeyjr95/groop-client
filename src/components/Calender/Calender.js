@@ -26,7 +26,11 @@ class Calender extends Component{
   state = {
     events: []
   };
-
+  addDays(date, days) {
+    var result = new Date(date);
+    result.setDate(result.getDate() + days);
+    return result;
+  }
   reMap(){
     const path = this.props.location.pathname;
     console.log(path)
@@ -34,12 +38,12 @@ class Calender extends Component{
 
     let userTasks = this.context.userTasks;
     let groupTasks = this.context.currentGroupTasks;
-
+    
     if(path === dashboard){
       let newEvents = userTasks.map(task => {
         return {
-          start: Date(task.time_start),
-          end: moment(task.date_due).add(1, 'days'),
+          start: new Date(task.time_start),
+          end: this.addDays(task.date_due, 1),
           title: task.name
         }
       })
@@ -48,8 +52,8 @@ class Calender extends Component{
     else {
       const newEvents = groupTasks.map(task => {
         return {
-          start: Date(moment(task.time_start)),
-          end: moment(task.date_due).add(1, 'days'),
+          start: new Date(task.time_start),
+          end: this.addDays(task.date_due, 1),
           title: task.name
         }
       })
