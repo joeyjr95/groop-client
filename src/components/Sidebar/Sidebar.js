@@ -15,8 +15,7 @@ export default class Sidebar extends Component {
         <div className="dashboard-sidenav">
         <div className='flexbox-container'>
         <Link to="/add-group">Add Groop</Link>
-        <Link to="">Calender</Link>
-
+        <Link to={`/calendar${this.props.location.pathname}`}>Calendar</Link>
         </div>
         </div>
        )
@@ -25,6 +24,7 @@ export default class Sidebar extends Component {
         <div className="sidenav">
         <div className='flexbox-container'>
         <Link to="/dashboard">Dashboard</Link>
+        <Link to={`/calendar/${this.props.match.params.group_id}`}>Calendar</Link>
         <Link to={`/add-task/${this.props.match.params.group_id}`}>Add Task</Link>
         <Link to={`/groupsettings/${this.props.match.params.group_id}`}>
         <FontAwesomeIcon icon={faUsersCog} id="groupSettingsIcon"/>
