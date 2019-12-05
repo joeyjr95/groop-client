@@ -31,7 +31,7 @@ export default class Filter extends Component {
       });
     } else if (user.username === selectedInput) {
       let filterTasks = groupTasks.filter(tasks => {
-        return tasks.user_assigned_id == user.member_id;
+        return tasks.user_assigned_id === user.member_id;
       });
       this.context.setFilteredTasks(filterTasks);
     }
