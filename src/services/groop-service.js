@@ -158,5 +158,16 @@ const GroopService = {
     //     ? res.json().then(e => Promise.reject(e))
     //     : res.json());
   },
+  /// CATERGORY SECTION
+  async getCategories(currentGroup) {
+    const res = await fetch(`${config.API_ENDPOINT}/categories/group/${currentGroup}`, {
+      headers: {
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    });
+    return await (!res.ok
+      ? res.json().then(e => Promise.reject(e))
+      : res.json());
+  },
 };
 export default GroopService;
