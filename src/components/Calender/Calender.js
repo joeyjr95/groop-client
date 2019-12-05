@@ -1,70 +1,88 @@
-// import React, { Component } from "react";
-// import {Calendar, momentLocalizer} from 'react-big-calendar';
-// import moment from "moment";
-// import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
-// import './Calender.scss'
-// import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
-// import "react-big-calendar/lib/css/react-big-calendar.css";
-// import GroopContext from '../../contexts/GroopContext';
-// import GroopService from '../../services/groop-service';
+import React, { Component } from "react";
+import {Calendar, momentLocalizer} from 'react-big-calendar';
+import moment from "moment";
+import './Calender.scss'
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import GroopContext from '../../contexts/GroopContext';
+import GroopService from '../../services/groop-service';
 
-// const localizer = momentLocalizer(moment);
-// const DnDCalendar = withDragAndDrop(Calendar);
+const localizer = momentLocalizer(moment);
 
-// class Calender extends Component {
-//   static contextType = GroopContext;
 
-//   componentDidMount() {
-//     this.getAllTasks();
-//   }
+class Calender extends Component{
+  static contextType = GroopContext;
 
-//   getAllTasks = () => {
-//     console.log('getting all tasks');
-//     GroopService.getAllTasks().then(data => {
-//       this.context.setUserTasks(data);
-//     });
-//   };
+  componentDidMount() {	
+    this.getAllTasks()
+  }
+  
+  getAllTasks = () => {
+    GroopService.getAllTasks().then(data => {
+      this.context.setUserTasks(data);
+      this.reMap();
+    });
+  };
 
-//   state = {
-//     events: [
-//       {
-//         start: new Date(),
-//         end: new Date(moment().add(1, "days")),
-//         title: "Some title"
-//       }
-//     ]
-//   };
+  state = {
+    events: []
+  };
 
-//   onEventResize = (type, { event, start, end, allDay }) => {
-//     this.setState(state => {
-//       state.events[0].start = start;
-//       state.events[0].end = end;
-//       return { events: state.events };
-//     });
-//   };
+  reMap(){
+    const path = this.props.location.pathname;
+    console.log(path)
+    const dashboard = "/calendar/dashboard";
 
-//   onEventDrop = ({ event, start, end, allDay }) => {
-//     console.log(start);
-//   };
+    let userTasks = this.context.userTasks;
+    let groupTasks = this.context.currentGroupTasks;
 
-//   render() {
-//     const { userTasks = [] } = this.context;
-//     console.log(userTasks);
-//     return (
-//       <div className="CalenderContainer">
-//         <DnDCalendar
-//           defaultDate={new Date()}
-//           defaultView="month"
-//           events={userTasks}
-//           localizer={localizer}
-//           onEventDrop={this.onEventDrop}
-//           onEventResize={this.onEventResize}
-//           resizable
-//           style={{ height: "70vh" }}
-//         />
-//       </div>
-//     );
-//   }
-// }
+    if(path === dashboard){
+      let newEvents = userTasks.map(task => {
+        return {
+          start: task.time_start,
+          end: moment(task.date_due).add(1, 'days'),
+          title: task.name
+        }
+      })
+      this.setState({events: [...newEvents]});
+    }
+    else {
+      const newEvents = groupTasks.map(task => {
+        return {
+          start: task.time_start,
+          end: moment(task.date_due).add(1, 'days'),
+          title: task.name
+        }
+      })
+      this.setState({events: [...newEvents]});
+    }
+    console.log(this.state.events)
+  }
 
-// export default Calender;
+  onEventResize = (type, { event, start, end, allDay }) => {
+    this.setState(state => {
+      state.events[0].start = start;
+      state.events[0].end = end;
+      return { events: state.events };
+    });
+  };
+
+  render() {
+    const { userTasks = [] } = this.context;
+    //console.log(userTasks);
+    return (
+      <div className="CalenderContainer">
+        <Calendar
+          defaultDate={new Date()}
+          defaultView="month"
+          events={this.state.events}
+          localizer={localizer}
+          resizable
+          style={{ height: "80vh" }}
+        />
+      </div>
+    );
+  }
+}
+
+
+export default Calender;

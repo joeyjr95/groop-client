@@ -17,6 +17,14 @@ export default class TaskForm extends Component {
       value: "",
       touched: false
     },
+    time_start: {
+      value: "",
+      touched: false
+    },
+    time_end: {
+      value: "",
+      touched: false
+    },
     description: {
       value: "",
       touched: false
@@ -59,6 +67,7 @@ export default class TaskForm extends Component {
       priority: parseInt(this.state.priority.value),
       category: this.state.category.value
     };
+
     console.log(newTask);
 
     const returnedNewTask = await GroopService.postTask(newTask);
@@ -89,6 +98,10 @@ export default class TaskForm extends Component {
   };
   onPriorityChange = value => {
     this.setState({ priority: { value, touched: true } });
+  };
+
+  handleChangeTaskStartDate = value => {
+    this.setState({ time_start: { value, touched: true } });
   };
 
   render() {

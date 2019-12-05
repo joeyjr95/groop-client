@@ -1,4 +1,8 @@
 @import '../../variables.scss';
+.group-list-item a {
+    color: white;
+    list-style-type: none;
+}
 
 .group-list-item a {
     background-color: transparent;

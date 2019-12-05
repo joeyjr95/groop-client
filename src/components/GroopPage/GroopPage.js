@@ -29,7 +29,7 @@ export default class GroopPage extends Component {
 
   getGroupMembers = () => {
     GroopService.getGroupMembers(this.props.group_id).then(data => {
-      console.log(data)
+      console.log(data);
       this.context.setCurrentGroupMembers(data);
     });
   };
@@ -43,7 +43,7 @@ export default class GroopPage extends Component {
     console.log(filteredTasks);
     return (
       <>
-      <Filter {...this.props}/>
+        <Filter {...this.props} />
         <div className="members-section-mobile">
           <div className="members-mobile">
             <label htmlFor="menu" id="label-menu">
@@ -77,8 +77,8 @@ export default class GroopPage extends Component {
                   >
                     {member.username}
                     <br />
-                    <FontAwesomeIcon icon={faMedal} id="pointsIcon" /> 3
-                    {member.points}
+                    <FontAwesomeIcon icon={faMedal} id="pointsIcon" />
+                    <span className="userScore">{member.score}</span>
                   </li>
                 ))}
               </ul>
@@ -88,20 +88,32 @@ export default class GroopPage extends Component {
                 <label htmlFor="weekly-scores" id="weekly-scores-label">
                   Top Scores for today
                 </label>
-                <ol className="weekly-scores">
-                  <li id="weekly-scores-name1">User: 22</li>
-                  <li id="weekly-scores-name2">Allie: 17</li>
-                  <li id="weekly-scores-name3">Derek: 9</li>
+                <ol className="AllTimeScore" role="menu">
+                  {currentGroupMembers.map(memScore => (
+                    <li
+                      key={memScore.member_id}
+                      id={memScore.member_id}
+                      aria-live="polite"
+                    >
+                      <p className="userScore">{memScore.username}: {memScore.score}</p>
+                    </li>
+                  ))}
                 </ol>
               </div>
               <div className="scores-section2">
                 <label htmlFor="total-scores" id="total-scores-label">
                   Top Scores all time
                 </label>
-                <ol className="total-scores">
-                  <li id="total-scores-name1">User: 122</li>
-                  <li id="total-scores-name2">Allie: 117</li>
-                  <li id="total-scores-name3">Derek: 91</li>
+                <ol className="AllTimeScore" role="menu">
+                  {currentGroupMembers.map(memScore => (
+                    <li
+                      key={memScore.member_id}
+                      id={memScore.member_id}
+                      aria-live="polite"
+                    >
+                      <p className="userScore">{memScore.username}: {memScore.score}</p>
+                    </li>
+                  ))}
                 </ol>
               </div>
             </div>
