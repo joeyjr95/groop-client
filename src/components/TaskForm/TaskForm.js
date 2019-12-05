@@ -17,10 +17,6 @@ export default class TaskForm extends Component {
       value: "",
       touched: false
     },
-    time_start: {
-      value: "",
-      touched: false
-    },
     time_end: {
       value: "",
       touched: false
@@ -38,7 +34,7 @@ export default class TaskForm extends Component {
       touched: false
     },
     category: {
-      value: "default",
+      value: 1,
       touched: false
     },
     priority: {
@@ -65,7 +61,7 @@ export default class TaskForm extends Component {
       date_due: this.state.date_due.value,
       group_id: this.state.group_id,
       priority: parseInt(this.state.priority.value),
-      category: this.state.category.value
+      category_id: parseInt(this.state.category.value)
     };
 
     console.log(newTask);
@@ -106,6 +102,7 @@ export default class TaskForm extends Component {
 
   render() {
     const {categories = []} = this.state
+    console.log(categories)
     return (
       <section>
         <form className="AddTaskForm">
@@ -167,16 +164,15 @@ export default class TaskForm extends Component {
               <br />
               <select
                 name="Categories"
-                value={this.state.category}
-                onChange={this.handleCategory}
+                onChange={e => this.handleCategory(e.target.value)}
               >
                {categories.map( category=>(
                  <option
-                 id={category.category_id}
+                 id={category.id}
                  name={category.category_name}
-                 value={category.category_id}
-                 onChange={e => this.handleCategory(e.target.value)}
-               />
+                 value={category.id}
+                 
+               >{category.category_name}</option>
                ))
                }
               </select>
