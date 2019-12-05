@@ -10,6 +10,7 @@ import "./TaskForm.scss";
 export default class TaskForm extends Component {
   static contextType = UserContext;
   state = {
+    categories: [],
     tasks: [],
     error: null,
     name: {
@@ -24,12 +25,16 @@ export default class TaskForm extends Component {
       value: "2049-06-30",
       touched: false
     },
+    time_start: {
+      value: "2049-06-29",
+      touched: false
+    },
     category: {
-      value: "",
+      value: "default",
       touched: false
     },
     priority: {
-      value: "",
+      value: 1,
       touched: false
     }
   };
@@ -39,6 +44,8 @@ export default class TaskForm extends Component {
     this.setState({
       group_id
     });
+    GroopService.getCategories(group_id)
+    .then(data => this.setState({categories: data}))
   };
 
   handleSubmit = async () => {
@@ -46,9 +53,10 @@ export default class TaskForm extends Component {
       name: this.state.name.value,
       description: this.state.description.value,
       user_assigned_id: this.context.user.id,
+      time_start: this.state.time_start.value,
       date_due: this.state.date_due.value,
       group_id: this.state.group_id,
-      priority: this.state.priority.value,
+      priority: parseInt(this.state.priority.value),
       category: this.state.category.value
     };
     console.log(newTask);
@@ -65,10 +73,6 @@ export default class TaskForm extends Component {
     this.setState({ category: { value, touched: true } });
   };
 
-  handlePriority = value => {
-    this.setState({ priority: { value, touched: true } });
-  };
-
   handleChangeTaskname = value => {
     this.setState({ name: { value, touched: true } });
   };
@@ -80,9 +84,15 @@ export default class TaskForm extends Component {
   handleChangeTaskDueDate = value => {
     this.setState({ date_due: { value, touched: true } });
   };
+  handleChangeTaskTimeStart = value => {
+    this.setState({ time_start: { value, touched: true } });
+  };
+  onPriorityChange = value => {
+    this.setState({ priority: { value, touched: true } });
+  };
 
   render() {
-    console.log(this.state.category);
+    const {categories = []} = this.state
     return (
       <section>
         <form className="AddTaskForm">
@@ -113,6 +123,18 @@ export default class TaskForm extends Component {
           <div className="TaskContanier">
             <div className="LeftCont">
               <br />
+              <label htmlFor="addTaskTimeStart" className="AddTaskTimeStart">
+                Start Date
+              </label>
+              <br />
+              <input
+                className="dateInput"
+                type="date"
+                id="addTaskTimeStart"
+                name="addTaskTimeStart"
+                value={this.state.time_start.value}
+                onChange={e => this.handleChangeTaskTimeStart(e.target.value)}
+              />
               <label htmlFor="addtaskduedate" className="AddTaskDueDate">
                 Due Date
               </label>
@@ -125,6 +147,7 @@ export default class TaskForm extends Component {
                 value={this.state.date_due.value}
                 onChange={e => this.handleChangeTaskDueDate(e.target.value)}
               />
+              
               <label htmlFor="addtaskcategory" className="AddTaskCategory">
                 Category
               </label>
@@ -134,31 +157,33 @@ export default class TaskForm extends Component {
                 value={this.state.category}
                 onChange={this.handleCategory}
               >
-                <option value="House">House Chores</option>
-                <option value="Yardwork">Yardwork</option>
-                <option value="Laundry">Laundry</option>
-                <option value="Dogs">Dogs</option>
+               {categories.map( category=>(
+                 <option
+                 id={category.category_id}
+                 name={category.category_name}
+                 value={category.category_id}
+                 onChange={e => this.handleCategory(e.target.value)}
+               />
+               ))
+               }
               </select>
             </div>
 
             <div className="RightCont">
               <br />
-              <label htmlFor="addtaskpriority" className="AddTaskPriority">
+              <div className="RightCont">
+            <label htmlFor="Priorities" className="Priorities">
                 Priority
               </label>
-              <br /><br />
-              <label htmlFor="addtaskcategory" className="AddTaskPriorityOption">
-                High
-              </label>
-              <input type="checkbox" name="HighPri" value="3" />
-              <label htmlFor="addtaskcategory" className="AddTaskPriorityOption">
-                Medium
-              </label>
-              <input type="checkbox" name="HighPri" value="2" />
-              <label htmlFor="addtaskcategory" className="AddTaskPriorityOption">
-                Low
-              </label>
-              <input type="checkbox" name="HighPri" value="1" />
+            <select
+            name="Priorities"
+            onChange={e => this.onPriorityChange(e.target.value)}
+          >
+            <option value={1}>Low</option>
+            <option value={2}>Medium</option>
+            <option value={3}>High</option>
+          </select>
+          </div>
             </div>
           </div>
 
