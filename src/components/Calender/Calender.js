@@ -8,13 +8,6 @@ import GroopService from '../../services/groop-service';
 
 const localizer = momentLocalizer(moment);
 
-class Calender extends Component {
-  static contextType = GroopContext;
-
-  componentDidMount() {
-    this.getAllTasks();
-  }
-
   getAllTasks = () => {
     GroopService.getAllTasks().then(data => {
       this.context.setUserTasks(data);
@@ -82,5 +75,6 @@ class Calender extends Component {
     );
   }
 }
+
 
 export default Calender;
