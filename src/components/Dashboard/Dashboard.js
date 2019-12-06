@@ -18,7 +18,7 @@ export default class Dashboard extends Component {
       const tasksWithDates = this.TasksWithDatesInbetween(data);
       this.context.setUserTasks(tasksWithDates);
       this.context.setFilteredTasks(tasksWithDates);
-      //    this.getFullDates(data[1])
+   
     });
   };
   TasksWithDatesInbetween = data => {
@@ -26,26 +26,17 @@ export default class Dashboard extends Component {
       console.log(tasks);
       let taskDates = this.getFullDates(tasks);
       console.log(taskDates);
-      // let currentDate = moment().format("MMM Do YY")
+    
 
       return { ...tasks, taskDates };
     });
-    // console.log(tasksWithDatesFiltered);
-    // return tasksWithDatesFiltered;
+    
     let currentDate = moment().format("MMM Do YY")
     let todaysTasks = tasksWithDatesFiltered.filter(tasks =>{
      return  tasks.taskDates.includes(currentDate)
     })
     return todaysTasks
-    // = tasksWithDatesFiltered.filter(tasks =>{
     
-    //   console.log(currentDate)
-    //   let dates = tasks.taskDates.filter( date =>{
-    //       return date=== currentDate
-    //   })
-    //   console.log(dates)
-    //   return dates
-    // })
   };
   getFullDates = data => {
     let dates = [],
