@@ -15,9 +15,9 @@ export default class Dashboard extends Component {
 
   getAllTasks = () => {
     GroopService.getAllTasks().then(data => {
-       this.filteredDate(data)
-    //   this.context.setUserTasks(data);
-    // this.context.setFilteredTasks(data);
+      //  this.filteredDate(data)
+      this.context.setUserTasks(data);
+    this.context.setFilteredTasks(data);
     //    this.getFullDates(data[1])
     });
   };
