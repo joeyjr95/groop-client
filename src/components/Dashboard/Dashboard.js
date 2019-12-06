@@ -30,8 +30,22 @@ export default class Dashboard extends Component {
 
       return { ...tasks, taskDates };
     });
-    console.log(tasksWithDatesFiltered);
-    return tasksWithDatesFiltered;
+    // console.log(tasksWithDatesFiltered);
+    // return tasksWithDatesFiltered;
+    let currentDate = moment().format("MMM Do YY")
+    let todaysTasks = tasksWithDatesFiltered.filter(tasks =>{
+     return  tasks.taskDates.includes(currentDate)
+    })
+    return todaysTasks
+    // = tasksWithDatesFiltered.filter(tasks =>{
+    
+    //   console.log(currentDate)
+    //   let dates = tasks.taskDates.filter( date =>{
+    //       return date=== currentDate
+    //   })
+    //   console.log(dates)
+    //   return dates
+    // })
   };
   getFullDates = data => {
     let dates = [],
