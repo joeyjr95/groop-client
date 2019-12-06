@@ -6,6 +6,7 @@ import React, { Component } from "react";
 import { RadialChart } from "react-vis";
 import TaskItem from "../TaskItem/TaskItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment";
 import { faMedal } from "@fortawesome/free-solid-svg-icons";
 
 export default class GroopPage extends Component {
@@ -22,9 +23,41 @@ export default class GroopPage extends Component {
 
   getGroupTasks = () => {
     GroopService.getGroupTasks(this.props.group_id).then(data => {
-      this.context.setCurrentGroupTasks(data);
-      this.context.setFilteredTasks(data);
+      const tasksWithDates = this.TasksWithDatesInbetween(data);
+      this.context.setCurrentGroupTasks(tasksWithDates);
+      this.context.setFilteredTasks(tasksWithDates);
     });
+  };
+  TasksWithDatesInbetween = data => {
+    let tasksWithDatesFiltered = data.map(tasks => {
+      console.log(tasks);
+      let taskDates = this.getFullDates(tasks);
+      console.log(taskDates);
+    
+
+      return { ...tasks, taskDates };
+    });
+    
+    let currentDate = moment().format("MMM Do YY")
+    let todaysTasks = tasksWithDatesFiltered.filter(tasks =>{
+     return  tasks.taskDates.includes(currentDate)
+    })
+    return todaysTasks
+    
+  };
+  getFullDates = data => {
+    let dates = [],
+      currentDate = new Date(data.time_start),
+      addDays = function(days) {
+        let date = new Date(this.valueOf());
+        date.setDate(date.getDate() + days);
+        return date;
+      };
+    while (currentDate <= new Date(data.date_due)) {
+      dates.push(moment(currentDate).format("MMM Do YY"));
+      currentDate = addDays.call(currentDate, 1);
+    }
+    return dates;
   };
 
   getGroupMembers = () => {
@@ -43,7 +76,9 @@ export default class GroopPage extends Component {
     console.log(filteredTasks);
     return (
       <>
+      <div className="filter-search">
         <Filter {...this.props} />
+      </div>
         <div className="members-section-mobile">
           <div className="members-mobile">
             <label htmlFor="menu" id="label-menu">
