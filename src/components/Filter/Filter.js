@@ -138,8 +138,10 @@ export default class Filter extends Component {
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
+            <div className="FilterButtonContainer">
             <button className="Button" onClick={e => this.search(e)}>Search</button>
-            <button className="Button" onClick={e => this.onReset(e)}>Clear</button>
+            <button className="ButtonCancel" onClick={e => this.onReset(e)}>Clear</button>
+            </div>
           </form>
         </div>
       );
@@ -164,19 +166,13 @@ export default class Filter extends Component {
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
-            <button onClick={e => this.search(e)}>Search</button>
-            <button onClick={e => this.onReset(e)}>Clear</button>
+            <div className="FilterButtonContainer">
+            <button className="Button" onClick={e => this.search(e)}>Search</button>
+            <button className="ButtonCancel" onClick={e => this.onReset(e)}>Clear</button>
+            </div>
           </form>
         </div>
       );
     }
   }
-
-  // render() {
-  //   console.log(this.state.selectedInput);
-  //   console.log(this.state.filter);
-  //   console.log(this.context.filteredTasks);
-  //   return this.renderFilter()
-
-  // }
 }

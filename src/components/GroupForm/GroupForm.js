@@ -4,6 +4,8 @@ import React, { Component } from "react";
 import GroopService from "../../services/groop-service";
 import UserContext from "../../contexts/UserContext";
 import "./GroupForm.scss";
+import Button from "../Button/Button";
+
 
 export default class GroupForm extends Component {
   static contextType = UserContext;
@@ -59,16 +61,15 @@ export default class GroupForm extends Component {
             <div className="error">{this.validatename()}</div>
           )} */}
           <br />
-          <button
+          <Button
             type="submit"
             onClick={this.handleSubmit}
             // disabled={
             //   // this.validatename()
             //}
-            className="AddGroupButton"
           >
             Create New Group
-          </button>
+          </Button>
         </form>
       </section>
     );

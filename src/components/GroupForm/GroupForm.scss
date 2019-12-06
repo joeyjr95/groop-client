@@ -1,7 +1,7 @@
 @import "../../variables.scss";
 
 .AddGroupForm {
-  border: 2px solid white;
+  border: 2px solid #134980;
   height: auto;
   padding: 15px;
   margin: 60px 15px;
@@ -58,10 +58,19 @@ form input {
 
 @media only screen and (min-width: 750px) {
   .AddGroupForm {
-    border: 2px solid white;
+    border: 2px solid #134980;
     height: auto;
     padding: 15px;
     margin: 65px auto;
     width: 40%;
+  }
+  form input {
+    width: 100%;
+    padding: 15px;
+    margin: 0 auto;
+    border: 1px solid #231F20;
+    background: #f1f1f1;
+    font-size: 1em;
+    font-weight: 100;
   }
 }

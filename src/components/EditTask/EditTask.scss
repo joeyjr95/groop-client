@@ -1,7 +1,21 @@
 .edit-task-form {
   display: flex;
   flex-direction: column;
-  padding: 2rem 1rem;
+  border: 2px solid #134980;
+  height: auto;
+  padding: 15px;
+  margin: 60px auto;
+  border-radius: 5px;
+  width: 500px;
+}
+
+.EditTaskButtonContainer {
+display: flex;
+flex-direction: row;
+}
+.delete-confirmation {
+  display: flex;
+  flex-direction: column;
 }
 
 input {

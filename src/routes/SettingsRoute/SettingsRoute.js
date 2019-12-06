@@ -1,6 +1,6 @@
 import React from "react";
 //import { Label, Input } from "../../components/Form/Form";
-
+import Button from "../../components/Button/Button";
 import "./SettingsRoute.scss";
 
 export default class SettingsRoute extends React.Component {
@@ -22,15 +22,15 @@ export default class SettingsRoute extends React.Component {
             require
             disabled
           />
-          <button id="EditButton" className={this.state.editEmail}>
+          <Button className={this.state.editEmail}>
             Edit
-          </button>
-          <button
-            className="SaveButton"
+          </Button>
+          <Button
+            className="Button"
             disabled={this.state.editEmail ? 0 : 1}
           >
             Save
-          </button>
+          </Button>
         </div>
         <h2>Change Your Password</h2>
 
@@ -60,7 +60,7 @@ export default class SettingsRoute extends React.Component {
               required
             />
 
-            <input type="submit" value="submit" />
+            <Button className="SettingSubmit" type="submit" value="submit">Submit</Button>
           </fieldset>
         </form>
 

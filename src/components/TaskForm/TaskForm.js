@@ -1,4 +1,3 @@
-
 import React, { Component } from "react";
 // import config from "../../config";
 // import TokenService from "../../services/token-service";
@@ -48,8 +47,9 @@ export default class TaskForm extends Component {
     this.setState({
       group_id
     });
-    GroopService.getCategories(group_id)
-    .then(data => this.setState({categories: data}))
+    GroopService.getCategories(group_id).then(data =>
+      this.setState({ categories: data })
+    );
   };
 
   handleSubmit = async () => {
@@ -101,8 +101,8 @@ export default class TaskForm extends Component {
   };
 
   render() {
-    const {categories = []} = this.state
-    
+    const { categories = [] } = this.state;
+
     return (
       <section>
         <form className="AddTaskForm">
@@ -145,6 +145,29 @@ export default class TaskForm extends Component {
                 value={this.state.time_start.value}
                 onChange={e => this.handleChangeTaskTimeStart(e.target.value)}
               />
+
+              <label htmlFor="addtaskcategory" className="AddTaskCategory">
+                Category
+              </label>
+              <br />
+              <select
+                name="Categories"
+                onChange={e => this.handleCategory(e.target.value)}
+              >
+                {categories.map(category => (
+                  <option
+                    id={category.id}
+                    name={category.category_name}
+                    value={category.id}
+                  >
+                    {category.category_name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="RightCont">
+              <br />
               <label htmlFor="addtaskduedate" className="AddTaskDueDate">
                 Due Date
               </label>
@@ -157,59 +180,34 @@ export default class TaskForm extends Component {
                 value={this.state.date_due.value}
                 onChange={e => this.handleChangeTaskDueDate(e.target.value)}
               />
-              
-              <label htmlFor="addtaskcategory" className="AddTaskCategory">
-                Category
-              </label>
-              <br />
-              <select
-                name="Categories"
-                onChange={e => this.handleCategory(e.target.value)}
-              >
-               {categories.map( category=>(
-                 <option
-                 id={category.id}
-                 name={category.category_name}
-                 value={category.id}
-                 
-               >{category.category_name}</option>
-               ))
-               }
-              </select>
-            </div>
-
-            <div className="RightCont">
               <br />
               <div className="RightCont">
-            <label htmlFor="Priorities" className="Priorities">
-                Priority
-              </label>
-            <select
-            name="Priorities"
-            onChange={e => this.onPriorityChange(e.target.value)}
-          >
-            <option value={1}>Low</option>
-            <option value={2}>Medium</option>
-            <option value={3}>High</option>
-          </select>
-          </div>
+                <label htmlFor="Priorities" className="Priorities">
+                  Priority
+                </label>
+                <select
+                  name="Priorities"
+                  onChange={e => this.onPriorityChange(e.target.value)}
+                >
+                  <option value={1}>Low</option>
+                  <option value={2}>Medium</option>
+                  <option value={3}>High</option>
+                </select>
+              </div>
             </div>
           </div>
-
-          <Button
-            type="button"
-            onClick={this.handleSubmit}
-            className="AddTaskButton"
-          >
-            Create New Task
-          </Button>
-          <Button
-            type="button"
-            onClick={() => this.props.history.goBack()}
-            className="cancelAddTaskButton"
-          >
-            Cancel
-          </Button>
+          <div className="FilterButtonContainer">
+            <Button type="button" onClick={this.handleSubmit}>
+              Create New Task
+            </Button>
+            <Button
+              type="button"
+              onClick={() => this.props.history.goBack()}
+              className="ButtonCancel"
+            >
+              Cancel
+            </Button>
+          </div>
         </form>
       </section>
     );
