@@ -44,12 +44,12 @@ export default class App extends Component {
               component={GroupPageRoute}
             />
             <PrivateRoute 
-            exact
-            path={"/groupsettings/:group_id"}
-             component={GroopSettings}
+              exact
+              path={"/groupsettings/:group_id"}
+              component={GroopSettings}
              />
             <PrivateRoute path={'/add-task'} component={TaskFormComponent} />
-            <PrivateRoute path={'/calender'} component={Calender} />
+            <PrivateRoute exact path={'/calendar/:location'} component={Calender} {...this.props}/>
             <PrivateRoute path={'/edit-task'} component={EditTask} />
             <PrivateRoute path={'/add-group'} component={GroupForm} {...this.props}/>
             <PrivateRoute path={'/settings'} component={SettingsRoute} />

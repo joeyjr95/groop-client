@@ -1,5 +1,5 @@
 import React from "react";
-import { Label, Input } from "../../components/Form/Form";
+//import { Label, Input } from "../../components/Form/Form";
 
 import "./SettingsRoute.scss";
 

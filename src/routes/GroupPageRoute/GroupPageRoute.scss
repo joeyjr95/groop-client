@@ -2,6 +2,13 @@
 #pointsIcon {
   color: rgb(235, 208, 57);
 }
+.AllTimeScore{
+  display: flex;
+  flex-direction: column;
+}
+.userScore {
+  margin: 0 auto;
+}
 .groop-page {
   display: flex;
   flex-direction: column;

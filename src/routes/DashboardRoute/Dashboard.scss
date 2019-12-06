@@ -1,4 +1,8 @@
 @import '../../variables.scss';
+.group-list-item a {
+    color: white;
+    list-style-type: none;
+}
 
 .filter{
     justify-content: center;
@@ -98,7 +102,7 @@
 @media screen and (min-width: 800px) {
     .filter {
     display: flex;
-    float: right;
+   
     flex-direction: column;
     justify-content: center;
     }
