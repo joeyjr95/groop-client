@@ -122,22 +122,25 @@
     border-radius: 0px;
     margin-left: 1.2%;
     margin-right: 10.2%;
-    background-color: rgba(255, 255, 255, 0.739);
-    border-left: 1px solid white;
+    background-color: #d5e0e4;
+    border-left: 1px solid #32a1d4;
     color: #555555;
   }
   #label-task-list {
     font-size: 18px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin-bottom: 0px;
   }
   .task-list {
-    padding-left: 8px;
+    background-color: rgba(255, 255, 255, 0.739);
+    width: 99%;
+    margin-top: 0px;
   }
   .task-list li {
     border-bottom: 2px solid #134980;
     color: #555555;
-    width: 97%;
+    width: 100%;
   }
   .task-list li:not(:first-child) {
   }
@@ -164,7 +167,7 @@
     color: white;
     margin-right: 5%;
     width: 52.5%;
-    border-left: 1px solid white;
+    border-left: 1px solid #32a1d4;
   }
   ol {
     padding-left: 25px;
@@ -178,7 +181,7 @@
     margin-top: 5%;
     color: white;
     width: 42.5%;
-    border-left: 1px solid white;
+    border-left: 1px solid #32a1d4;
   }
   .members-section {
     display: initial;
@@ -186,7 +189,7 @@
   }
   .members {
     width: 100%;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #32a1d4;
     color: white;
     padding-bottom: 0.6%;
   }
@@ -268,7 +271,6 @@
     color: white;
     margin-right: 5%;
     width: 52.5%;
-    border-left: 1px solid white;
   }
   ol {
     padding-left: 25px;
@@ -282,7 +284,6 @@
     margin-top: 5%;
     color: white;
     width: 42.5%;
-    border-left: 1px solid white;
   }
   .members-section {
     display: initial;
@@ -290,7 +291,6 @@
   }
   .members {
     width: 100%;
-    border-bottom: 1px solid white;
     color: #555555;
     padding-bottom: 0.6%;
   }
