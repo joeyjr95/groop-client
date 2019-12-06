@@ -78,6 +78,7 @@ class Calender extends Component{
         <Calendar
           defaultDate={new Date()}
           defaultView="month"
+          showMultiDayTimes
           events={this.state.events}
           localizer={localizer}
           resizable
