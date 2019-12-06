@@ -30,17 +30,14 @@
     font-size: 20px;
     color: white;
     display: flex;
-    background-color: #112377;
+    background-color: #336699;
     width: 100%;
     border-top-left-radius: 55px;
     border-bottom-left-radius: 55px;
     
     
   }
-  // .sidenav a:third-child{
-  //   padding-top: 25px;
-  //   padding-bottom: 25px;
-  // }
+
   .dashboard-sidenav a {
     padding-right: 20px;
     padding-left: 30px;
@@ -50,17 +47,17 @@
     font-size: 18px;
     color: white;
     display: flex;
-    background-color: #112377;
+    background-color: #134980;
     width: 100%;
     border-top-right-radius: 70px;
     border-bottom-right-radius: 70px;
   }
   .dashboard-sidenav a:hover{
-    background-color: #1F4CBF;
+    background-color: rgb(31, 140, 191);
     font-style: oblique;
   }
   .sidenav a:hover{
-    background-color: #1F4CBF;
+    background-color: rgb(31, 140, 191);
     font-style: oblique;
   }
 .flexbox-container{
