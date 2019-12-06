@@ -43,7 +43,7 @@ class Calender extends Component{
       let newEvents = userTasks.map(task => {
         return {
           start: new Date(task.time_start),
-          end: this.addDays(task.date_due, 1),
+          end: new Date(task.date_due),
           title: task.name
         }
       })
@@ -53,7 +53,7 @@ class Calender extends Component{
       const newEvents = groupTasks.map(task => {
         return {
           start: new Date(task.time_start),
-          end: this.addDays(task.date_due, 1),
+          end: new Date(task.date_due),
           title: task.name
         }
       })
@@ -69,6 +69,12 @@ class Calender extends Component{
       return { events: state.events };
     });
   };
+ getRandomColor =()=> {
+const h = 0,
+s = Math.floor(Math.random() * 100)+ '%',
+l = Math.floor(Math.random() * 70)+ '%';
+return `hsl(${h},${s},${l})`;
+  }
 
   render() {
     //const { userTasks = [] } = this.context;
@@ -78,10 +84,16 @@ class Calender extends Component{
         <Calendar
           defaultDate={new Date()}
           defaultView="month"
+          showMultiDayTimes
           events={this.state.events}
           localizer={localizer}
           resizable
           style={{ height: "80vh" }}
+          eventPropGetter={() => { 
+            
+              const backgroundColor = this.getRandomColor(); 
+              return { style: { backgroundColor } }; }
+            }
         />
       </div>
     );
