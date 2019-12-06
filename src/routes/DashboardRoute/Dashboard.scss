@@ -5,8 +5,11 @@
 }
 
 .filter {
-  justify-content: center;
-  align-content: center;
+ display: flex;
+ flex-direction: row;
+ justify-content: center;
+ align-items: center;
+ width: 100%;
 }
 .group-list-item a {
   background-color: transparent;
@@ -14,12 +17,11 @@
   color: white;
   font-size: 1em;
   list-style-type: none;
-  font-weight: bolder;
-  text-shadow: 4px 3px 11px rgba(0, 0, 0, 0.437);
+  font-weight: 100;
 }
 
 .dashboard-c {
-  color: rgb(85, 85, 85);
+  color: #1b5690;
 }
 .dashboard-c h2 {
   font-size: 40px;
@@ -129,17 +131,23 @@
     flex-direction: column;
   }
   .group-list-item {
-    text-align: left;
     margin-left: -20px;
+    text-align: center;
     list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #134980;
+    padding-bottom: 10px;
   }
   .group-list-item:not(:first-child) {
     margin-top: 20px;
   }
   .group-list-item a {
     text-decoration: none;
-    color: rgb(85, 85, 85);
-    font-size: 2em;
+    color: #134980;
+    font-size: 1.6em;
+    font-weight: 600;
   }
   .group-list-item a:hover {
     color: #4accff;
