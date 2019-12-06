@@ -4,6 +4,7 @@ import GroopContext from "../../contexts/GroopContext";
 import GroopService from "../../services/groop-service";
 import Filter from "../../components/Filter/Filter";
 import TaskItem from "../../components/TaskItem/TaskItem";
+import moment from "moment";
 import './Dashboard.scss'
 
 export default class Dashboard extends Component {
@@ -14,12 +15,44 @@ export default class Dashboard extends Component {
   }
 
   getAllTasks = () => {
-    console.log("getting all tasks");
     GroopService.getAllTasks().then(data => {
+      //  this.filteredDate(data)
       this.context.setUserTasks(data);
-      this.context.setFilteredTasks(data);
+    this.context.setFilteredTasks(data);
+    //    this.getFullDates(data[1])
     });
   };
+  filteredDate = (data) => {
+
+   let tasksWithDatesFiltered = data.map( tasks => {
+     console.log(tasks)
+      let taskDates = this.getFullDates(tasks)
+      console.log(taskDates)
+      let currentDate = moment().format("MMM Do YY")
+      console.log(currentDate)
+      // let todaysTasks = tasks.map(date => )
+      // console.log(todaysTasks)
+      // return todaysTasks
+    })
+    this.context.setUserTasks(tasksWithDatesFiltered);
+    this.context.setFilteredTasks(tasksWithDatesFiltered);
+    
+  }
+  getFullDates = (data) =>{
+    let dates = [],
+    currentDate = new Date(data.time_start),
+     addDays = function(days) {
+      let date = new Date(this.valueOf());
+      date.setDate(date.getDate() + days);
+      return date;
+    };
+while (currentDate <= new Date(data.date_due)) {
+  dates.push(moment(currentDate).format("MMM Do YY"));
+  currentDate = addDays.call(currentDate, 1);
+}
+return dates
+
+  }
 
   getUserGroups = () => {
     GroopService.getUserGroups().then(data => {
@@ -47,7 +80,7 @@ export default class Dashboard extends Component {
 
   render() {
     const { userTasks = [], groups = [], filteredTasks = [] } = this.context;
-    console.log(userTasks);
+   
     return (
       <section className="dashboard-c">
         <h2>My Taskboard</h2>
