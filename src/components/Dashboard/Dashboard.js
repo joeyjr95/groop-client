@@ -4,6 +4,7 @@ import GroopContext from "../../contexts/GroopContext";
 import GroopService from "../../services/groop-service";
 import Filter from "../../components/Filter/Filter";
 import TaskItem from "../../components/TaskItem/TaskItem";
+import './Dashboard.scss'
 
 export default class Dashboard extends Component {
   static contextType = GroopContext;
