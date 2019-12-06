@@ -69,6 +69,12 @@ class Calender extends Component{
       return { events: state.events };
     });
   };
+ getRandomColor =()=> {
+const h = 0,
+s = Math.floor(Math.random() * 100)+ '%',
+l = Math.floor(Math.random() * 70)+ '%';
+return `hsl(${h},${s},${l})`;
+  }
 
   render() {
     //const { userTasks = [] } = this.context;
@@ -83,6 +89,11 @@ class Calender extends Component{
           localizer={localizer}
           resizable
           style={{ height: "80vh" }}
+          eventPropGetter={() => { 
+            
+              const backgroundColor = this.getRandomColor(); 
+              return { style: { backgroundColor } }; }
+            }
         />
       </div>
     );
