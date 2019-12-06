@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Righteous');
 @import './variables.scss';
 
 * {
@@ -8,14 +9,16 @@
 html {
   scroll-behavior: smooth;
 }
-
+h1{
+  font-family: 'Righteous', cursive;
+}
 body {
   margin: 0;
   padding: 0;
   z-index: 200;
   width: 100%;
   height: 100vh;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $color-bg-main;
