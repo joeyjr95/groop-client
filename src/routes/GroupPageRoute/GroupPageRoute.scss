@@ -70,7 +70,6 @@
   list-style-type:none;
 }
 .task-list-container {
-  background-color: white;
   border: 3px solid #134980;
   border-radius: 10px;
   height: 470px;
@@ -85,6 +84,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  background-color: rgba(255, 255, 255, 0.739);
 }
 .task-list li {
   border-bottom: 2px solid #134980;
@@ -105,6 +105,11 @@
   .groop-page {
     padding-top: 30px;
   }
+  .filter-search{
+    margin-right: auto;
+    margin-left: auto;
+    width: 60%
+  }
 
   .members-section-mobile {
     display: none;
@@ -122,7 +127,7 @@
     border-radius: 0px;
     margin-left: 1.2%;
     margin-right: 10.2%;
-    background-color: #d5e0e4;
+    // background-color: #d2e4ecb4;
     border-left: 1px solid #32a1d4;
     color: #555555;
   }
@@ -133,7 +138,7 @@
     margin-bottom: 0px;
   }
   .task-list {
-    background-color: rgba(255, 255, 255, 0.739);
+    
     width: 99%;
     margin-top: 0px;
   }
@@ -153,6 +158,7 @@
     border-radius: 10px;
     padding: 10px 0;
   }
+ 
   .menu li {
     font-size: 16px;
   }
@@ -189,9 +195,11 @@
   }
   .members {
     width: 100%;
-    border-bottom: 1px solid #32a1d4;
-    color: white;
+    color: #555555;
     padding-bottom: 0.6%;
+  }
+  .AllTimeScore {
+    color: #555555;
   }
   #weekly-scores-label,
   #total-scores-label {
@@ -235,6 +243,9 @@
   .groop-page-list {
     margin-top: 20px;
   }
+  .filter-search{
+    width: 45%
+  }
   .task-list-container {
     width: 60%;
     height: 660px;
@@ -253,7 +264,6 @@
   #label-menu {
     display: inherit;
     font-size: 20px;
-    background-color: #134980;
     color: white;
     width: 100%;
   }
@@ -300,7 +310,6 @@
   #weekly-scores-label,
   #total-scores-label {
     font-size: 17px;
-    background-color: #134980;
     color: white;
     width: 100%;
   }
