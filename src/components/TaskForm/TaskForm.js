@@ -180,11 +180,11 @@ export default class TaskForm extends Component {
                 value={this.state.date_due.value}
                 onChange={e => this.handleChangeTaskDueDate(e.target.value)}
               />
-              <br />
               <div className="RightCont">
                 <label htmlFor="Priorities" className="Priorities">
                   Priority
                 </label>
+                <br />
                 <select
                   name="Priorities"
                   onChange={e => this.onPriorityChange(e.target.value)}

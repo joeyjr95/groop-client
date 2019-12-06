@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-right: 0;
 }
 .member-select {
   display: flex;
@@ -33,6 +34,10 @@ select {
   margin-top: 5px;
 }
 
+.filter label {
+    margin-right: 10px;
+}
+
 .Button {
   margin-right: 0px;
   margin-bottom: 0px;
@@ -48,6 +53,8 @@ select {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-right: 20%;
+
   }
   .member-select {
     display: flex;
@@ -67,7 +74,6 @@ select {
   }
 
   .Button, .ButtonCancel {
-    margin-right: 10px;
     margin-bottom: 15px;
     margin-top: 13px;
   }
