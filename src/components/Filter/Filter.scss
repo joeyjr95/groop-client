@@ -1,18 +1,77 @@
-.filter{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+.filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.member-select{
+.member-select {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter select {
+  margin-right: 0px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 40px;
+  border: 1px solid black;
+}
+
+select {
+  -webkit-appearance: none;
+  padding: 5px 10px;
+}
+
+.member-select input {
+  height: 40px;
+}
+.memeber-select button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.Button {
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+.FilterButtonContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+@media screen and (min-width: 800px) {
+  .filter {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-}
-.memeber-select button{
+  }
+  .member-select {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .member-select input {
+    height: 40px;
+  }
+  .memeber-select button {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     margin-left: 5px;
+    margin-top: 5px;
+  }
+
+  .Button, .ButtonCancel {
+    margin-right: 10px;
+    margin-bottom: 15px;
+    margin-top: 13px;
+  }
+  .filter select {
+    margin-right: 15px;
+  }
 }

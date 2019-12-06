@@ -100,7 +100,7 @@ export default class EditTask extends Component {
         <Button
           type="button"
           onClick={() => this.deleteTask()}
-          className="confirmDeleteButton"
+          className="ButtonCancel"
         >
           Confirm
         </Button>
@@ -116,7 +116,7 @@ export default class EditTask extends Component {
       <Button
         type="button"
         onClick={() => this.requestDelete()}
-        className="deleteTaskButton"
+        className="ButtonCancel"
       >
         Delete
       </Button>
@@ -130,7 +130,6 @@ export default class EditTask extends Component {
       <section className="edit-task-form">
         <form>
           <h2>Edit Task</h2>
-          {deleteUi}
           <label htmlFor="edit-task-name">Task name</label>
           <Input
             type="text"
@@ -173,6 +172,7 @@ export default class EditTask extends Component {
           {/* {this.state.description.touched && (
             <div className="error">{this.validatedescription()}</div>
           )} */}
+          <div className="EditTaskButtonContainer">
           <Button
             type="button"
             onClick={() => this.handleSubmit()}
@@ -186,6 +186,7 @@ export default class EditTask extends Component {
           >
             Save
           </Button>
+          {deleteUi}
           <Button
             type="button"
             onClick={() => this.props.history.goBack()}
@@ -193,6 +194,7 @@ export default class EditTask extends Component {
           >
             Cancel
           </Button>
+          </div>
         </form>
       </section>
     );

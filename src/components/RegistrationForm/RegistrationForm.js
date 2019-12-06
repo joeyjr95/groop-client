@@ -122,7 +122,7 @@ class RegistrationForm extends Component {
         <footer>
           <Button type="submit">Sign up</Button>{" "}
           <Link to="/login" className="toLogin-link">
-            Already have an account?
+            <button className="Button">Already have an account?</button>
           </Link>
         </footer>
       </form>

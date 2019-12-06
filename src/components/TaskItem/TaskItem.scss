@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 .task-item {
   display: flex;
   flex-flow: row nowrap;
@@ -8,7 +10,7 @@
 
 .task-item__check-label {
   flex: 0 0 2rem;
-  border: 2px solid red;
+  border: 2px solid rgb(177, 50, 50);
   height: 2rem;
   margin-right: 1rem;
   margin-left: 1rem;
@@ -25,7 +27,7 @@
   display: hidden;
 
   &:checked + label {
-    background-color: red;
+    background-color: $color-error;
   }
 }
 

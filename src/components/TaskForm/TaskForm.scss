@@ -1,7 +1,7 @@
 @import "../../variables.scss";
 
 .AddTaskForm {
-  border: 2px solid white;
+  border: 2px solid #134980;
   height: auto;
   padding: 15px;
   margin: 60px 15px;
@@ -10,23 +10,22 @@
 
 .TaskContanier {
   display: flex;
-  width: 40%;
+  flex-direction: column;
+  width: 90%;
   margin: 0 auto;
+  justify-content: space-between;
+
 }
 
 input[type=checkbox] {
   margin: 5px 30px;
 }
 
-.LeftCont {
-  margin-right: 15%;
-}
-
 .dateInput{
   margin-top: 10px;
 }
 
-.AddTaskDueDate, .AddTaskPriority {
+.AddTaskDueDate, .AddTaskPriority, .AddTaskTimeStart {
   font-size: 1.5rem;
 }
 
@@ -91,10 +90,30 @@ form input {
 
 @media only screen and (min-width: 750px) {
   .AddTaskForm {
-    border: 2px solid white;
+    border: 2px solid #134980;
     height: auto;
     padding: 15px;
     margin: 65px auto;
     width: 40%;
+  }
+  form input {
+    width: 100%;
+    padding: 15px;
+    margin: 0 auto;
+    border: 1px solid #231F20;
+    background: #f1f1f1;
+    font-size: 1em;
+    font-weight: 100;
+  }
+  .TaskContanier {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 0 auto;
+    justify-content: space-between;
+  
+  }
+  .LeftCont {
+    margin-right: 10%;
   }
 }
