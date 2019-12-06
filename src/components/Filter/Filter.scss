@@ -1,13 +1,18 @@
 .filter{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
+    
 }
 .member-select{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
-.member-select button{
-    margin-left: 20px;
+.memeber-select button{
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5px;
 }

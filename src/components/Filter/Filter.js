@@ -138,8 +138,8 @@ export default class Filter extends Component {
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
-            <button onClick={e => this.search(e)}>Search</button>
-            <button onClick={e => this.onReset(e)}>Clear</button>
+            <button className="Button" onClick={e => this.search(e)}>Search</button>
+            <button className="Button" onClick={e => this.onReset(e)}>Clear</button>
           </form>
         </div>
       );
