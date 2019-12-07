@@ -70,9 +70,11 @@ class Calender extends Component{
     });
   };
  getRandomColor =()=> {
-const h = 0,
-s = Math.floor(Math.random() * 100)+ '%',
-l = Math.floor(Math.random() * 70)+ '%';
+   let min = Math.ceil(70)
+   let max = Math.floor(78)
+const h = 920,
+s = 100+ '%',
+l = Math.floor(Math.random() * ((max - min) + min))+ '%';
 return `hsl(${h},${s},${l})`;
   }
 
