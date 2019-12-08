@@ -1,81 +1,34 @@
-@import "../../variables.scss";
+@import '../../variables.scss';
 
 .AddTaskForm {
-  border: 2px solid #134980;
-  height: auto;
-  padding: 15px;
-  margin: 60px 15px;
+  padding: 1rem;
+  margin: 60px auto;
   border-radius: 5px;
 }
 
-.TaskContanier {
+.TaskContainer {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin: 0 auto;
-  justify-content: space-between;
-
-}
-
-input[type=checkbox] {
-  margin: 5px 30px;
-}
-
-.dateInput{
-  margin-top: 10px;
-}
-
-.AddTaskDueDate, .AddTaskPriority, .AddTaskTimeStart {
-  font-size: 1.5rem;
-}
-
-
-.AddTaskButton {
-  background: #3d94f6;
-  background-image: -webkit-linear-gradient(top, #3d94f6, #1e62d0);
-  background-image: -moz-linear-gradient(top, #3d94f6, #1e62d0);
-  background-image: -ms-linear-gradient(top, #3d94f6, #1e62d0);
-  background-image: -o-linear-gradient(top, #3d94f6, #1e62d0);
-  background-image: linear-gradient(to bottom, #3d94f6, #1e62d0);
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-  color: #ffffff;
-  font-family: Open Sans;
-  font-size: 20px;
-  font-weight: 100;
-  padding: 10px;
-  box-shadow: 1px 1px 20px 0px #000000;
-  -webkit-box-shadow: 1px 1px 20px 0px #000000;
-  -moz-box-shadow: 1px 1px 20px 0px #000000;
-  text-shadow: 1px 1px 20px #000000;
-  border: solid #337fed 1px;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.AddTaskButton:hover {
-  border: solid #337fed 1px;
-  background: #1e62d0;
-  background-image: -webkit-linear-gradient(top, #1e62d0, #3d94f6);
-  background-image: -moz-linear-gradient(top, #1e62d0, #3d94f6);
-  background-image: -ms-linear-gradient(top, #1e62d0, #3d94f6);
-  background-image: -o-linear-gradient(top, #1e62d0, #3d94f6);
-  background-image: linear-gradient(to bottom, #1e62d0, #3d94f6);
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
-  text-decoration: none;
-}
-
-form input {
   width: 100%;
-  padding: 15px;
+  margin: 1.5rem auto;
+  justify-content: space-between;
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: row;
   margin: 0 auto;
-  border: 1px solid #231F20;
-  background: #f1f1f1;
-  font-size: 1em;
-  font-weight: 100;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.task-start {
+  display: flex;
+  flex-direction: column;
+}
+.task-end {
+  display: flex;
+  flex-direction: column;
 }
 
 .dateInput {
@@ -85,44 +38,34 @@ form input {
   overflow: hidden;
   padding: 10px;
   -webkit-padding-start: 1px;
-  margin-bottom: 20px;
+  margin-bottom: 1.2rem;
+}
+
+label {
+  margin: 1.2rem;
+}
+
+input {
+  margin: 1.2rem;
+}
+
+select {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 300px;
+}
+@media only screen and (min-width: 520px) {
+  .AddTaskForm {
+    border: 2px solid #134980;
+    width: 90%;
+    padding: 1.5rem;
+  }
 }
 
 @media only screen and (min-width: 750px) {
   .AddTaskForm {
     border: 2px solid #134980;
-    height: auto;
-    padding: 15px;
-    margin: 65px auto;
     width: 40%;
-  }
-  form input {
-    width: 100%;
-    padding: 15px;
-    margin: 0 auto;
-    border: 1px solid #231F20;
-    background: #f1f1f1;
-    font-size: 1em;
-    font-weight: 100;
-  }
-  .TaskContanier {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    margin: 0 auto;
-    justify-content: space-between;
-  
-  }
-  .LeftCont {
-    margin-right: 25%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .RightCont {
-    margin-right: 10%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 2rem;
   }
 }
