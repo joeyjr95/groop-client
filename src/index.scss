@@ -9,7 +9,7 @@
 html {
   scroll-behavior: smooth;
 }
-h1{
+h1 {
   font-family: 'Righteous', cursive;
 }
 body {
@@ -23,7 +23,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: $color-bg-main;
 }
-.sidenav{
+.sidenav {
   display: none;
 }
 
@@ -33,10 +33,13 @@ body {
 
 .alert {
   color: $color-error;
+  &--success {
+    color: #136e29;
+  }
 }
 
-@media only screen and (min-width: 1200px){
-.sidenav{
-  display: inherit
-}
+@media only screen and (min-width: 1200px) {
+  .sidenav {
+    display: inherit;
+  }
 }

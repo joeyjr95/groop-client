@@ -15,38 +15,39 @@
   }
 }
 
-input[type="radio"] {
+button:disabled {
+  color: #666666;
+  background-color: #dddddd;
+}
+
+button:disabled:hover {
+  color: #666666;
+  background-color: #dddddd;
+  border: 1px solid #aaaaaa;
+}
+
+input[type='radio'] {
   width: auto;
   text-align: center;
   margin: 5px;
 }
 
-.EmailContainer {
+.NotificationContainer {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#EditButton {
-  background: #fffd79;
-  color: rgb(68, 68, 68);
-  padding: 10px 15px;
-  border-radius: 15px;
-  margin: 0 auto;
-  font-size: 1em;
-  text-align: center;
-  margin-right: 10px;
-}
-
-.SaveButton {
-  background: #7eff79;
-  color: rgb(68, 68, 68);
-  padding: 10px 15px;
-  border-radius: 15px;
-  margin: 0 auto;
-  font-size: 1em;
-  text-align: center;
+.notify-radio-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+  > label {
+    display: flex;
+    margin: 0 1rem;
+  }
 }
 
 .account-item {
@@ -75,12 +76,12 @@ input[type="radio"] {
       margin-top: 1rem;
     }
 
-    input[type="password"] {
+    input[type='password'] {
       margin-bottom: 2rem;
       margin-top: 0.5rem;
     }
 
-    input[type="submit"] {
+    input[type='submit'] {
       max-width: 100px;
       text-align: center;
       margin: 0 auto;

@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import GroopContext from "../../contexts/GroopContext";
-import GroopService from "../../services/groop-service";
-import Filter from "../../components/Filter/Filter";
-import TaskItem from "../../components/TaskItem/TaskItem";
-import moment from "moment";
-import "./Dashboard.scss";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import GroopContext from '../../contexts/GroopContext';
+import GroopService from '../../services/groop-service';
+import Filter from '../../components/Filter/Filter';
+import TaskItem from '../../components/TaskItem/TaskItem';
+import moment from 'moment';
+import './Dashboard.scss';
 
 export default class Dashboard extends Component {
   static contextType = GroopContext;
@@ -18,7 +18,6 @@ export default class Dashboard extends Component {
       const tasksWithDates = this.TasksWithDatesInbetween(data);
       this.context.setUserTasks(tasksWithDates);
       this.context.setFilteredTasks(tasksWithDates);
-   
     });
   };
   TasksWithDatesInbetween = data => {
@@ -26,17 +25,15 @@ export default class Dashboard extends Component {
       console.log(tasks);
       let taskDates = this.getFullDates(tasks);
       console.log(taskDates);
-    
 
       return { ...tasks, taskDates };
     });
-    
-    let currentDate = moment().format("MMM Do YY")
-    let todaysTasks = tasksWithDatesFiltered.filter(tasks =>{
-     return  tasks.taskDates.includes(currentDate)
-    })
-    return todaysTasks
-    
+
+    let currentDate = moment().format('MMM Do YY');
+    let todaysTasks = tasksWithDatesFiltered.filter(tasks => {
+      return tasks.taskDates.includes(currentDate);
+    });
+    return todaysTasks;
   };
   getFullDates = data => {
     let dates = [],
@@ -47,7 +44,7 @@ export default class Dashboard extends Component {
         return date;
       };
     while (currentDate <= new Date(data.date_due)) {
-      dates.push(moment(currentDate).format("MMM Do YY"));
+      dates.push(moment(currentDate).format('MMM Do YY'));
       currentDate = addDays.call(currentDate, 1);
     }
     return dates;
@@ -69,7 +66,7 @@ export default class Dashboard extends Component {
     }
   };
 
-  date = (separator = " / ") => {
+  date = (separator = ' / ') => {
     const date = new Date();
     const today = date.getDate();
     const month = date.getMonth() + 1;
@@ -127,15 +124,6 @@ export default class Dashboard extends Component {
                   />
                 );
               })}
-              {/* {userTasks.map((task, i) => (
-                <TaskItem
-                  getTasks={() => this.getAllTasks()}
-                  deleteTask={id => this.deleteTask(id)}
-                  task={task}
-                  {...this.props}
-                  key={`task${i}`}
-                />
-              ))} */}
             </ul>
           </div>
         </div>

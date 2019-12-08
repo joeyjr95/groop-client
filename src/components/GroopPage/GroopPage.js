@@ -1,13 +1,13 @@
 /// <reference path='../../react-vis.d.ts'/>
-import GroopContext from "../../contexts/GroopContext";
-import GroopService from "../../services/groop-service";
-import Filter from "../../components/Filter/Filter";
-import React, { Component } from "react";
-import { RadialChart } from "react-vis";
-import TaskItem from "../TaskItem/TaskItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import moment from "moment";
-import { faMedal } from "@fortawesome/free-solid-svg-icons";
+import GroopContext from '../../contexts/GroopContext';
+import GroopService from '../../services/groop-service';
+import Filter from '../../components/Filter/Filter';
+import React, { Component } from 'react';
+import { RadialChart } from 'react-vis';
+import TaskItem from '../TaskItem/TaskItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import moment from 'moment';
+import { faMedal } from '@fortawesome/free-solid-svg-icons';
 
 export default class GroopPage extends Component {
   static contextType = GroopContext;
@@ -15,7 +15,6 @@ export default class GroopPage extends Component {
   componentDidMount() {
     GroopService.getGroup(this.props.group_id).then(data => {
       let groupId = parseInt(data.id);
-      this.context.setCurrentGroup(groupId);
     });
     this.getGroupTasks();
     this.getGroupMembers();
@@ -28,23 +27,20 @@ export default class GroopPage extends Component {
       this.context.setFilteredTasks(tasksWithDates);
     });
   };
+
   TasksWithDatesInbetween = data => {
     let tasksWithDatesFiltered = data.map(tasks => {
-      console.log(tasks);
       let taskDates = this.getFullDates(tasks);
-      console.log(taskDates);
-    
-
       return { ...tasks, taskDates };
     });
-    
-    let currentDate = moment().format("MMM Do YY")
-    let todaysTasks = tasksWithDatesFiltered.filter(tasks =>{
-     return  tasks.taskDates.includes(currentDate)
-    })
-    return todaysTasks
-    
+
+    let currentDate = moment().format('MMM Do YY');
+    let todaysTasks = tasksWithDatesFiltered.filter(tasks => {
+      return tasks.taskDates.includes(currentDate);
+    });
+    return todaysTasks;
   };
+
   getFullDates = data => {
     let dates = [],
       currentDate = new Date(data.time_start),
@@ -54,7 +50,7 @@ export default class GroopPage extends Component {
         return date;
       };
     while (currentDate <= new Date(data.date_due)) {
-      dates.push(moment(currentDate).format("MMM Do YY"));
+      dates.push(moment(currentDate).format('MMM Do YY'));
       currentDate = addDays.call(currentDate, 1);
     }
     return dates;
@@ -62,23 +58,18 @@ export default class GroopPage extends Component {
 
   getGroupMembers = () => {
     GroopService.getGroupMembers(this.props.group_id).then(data => {
-      console.log(data);
       this.context.setCurrentGroupMembers(data);
     });
   };
 
   render() {
-    const {
-      //currentGroupTasks = [],
-      currentGroupMembers = [],
-      filteredTasks = []
-    } = this.context;
+    const { currentGroupMembers = [], filteredTasks = [] } = this.context;
     console.log(filteredTasks);
     return (
       <>
-      <div className="filter-search">
-        <Filter {...this.props} />
-      </div>
+        <div className="filter-search">
+          <Filter {...this.props} />
+        </div>
         <div className="members-section-mobile">
           <div className="members-mobile">
             <label htmlFor="menu" id="label-menu">
@@ -130,7 +121,9 @@ export default class GroopPage extends Component {
                       id={memScore.member_id}
                       aria-live="polite"
                     >
-                      <p className="userScore">{memScore.username}: {memScore.score}</p>
+                      <p className="userScore">
+                        {memScore.username}: {memScore.score}
+                      </p>
                     </li>
                   ))}
                 </ol>
@@ -146,7 +139,9 @@ export default class GroopPage extends Component {
                       id={memScore.member_id}
                       aria-live="polite"
                     >
-                      <p className="userScore">{memScore.username}: {memScore.score}</p>
+                      <p className="userScore">
+                        {memScore.username}: {memScore.score}
+                      </p>
                     </li>
                   ))}
                 </ol>
@@ -154,20 +149,20 @@ export default class GroopPage extends Component {
             </div>
             <div className="pieChart">
               <RadialChart
-                colorType={"literal"}
+                colorType={'literal'}
                 colorDomain={[0, 100]}
                 colorRange={[0, 10]}
                 getLabel={d => d.name}
                 data={[
-                  { angle: Number(17), color: "#1c939a", name: "allie" },
-                  { angle: Number(22), color: "#72bce0", name: "User" },
-                  { angle: Number(9), color: "#BAD7E6", name: "Derek" },
-                  { angle: Number(5), color: "#5891AD", name: "Brian" }
+                  { angle: Number(17), color: '#1c939a', name: 'allie' },
+                  { angle: Number(22), color: '#72bce0', name: 'User' },
+                  { angle: Number(9), color: '#BAD7E6', name: 'Derek' },
+                  { angle: Number(5), color: '#5891AD', name: 'Brian' },
                 ]}
                 labelsRadiusMultiplier={1}
                 labelsStyle={{ fontSize: 16 }}
                 showLabels
-                style={{ stroke: "#fff", strokeWidth: 2 }}
+                style={{ stroke: '#fff', strokeWidth: 2 }}
                 width={window.innerWidth / 5}
                 height={window.innerWidth / 5}
               ></RadialChart>

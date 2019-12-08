@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 import './GroupPageRoute.scss';
 import GroopPage from '../../components/GroopPage/GroopPage';
 import GroopService from '../../services/groop-service';
+import GroopContext from '../../contexts/GroopContext';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
 export default class GroupPageRoute extends Component {
+  static contextType = GroopContext;
   state = {
     group_name: '',
   };
@@ -13,12 +15,13 @@ export default class GroupPageRoute extends Component {
   componentDidMount = async () => {
     let group = await GroopService.getGroup(this.props.match.params.group_id);
     if (group) this.setState({ group_name: group.name });
+    this.context.setCurrentGroup(group.id);
   };
 
   date = (separator = ' / ') => {
     const date = new Date();
     const today = date.getDate();
-    const month = (date.getMonth() + 1);
+    const month = date.getMonth() + 1;
     const year = date.getFullYear();
     return `${month}${separator}${today}${separator}${year}`;
   };
@@ -37,7 +40,6 @@ export default class GroupPageRoute extends Component {
           Add to list
         </Link>
         <Sidebar {...this.props} />
-        
       </div>
     );
   }
