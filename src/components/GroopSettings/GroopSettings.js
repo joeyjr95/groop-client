@@ -6,7 +6,6 @@ import './GroopSetting.scss';
 export default class GroopSettings extends Component {
   static contextType = GroopContext;
   state = {
-    group_id: this.context.currentGroup,
     groupmembers: [],
     newMember: '',
     deletedMember: '',
@@ -17,10 +16,9 @@ export default class GroopSettings extends Component {
   };
 
   componentDidMount = async () => {
-    this.getGroupMembers();
-    this.setState({
-      groupmembers: this.context.currentGroupMembers,
-    });
+    const group = await GroopService.getGroup(this.props.match.params.group_id);
+    this.context.setCurrentGroup(group);
+    this.getGroupMembers(group.id);
   };
 
   handleDeleteGroup = async e => {
@@ -29,32 +27,44 @@ export default class GroopSettings extends Component {
     this.props.history.go(-2);
   };
 
-  getGroupMembers = () => {
-    GroopService.getGroupMembers(this.props.group_id).then(data => {
-      this.context.setCurrentGroupMembers(data);
-    });
+  getGroupMembers = async group_id => {
+    const groupmembers = await GroopService.getGroupMembers(group_id);
+    this.context.setCurrentGroupMembers(groupmembers);
   };
 
   handleDeleteMember = async e => {
     e.preventDefault();
-    let body = {
-      group_id: this.context.currentGroup,
-      member_id: parseInt(this.state.deletedMember),
-    };
-    const deleted = await GroopService.deleteGroupMember(body);
+    const member = this.state.groupmembers.filter(
+      member => member.id == parseInt(this.state.deletedMember),
+    );
+    try {
+      const deleted = await GroopService.deleteGroupMember({
+        group_id: this.context.currentGroup.id,
+        member_id: parseInt(this.state.deletedMember),
+      });
+      if (deleted == null) {
+        this.setState({
+          deleteConfirmation: `${member.username} removed from the group`,
+          deleteError: null,
+        });
+      }
+    } catch (error) {
+      this.setState({ deleteError: error.error, deleteConfirmation: null });
+    }
   };
 
   handleAddMember = async e => {
     e.preventDefault();
     try {
       const newMember = await GroopService.addNewGroupMember({
-        group_id: parseInt(this.state.group_id),
+        group_id: this.context.currentGroup.id,
         username: this.state.newMember,
       });
 
       if (newMember) {
         this.setState({
           addConfirmation: `${newMember.username} has been added to the group`,
+          addError: null,
         });
       }
     } catch (error) {
@@ -115,7 +125,11 @@ export default class GroopSettings extends Component {
           <div role="alert" className="alert--success">
             {deleteConfirmation && <p>{deleteConfirmation}</p>}
           </div>
-          <select>{memberdropdown}</select>
+          <select
+            onChange={e => this.setState({ deletedMember: e.target.value })}
+          >
+            {memberdropdown}
+          </select>
           <button type="submit" className="AddGroupMemberButton">
             Remove
           </button>

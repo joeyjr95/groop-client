@@ -6,19 +6,16 @@ import React, { Component } from 'react';
 import { RadialChart } from 'react-vis';
 import TaskItem from '../TaskItem/TaskItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import moment from 'moment';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
 
 export default class GroopPage extends Component {
   static contextType = GroopContext;
 
-  componentDidMount() {
-    GroopService.getGroup(this.props.group_id).then(data => {
-      let groupId = parseInt(data.id);
-    });
+  componentDidMount = async () => {
+    const group = await GroopService.getGroup(this.props.match.params.group_id);
     this.getGroupTasks();
     this.getGroupMembers();
-  }
+  };
 
   getGroupTasks = async () => {
     const tasks = await GroopService.getGroupTasks(this.props.group_id);

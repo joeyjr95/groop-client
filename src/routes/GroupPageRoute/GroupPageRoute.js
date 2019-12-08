@@ -8,15 +8,10 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 
 export default class GroupPageRoute extends Component {
   static contextType = GroopContext;
-  state = {
-    group_name: '',
-  };
 
   componentDidMount = async () => {
     let group = await GroopService.getGroup(this.props.match.params.group_id);
-    if (group) this.setState({ group_name: group.name });
-    console.log(group);
-    this.context.setCurrentGroup(group.id);
+    this.context.setCurrentGroup(group);
   };
 
   date = (separator = ' / ') => {
@@ -28,9 +23,10 @@ export default class GroupPageRoute extends Component {
   };
 
   render() {
+    let currentgroup = this.context.currentGroup || '';
     return (
       <div className="groop-page">
-        <h2>{this.state.group_name}</h2>
+        <h2>{currentgroup.name}</h2>
         <p id="date">{this.date()}</p>
         <GroopPage
           {...this.props}
