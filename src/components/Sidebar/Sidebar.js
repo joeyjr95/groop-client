@@ -14,6 +14,11 @@ export default class Sidebar extends Component {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
     const currentGroup = this.context.currentGroup || '';
+    const groups = this.context.groups || [];
+
+    const groupLinks = groups.map(group => {
+      return <Link to={`../group/${group.group_id}`}>{group.name}</Link>;
+    });
 
     if (path === dashboard) {
       return (
@@ -23,6 +28,10 @@ export default class Sidebar extends Component {
             <Link to={`/calendar${this.props.location.pathname}`}>
               Calendar
             </Link>
+          </div>
+          <div className="groups-container">
+            <div className="sidebar-section-label">Groups</div>
+            {groupLinks}
           </div>
         </div>
       );

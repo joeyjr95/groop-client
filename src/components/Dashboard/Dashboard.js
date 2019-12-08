@@ -65,25 +65,6 @@ export default class Dashboard extends Component {
           <Filter {...this.props} />
         </div>
         <div className="main-dashboard-section">
-          <div className="groups">
-            <label htmlFor="group-menu" id="label-group-menu">
-              Groups
-            </label>
-            <ul className="group-menu" role="menu">
-              {groups.map(group => (
-                <li className="group-list-item">
-                  <Link
-                    key={group.name}
-                    id={group.name}
-                    to={`/group/${group.group_id}`}
-                    aria-live="polite"
-                  >
-                    {group.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
           <div className="dashboard-task-list-container">
             <label htmlFor="dashboard-task-list" id="dashboard-label-task-list">
               Upcoming Tasks

@@ -67,16 +67,19 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .sidenav {
   z-index: 1; /* Stay on top */
-  width: 200px;
   position: sticky;
+  width: 200px;
   top: 60px;
+  bottom: 0px;
   align-self: flex-start;
 }
 .dashboard-sidenav {
   z-index: 1; /* Stay on top */
   position: sticky;
+  width: 200px;
   top: 60px;
   align-self: flex-start;
+  border-right: 2px solid rgb(31, 140, 191);
 }
 .sidenav a {
   padding: 2rem 1rem;
@@ -105,6 +108,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .sidenav a:hover {
   background-color: rgb(31, 140, 191);
   font-style: oblique;
+}
+.sidebar-section-label {
+  font-size: 20px;
+  padding: 0.5rem;
+}
+#outer-container {
+  width: 100%;
 }
 .flexbox-container {
   display: flex;
