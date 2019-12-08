@@ -22,6 +22,20 @@ export default class EditTask extends Component {
       touched: false,
     },
     date_due: {
+      date: new Date().toISOString().substring(0, 10),
+      time: '00:00',
+      touched: false,
+    },
+    time_start: {
+      date: new Date().toISOString().substring(0, 10),
+      time: '00:00',
+      touched: false,
+    },
+    category: {
+      value: '',
+      touched: false,
+    },
+    priority: {
       value: '',
       touched: false,
     },
@@ -52,9 +66,13 @@ export default class EditTask extends Component {
     const editedTask = {
       name: this.state.name.value,
       description: this.state.description.value,
-      date_due: this.state.date_due.value,
+      time_start: `${this.state.time_start.date}T${this.state.time_start.time}`,
+      date_due: `${this.state.date_due.date}T${this.state.date_due.time}`,
       user_assigned_id: this.state.user_assigned_id.value,
+      priority: parseInt(this.state.priority.value),
+      category_id: parseInt(this.state.category.value),
     };
+
     const returnedTask = await GroopService.apiPatchTask(
       this.state.taskId,
       editedTask,
@@ -90,8 +108,25 @@ export default class EditTask extends Component {
   handleChangeTaskAssignment = value => {
     this.setState({ user_assigned_id: { value, touched: true } });
   };
-  handleChangeTaskDueDate = value => {
-    this.setState({ date_due: { value, touched: true } });
+  handleChangeTaskDueDate = date => {
+    this.setState({
+      date_due: { ...this.state.date_due, date, touched: true },
+    });
+  };
+  handleChangeTaskDueDateTime = time => {
+    this.setState({
+      date_due: { ...this.state.date_due, time, touched: true },
+    });
+  };
+  handleChangeTaskTimeStart = date => {
+    this.setState({
+      time_start: { ...this.state.time_start, date, touched: true },
+    });
+  };
+  handleChangeTaskTimeStartTime = time => {
+    this.setState({
+      time_start: { ...this.state.time_start, time, touched: true },
+    });
   };
 
   render() {
@@ -123,7 +158,7 @@ export default class EditTask extends Component {
     );
     const memberOptions = this.state.members.map(member => (
       <option key={`member${member.member_id}`} value={member.member_id}>
-        {member.fullname}
+        {member.username}
       </option>
     ));
     return (
@@ -149,6 +184,62 @@ export default class EditTask extends Component {
             onChange={e => this.handleChangeTaskDueDate(e.target.value)}
             value={this.state.date_due.value}
           />
+          <div className="dateContainer">
+            <div className="task-start">
+              <label htmlFor="addTaskTimeStart" className="AddTaskTimeStart">
+                Start Date
+              </label>
+              <input
+                className="dateInput"
+                type="date"
+                id="addTaskTimeStart"
+                name="addTaskTimeStart"
+                value={this.state.time_start.date}
+                onChange={e => this.handleChangeTaskTimeStart(e.target.value)}
+              />
+              <label
+                htmlFor="addTaskTimeStart--time"
+                className="AddTaskTimeStart"
+              >
+                Start Time
+              </label>
+              <input
+                className="dateInput"
+                type="time"
+                id="addTaskTimeStart--time"
+                name="addTaskTimeStart--time"
+                value={this.state.time_start.time}
+                onChange={e =>
+                  this.handleChangeTaskTimeStartTime(e.target.value)
+                }
+              />
+            </div>
+            <div className="task-end">
+              <label htmlFor="addtaskduedate" className="AddTaskDueDate">
+                Due Date
+              </label>
+              <input
+                className="dateInput"
+                type="date"
+                id="addtaskduedate"
+                name="addtaskduedate"
+                value={this.state.date_due.date}
+                onChange={e => this.handleChangeTaskDueDate(e.target.value)}
+              />
+              <label htmlFor="addtaskduedate--time" className="AddTaskDueDate">
+                Due Date
+              </label>
+              <input
+                className="dateInput"
+                type="time"
+                id="addtaskduedate--time"
+                name="addtaskduedate--time"
+                value={this.state.date_due.time}
+                onChange={e => this.handleChangeTaskDueDateTime(e.target.value)}
+              />
+            </div>
+          </div>
+
           {/* {this.state.year_released.touched && (
             <div className="error">{this.validateDueDate()}</div>
           )} */}
@@ -173,27 +264,27 @@ export default class EditTask extends Component {
             <div className="error">{this.validatedescription()}</div>
           )} */}
           <div className="EditTaskButtonContainer">
-          <Button
-            type="button"
-            onClick={() => this.handleSubmit()}
-            // disabled={
-            //   // this.validatename() ||
-            //   // this.validateDueDate() ||
-            //   // this.validatedescription() ||
-            //   // this.validateuser_assigned_id()
-            // }
-            className="editTaskButton"
-          >
-            Save
-          </Button>
-          {deleteUi}
-          <Button
-            type="button"
-            onClick={() => this.props.history.goBack()}
-            className="cancelEditTaskButton"
-          >
-            Cancel
-          </Button>
+            <Button
+              type="button"
+              onClick={() => this.handleSubmit()}
+              // disabled={
+              //   // this.validatename() ||
+              //   // this.validateDueDate() ||
+              //   // this.validatedescription() ||
+              //   // this.validateuser_assigned_id()
+              // }
+              className="editTaskButton"
+            >
+              Save
+            </Button>
+            {deleteUi}
+            <Button
+              type="button"
+              onClick={() => this.props.history.goBack()}
+              className="cancelEditTaskButton"
+            >
+              Cancel
+            </Button>
           </div>
         </form>
       </section>
