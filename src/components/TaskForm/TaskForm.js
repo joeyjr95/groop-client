@@ -181,7 +181,7 @@ export default class TaskForm extends Component {
                   htmlFor="addtaskduedate--time"
                   className="AddTaskDueDate"
                 >
-                  Due Date
+                  End Time
                 </label>
                 <input
                   className="dateInput"

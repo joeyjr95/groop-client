@@ -90,7 +90,12 @@ export default class GroopSettings extends Component {
       deleteConfirmation,
       deleteError,
     } = this.state;
-    const memberoptions = this.context.currentGroupMembers.map(member => (
+
+    // remove signed-in user from list of members to delete
+    const members = this.context.currentGroupMembers.filter(
+      member => member.id !== this.props.user.id,
+    );
+    const memberoptions = members.map(member => (
       <option key={`member${member.member_id}`} value={member.member_id}>
         {member.username}
       </option>

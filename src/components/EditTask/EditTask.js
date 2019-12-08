@@ -59,7 +59,7 @@ export default class EditTask extends Component {
       description: { value: task.description, touched: false },
       date_due: {
         date: task.date_due.substring(0, 10),
-        time: task.date_due.substring(11, 16),
+        time: new Date(task.date_due).toLocaleTimeString('en-GB'),
         touched: false,
       },
       time_start: {
@@ -68,7 +68,9 @@ export default class EditTask extends Component {
             ? new Date().toISOString().substring(0, 10)
             : task.time_start.substring(0, 10),
         time:
-          task.time_start == null ? '00:00' : task.time_start.substring(11, 16),
+          task.time_start == null
+            ? '00:00'
+            : new Date(task.time_start).toLocaleTimeString('en-GB'),
         touched: false,
       },
       user_assigned_id: { value: task.user_assigned_id, touched: false },
@@ -246,7 +248,7 @@ export default class EditTask extends Component {
                 onChange={e => this.handleChangeTaskDueDate(e.target.value)}
               />
               <label htmlFor="addtaskduedate--time" className="AddTaskDueDate">
-                Due Date
+                End Time
               </label>
               <input
                 className="dateInput"
