@@ -20,8 +20,15 @@
   font-weight: 100;
 }
 
+.dashboard {
+  display: flex;
+  position: relative;
+  flex-flow: row-reverse nowrap;
+  justify-content: space-between;
+}
 .dashboard-c {
   color: #1b5690;
+  flex-grow: 5;
 }
 .dashboard-c h2 {
   font-size: 40px;
@@ -153,10 +160,9 @@
   .main-dashboard-section {
     display: flex;
     flex-direction: row-reverse;
-    width: 90%;
+    width: 100%;
     justify-content: center;
     margin-top: 15px;
-    margin-left: 10%;
   }
   .dashboard-task-list-container {
     border: none;
@@ -189,6 +195,5 @@
   }
   .main-dashboard-section {
     margin-top: 15px;
-    margin-left: 8%;
   }
 }

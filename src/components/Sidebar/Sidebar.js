@@ -30,29 +30,29 @@ export default class Sidebar extends Component {
       return (
         <div className="sidenav">
           <div id="outer-container">
-            <Menu
-              pageWrapId={'page-wrap'}
-              outerContainerId={'outer-container'}
-              width={200}
-              isOpen={true}
-              customBurgerIcon={<img src={Image} />}
-              right
-            >
-              <Link to="/dashboard">Dashboard</Link>
-              <Link to={`/calendar/${this.props.match.params.group_id}`}>
-                Calendar
+            {/* <Menu */}
+            {/*   pageWrapId={'page-wrap'} */}
+            {/*   outerContainerId={'outer-container'} */}
+            {/*   width={200} */}
+            {/*   isOpen={true} */}
+            {/*   customBurgerIcon={<img src={Image} />} */}
+            {/*   right */}
+            {/* > */}
+            <Link to="/dashboard">Dashboard</Link>
+            <Link to={`/calendar/${this.props.match.params.group_id}`}>
+              Calendar
+            </Link>
+            <Link to={`/add-task/${this.props.match.params.group_id}`}>
+              Add Task
+            </Link>
+            {currentGroup.owner_id === this.props.user.id ? (
+              <Link to={`/groupsettings/${this.props.match.params.group_id}`}>
+                <FontAwesomeIcon icon={faUsersCog} id="groupSettingsIcon" />
               </Link>
-              <Link to={`/add-task/${this.props.match.params.group_id}`}>
-                Add Task
-              </Link>
-              {currentGroup.owner_id === this.props.user.id ? (
-                <Link to={`/groupsettings/${this.props.match.params.group_id}`}>
-                  <FontAwesomeIcon icon={faUsersCog} id="groupSettingsIcon" />
-                </Link>
-              ) : (
-                <></>
-              )}
-            </Menu>
+            ) : (
+              <></>
+            )}
+            {/* </Menu> */}
           </div>
         </div>
       );

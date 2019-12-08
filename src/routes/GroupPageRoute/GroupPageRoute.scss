@@ -9,7 +9,15 @@
 .userScore {
   margin: 0 auto;
 }
+
+.groop-dashboard {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  justify-content: space-between;
+}
+
 .groop-page {
+  flex-grow: 5;
   display: flex;
   flex-direction: column;
   align-items: center;

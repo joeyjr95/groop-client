@@ -25,17 +25,19 @@ export default class GroupPageRoute extends Component {
   render() {
     let currentgroup = this.context.currentGroup || '';
     return (
-      <div className="groop-page">
-        <h2>{currentgroup.name}</h2>
-        <p id="date">{this.date()}</p>
-        <GroopPage
-          {...this.props}
-          group_id={this.props.match.params.group_id}
-        />
+      <div className="groop-dashboard">
+        <div className="groop-page">
+          <h2>{currentgroup.name}</h2>
+          <p id="date">{this.date()}</p>
+          <GroopPage
+            {...this.props}
+            group_id={this.props.match.params.group_id}
+          />
 
-        <Link to="/add-task" id="task-link">
-          Add to list
-        </Link>
+          <Link to="/add-task" id="task-link">
+            Add to list
+          </Link>
+        </div>
         <Sidebar {...this.props} />
       </div>
     );
