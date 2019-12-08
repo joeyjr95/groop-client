@@ -81,7 +81,6 @@ export default class GroopPage extends Component {
                     aria-live="polite"
                   >
                     {member.username}
-                    <br />
                     <FontAwesomeIcon icon={faMedal} id="pointsIcon" />
                     <span className="userScore">{member.score}</span>
                   </li>
