@@ -8,7 +8,7 @@ export default class GroopSettings extends Component {
   static contextType = GroopContext;
   state = {
     newMember: '',
-    deletedMember: NaN,
+    deletedMember: 'select',
     addConfirmation: null,
     addError: null,
     deleteConfirmation: null,
@@ -35,9 +35,8 @@ export default class GroopSettings extends Component {
   handleDeleteMember = async e => {
     e.preventDefault();
     const member = this.context.currentGroupMembers.filter(
-      member => member.id == this.state.deletedMember,
+      member => member.id === this.state.deletedMember,
     );
-    console.log(member);
     try {
       const deleted = await GroopService.deleteGroupMember({
         group_id: this.context.currentGroup.id,
@@ -46,7 +45,7 @@ export default class GroopSettings extends Component {
 
       if (deleted == null) {
         this.setState({
-          deleteConfirmation: `${member.username} removed from the group`,
+          deleteConfirmation: `${member[0].username} removed from the group`,
           deleteError: null,
         });
         this.getGroupMembers(this.context.currentGroup.id);
@@ -66,6 +65,7 @@ export default class GroopSettings extends Component {
 
       if (newMember) {
         this.setState({
+          newMember: '',
           addConfirmation: `${newMember.username} has been added to the group`,
           addError: null,
         });
@@ -88,10 +88,16 @@ export default class GroopSettings extends Component {
       deleteError,
     } = this.state;
     const memberoptions = this.context.currentGroupMembers.map(member => (
-      <option value={member.member_id}>{member.username}</option>
+      <option key={`member${member.member_id}`} value={member.member_id}>
+        {member.username}
+      </option>
     ));
     let memberdropdown = [];
-    memberdropdown[0] = <option value={null}>select a member</option>;
+    memberdropdown[0] = (
+      <option key={`membernill`} value={null}>
+        select a member
+      </option>
+    );
     memberdropdown.push(memberoptions);
 
     return (
@@ -115,6 +121,7 @@ export default class GroopSettings extends Component {
             id="addGroupMember"
             name="addGroupMember"
             onChange={this.handleChangeAddMember}
+            value={this.state.newMember}
           />
           <Button
             type="submit"
