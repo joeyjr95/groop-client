@@ -1,14 +1,14 @@
 import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
 import React, { Component } from 'react';
+import Button from '../Button/Button';
 import './GroopSetting.scss';
 
 export default class GroopSettings extends Component {
   static contextType = GroopContext;
   state = {
-    groupmembers: [],
     newMember: '',
-    deletedMember: '',
+    deletedMember: NaN,
     addConfirmation: null,
     addError: null,
     deleteConfirmation: null,
@@ -34,19 +34,22 @@ export default class GroopSettings extends Component {
 
   handleDeleteMember = async e => {
     e.preventDefault();
-    const member = this.state.groupmembers.filter(
-      member => member.id == parseInt(this.state.deletedMember),
+    const member = this.context.currentGroupMembers.filter(
+      member => member.id == this.state.deletedMember,
     );
+    console.log(member);
     try {
       const deleted = await GroopService.deleteGroupMember({
         group_id: this.context.currentGroup.id,
-        member_id: parseInt(this.state.deletedMember),
+        member_id: this.state.deletedMember,
       });
+
       if (deleted == null) {
         this.setState({
           deleteConfirmation: `${member.username} removed from the group`,
           deleteError: null,
         });
+        this.getGroupMembers(this.context.currentGroup.id);
       }
     } catch (error) {
       this.setState({ deleteError: error.error, deleteConfirmation: null });
@@ -66,6 +69,7 @@ export default class GroopSettings extends Component {
           addConfirmation: `${newMember.username} has been added to the group`,
           addError: null,
         });
+        this.getGroupMembers(this.context.currentGroup.id);
       }
     } catch (error) {
       this.setState({ addError: error.error, addConfirmation: null });
@@ -83,9 +87,13 @@ export default class GroopSettings extends Component {
       deleteConfirmation,
       deleteError,
     } = this.state;
-    const memberdropdown = this.context.currentGroupMembers.map(member => (
-      <option value={member.member_id}>{member.username} </option>
+    const memberoptions = this.context.currentGroupMembers.map(member => (
+      <option value={member.member_id}>{member.username}</option>
     ));
+    let memberdropdown = [];
+    memberdropdown[0] = <option value={null}>select a member</option>;
+    memberdropdown.push(memberoptions);
+
     return (
       <section className="GroupSettingsSection">
         <h2>Group Settings</h2>
@@ -108,9 +116,13 @@ export default class GroopSettings extends Component {
             name="addGroupMember"
             onChange={this.handleChangeAddMember}
           />
-          <button type="submit" className="AddGroopMemberButton">
+          <Button
+            type="submit"
+            className="AddGroopMemberButton"
+            disabled={this.state.newMember.length > 0 ? 0 : 1}
+          >
             Add
-          </button>
+          </Button>
         </form>
         <form
           className="deleteGroupMember"
@@ -126,21 +138,28 @@ export default class GroopSettings extends Component {
             {deleteConfirmation && <p>{deleteConfirmation}</p>}
           </div>
           <select
-            onChange={e => this.setState({ deletedMember: e.target.value })}
+            onChange={e =>
+              this.setState({ deletedMember: parseInt(e.target.value) })
+            }
+            value={this.state.deletedMember}
           >
             {memberdropdown}
           </select>
-          <button type="submit" className="AddGroupMemberButton">
+          <Button
+            type="submit"
+            className="AddGroupMemberButton"
+            disabled={isNaN(this.state.deletedMember) ? 1 : 0}
+          >
             Remove
-          </button>
+          </Button>
         </form>
-        <button
+        <Button
           type="button"
           onClick={this.handleDeleteGroup}
           className="DeleteGroupButton"
         >
           Delete Group
-        </button>
+        </Button>
       </section>
     );
   }
