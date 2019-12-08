@@ -1,6 +1,7 @@
 @import '../../variables.scss';
 
-.Button, .ButtonCancel {
+.Button,
+.ButtonCancel {
   border: 1px solid #aaa;
   background-color: white;
   color: black;
@@ -14,13 +15,13 @@
 }
 
 .Button:hover {
-  background-color: #339fe8;
+  background-color: #135f98;
   color: $color-font-header;
   border: 1px solid white;
 }
 
 .ButtonCancel:hover {
-  background-color: #e83933;
+  background-color: #a82923;
   color: $color-font-header;
   border: 1px solid white;
 }

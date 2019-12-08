@@ -22,9 +22,15 @@ export default class GroopPage extends Component {
     let today = new Date();
     today.setHours(0, 0, 0, 0);
 
+    // filter expired tasks (date due before today)
     let filteredTasks = tasks.filter(task => {
       let task_due_date = new Date(task.date_due);
       return task_due_date >= today ? 1 : 0;
+    });
+
+    // sort by ascending date due
+    filteredTasks.sort((a, b) => {
+      return new Date(a.date_due) < new Date(b.date_due) ? false : true;
     });
     this.context.setCurrentGroupTasks(filteredTasks);
     this.context.setFilteredTasks(filteredTasks);
