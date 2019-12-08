@@ -62,9 +62,7 @@
 }
 .task-list-container {
   border: 3px solid #134980;
-  border-radius: 10px;
-  margin-left: 5%;
-  margin-right: 5%;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -117,7 +115,6 @@
   .task-list-container {
     width: 50%;
     border: none;
-    border-radius: 0px;
     margin-left: 1.2%;
     margin-right: 10.2%;
     color: #555555;
@@ -239,7 +236,6 @@
   .task-list-container {
     width: 60%;
     border: none;
-    border-radius: 0px;
     margin-left: 1.2%;
     margin-right: 8.2%;
   }

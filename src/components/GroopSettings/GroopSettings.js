@@ -13,6 +13,7 @@ export default class GroopSettings extends Component {
     addError: null,
     deleteConfirmation: null,
     deleteError: null,
+    confirmGroupDelete: false,
   };
 
   componentDidMount = async () => {
@@ -23,7 +24,9 @@ export default class GroopSettings extends Component {
 
   handleDeleteGroup = async e => {
     e.preventDefault();
-    const deleted = await GroopService.deleteGroup(this.state.group_id);
+    const deleted = await GroopService.deleteGroup(
+      this.context.currentGroup.id,
+    );
     this.props.history.go(-2);
   };
 
@@ -100,6 +103,34 @@ export default class GroopSettings extends Component {
     );
     memberdropdown.push(memberoptions);
 
+    const groupDelete = !this.state.confirmGroupDelete ? (
+      <Button
+        type="button"
+        onClick={() => this.setState({ confirmGroupDelete: true })}
+        className="DeleteGroupButton"
+      >
+        Delete Group
+      </Button>
+    ) : (
+      <>
+        {' '}
+        <Button
+          type="button"
+          onClick={() => this.setState({ confirmGroupDelete: false })}
+          className="CancelDeleteGroupButton"
+        >
+          Cancel
+        </Button>{' '}
+        <Button
+          type="button"
+          onClick={this.handleDeleteGroup}
+          className="ConfirmDeleteGroupButton"
+        >
+          Confirm
+        </Button>
+      </>
+    );
+
     return (
       <section className="GroupSettingsSection">
         <h2>Group Settings</h2>
@@ -160,13 +191,7 @@ export default class GroopSettings extends Component {
             Remove
           </Button>
         </form>
-        <Button
-          type="button"
-          onClick={this.handleDeleteGroup}
-          className="DeleteGroupButton"
-        >
-          Delete Group
-        </Button>
+        {groupDelete}
       </section>
     );
   }

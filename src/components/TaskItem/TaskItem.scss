@@ -1,4 +1,4 @@
-@import "../../variables.scss";
+@import '../../variables.scss';
 
 .task-item {
   display: flex;
@@ -6,6 +6,9 @@
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
+
+  &--complete {
+  }
 }
 
 .task-item__check-label {
@@ -37,6 +40,9 @@
 
 .task-item__name {
   margin-bottom: 0.25rem;
+  &--complete {
+    text-decoration: line-through;
+  }
 }
 .task-item__date_due {
   margin: 0.1rem 0;
