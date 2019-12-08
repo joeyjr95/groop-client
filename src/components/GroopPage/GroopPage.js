@@ -143,11 +143,9 @@ export default class GroopPage extends Component {
             </div>
           </div>
           <div className="task-list-container">
-            <div id="fixed-container">
-              <label htmlFor="task-list" id="label-task-list">
-                Upcoming Tasks
-              </label>
-            </div>
+            <label htmlFor="task-list" id="label-task-list">
+              Upcoming Tasks
+            </label>
             <ul className="task-list">
               {filteredTasks.map((task, i) => {
                 return (
