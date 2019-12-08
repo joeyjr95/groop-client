@@ -1,15 +1,15 @@
-@import "../../variables.scss";
+@import '../../variables.scss';
 .group-list-item {
   color: white;
   list-style-type: none;
 }
 
 .filter {
- display: flex;
- flex-direction: row;
- justify-content: center;
- align-items: center;
- width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 .group-list-item a {
   background-color: transparent;
@@ -22,13 +22,12 @@
 
 .dashboard-c {
   color: #1b5690;
-  
 }
 .dashboard-c h2 {
   font-size: 40px;
   padding-bottom: 0px;
   margin-bottom: 0px;
-  font-weight:600;
+  font-weight: 600;
 }
 #label-group-menu {
   display: none;
@@ -61,10 +60,8 @@
 }
 
 .dashboard-task-list-container {
-  
   border: 3px solid #1f4cbf;
   border-radius: 10px;
-  height: 470px;
   overflow-y: auto;
   margin-left: 5%;
   margin-right: 5%;
@@ -164,7 +161,6 @@
   }
   .dashboard-task-list-container {
     width: 70%;
-    height: 450px;
     border: none;
     border-radius: 0px;
     margin-left: 1.2%;
@@ -183,7 +179,6 @@
 @media screen and (min-width: 1300px) {
   .dashboard-task-list-container {
     width: 70%;
-    height: 600px;
   }
   #dashboard-label-task-list {
     font-size: 20px;

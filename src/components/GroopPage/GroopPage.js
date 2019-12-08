@@ -20,40 +20,17 @@ export default class GroopPage extends Component {
     this.getGroupMembers();
   }
 
-  getGroupTasks = () => {
-    GroopService.getGroupTasks(this.props.group_id).then(data => {
-      const tasksWithDates = this.TasksWithDatesInbetween(data);
-      this.context.setCurrentGroupTasks(tasksWithDates);
-      this.context.setFilteredTasks(tasksWithDates);
-    });
-  };
+  getGroupTasks = async () => {
+    const tasks = await GroopService.getGroupTasks(this.props.group_id);
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-  TasksWithDatesInbetween = data => {
-    let tasksWithDatesFiltered = data.map(tasks => {
-      let taskDates = this.getFullDates(tasks);
-      return { ...tasks, taskDates };
+    let filteredTasks = tasks.filter(task => {
+      let task_due_date = new Date(task.date_due);
+      return task_due_date >= today ? 1 : 0;
     });
-
-    let currentDate = moment().format('MMM Do YY');
-    let todaysTasks = tasksWithDatesFiltered.filter(tasks => {
-      return tasks.taskDates.includes(currentDate);
-    });
-    return todaysTasks;
-  };
-
-  getFullDates = data => {
-    let dates = [],
-      currentDate = new Date(data.time_start),
-      addDays = function(days) {
-        let date = new Date(this.valueOf());
-        date.setDate(date.getDate() + days);
-        return date;
-      };
-    while (currentDate <= new Date(data.date_due)) {
-      dates.push(moment(currentDate).format('MMM Do YY'));
-      currentDate = addDays.call(currentDate, 1);
-    }
-    return dates;
+    this.context.setCurrentGroupTasks(filteredTasks);
+    this.context.setFilteredTasks(filteredTasks);
   };
 
   getGroupMembers = () => {
@@ -64,7 +41,6 @@ export default class GroopPage extends Component {
 
   render() {
     const { currentGroupMembers = [], filteredTasks = [] } = this.context;
-    console.log(filteredTasks);
     return (
       <>
         <div className="filter-search">
@@ -172,12 +148,11 @@ export default class GroopPage extends Component {
           <div className="task-list-container">
             <div id="fixed-container">
               <label htmlFor="task-list" id="label-task-list">
-                Today's tasks
+                Upcoming Tasks
               </label>
             </div>
             <ul className="task-list">
               {filteredTasks.map((task, i) => {
-                console.log(task);
                 return (
                   <TaskItem
                     getTasks={() => this.getGroupTasks()}

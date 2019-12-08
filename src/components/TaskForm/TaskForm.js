@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import config from "../../config";
 // import TokenService from "../../services/token-service";
-import GroopService from "../../services/groop-service";
-import UserContext from "../../contexts/UserContext";
-import Button from "../Button/Button";
-import "./TaskForm.scss";
+import GroopService from '../../services/groop-service';
+import UserContext from '../../contexts/UserContext';
+import Button from '../Button/Button';
+import './TaskForm.scss';
 
 export default class TaskForm extends Component {
   static contextType = UserContext;
@@ -13,42 +13,42 @@ export default class TaskForm extends Component {
     tasks: [],
     error: null,
     name: {
-      value: "",
-      touched: false
+      value: '',
+      touched: false,
     },
     time_end: {
-      value: "",
-      touched: false
+      value: '',
+      touched: false,
     },
     description: {
-      value: "",
-      touched: false
+      value: '',
+      touched: false,
     },
     date_due: {
-      value: "",
-      touched: false
+      value: '',
+      touched: false,
     },
     time_start: {
-      value: "",
-      touched: false
+      value: '',
+      touched: false,
     },
     category: {
       value: 1,
-      touched: false
+      touched: false,
     },
     priority: {
       value: 1,
-      touched: false
-    }
+      touched: false,
+    },
   };
 
   componentDidMount = () => {
-    const group_id = Number(this.props.location.pathname.split("/")[2]);
+    const group_id = Number(this.props.location.pathname.split('/')[2]);
     this.setState({
-      group_id
+      group_id,
     });
     GroopService.getCategories(group_id).then(data =>
-      this.setState({ categories: data })
+      this.setState({ categories: data }),
     );
   };
 
@@ -61,14 +61,14 @@ export default class TaskForm extends Component {
       date_due: this.state.date_due.value,
       group_id: this.state.group_id,
       priority: parseInt(this.state.priority.value),
-      category_id: parseInt(this.state.category.value)
+      category_id: parseInt(this.state.category.value),
     };
 
     console.log(newTask);
 
     const returnedNewTask = await GroopService.postTask(newTask);
     if (!returnedNewTask) {
-      this.setState({ error: "error creating new task" });
+      this.setState({ error: 'error creating new task' });
     } else {
       this.props.history.goBack();
     }
@@ -156,6 +156,7 @@ export default class TaskForm extends Component {
               >
                 {categories.map(category => (
                   <option
+                    key={`category_${category.id}`}
                     id={category.id}
                     name={category.category_name}
                     value={category.id}

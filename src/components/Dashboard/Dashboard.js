@@ -13,46 +13,21 @@ export default class Dashboard extends Component {
     this.getAllTasks();
     this.getUserGroups();
   }
-  getAllTasks = () => {
-    GroopService.getAllTasks().then(data => {
-      const tasksWithDates = this.TasksWithDatesInbetween(data);
-      this.context.setUserTasks(tasksWithDates);
-      this.context.setFilteredTasks(tasksWithDates);
-    });
-  };
-  TasksWithDatesInbetween = data => {
-    let tasksWithDatesFiltered = data.map(tasks => {
-      console.log(tasks);
-      let taskDates = this.getFullDates(tasks);
-      console.log(taskDates);
+  getAllTasks = async () => {
+    const tasks = await GroopService.getAllTasks();
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-      return { ...tasks, taskDates };
+    let filteredTasks = tasks.filter(task => {
+      let task_due_date = new Date(task.date_due);
+      return task_due_date >= today ? 1 : 0;
     });
-
-    let currentDate = moment().format('MMM Do YY');
-    let todaysTasks = tasksWithDatesFiltered.filter(tasks => {
-      return tasks.taskDates.includes(currentDate);
-    });
-    return todaysTasks;
-  };
-  getFullDates = data => {
-    let dates = [],
-      currentDate = new Date(data.time_start),
-      addDays = function(days) {
-        let date = new Date(this.valueOf());
-        date.setDate(date.getDate() + days);
-        return date;
-      };
-    while (currentDate <= new Date(data.date_due)) {
-      dates.push(moment(currentDate).format('MMM Do YY'));
-      currentDate = addDays.call(currentDate, 1);
-    }
-    return dates;
+    this.context.setUserTasks(filteredTasks);
+    this.context.setFilteredTasks(filteredTasks);
   };
 
   getUserGroups = () => {
     GroopService.getUserGroups().then(data => {
-      console.log(data);
       this.context.setGroups(data);
     });
   };
@@ -109,7 +84,7 @@ export default class Dashboard extends Component {
                 htmlFor="dashboard-task-list"
                 id="dashboard-label-task-list"
               >
-                Today's tasks
+                Upcoming Tasks
               </label>
             </div>
             <ul className="dashboard-task-list">

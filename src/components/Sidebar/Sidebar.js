@@ -1,16 +1,15 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import "./Sidebar.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUsersCog } from "@fortawesome/free-solid-svg-icons";
-import { push as Menu } from "react-burger-menu";
-import Image from './menuIcon.png'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './Sidebar.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsersCog } from '@fortawesome/free-solid-svg-icons';
+import { push as Menu } from 'react-burger-menu';
+import Image from './menuIcon.png';
 
 export default class Sidebar extends Component {
-
   renderSidebar = () => {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
+    const dashboard = '/dashboard';
 
     if (path === dashboard) {
       return (
@@ -28,11 +27,11 @@ export default class Sidebar extends Component {
         <div className="sidenav">
           <div id="outer-container">
             <Menu
-              pageWrapId={"page-wrap"}
-              outerContainerId={"outer-container"}
+              pageWrapId={'page-wrap'}
+              outerContainerId={'outer-container'}
               width={200}
-              isOpen={ true }
-              customBurgerIcon={ <img src={Image} /> }
+              isOpen={true}
+              customBurgerIcon={<img src={Image} />}
               right
             >
               <Link to="/dashboard">Dashboard</Link>
@@ -52,7 +51,6 @@ export default class Sidebar extends Component {
     }
   };
   render() {
-    console.log(this.props.match.path);
     return this.renderSidebar();
   }
 }

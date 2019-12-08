@@ -19,25 +19,23 @@ const GroopService = {
       ? res.json().then(err => Promise.reject(err))
       : res.json());
   },
-  async getAllTasks() {
-    const res = await fetch(`${config.API_ENDPOINT}/tasks`, {
+  getAllTasks() {
+    return fetch(`${config.API_ENDPOINT}/tasks`, {
       headers: {
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    });
-    return await (!res.ok
-      ? res.json().then(e => Promise.reject(e))
-      : res.json());
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json(),
+    );
   },
-  async getGroupTasks(currentGroupid) {
-    const res = await fetch(`${config.API_ENDPOINT}/tasks/${currentGroupid}`, {
+  getGroupTasks(currentGroupid) {
+    return fetch(`${config.API_ENDPOINT}/tasks/${currentGroupid}`, {
       headers: {
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    });
-    return await (!res.ok
-      ? res.json().then(e => Promise.reject(e))
-      : res.json());
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json(),
+    );
   },
   async getTaskById(taskId) {
     const res = await fetch(`${config.API_ENDPOINT}/tasks/task/${taskId}`, {
@@ -106,7 +104,7 @@ const GroopService = {
       headers: {
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    });
+    }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
   },
   ///GROUP MEMBERS SECTION
 
@@ -119,58 +117,48 @@ const GroopService = {
           Authorization: `bearer ${TokenService.getAuthToken()}`,
         },
       },
-    );
+    ).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
   },
 
-  async getUserGroups() {
-    const res = await fetch(`${config.API_ENDPOINT}/groupsmembers`, {
+  getUserGroups() {
+    return fetch(`${config.API_ENDPOINT}/groupsmembers`, {
       headers: {
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
-    });
-    return await (!res.ok
-      ? res.json().then(e => Promise.reject(e))
-      : res.json());
-  },
-  async getGroupMembers(currentGroup) {
-    const res = await fetch(
-      `${config.API_ENDPOINT}/groupsmembers/${currentGroup}`,
-      {
-        headers: {
-          Authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
-      },
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json(),
     );
-    return await (!res.ok
-      ? res.json().then(e => Promise.reject(e))
-      : res.json());
+  },
+  getGroupMembers(currentGroup) {
+    return fetch(`${config.API_ENDPOINT}/groupsmembers/${currentGroup}`, {
+      headers: {
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
+      },
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json(),
+    );
   },
   addNewGroupMember(body) {
-    return fetch(`${config.API_ENDPOINT}/groupsmembers`, {
+    fetch(`${config.API_ENDPOINT}/groupsmembers`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(body),
-    });
-    // return  ((!res.ok)
-    //     ? res.json().then(e => Promise.reject(e))
-    //     : res.json());
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json(),
+    );
   },
   /// CATERGORY SECTION
-  async getCategories(currentGroup) {
-    const res = await fetch(
-      `${config.API_ENDPOINT}/categories/group/${currentGroup}`,
-      {
-        headers: {
-          Authorization: `bearer ${TokenService.getAuthToken()}`,
-        },
+  getCategories(currentGroup) {
+    return fetch(`${config.API_ENDPOINT}/categories/group/${currentGroup}`, {
+      headers: {
+        Authorization: `bearer ${TokenService.getAuthToken()}`,
       },
+    }).then(res =>
+      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json(),
     );
-    return await (!res.ok
-      ? res.json().then(e => Promise.reject(e))
-      : res.json());
   },
 };
 export default GroopService;

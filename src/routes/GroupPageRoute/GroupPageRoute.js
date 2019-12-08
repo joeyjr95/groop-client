@@ -15,6 +15,7 @@ export default class GroupPageRoute extends Component {
   componentDidMount = async () => {
     let group = await GroopService.getGroup(this.props.match.params.group_id);
     if (group) this.setState({ group_name: group.name });
+    console.log(group);
     this.context.setCurrentGroup(group.id);
   };
 
