@@ -89,17 +89,23 @@ export default class Dashboard extends Component {
               Upcoming Tasks
             </label>
             <ul className="dashboard-task-list">
-              {filteredTasks.map((task, i) => {
-                console.log(task);
-                return (
-                  <TaskItem
-                    getTasks={() => this.getAllTasks()}
-                    task={task}
-                    {...this.props}
-                    key={`task${i}`}
-                  />
-                );
-              })}
+              {filteredTasks.length !== 0 ? (
+                filteredTasks.map((task, i) => {
+                  console.log(task);
+                  return (
+                    <TaskItem
+                      getTasks={() => this.getAllTasks()}
+                      task={task}
+                      {...this.props}
+                      key={`task${i}`}
+                    />
+                  );
+                })
+              ) : (
+                <div className="empty-list">
+                  No Tasks Available. Add a task to get started.
+                </div>
+              )}
             </ul>
           </div>
         </div>

@@ -152,16 +152,22 @@ export default class GroopPage extends Component {
               Upcoming Tasks
             </label>
             <ul className="task-list">
-              {filteredTasks.map((task, i) => {
-                return (
-                  <TaskItem
-                    getTasks={() => this.getGroupTasks()}
-                    task={task}
-                    {...this.props}
-                    key={`task${i}`}
-                  />
-                );
-              })}
+              {filteredTasks.length !== 0 ? (
+                filteredTasks.map((task, i) => {
+                  return (
+                    <TaskItem
+                      getTasks={() => this.getGroupTasks()}
+                      task={task}
+                      {...this.props}
+                      key={`task${i}`}
+                    />
+                  );
+                })
+              ) : (
+                <div className="empty-list">
+                  No Tasks Available. Add a task to get started.{' '}
+                </div>
+              )}
             </ul>
           </div>
         </section>

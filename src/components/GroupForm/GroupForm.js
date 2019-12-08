@@ -53,9 +53,7 @@ export default class GroupForm extends Component {
           <Button
             type="submit"
             onClick={this.handleSubmit}
-            // disabled={
-            //   // this.validatename()
-            //}
+            disabled={this.state.name.value.length > 0 ? 0 : 1}
           >
             Create New Group
           </Button>

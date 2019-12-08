@@ -15,7 +15,7 @@ export default class Sidebar extends Component {
       return (
         <div className="dashboard-sidenav">
           <div className="flexbox-container">
-            <Link to="/add-group">Add Groop</Link>
+            <Link to="/add-group">New Group</Link>
             <Link to={`/calendar${this.props.location.pathname}`}>
               Calendar
             </Link>
