@@ -18,7 +18,6 @@ export default class SettingsRoute extends React.Component {
     editEmail: false,
     editPassword: false,
     email: '',
-    password: '',
     verifyPassword: '',
     newpass: '',
     newpassRepeat: '',
@@ -83,6 +82,9 @@ export default class SettingsRoute extends React.Component {
           this.setState({
             passsuccess: 'Password successfully changed',
             passerror: null,
+            verifyPassword: '',
+            newpass: '',
+            newpassRepeat: '',
           });
         }
       }

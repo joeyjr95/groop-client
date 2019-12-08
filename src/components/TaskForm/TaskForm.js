@@ -108,10 +108,6 @@ export default class TaskForm extends Component {
     this.setState({ priority: { value, touched: true } });
   };
 
-  handleChangeTaskStartDate = value => {
-    this.setState({ time_start: { value, touched: true } });
-  };
-
   render() {
     const { categories = [] } = this.state;
 

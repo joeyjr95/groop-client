@@ -13,6 +13,7 @@ export default class EditTask extends Component {
   state = {
     task: null,
     error: null,
+    categories: [],
     name: {
       value: '',
       touched: false,
@@ -47,30 +48,49 @@ export default class EditTask extends Component {
     confirmDelete: false,
   };
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     const taskId = this.props.location.pathname.split('/')[2];
     const task = await GroopService.getTaskById(taskId);
     const members = await GroopService.getGroupMembers(task.group_id);
+    const categories = await GroopService.getCategories(task.group_id);
 
     this.setState({
       name: { value: task.name, touched: false },
       description: { value: task.description, touched: false },
-      date_due: { value: task.date_due.substring(0, 10), touched: false },
+      date_due: {
+        date: task.date_due.substring(0, 10),
+        time: task.date_due.substring(11, 16),
+        touched: false,
+      },
+      time_start: {
+        date:
+          task.time_start == null
+            ? new Date().toISOString().substring(0, 10)
+            : task.time_start.substring(0, 10),
+        time:
+          task.time_start == null ? '00:00' : task.time_start.substring(11, 16),
+        touched: false,
+      },
       user_assigned_id: { value: task.user_assigned_id, touched: false },
       members,
       taskId,
+      categories,
+      category: { value: task.category_id, touched: false },
+      priority: { value: task.priority, touched: false },
+      completed: task.completed,
     });
-  }
+  };
 
-  async handleSubmit() {
+  handleSubmit = async () => {
     const editedTask = {
       name: this.state.name.value,
       description: this.state.description.value,
       time_start: `${this.state.time_start.date}T${this.state.time_start.time}`,
       date_due: `${this.state.date_due.date}T${this.state.date_due.time}`,
       user_assigned_id: this.state.user_assigned_id.value,
-      priority: parseInt(this.state.priority.value),
-      category_id: parseInt(this.state.category.value),
+      priority: this.state.priority.value,
+      category_id: this.state.category.value,
+      completed: this.state.completed,
     };
 
     const returnedTask = await GroopService.apiPatchTask(
@@ -81,7 +101,7 @@ export default class EditTask extends Component {
     } else {
       this.props.history.goBack();
     }
-  }
+  };
 
   deleteTask = async () => {
     const deleted = await GroopService.apiDeleteTask(this.state.taskId);
@@ -128,8 +148,15 @@ export default class EditTask extends Component {
       time_start: { ...this.state.time_start, time, touched: true },
     });
   };
+  handleCategory = value => {
+    this.setState({ category: { value: parseInt(value), touched: true } });
+  };
+  onPriorityChange = value => {
+    this.setState({ priority: { value: parseInt(value), touched: true } });
+  };
 
   render() {
+    const { categories = [] } = this.state;
     const deleteUi = this.state.confirmDelete ? (
       <div className="delete-confirmation">
         <Button
@@ -176,14 +203,6 @@ export default class EditTask extends Component {
           {/* {this.state.name.touched && (
             <div className="error">{this.validatename()}</div>
           )} */}
-          <label htmlFor="edit-task-due-date">Due Date</label>
-          <input
-            type="date"
-            id="edit-task-due-date"
-            name="edit-task-due-date"
-            onChange={e => this.handleChangeTaskDueDate(e.target.value)}
-            value={this.state.date_due.value}
-          />
           <div className="dateContainer">
             <div className="task-start">
               <label htmlFor="addTaskTimeStart" className="AddTaskTimeStart">
@@ -251,6 +270,39 @@ export default class EditTask extends Component {
             value={this.state.user_assigned_id.value}
           >
             {memberOptions}
+          </select>
+
+          <label htmlFor="addtaskcategory" className="AddTaskCategory">
+            Category
+          </label>
+          <select
+            name="Categories"
+            onChange={e => this.handleCategory(e.target.value)}
+            value={this.state.category.value}
+          >
+            {categories.map(category => (
+              <option
+                key={`category_${category.id}`}
+                id={category.id}
+                name={category.category_name}
+                value={category.id}
+              >
+                {category.category_name}
+              </option>
+            ))}
+          </select>
+
+          <label htmlFor="Priorities" className="Priorities">
+            Priority
+          </label>
+          <select
+            name="Priorities"
+            onChange={e => this.onPriorityChange(e.target.value)}
+            value={this.state.priority.value}
+          >
+            <option value={1}>Low</option>
+            <option value={2}>Medium</option>
+            <option value={3}>High</option>
           </select>
 
           <label htmlFor="edit-task-desc">Task description</label>
