@@ -2,7 +2,6 @@ import config from '../config';
 import TokenService from '../services/token-service';
 
 const GroopService = {
-  ///TASK SECTION
 
   async postTask(task) {
     console.log(task);
@@ -72,7 +71,6 @@ const GroopService = {
     return await (!res.ok ? res.json().then(e => Promise.reject(e)) : null);
   },
 
-  /// GROUP SECTION
   async getGroup(currentGroup) {
     const res = await fetch(`${config.API_ENDPOINT}/groups/${currentGroup}`, {
       headers: {
@@ -108,7 +106,6 @@ const GroopService = {
       },
     });
   },
-  ///GROUP MEMBERS SECTION
 
   deleteGroupMember(body) {
     return fetch(
@@ -154,11 +151,8 @@ const GroopService = {
       },
       body: JSON.stringify(body),
     });
-    // return  ((!res.ok)
-    //     ? res.json().then(e => Promise.reject(e))
-    //     : res.json());
+
   },
-  /// CATERGORY SECTION
   async getCategories(currentGroup) {
     const res = await fetch(`${config.API_ENDPOINT}/categories/group/${currentGroup}`, {
       headers: {

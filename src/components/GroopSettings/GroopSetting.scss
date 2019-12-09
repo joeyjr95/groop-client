@@ -1,5 +1,5 @@
-.addGroupMember {
-}
+@import '../../variables.scss';
+
 .deleteGroupMember {
   margin-top: 15px;
 }
@@ -7,8 +7,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #555555;
-  border: 2px solid #134980;
+  color: $color-bg-secondary;
+  border: 2px solid $color-bg-secondary;
   height: auto;
   padding: 25px;
   margin: 60px 15px;
@@ -34,8 +34,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: #555555;
-    border: 2px solid #134980;
+    color: $color-bg-secondary;
+    border: 2px solid $color-bg-secondary;
     height: auto;
     padding: 25px;
     margin: 60px 15px;

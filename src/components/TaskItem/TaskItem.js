@@ -51,20 +51,6 @@ export default class TaskItem extends React.Component {
   };
 
   render() {
-    // this is unused, just keeping it here temporarily in case want to try again
-    /* const deleteButton = (
-      <Button
-        type="button"
-        onClick={() => this.handleDeleteActions()}
-        className={
-          this.state.delete_confirm
-            ? 'task-item__delete--confirm'
-            : 'task-item__delete'
-        }
-      >
-        {this.state.delete_confirm ? 'confirm' : 'delete'}
-      </Button>
-    ); */
     const task = this.props.task
     return (
       <li className="task-item">

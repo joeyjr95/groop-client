@@ -8,9 +8,9 @@
   align-items: center;
   width: 100%;
   height: 1200px;
-  color: $color-font-normal;
+  color: $color-font-header;
   background-image: url('https://i.imgur.com/8yA7BJg.jpg');
-  background-color: rgb(143, 140, 140);
+  background-color: $color-bg-main;
   background-blend-mode: multiply;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -33,7 +33,7 @@
 .landing-page a {
   margin-top: 2vh;
   font-size: 1.9vw;
-  color: $color-font-normal;
+  color: $color-font-header;
   text-decoration: none;
   cursor: pointer;
 }
