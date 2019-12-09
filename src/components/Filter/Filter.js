@@ -272,7 +272,7 @@ onGroupFilterChange = async(e) => {
      
     }
   };
-  onCategoryFilterSubmit = async() =>{
+  onCategoryFilterSubmit = () =>{
     let filterTasks = this.context.userTasks.filter(tasks => {
       if (this.state.group !== 0){
        return tasks.category_id === this.state.category
@@ -319,6 +319,7 @@ onGroupFilterChange = async(e) => {
     }
   }
   render() {
+    console.log(this.state.category)
     console.log(this.state.categories)
     const path = this.props.match.path;
     const dashboard = '/dashboard';
