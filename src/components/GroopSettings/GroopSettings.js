@@ -16,6 +16,9 @@ export default class GroopSettings extends Component {
     deleteConfirmation: null,
     deleteError: null,
     confirmGroupDelete: false,
+    categoryConfirmation: null,
+    categoryError: null,
+    newCategory: '',
   };
 
   componentDidMount = async () => {
@@ -23,6 +26,27 @@ export default class GroopSettings extends Component {
     this.context.setCurrentGroup(group);
     this.getGroupMembers(group.id);
   };
+  handleAddCategory = async e => {
+    e.preventDefault();
+    try {
+      let body = {
+        category_name: this.state.newCategory,
+        group_id: this.props.match.params.group_id
+        
+      }
+      console.log(body)
+      const newCategory = await GroopService.addNewCategory(body);
+      if (newCategory) {
+        this.setState({
+          newMember: '',
+          categoryConfirmation: `${newCategory.category_name} has been added to the group`,
+          categoryError: null,
+        });
+      }
+  }catch (error) {
+    this.setState({ categoryError: error.error, categoryConfirmation: null });
+  }
+}
 
   handleDeleteGroup = async e => {
     e.preventDefault();
@@ -84,6 +108,9 @@ export default class GroopSettings extends Component {
   handleChangeAddMember = e => {
     this.setState({ newMember: e.target.value });
   };
+  handleChangeAddCategory = e => {
+    this.setState({ newCategory: e.target.value });
+  };
 
   render() {
     const {
@@ -91,6 +118,8 @@ export default class GroopSettings extends Component {
       addConfirmation,
       deleteConfirmation,
       deleteError,
+      categoryConfirmation,
+    categoryError
     } = this.state;
 
     // remove signed-in user from list of members to delete
@@ -139,7 +168,7 @@ export default class GroopSettings extends Component {
         </Button>
       </>
     );
-
+      console.log(this.state.newCategory)
     return (
       <section className="GroupSettingsSection">
         <button
@@ -150,6 +179,34 @@ export default class GroopSettings extends Component {
           <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
         </button>
         <h2>{group.name} Settings</h2>
+        <form
+          className="addGroupCategory"
+          onSubmit={e => this.handleAddCategory(e)}
+        >
+          <label htmlFor="addGroupCategory" className="addGroupCategoryLabel">
+            Add a Category to Group
+          </label>
+          <div role="alert" className="alert">
+            {categoryError && <p>{categoryError}</p>}
+          </div>
+          <div role="alert" className="alert--success">
+            {categoryConfirmation && <p>{categoryConfirmation}</p>}
+          </div>
+          <input
+            type="text"
+            id="addGroupCategory"
+            name="addGroupCategory"
+            onChange={this.handleChangeAddCategory}
+            value={this.state.newCategory}
+          />
+          <Button
+            type="submit"
+            className="addGroupCategoryButton"
+            disabled={this.state.newCategory.length > 0 ? 0 : 1}
+          >
+            Add Category
+          </Button>
+        </form>
         <form
           className="addGroupMember"
           onSubmit={e => this.handleAddMember(e)}
@@ -207,6 +264,7 @@ export default class GroopSettings extends Component {
             Remove
           </Button>
         </form>
+        
         {groupDelete}
       </section>
     );
