@@ -8,16 +8,18 @@ export default class LandingPageRoute extends Component {
   render() {
     return (
       <>
-        <div className="landing-page">
-          <h2>groop</h2>
-          <h3>Keep your groop in the loop.</h3>
+        <section className="landing-page">
+          <div className="landing-page-headings">
+            <h2>groop</h2>
+            <h3>Keep your groop in the loop.</h3>
+          </div>
           <Link to="/register" className="landing-signup-a">
             Sign up
           </Link>
           <a href="#about" className="landing-to-about">
             <FontAwesomeIcon icon={faAngleDoubleDown} id="icon" />
           </a>
-        </div>
+        </section>
         <div className="landing-page-bg"></div>
       </>
     );

@@ -2,6 +2,8 @@ import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
 import React, { Component } from 'react';
 import Button from '../Button/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import './GroopSetting.scss';
 
 export default class GroopSettings extends Component {
@@ -108,6 +110,8 @@ export default class GroopSettings extends Component {
     );
     memberdropdown.push(memberoptions);
 
+    const group = this.context.currentGroup || '';
+
     const groupDelete = !this.state.confirmGroupDelete ? (
       <Button
         type="button"
@@ -138,7 +142,14 @@ export default class GroopSettings extends Component {
 
     return (
       <section className="GroupSettingsSection">
-        <h2>Group Settings</h2>
+        <button
+          className="back-button"
+          type="button"
+          onClick={() => this.props.history.goBack()}
+        >
+          <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
+        </button>
+        <h2>{group.name} Settings</h2>
         <form
           className="addGroupMember"
           onSubmit={e => this.handleAddMember(e)}

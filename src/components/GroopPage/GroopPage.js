@@ -139,8 +139,8 @@ export default class GroopPage extends Component {
                 labelsStyle={{ fontSize: 16 }}
                 showLabels
                 style={{ stroke: '#fff', strokeWidth: 2 }}
-                width={window.innerWidth / 5}
-                height={window.innerWidth / 5}
+                width={250}
+                height={250}
               ></RadialChart>
               <p> How tasks have been split today</p>
             </div>

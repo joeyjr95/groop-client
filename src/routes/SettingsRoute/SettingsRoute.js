@@ -4,6 +4,8 @@ import Button from '../../components/Button/Button';
 import './SettingsRoute.scss';
 import AuthApiService from '../../services/auth-api-service';
 import UserContext from '../../contexts/UserContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 
 export default class SettingsRoute extends React.Component {
   static contextType = UserContext;
@@ -148,6 +150,13 @@ export default class SettingsRoute extends React.Component {
     );
     return (
       <section className="settings-page">
+        <button
+          className="back-button"
+          type="button"
+          onClick={() => this.props.history.goBack()}
+        >
+          <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
+        </button>
         <h1>Account Settings</h1>
         <div role="alert" className="alert">
           {error && <p>{error}</p>}

@@ -4,6 +4,10 @@
   padding: 1rem;
   margin: 60px auto;
   border-radius: 5px;
+  > div {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .TaskContainer {
