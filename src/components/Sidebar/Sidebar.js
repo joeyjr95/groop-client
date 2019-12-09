@@ -52,16 +52,17 @@ export default class Sidebar extends Component {
       );
     } else {
       return (
-        <div className="sidenav">
+        <div
+          className={
+            this.props.visibility ? 'sidenav' : 'sidenav--hidden sidenav'
+          }
+        >
           <div id="outer-container">
-            {/* <Menu */}
-            {/*   pageWrapId={'page-wrap'} */}
-            {/*   outerContainerId={'outer-container'} */}
-            {/*   width={200} */}
-            {/*   isOpen={true} */}
-            {/*   customBurgerIcon={<img src={Image} />} */}
-            {/*   right */}
-            {/* > */}
+            <button
+              className="ham-button-menu"
+              type="button"
+              onClick={() => this.props.hideMenu()}
+            ></button>
             <Link to="/dashboard">Dashboard</Link>
             <Link to={`/calendar/${this.props.match.params.group_id}`}>
               Calendar

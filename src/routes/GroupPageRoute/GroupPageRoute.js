@@ -8,6 +8,13 @@ import Sidebar from '../../components/Sidebar/Sidebar';
 
 export default class GroupPageRoute extends Component {
   static contextType = GroopContext;
+  state = {
+    showMenu: false,
+  };
+
+  hideMenu = () => {
+    this.setState({ showMenu: false });
+  };
 
   componentDidMount = async () => {
     let group = await GroopService.getGroup(this.props.match.params.group_id);
@@ -26,6 +33,11 @@ export default class GroupPageRoute extends Component {
     let currentgroup = this.context.currentGroup || '';
     return (
       <div className="groop-dashboard">
+        <button
+          className="ham-button"
+          type="button"
+          onClick={() => this.setState({ showMenu: true })}
+        ></button>
         <div className="groop-page">
           <h2>{currentgroup.name}</h2>
           <p id="date">{this.date()}</p>
@@ -38,7 +50,11 @@ export default class GroupPageRoute extends Component {
             Add to list
           </Link>
         </div>
-        <Sidebar {...this.props} />
+        <Sidebar
+          {...this.props}
+          visibility={this.state.showMenu}
+          hideMenu={() => this.hideMenu()}
+        />
       </div>
     );
   }
