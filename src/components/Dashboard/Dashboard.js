@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
 import Filter from '../../components/Filter/Filter';
 import TaskItem from '../../components/TaskItem/TaskItem';
-import moment from 'moment';
+//mport moment from 'moment';
 
 export default class Dashboard extends Component {
   static contextType = GroopContext;
@@ -56,7 +56,7 @@ export default class Dashboard extends Component {
   };
 
   render() {
-    const { userTasks = [], groups = [], filteredTasks = [] } = this.context;
+    const { filteredTasks = [] } = this.context;
     return (
       <section className="dashboard-c">
         <h2>Taskboard</h2>

@@ -32,7 +32,7 @@
   align-items: center;
   &:hover {
     cursor: pointer;
-    background-color: #3d5873;
+    background-color: $color-bg-secondary;
     color: white;
   }
 }
