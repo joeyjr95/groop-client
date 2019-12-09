@@ -1,43 +1,43 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { Input, Required, Label } from "../Form/Form";
-import AuthApiService from "../../services/auth-api-service";
-import Button from "../Button/Button";
-import "./RegistrationForm.scss";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { Input, Required, Label } from '../Form/Form';
+import AuthApiService from '../../services/auth-api-service';
+import Button from '../Button/Button';
+import './RegistrationForm.scss';
 
 class RegistrationForm extends Component {
   static defaultProps = {
-    onRegistrationSuccess: () => {}
+    onRegistrationSuccess: () => {},
   };
 
-  state = { 
+  state = {
     error: null,
-   };
+  };
 
   firstInput = React.createRef();
 
   handleSubmit = ev => {
     ev.preventDefault();
     const { name, username, email, password, confirmPassword } = ev.target;
-    if(password.value !== confirmPassword.value){
+    if (password.value !== confirmPassword.value) {
       alert('passwords do not match');
-    }else{
-    AuthApiService.postUser({
-      fullname: name.value,
-      username: username.value,
-      email: email.value,
-      password: password.value
-    })
-      .then(user => {
-        name.value = "";
-        username.value = "";
-        email.value = "";
-        password.value = "";
-        this.props.onRegistrationSuccess();
+    } else {
+      AuthApiService.postUser({
+        fullname: name.value,
+        username: username.value,
+        email: email.value,
+        password: password.value,
       })
-      .catch(res => {
-        this.setState({ error: res.error });
-      });
+        .then(user => {
+          name.value = '';
+          username.value = '';
+          email.value = '';
+          password.value = '';
+          this.props.onRegistrationSuccess();
+        })
+        .catch(res => {
+          this.setState({ error: res.error });
+        });
     }
   };
 
@@ -52,8 +52,13 @@ class RegistrationForm extends Component {
         <div role="alert" className="alert">
           {error && <p>{error}</p>}
         </div>
-        <div>
-          <Label htmlFor="registration-name-input" className="register-label" aria-required="true" required>
+        <div className="login-field">
+          <Label
+            htmlFor="registration-name-input"
+            className="register-label"
+            aria-required="true"
+            required
+          >
             Enter your name
             <Required />
           </Label>
@@ -64,7 +69,7 @@ class RegistrationForm extends Component {
             required
           />
         </div>
-        <div>
+        <div className="login-field">
           <Label
             htmlFor="registration-username-input"
             className="register-label"
@@ -72,20 +77,26 @@ class RegistrationForm extends Component {
             Choose a username
             <Required />
           </Label>
-          <Input id="registration-username-input" name="username" aria-required="true" required />
+          <Input
+            id="registration-username-input"
+            name="username"
+            aria-required="true"
+            required
+          />
         </div>
-        <div>
-          <Label
-            htmlFor="registration-email-input"
-            className="register-label"
-          >
+        <div className="login-field">
+          <Label htmlFor="registration-email-input" className="register-label">
             Enter your email
             <Required />
           </Label>
-          <Input id="registration-email-input" name="email" aria-required="true" required />
+          <Input
+            id="registration-email-input"
+            name="email"
+            aria-required="true"
+            required
+          />
         </div>
-        <div></div>
-        <div>
+        <div className="login-field">
           <Label
             htmlFor="registration-password-input"
             className="register-label"
@@ -102,7 +113,7 @@ class RegistrationForm extends Component {
             required
           />
         </div>
-        <div>
+        <div className="login-field">
           <Label
             htmlFor="registration-confirmPassword-input"
             className="register-label"
@@ -120,9 +131,9 @@ class RegistrationForm extends Component {
           />
         </div>
         <footer>
-          <Button type="submit">Sign up</Button>{" "}
+          <Button type="submit">Sign up</Button>{' '}
           <Link to="/login" className="toLogin-link">
-            <button className="Button">Already have an account?</button>
+            <span>Already have an account?</span>
           </Link>
         </footer>
       </form>

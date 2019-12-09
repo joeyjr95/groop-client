@@ -1,40 +1,61 @@
 @import '../../variables.scss';
 
+main {
+  height: calc(100% - 60px);
+  // display: flex;
+  // align-items: center;
+}
+
 .loginSection {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  color: $color-bg-secondary;
-  border: 2px solid $color-bg-secondary;
-  border-radius: 5px;
-  width: 400px;
-  padding: 15px;
-  margin: 50px auto;
+  color: #555555;
+  // border: 2px solid #134980;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  height: 100%;
+  padding: 1rem;
+  // margin: 50px auto;
 }
 
 .signup {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  color: $color-bg-secondary;
-  border: 2px solid $color-bg-secondary;
-  border-radius: 5px;
+  color: #555555;
   width: 400px;
   padding: 15px;
   margin: 50px auto;
+  margin-top: 12%;
+}
+form {
+  width: 100%;
+}
+
+.login-field {
+  width: 100%;
+  padding: 0.1rem 0.2rem;
+  text-align: left;
 }
 
 .login-h2 {
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
+  font-size: 36px;
 }
 
 .login-label {
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 10px;
+  margin-left: 0.25rem;
 }
 
-.signup input, .LoginForm input {
-  margin: 10px auto;
+.signup input,
+.LoginForm input {
+  margin: 0.5rem auto 1.5rem auto;
 }
 
 @media only screen and (min-width: 750px) {
@@ -48,6 +69,5 @@
   .login-label {
     font-size: 18px;
     margin-bottom: 10px;
-
   }
 }

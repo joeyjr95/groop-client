@@ -10,3 +10,8 @@ main {
   top: 55px;
 }
 
+@media only screen and (min-width: 750px) {
+  main {
+    top: 60px;
+  }
+}

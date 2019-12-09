@@ -1,148 +1,90 @@
+
 @import "../../variables.scss";
 
-#groupSettingsIcon {
-  width: 50px;
-  height: 50px;
-}
-
-/* Position and sizing of burger button */
-.bm-burger-button {
-  position: fixed;
-  width: 36px;
-  height: 30px;
-  right: 0;
-  top: 60px;
-}
-
-/* Color/shape of burger icon bars */
-.bm-burger-bars {
-  background: #373a47;
-}
-
-/* Color/shape of burger icon bars on hover*/
-.bm-burger-bars-hover {
-  background: #a90000;
-}
-
-/* Position and sizing of clickable cross button */
-.bm-cross-button {
-  display: none;
-}
-
-/* Color/shape of close button cross */
-.bm-cross {
-  background: #bdc3c7;
-}
-
-/*
-Sidebar wrapper styles
-Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
-*/
-.bm-menu-wrap {
-  position: fixed;
-  height: 100%;
-}
-
-/* General sidebar styles */
-.bm-menu {
-  font-size: 1.15em;
-}
-
-/* Morph shape necessary with bubble or elastic */
-.bm-morph-shape {
-  fill: #373a47;
-}
-
-/* Wrapper for item list */
-.bm-item-list {
-  color: #b8b7ad;
-}
-
-/* Individual item */
-.bm-item {
-  display: inline-block;
-}
-
-/* Styling of overlay */
-.bm-overlay {
-  background: rgba(0, 0, 0, 0) !important;
-}
-
-.sidenav {
-  height: 85%; /* Full-height: remove this if you want "auto" height */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  bottom: 0;
-  width: 200px;
-  right: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
-}
 .dashboard-sidenav {
-  height: 85%; /* Full-height: remove this if you want "auto" height */
-  width: 140px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  height: calc(100vh - 55px);
   z-index: 1; /* Stay on top */
-  bottom: 0;
-  left: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
-}
-.sidenav a {
-  padding: 10px;
-  text-decoration: none;
-  font-size: 20px;
-  color: white;
+  position: sticky;
+  flex-direction: column;
   display: flex;
-  background-color: $color-bg-secondary;
-  width: 100%;
-  border-top-left-radius: 55px;
-  border-bottom-left-radius: 55px;
+  width: 200px;
+  top: 55px;
+  bottom: 0;
+  align-self: flex-start;
+  background-color: #134980;
+  border-right: 3px solid rgb(31, 140, 191);
 }
 
 .dashboard-sidenav a {
-  padding-right: 20px;
-  padding-left: 30px;
-  padding-top: 45px;
-  padding-bottom: 45px;
+  padding: 0.8rem 1rem;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
   display: flex;
-  background-color: $color-bg-secondary;
-  width: 100%;
-  border-top-right-radius: 70px;
-  border-bottom-right-radius: 70px;
 }
 .dashboard-sidenav a:hover {
   background-color: $color-link;
   font-style: oblique;
 }
-.sidenav a:hover {
-  background-color: $color-link;
-  font-style: oblique;
+
+.sidebar-section-label {
+  font-size: 18px;
+  font-weight: 800;
+  background-color: rgb(31, 140, 191);
+  width: 100%;
+  padding: 0.8rem;
+  color: #112334;
 }
-.flexbox-container {
+
+.outer-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  height: 100%;
 }
-@media only screen and (max-width: 790px) {
-  .sidenav {
-    height: 92%;
-    width: 150px;
-    border-top-left-radius: 65px;
-    border-bottom-left-radius: 65px;
+nav {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ham-button-menu,
+.settings-button-menu {
+  width: 50px;
+  height: 50px;
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
   }
-  .sidenav a {
-    padding-right: 45px;
-    padding-left: 32px;
-    padding-top: 45px;
-    padding-bottom: 45px;
-    font-size: 22px;
-  }
+}
+
+@media only screen and (max-width: 800px) {
   .dashboard-sidenav {
+    position: fixed;
+    left: 0;
+    transition: left 300ms ease-in-out;
+  }
+  .dashboard-sidenav--hidden {
+    display: hidden;
+    left: -100%;
+    transition: left 300ms ease-in-out;
+  }
+}
+@media only screen and (min-width: 750px) {
+  .dashboard-sidenav {
+    height: calc(100vh - 60px);
+    top: 60px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .ham-button-menu {
     display: none;
-    height: 95%;
   }
 }

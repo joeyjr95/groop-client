@@ -1,6 +1,6 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
-import UserContext from "../../contexts/UserContext";
+import React from 'react';
+import { Route, Redirect } from 'react-router-dom';
+import UserContext from '../../contexts/UserContext';
 
 export default function PrivateRoute({ component, ...props }) {
   const Component = component;
@@ -11,11 +11,13 @@ export default function PrivateRoute({ component, ...props }) {
         <UserContext.Consumer>
           {userContext =>
             !!userContext.user.id ? (
-              <Component {...componentProps} />
-            ) : (
-              <Redirect
-                to='/'
+              <Component
+                {...componentProps}
+                user={userContext.user}
+                logout={userContext.processLogout}
               />
+            ) : (
+              <Redirect to="/" />
             )
           }
         </UserContext.Consumer>

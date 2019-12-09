@@ -1,42 +1,38 @@
-@import "../../variables.scss";
+@import '../../variables.scss';
 
 .AddTaskForm {
-  border: 2px solid $color-bg-secondary;
-  height: auto;
-  padding: 15px;
-  margin: 60px 15px;
+  padding: 1rem;
+  margin: 60px auto;
   border-radius: 5px;
+  > div {
+    display: flex;
+    justify-content: center;
+  }
 }
 
-.TaskContanier {
+.TaskContainer {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin: 0 auto;
-  justify-content: space-between;
-
-}
-
-input[type=checkbox] {
-  margin: 5px 30px;
-}
-
-.dateInput{
-  margin-top: 10px;
-}
-
-.AddTaskDueDate, .AddTaskPriority, .AddTaskTimeStart {
-  font-size: 1.5rem;
-}
-
-form input {
   width: 100%;
-  padding: 15px;
+  margin: 1.5rem auto;
+  justify-content: space-between;
+}
+
+.dateContainer {
+  display: flex;
+  flex-direction: row;
   margin: 0 auto;
-  border: 1px solid #231F20;
-  background: #f1f1f1;
-  font-size: 1em;
-  font-weight: 100;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.task-start {
+  display: flex;
+  flex-direction: column;
+}
+.task-end {
+  display: flex;
+  flex-direction: column;
 }
 
 .dateInput {
@@ -46,42 +42,34 @@ form input {
   overflow: hidden;
   padding: 10px;
   -webkit-padding-start: 1px;
-  margin-bottom: 20px;
+  margin-bottom: 1.2rem;
+}
+
+label {
+  margin: 1.2rem;
+}
+
+input {
+  margin: 1.2rem;
+}
+
+select {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 300px;
+}
+@media only screen and (min-width: 520px) {
+  .AddTaskForm {
+    border: 2px solid #134980;
+    width: 90%;
+    padding: 1.5rem;
+  }
 }
 
 @media only screen and (min-width: 750px) {
   .AddTaskForm {
-    border: 2px solid $color-bg-secondary;
-    height: auto;
-    padding: 15px;
-    margin: 65px auto;
+    border: 2px solid #134980;
     width: 40%;
-  }
-  form input {
-    width: 100%;
-    padding: 15px;
-    margin: 0 auto;
-    border: 1px solid #231F20;
-    background: #f1f1f1;
-    font-size: 1em;
-    font-weight: 100;
-  }
-  .TaskContanier {
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    margin: 0 auto;
-    justify-content: space-between;
-  
-  }
-  .LeftCont {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .RightCont {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 2rem;
   }
 }

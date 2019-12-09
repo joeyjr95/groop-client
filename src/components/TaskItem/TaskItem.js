@@ -51,9 +51,14 @@ export default class TaskItem extends React.Component {
   };
 
   render() {
-    const task = this.props.task
+    const task = this.props.task;
     return (
-      <li className="task-item">
+      <li
+        className={
+          this.state.completed ? 'task-item task-item--complete' : 'task-item'
+        }
+      >
+
         <input
           id={`task-item-check-${task.id}`}
           type="checkbox"
@@ -70,8 +75,23 @@ export default class TaskItem extends React.Component {
           onMouseDown={e => e.preventDefault()}
         ></label>
         <div className="task-item__info">
-          <h3 className="task-item__name">{task.name} </h3>
-          <h4 className="task-item__date_due">{task.date_due.substring(0, 10)}</h4>
+          <h3
+            className={
+              this.state.completed
+                ? 'task-item__name task-item__name--complete'
+                : 'task-item__name'
+            }
+          >
+            {task.name}{' '}
+          </h3>
+          <h4 className="task-item__date_due">
+            Due{' '}
+            {new Date(task.date_due).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </h4>
           <p className="task-item__description">{task.description}</p>
         </div>
         <div className="task-item__actions">

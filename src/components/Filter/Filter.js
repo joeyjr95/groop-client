@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import GroopContext from "../../contexts/GroopContext";
-import "./Filter.scss";
+import React, { Component } from 'react';
+import GroopContext from '../../contexts/GroopContext';
+import './Filter.scss';
 export default class Filter extends Component {
   static contextType = GroopContext;
   state = {
-    selectedInput: "",
-    filter: "User Name"
+    selectedInput: '',
+    filter: 'User Name',
   };
   componentDidMount() {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
+    const dashboard = '/dashboard';
     if (path === dashboard) {
-      this.setState({ filter: "Task Name" });
+      this.setState({ filter: 'Task Name' });
     }
   }
 
@@ -25,9 +25,9 @@ export default class Filter extends Component {
       this.context.setFilteredTasks(groupTasks);
     } else if (!user) {
       this.context.setFilteredTasks(groupTasks);
-      alert("user not in group");
+      alert('user not in group');
       this.setState({
-        selectedInput: ""
+        selectedInput: '',
       });
     } else if (user.username === selectedInput) {
       let filterTasks = groupTasks.filter(tasks => {
@@ -39,7 +39,7 @@ export default class Filter extends Component {
 
   searchDescription = e => {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
+    const dashboard = '/dashboard';
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
     let selectedInput = this.state.selectedInput;
@@ -57,7 +57,7 @@ export default class Filter extends Component {
   };
   searchTaskName = e => {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
+    const dashboard = '/dashboard';
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
 
@@ -80,33 +80,33 @@ export default class Filter extends Component {
     let groupTasks = this.context.currentGroupTasks;
     this.context.setFilteredTasks(groupTasks);
     let filter = this.state.filter;
-    if (filter === "Task Name") {
+    if (filter === 'Task Name') {
       this.searchTaskName(e);
-    } else if (filter === "Description") {
+    } else if (filter === 'Description') {
       this.searchDescription(e);
-    } else if (filter === "User Name") {
+    } else if (filter === 'User Name') {
       this.filterTasksByUser(e);
     }
   };
 
   onFilterChange = e => {
     this.setState({
-      filter: e
+      filter: e,
     });
   };
 
   onSelectChange = e => {
     this.setState({
-      selectedInput: e
+      selectedInput: e,
     });
   };
   onReset = e => {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
+    const dashboard = '/dashboard';
     let groupTasks = this.context.currentGroupTasks;
     e.preventDefault();
     this.setState({
-      selectedInput: ""
+      selectedInput: '',
     });
     if (path === dashboard) {
       this.context.setFilteredTasks(this.context.userTasks);
@@ -116,19 +116,22 @@ export default class Filter extends Component {
   };
   render() {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
+    const dashboard = '/dashboard';
 
     if (path === dashboard) {
       return (
         <div className="filter">
-          <label htmlFor="member-select"> Search Tasks by:</label>
-          <select
-            name="Categories"
-            onChange={e => this.onFilterChange(e.target.value)}
-          >
-            <option value="Task Name">Task Name</option>
-            <option value="Description">Description</option>
-          </select>
+          <label htmlFor="member-select">
+            {' '}
+            Search by:
+            <select
+              name="Categories"
+              onChange={e => this.onFilterChange(e.target.value)}
+            >
+              <option value="Task Name">Task Name</option>
+              <option value="Description">Description</option>
+            </select>
+          </label>
           <form className="member-select">
             <input
               type="text"
@@ -139,8 +142,12 @@ export default class Filter extends Component {
               onChange={e => this.onSelectChange(e.target.value)}
             />
             <div className="FilterButtonContainer">
-            <button className="Button" onClick={e => this.search(e)}>Search</button>
-            <button className="ButtonCancel" onClick={e => this.onReset(e)}>Clear</button>
+              <button className="Button" onClick={e => this.search(e)}>
+                Search
+              </button>
+              <button className="ButtonCancel" onClick={e => this.onReset(e)}>
+                Clear
+              </button>
             </div>
           </form>
         </div>
@@ -148,15 +155,18 @@ export default class Filter extends Component {
     } else {
       return (
         <div className="filter">
-          <label htmlFor="member-select"> Search Tasks by:</label>
-          <select
-            name="Categories"
-            onChange={e => this.onFilterChange(e.target.value)}
-          >
-            <option value="User Name">User Name</option>
-            <option value="Task Name">Task Name</option>
-            <option value="Description">Description</option>
-          </select>
+          <label htmlFor="member-select">
+            {' '}
+            Search by:
+            <select
+              name="Categories"
+              onChange={e => this.onFilterChange(e.target.value)}
+            >
+              <option value="User Name">User Name</option>
+              <option value="Task Name">Task Name</option>
+              <option value="Description">Description</option>
+            </select>
+          </label>
           <form className="member-select">
             <input
               type="text"
@@ -167,8 +177,12 @@ export default class Filter extends Component {
               onChange={e => this.onSelectChange(e.target.value)}
             />
             <div className="FilterButtonContainer">
-            <button className="Button" onClick={e => this.search(e)}>Search</button>
-            <button className="ButtonCancel" onClick={e => this.onReset(e)}>Clear</button>
+              <button className="Button" onClick={e => this.search(e)}>
+                Search
+              </button>
+              <button className="ButtonCancel" onClick={e => this.onReset(e)}>
+                Clear
+              </button>
             </div>
           </form>
         </div>
