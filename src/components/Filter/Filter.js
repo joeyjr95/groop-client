@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import GroopContext from '../../contexts/GroopContext';
 import './Filter.scss';
+import GroopService from '../../services/groop-service';
+
 export default class Filter extends Component {
   static contextType = GroopContext;
   state = {
@@ -12,9 +14,17 @@ export default class Filter extends Component {
     const dashboard = '/dashboard';
     if (path === dashboard) {
       this.setState({ filter: 'Task Name' });
+      this.getUserGroups()
     }
     console.log(this.context.userTasks)
+    
+      
   }
+  getUserGroups = () => {
+    GroopService.getUserGroups().then(data => {
+      this.context.setGroups(data);
+    });
+  };
 
   filterTasksByUser = e => {
     e.preventDefault();
@@ -233,8 +243,9 @@ export default class Filter extends Component {
   render() {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
-
+    console.log(this.context.groups)
     if (path === dashboard) {
+      
       return (
         <div className="filter">
           <label htmlFor="member-select">
