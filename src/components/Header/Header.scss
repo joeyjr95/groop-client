@@ -29,7 +29,7 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #134980;
+  background-color: $color-bg-secondary;
   border-bottom: 2px solid #32a1d4;
   height: 55px;
 }
@@ -41,7 +41,7 @@ header a {
 }
 
 header a:hover {
-  color: rgb(238, 210, 51);
+  color: $color-link;
 }
 
 .loginLinks {
@@ -72,7 +72,7 @@ header a:hover {
 }
 
 .div-span {
-  color: $color-alt-main;
+  color: $color-link;
   margin-right: 20px;
 }
 

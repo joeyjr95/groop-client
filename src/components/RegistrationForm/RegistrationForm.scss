@@ -6,16 +6,6 @@ footer {
   align-items: center;
 }
 
-button {
-  transition-duration: 0.4s;
-  margin: 0 auto;
-}
-
-button:hover {
-  background-color: rgb(206, 206, 206);
-  color: $color-font-normal;
-}
-
 .signup {
   display: flex;
   flex-direction: column;

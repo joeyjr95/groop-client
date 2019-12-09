@@ -1,3 +1,5 @@
+@import "../../variables.scss";
+
 #groupSettingsIcon {
   width: 50px;
   height: 50px;
@@ -90,7 +92,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-size: 20px;
   color: white;
   display: flex;
-  background-color: #336699;
+  background-color: $color-bg-secondary;
   width: 100%;
   border-top-left-radius: 55px;
   border-bottom-left-radius: 55px;
@@ -105,17 +107,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-size: 18px;
   color: white;
   display: flex;
-  background-color: #134980;
+  background-color: $color-bg-secondary;
   width: 100%;
   border-top-right-radius: 70px;
   border-bottom-right-radius: 70px;
 }
 .dashboard-sidenav a:hover {
-  background-color: rgb(31, 140, 191);
+  background-color: $color-link;
   font-style: oblique;
 }
 .sidenav a:hover {
-  background-color: rgb(31, 140, 191);
+  background-color: $color-link;
   font-style: oblique;
 }
 .flexbox-container {
