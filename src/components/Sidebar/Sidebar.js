@@ -14,12 +14,21 @@ export default class Sidebar extends Component {
 
     if (path === dashboard) {
       return (
-        <div className="dashboard-sidenav">
-          <div className="flexbox-container">
+        <div className="sidenav">
+          <div id="outer-container">
+            <Menu
+              pageWrapId={"page-wrap"}
+              outerContainerId={"outer-container"}
+              width={200}
+              isOpen={ true }
+              customBurgerIcon={ <img className="LeftView" src={Image} /> }
+              right
+            >
             <Link to="/add-group">Add Groop</Link>
             <Link to={`/calendar${this.props.location.pathname}`}>
               Calendar
             </Link>
+            </Menu>
           </div>
         </div>
       );
