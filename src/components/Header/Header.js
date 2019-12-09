@@ -56,9 +56,7 @@ class Header extends Component {
             <Link to="/dashboard">groop</Link>
           </h1>
           <div className="loginLinks" aria-live="polite">
-            {TokenService.hasAuthToken()
-              ? this.renderLogoutLink()
-              : this.renderLoginLink()}
+            {TokenService.hasAuthToken() ? null : this.renderLoginLink()}
           </div>
         </div>
       </header>

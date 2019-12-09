@@ -3,11 +3,20 @@ import { Link } from 'react-router-dom';
 import './Sidebar.scss';
 import GroopContext from '../../contexts/GroopContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsersCog, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUsersCog,
+  faAngleLeft,
+  faCog,
+  faSignOutAlt,
+} from '@fortawesome/free-solid-svg-icons';
 import Image from './menuIcon.png';
 
 export default class Sidebar extends Component {
   static contextType = GroopContext;
+
+  handleLogout = () => {
+    this.props.logout();
+  };
 
   renderSidebar = () => {
     const path = this.props.match.path;
@@ -28,14 +37,26 @@ export default class Sidebar extends Component {
               : 'dashboard-sidenav--hidden dashboard-sidenav'
           }
         >
-          <div className="flexbox-container">
-            <button
-              className="ham-button-menu"
-              type="button"
-              onClick={() => this.props.hideMenu()}
-            >
-              <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
-            </button>
+          <div className="outer-container">
+            <nav>
+              <button
+                className="ham-button-menu"
+                type="button"
+                onClick={() => this.props.hideMenu()}
+              >
+                <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
+              </button>
+              <Link to="/settings" className="settings-button-menu">
+                <FontAwesomeIcon icon={faCog} />
+              </Link>
+              <Link
+                onClick={() => this.handleLogout()}
+                to="/login"
+                className="settings-button-menu"
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </Link>
+            </nav>
             <div className="sidebar-section-label">
               {this.props.user.username}
             </div>
@@ -48,7 +69,6 @@ export default class Sidebar extends Component {
             <div className="sidebar-section-label">Groups</div>
             {groupLinks}
           </div>
-          <div className="stretch"></div>
         </div>
       );
     } else {
@@ -60,14 +80,37 @@ export default class Sidebar extends Component {
               : 'dashboard-sidenav--hidden dashboard-sidenav'
           }
         >
-          <div id="outer-container">
-            <button
-              className="ham-button-menu"
-              type="button"
-              onClick={() => this.props.hideMenu()}
-            >
-              <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
-            </button>
+          <div className="outer-container">
+            <nav>
+              <button
+                className="ham-button-menu"
+                type="button"
+                onClick={() => this.props.hideMenu()}
+              >
+                <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
+              </button>
+              <Link to="/settings" className="settings-button-menu">
+                <FontAwesomeIcon icon={faCog} />
+              </Link>
+              {currentGroup.owner_id === this.props.user.id ? (
+                <Link
+                  to={`/groupsettings/${this.props.match.params.group_id}`}
+                  className="settings-button-menu"
+                >
+                  <FontAwesomeIcon icon={faUsersCog} id="groupSettingsIcon" />
+                </Link>
+              ) : null}
+              <Link
+                onClick={() => this.handleLogout()}
+                to="/login"
+                className="settings-button-menu"
+              >
+                <FontAwesomeIcon icon={faSignOutAlt} />
+              </Link>
+            </nav>
+            <div className="sidebar-section-label">
+              {this.props.user.username}
+            </div>
             <Link to="/dashboard">Dashboard</Link>
             <Link to={`/calendar/${this.props.match.params.group_id}`}>
               Calendar
@@ -75,14 +118,6 @@ export default class Sidebar extends Component {
             <Link to={`/add-task/${this.props.match.params.group_id}`}>
               Add Task
             </Link>
-            {currentGroup.owner_id === this.props.user.id ? (
-              <Link to={`/groupsettings/${this.props.match.params.group_id}`}>
-                <FontAwesomeIcon icon={faUsersCog} id="groupSettingsIcon" />
-              </Link>
-            ) : (
-              <></>
-            )}
-            {/* </Menu> */}
           </div>
         </div>
       );

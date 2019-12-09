@@ -1,8 +1,3 @@
-#groupSettingsIcon {
-  width: 50px;
-  height: 50px;
-}
-
 .dashboard-sidenav {
   height: calc(100vh - 55px);
   z-index: 1; /* Stay on top */
@@ -14,41 +9,56 @@
   bottom: 0;
   align-self: flex-start;
   background-color: #134980;
+  border-right: 3px solid rgb(31, 140, 191);
 }
 
 .dashboard-sidenav a {
-  padding: 1rem 1rem;
+  padding: 0.8rem 1rem;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
   display: flex;
-  width: 100%;
 }
 .dashboard-sidenav a:hover {
   background-color: rgb(31, 140, 191);
   font-style: oblique;
 }
 .sidebar-section-label {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 800;
   background-color: rgb(31, 140, 191);
   width: 100%;
-  padding: 0.5rem;
+  padding: 0.8rem;
   color: #112334;
 }
-#outer-container {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 100%;
-}
-.flexbox-container {
+.outer-container {
   display: flex;
   flex-direction: column;
 }
-.stretch {
+nav {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }
+.ham-button-menu,
+.settings-button-menu {
+  width: 50px;
+  height: 50px;
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .dashboard-sidenav {
     position: fixed;
@@ -60,21 +70,10 @@
     left: -100%;
     transition: left 300ms ease-in-out;
   }
-  .ham-button-menu {
-    width: 50px;
-    height: 50px;
-    font-size: 28px;
-    margin-right: 0;
-    background-color: inherit;
-    border: none;
-    color: white;
-    &:hover {
-      cursor: pointer;
-    }
-  }
 }
 @media only screen and (min-width: 750px) {
   .dashboard-sidenav {
+    height: calc(100vh - 60px);
     top: 60px;
   }
 }

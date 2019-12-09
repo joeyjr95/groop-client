@@ -11,7 +11,11 @@ export default function PrivateRoute({ component, ...props }) {
         <UserContext.Consumer>
           {userContext =>
             !!userContext.user.id ? (
-              <Component {...componentProps} user={userContext.user} />
+              <Component
+                {...componentProps}
+                user={userContext.user}
+                logout={userContext.processLogout}
+              />
             ) : (
               <Redirect to="/" />
             )
