@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import GroopContext from '../../contexts/GroopContext';
 import './Filter.scss';
+import GroopService from '../../services/groop-service';
 export default class Filter extends Component {
   static contextType = GroopContext;
   state = {
-    selectedInput: '',
-    filter: 'User Name',
+    selectedInput: "",
+    filter: "User Name",
+    group: 0,
+    categories: [],
+    category: 0
   };
   componentDidMount() {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
     if (path === dashboard) {
-      this.setState({ filter: 'Task Name' });
+      this.setState({ filter: "Task Name" });
+      this.getUserGroups();
     }
-    console.log(this.context.userTasks)
+    console.log(this.context.userTasks);
   }
+  getUserGroups = () => {
+    GroopService.getUserGroups().then(data => {
+      this.context.setGroups(data);
+    });
+  };
 
   filterTasksByUser = e => {
     e.preventDefault();
@@ -49,6 +59,7 @@ export default class Filter extends Component {
         return tasks.description.includes(selectedInput);
       });
       this.context.setFilteredTasks(filterTasks);
+      
     } else {
       let filterTasks = groupTasks.filter(tasks => {
         return tasks.description.includes(selectedInput);
@@ -71,24 +82,6 @@ export default class Filter extends Component {
     } else {
       let filterTasks = groupTasks.filter(tasks => {
         return tasks.name.includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
-  searchCategory = e => {
-    const path = this.props.match.path;
-    const dashboard = '/dashboard';
-    e.preventDefault();
-    let groupTasks = this.context.currentGroupTasks;
-    let selectedInput = this.state.selectedInput;
-    if (path === dashboard) {
-      let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.category_id.includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    } else {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.category_id.includes(selectedInput);
       });
       this.context.setFilteredTasks(filterTasks);
     }
@@ -190,8 +183,6 @@ export default class Filter extends Component {
       this.searchDescription(e);
     } else if (filter === 'User Name') {
       this.filterTasksByUser(e);
-    } else if (filter === 'Category') {
-      this.searchCategory(e)
     } else if (filter === 'Completed') {
       this.searchCompleted(e)
     } else if (filter === 'Incompleted') {
@@ -230,13 +221,122 @@ export default class Filter extends Component {
       this.context.setFilteredTasks(groupTasks);
     }
   };
+  groupFilter() {
+    const groups = this.context.groups || [];
+    return (
+      <label htmlFor="member-select">
+        {" "}
+        Group Filter:
+        <select
+          name="Groups"
+          onChange={e => this.onGroupFilterChange(Number(e.target.value))}
+        >
+          <option key={`group_all`} id={0} name="all_groups" value={0}>
+            All Groups
+          </option>
+          {groups.map(group => (
+            <option
+              key={`group_${group.group_id}`}
+              id={group.group_id}
+              name={group.name}
+              value={group.group_id}
+            >
+              {group.name}
+            </option>
+          ))}
+        </select>
+      </label>
+    );
+  }
+onGroupFilterChange = async(e) => {
+   await this.setState({
+      group: e
+    });
+    this.onGroupFilterSubmit()
+    
+  };
+  
+
+  onGroupFilterSubmit = async() => {
+    if (this.state.group === 0){
+      let updatedTasks = await GroopService.getAllTasks();
+      this.context.setFilteredTasks(updatedTasks);
+      this.context.setUserTasks(updatedTasks);
+    } else if(this.state.group !== 0){
+      let updatedTasks = await GroopService.getGroupTasks(this.state.group);
+      await GroopService.getCategories(this.state.group).then(data =>
+        this.setState({ categories: data }),
+      );
+      this.context.setFilteredTasks(updatedTasks);
+      this.context.setUserTasks(updatedTasks);
+     
+    }
+  };
+  onCategoryFilterSubmit = () =>{
+    if(this.state.category === 0){
+      let filterTasks = this.context.userTasks
+      this.context.setFilteredTasks(filterTasks);
+    this.context.setUserTasks(filterTasks);
+    }else if(this.state.category !== 0){
+    let filterTasks = this.context.userTasks.filter(tasks => {
+      
+       return tasks.category_id === this.state.category
+      
+    });
+    this.context.setFilteredTasks(filterTasks);
+    this.context.setUserTasks(filterTasks);
+  }
+  }
+  
+  onCategoryChange = async(e) => {
+    let updatedTasks = await GroopService.getGroupTasks(this.state.group);
+    await this.context.setFilteredTasks(updatedTasks);
+    await this.context.setUserTasks(updatedTasks);
+    await this.setState({
+       category: e
+     });
+     this.onCategoryFilterSubmit()
+     
+   };
+  categorySelection(){
+    if(this.state.group !== 0){
+      const { categories = [] } = this.state;
+        return(
+          <label htmlFor="member-select">
+          {" "}
+          Category:
+          <select
+            name="Groups"
+            onChange={e => this.onCategoryChange(Number(e.target.value))}
+          >
+            <option key={`category_all`} id={0} name="all_categories" value={0}>
+             All Categories
+            </option>
+            {categories.map(category => (
+                <option
+                  key={`category_${category.id}`}
+                  id={category.id}
+                  name={category.category_name}
+                  value={category.id}
+                >
+                  {category.category_name}
+                </option>
+              ))}
+          </select>
+        </label>
+        )
+    }
+  }
   render() {
+    console.log(this.context.userTasks)
+    console.log(this.context.filteredTasks)
     const path = this.props.match.path;
     const dashboard = '/dashboard';
-
     if (path === dashboard) {
       return (
         <div className="filter">
+          {this.groupFilter()}
+          {this.categorySelection()}
           <label htmlFor="member-select">
             {' '}
             Search by:
@@ -246,7 +346,6 @@ export default class Filter extends Component {
             >
               <option value="Task Name">Task Name</option>
               <option value="Description">Description</option>
-              <option value="Category">Category</option>
               <option value="Completed">Completed tasks</option>
               <option value="Incompleted">Incomplete tasks</option>
               <option value="High Priority">High Priority</option>
@@ -287,7 +386,6 @@ export default class Filter extends Component {
               <option value="User Name">User Name</option>
               <option value="Task Name">Task Name</option>
               <option value="Description">Description</option>
-              <option value="Category">Category</option>
               <option value="Completed">Completed tasks</option>
               <option value="Incompleted">Incomplete tasks</option>
             </select>

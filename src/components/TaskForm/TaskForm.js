@@ -40,14 +40,21 @@ export default class TaskForm extends Component {
     },
   };
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const group_id = Number(this.props.location.pathname.split('/')[2]);
-    this.setState({
-      group_id,
-    });
-    GroopService.getCategories(group_id).then(data =>
-      this.setState({ categories: data }),
+    await GroopService.getCategories(group_id).then(data =>
+      this.setState(
+        { categories: data,
+      category:{ 
+        value: data[0].id,
+        touched: false,
+      }
+       }),
     );
+    this.setState({
+      group_id, 
+    });
+    
   };
 
   handleSubmit = async () => {
@@ -110,7 +117,8 @@ export default class TaskForm extends Component {
 
   render() {
     const { categories = [] } = this.state;
-
+    console.log(this.state.category)
+    console.log(this.state.categories)
     return (
       <section>
         <form className="AddTaskForm">

@@ -70,7 +70,6 @@ export default class Dashboard extends Component {
             <ul className="dashboard-task-list">
               {filteredTasks.length !== 0 ? (
                 filteredTasks.map((task, i) => {
-                  console.log(task);
                   return (
                     <TaskItem
                       getTasks={() => this.getAllTasks()}
