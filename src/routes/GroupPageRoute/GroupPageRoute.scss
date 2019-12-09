@@ -95,12 +95,6 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
-#task-link {
-  text-decoration: none;
-  color: white;
-  padding-top: 35px;
-  font-size: 20px;
-}
 
 .empty-list {
   padding: 2rem;
@@ -232,9 +226,6 @@
   .pieChart p {
     margin-top: 5%;
   }
-  #task-link {
-    display: none;
-  }
 }
 
 @media screen and (min-width: 1400px) {
@@ -328,8 +319,5 @@
   .pieChart p {
     margin-top: 4%;
     color: #555555;
-  }
-  #task-link {
-    display: none;
   }
 }

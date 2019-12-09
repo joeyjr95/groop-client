@@ -24,19 +24,6 @@
   background-color: #134980;
 }
 
-.ham-button-menu {
-  width: 50px;
-  height: 50px;
-  font-size: 28px;
-  margin-right: 0.05rem;
-  background-color: inherit;
-  border: none;
-  color: white;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 .sidenav a {
   padding: 2rem 1rem;
   text-decoration: none;
@@ -85,7 +72,7 @@
 }
 .stretch {
 }
-@media only screen and (max-width: 790px) {
+@media only screen and (max-width: 800px) {
   .sidenav {
     position: fixed;
     display: flex;
@@ -110,5 +97,23 @@
     display: hidden;
     left: -100%;
     transition: left 300ms ease-in-out;
+  }
+  .ham-button-menu {
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    margin-right: 0.05rem;
+    background-color: inherit;
+    border: none;
+    color: white;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .ham-button-menu {
+    display: none;
   }
 }

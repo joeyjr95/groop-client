@@ -57,6 +57,9 @@ export default class GroupForm extends Component {
           >
             Create New Group
           </Button>
+          <Button type="button" onClick={() => this.props.history.goBack()}>
+            Go Back
+          </Button>
         </form>
       </section>
     );

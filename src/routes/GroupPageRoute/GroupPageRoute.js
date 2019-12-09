@@ -49,10 +49,6 @@ export default class GroupPageRoute extends Component {
             {...this.props}
             group_id={this.props.match.params.group_id}
           />
-
-          <Link to="/add-task" id="task-link">
-            Add to list
-          </Link>
         </div>
         <Sidebar
           {...this.props}
