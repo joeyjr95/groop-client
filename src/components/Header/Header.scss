@@ -72,8 +72,11 @@ header a:hover {
 }
 
 .div-span {
-  color: $color-link;
+  color: $color-font-header;
   margin-right: 20px;
+}
+.div-span:hover{
+  color: $color-link;
 }
 
 @media only screen and (min-width: 500px) {
@@ -107,6 +110,7 @@ header a:hover {
   .link-logout {
     font-size: 16.5px;
   }
+  
 }
 
 @media only screen and (min-width: 1200px) {

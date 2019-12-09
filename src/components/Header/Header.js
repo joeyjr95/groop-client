@@ -16,8 +16,10 @@ class Header extends Component {
   renderLogoutLink() {
     return (
       <div className="link-logout" aria-live="polite">
-        <span className="div-span">{this.context.user.username}</span>
         <Link to="/settings">
+        <span className="div-span">{this.context.user.username}</span>
+        </Link>
+        {/* <Link to="/settings">
           <FontAwesomeIcon icon={faCog} id="settingsIcon" />
         </Link>
         <nav>
@@ -28,7 +30,7 @@ class Header extends Component {
           >
             Logout
           </Link>
-        </nav>
+        </nav> */}
       </div>
     );
   }
@@ -56,7 +58,9 @@ class Header extends Component {
             <Link to="/dashboard">groop</Link>
           </h1>
           <div className="loginLinks" aria-live="polite">
-            {TokenService.hasAuthToken() ? null : this.renderLoginLink()}
+          {TokenService.hasAuthToken()
+              ? this.renderLogoutLink()
+              : this.renderLoginLink()}
           </div>
         </div>
       </header>
