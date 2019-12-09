@@ -43,7 +43,7 @@ export default class GroupPageRoute extends Component {
           <FontAwesomeIcon icon={faAngleRight} id="openIcon" />
         </button>
         <div className="groop-page">
-          <h2>{currentgroup.name}</h2>
+          <h2>{currentgroup.name}'s Agenda</h2>
           <p id="date">{this.date()}</p>
           <GroopPage
             {...this.props}
