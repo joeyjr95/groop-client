@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
 import Filter from '../../components/Filter/Filter';
@@ -59,7 +59,7 @@ export default class Dashboard extends Component {
     const { filteredTasks = [] } = this.context;
     return (
       <section className="dashboard-c">
-        <h2>Agenda</h2>
+        <h2>Taskboard</h2>
         <p id="date">{this.date()}</p>
         <Filter {...this.props} />
         <div className="main-dashboard-section">
@@ -82,11 +82,7 @@ export default class Dashboard extends Component {
                 })
               ) : (
                 <div className="empty-list">
-                  No Tasks Available.
-                  <ol >
-                    <li id="grouplink"> <Link to="/add-group">Create a group</Link> to get started. </li>
-                    <li> After the group is created, click the group's name on the sidebar under the "Groups" section to create a task.</li>
-                    </ol>
+                  No Tasks Available. Add a task to get started.
                 </div>
               )}
             </ul>
