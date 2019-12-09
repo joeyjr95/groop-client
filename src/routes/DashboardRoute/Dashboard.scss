@@ -19,13 +19,13 @@
   left: 0;
   &:hover {
     cursor: pointer;
-    background-color: #3d5873;
+    background-color: $color-link;
     color: white;
   }
 }
 
 .dashboard-c {
-  color: #1b5690;
+  color: $color-bg-secondary;
   flex-grow: 5;
 
 }

@@ -8,7 +8,7 @@
   width: 100%;
   height: 1200px;
   height: calc(100vh - 60px);
-  color: #fafafa;
+  color: white;
 }
 
 .landing-page-bg {
@@ -42,25 +42,19 @@
 }
 .landing-page a {
   font-size: 2rem;
-  color: #fafafa;
+  color: white;
   text-decoration: none;
   cursor: pointer;
 }
 .landing-signup-a {
-  border: 3px solid #fafafa;
+  border: 3px solid white;
   font-weight: 600;
   border-radius: 1.2rem;
   padding: 0.25em 0.5em;
   &:hover {
-    background-color: #fafafa;
+    background-color: white;
     color: #080808;
   }
-}
-
-.landing-to-about {
-}
-
-#icon {
 }
 
 @media screen and (min-width: 540px) {

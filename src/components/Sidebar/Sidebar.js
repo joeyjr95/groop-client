@@ -9,7 +9,6 @@ import {
   faCog,
   faSignOutAlt,
 } from '@fortawesome/free-solid-svg-icons';
-import Image from './menuIcon.png';
 
 export default class Sidebar extends Component {
   static contextType = GroopContext;

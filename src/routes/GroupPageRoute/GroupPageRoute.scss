@@ -1,6 +1,6 @@
 @import '../../variables.scss';
 #pointsIcon {
-  color: #355510;
+  color: $color-success;
 }
 .AllTimeScore {
   display: flex;
@@ -138,8 +138,7 @@
     color: $color-bg-secondary;
     width: 100%;
   }
-  .task-list li:not(:first-child) {
-  }
+  
   #label-menu {
     display: inherit;
     font-size: 18px;
@@ -191,14 +190,14 @@
   }
   .members {
     width: 100%;
-    color: #222222;
+    color: $color-bg-secondary;
     padding-bottom: 0.6%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     background-color: rgba(255, 255, 255, 0.739);
   }
   .AllTimeScore {
-    color: #222222;
+    color: $color-bg-secondary;
     background-color: rgba(255, 255, 255, 0.739);
     margin-top: 0;
     padding-bottom: 1em;

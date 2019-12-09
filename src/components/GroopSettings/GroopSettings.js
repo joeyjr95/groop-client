@@ -116,7 +116,7 @@ export default class GroopSettings extends Component {
       <Button
         type="button"
         onClick={() => this.setState({ confirmGroupDelete: true })}
-        className="DeleteGroupButton"
+        className="ButtonCancel"
       >
         Delete Group
       </Button>
@@ -201,7 +201,7 @@ export default class GroopSettings extends Component {
           </select>
           <Button
             type="submit"
-            className="AddGroupMemberButton"
+            className="ButtonCancel"
             disabled={isNaN(this.state.deletedMember) ? 1 : 0}
           >
             Remove

@@ -31,7 +31,7 @@ body {
 .alert {
   color: $color-error;
   &--success {
-    color: #136e29;
+    color: $color-success;
   }
 }
 

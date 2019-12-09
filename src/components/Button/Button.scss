@@ -14,13 +14,13 @@
 }
 
 .Button:hover {
-  background-color: #135f98;
+  background-color: $color-link;
   color: $color-font-header;
   border: 1px solid white;
 }
 
 .ButtonCancel:hover {
-  background-color: #a82923;
+  background-color: $color-error;
   color: $color-font-header;
   border: 1px solid white;
 }
