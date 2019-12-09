@@ -4,8 +4,9 @@ import './Filter.scss';
 export default class Filter extends Component {
   static contextType = GroopContext;
   state = {
-    selectedInput: '',
-    filter: 'User Name',
+    selectedInput: "",
+    filter: "User Name",
+    group: 0
   };
   componentDidMount() {
     const path = this.props.match.path;
