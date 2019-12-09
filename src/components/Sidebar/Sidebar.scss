@@ -3,38 +3,21 @@
   height: 50px;
 }
 
-.sidenav {
-  z-index: 1; /* Stay on top */
-  position: sticky;
-  width: 200px;
-  top: 60px;
-  bottom: 0px;
-  align-self: flex-start;
-  background-color: #134980;
-}
 .dashboard-sidenav {
+  height: calc(100vh - 55px);
   z-index: 1; /* Stay on top */
   position: sticky;
   flex-direction: column;
   display: flex;
   width: 200px;
-  top: 60px;
+  top: 55px;
   bottom: 0;
   align-self: flex-start;
   background-color: #134980;
 }
 
-.sidenav a {
-  padding: 2rem 1rem;
-  text-decoration: none;
-  font-size: 18px;
-  color: white;
-  display: flex;
-  width: 100%;
-}
-
 .dashboard-sidenav a {
-  padding: 2rem 1rem;
+  padding: 1rem 1rem;
   text-decoration: none;
   font-size: 18px;
   color: white;
@@ -42,10 +25,6 @@
   width: 100%;
 }
 .dashboard-sidenav a:hover {
-  background-color: rgb(31, 140, 191);
-  font-style: oblique;
-}
-.sidenav a:hover {
   background-color: rgb(31, 140, 191);
   font-style: oblique;
 }
@@ -67,27 +46,10 @@
 .flexbox-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  height: 100%;
 }
 .stretch {
 }
 @media only screen and (max-width: 800px) {
-  .sidenav {
-    position: fixed;
-    display: flex;
-    left: 0;
-    transition: left 300ms ease-in-out;
-  }
-
-  .sidenav--hidden {
-    display: hidden;
-    left: -100%;
-    transition: left 300ms ease-in-out;
-  }
-  .sidenav a {
-    font-size: 22px;
-  }
   .dashboard-sidenav {
     position: fixed;
     left: 0;
@@ -102,13 +64,18 @@
     width: 50px;
     height: 50px;
     font-size: 28px;
-    margin-right: 0.05rem;
+    margin-right: 0;
     background-color: inherit;
     border: none;
     color: white;
     &:hover {
       cursor: pointer;
     }
+  }
+}
+@media only screen and (min-width: 750px) {
+  .dashboard-sidenav {
+    top: 60px;
   }
 }
 

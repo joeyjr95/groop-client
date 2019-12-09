@@ -55,7 +55,9 @@ export default class Sidebar extends Component {
       return (
         <div
           className={
-            this.props.visibility ? 'sidenav' : 'sidenav--hidden sidenav'
+            this.props.visibility
+              ? 'dashboard-sidenav'
+              : 'dashboard-sidenav--hidden dashboard-sidenav'
           }
         >
           <div id="outer-container">
