@@ -54,6 +54,9 @@
 .empty-list a{
   text-decoration-line: none;
 }
+#grouplink, #grouplink2{
+  border-bottom: none;
+}
 
 .dashboard-task-list-container {
   display: flex;
