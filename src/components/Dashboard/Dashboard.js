@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
 import Filter from '../../components/Filter/Filter';
@@ -82,7 +82,7 @@ export default class Dashboard extends Component {
                 })
               ) : (
                 <div className="empty-list">
-                  No Tasks Available. Add a task to get started.
+                  No Tasks Available. <Link to="/add-group">Create a group</Link> to get started.
                 </div>
               )}
             </ul>
