@@ -85,6 +85,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
   align-self: flex-start;
   background-color: #134980;
 }
+
+.ham-button-menu {
+  width: 50px;
+  height: 50px;
+  margin-left: 0.5rem;
+}
+
 .sidenav a {
   padding: 2rem 1rem;
   text-decoration: none;
@@ -137,6 +144,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
     font-size: 22px;
   }
   .dashboard-sidenav {
+    position: fixed;
+  }
+  .dashboard-sidenav--hidden {
     display: none;
   }
 }

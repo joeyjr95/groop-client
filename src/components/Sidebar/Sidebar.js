@@ -22,8 +22,19 @@ export default class Sidebar extends Component {
 
     if (path === dashboard) {
       return (
-        <div className="dashboard-sidenav">
+        <div
+          className={
+            this.props.visibility
+              ? 'dashboard-sidenav'
+              : 'dashboard-sidenav--hidden dashboard-sidenav'
+          }
+        >
           <div className="flexbox-container">
+            <button
+              className="ham-button-menu"
+              type="button"
+              onClick={() => this.props.hideMenu()}
+            ></button>
             <div className="sidebar-section-label">
               {this.props.user.username}
             </div>

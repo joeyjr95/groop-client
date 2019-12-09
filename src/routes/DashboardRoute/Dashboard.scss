@@ -6,6 +6,15 @@
   flex-flow: row-reverse nowrap;
   justify-content: space-between;
 }
+
+.ham-button {
+  border: 2px solid black;
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  top: 62px;
+  left: 05px;
+}
 .dashboard-c {
   color: #1b5690;
   flex-grow: 5;
