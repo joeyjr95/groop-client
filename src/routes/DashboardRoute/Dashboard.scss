@@ -1,24 +1,4 @@
 @import '../../variables.scss';
-.group-list-item {
-  color: white;
-  list-style-type: none;
-}
-
-.filter {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-.group-list-item a {
-  background-color: transparent;
-  text-decoration: none;
-  color: white;
-  font-size: 1em;
-  list-style-type: none;
-  font-weight: 100;
-}
 
 .dashboard {
   display: flex;
@@ -37,17 +17,6 @@
   font-weight: 600;
 }
 
-#label-group-menu {
-  display: none;
-}
-.group-menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-.group-menu li {
-  margin-right: 30px;
-}
 #dashboard-label-task-list {
   width: 100%;
   z-index: 1;
@@ -92,70 +61,12 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
-#group-link {
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-}
-// .button {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     margin: 2px;
-// }
 @media screen and (min-width: 800px) {
-  .filter {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-  }
-
   .dashboard-c {
   }
   .dashboard-task-list {
     width: 100%;
     margin: 0 auto;
-  }
-  #label-group-menu {
-    display: inherit;
-    font-size: 18px;
-    background-color: #134980;
-    color: white;
-    width: 100%;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    padding: 10px 0;
-  }
-  .groups {
-    height: 450px;
-    width: 15%;
-  }
-  .group-menu {
-    display: flex;
-    flex-direction: column;
-  }
-  .group-list-item {
-    margin-left: -20px;
-    text-align: center;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-bottom: 1px solid #134980;
-    padding-bottom: 10px;
-  }
-  .group-list-item:not(:first-child) {
-    margin-top: 20px;
-  }
-  .group-list-item a {
-    text-decoration: none;
-    color: #134980;
-    font-size: 1.6em;
-    font-weight: 600;
-  }
-  .group-list-item a:hover {
-    color: #4accff;
   }
   .main-dashboard-section {
     display: flex;
@@ -184,14 +95,6 @@
   }
   #dashboard-label-task-list {
     font-size: 20px;
-  }
-  #label-group-menu {
-    font-size: 20px;
-  }
-
-  .groups {
-    height: 600px;
-    width: 18%;
   }
   .main-dashboard-section {
     margin-top: 15px;

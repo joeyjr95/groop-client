@@ -61,9 +61,7 @@ export default class Dashboard extends Component {
       <section className="dashboard-c">
         <h2>Taskboard</h2>
         <p id="date">{this.date()}</p>
-        <div className="filter">
-          <Filter {...this.props} />
-        </div>
+        <Filter {...this.props} />
         <div className="main-dashboard-section">
           <div className="dashboard-task-list-container">
             <label htmlFor="dashboard-task-list" id="dashboard-label-task-list">

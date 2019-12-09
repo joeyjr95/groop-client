@@ -46,9 +46,7 @@ export default class GroopPage extends Component {
     const { currentGroupMembers = [], filteredTasks = [] } = this.context;
     return (
       <>
-        <div className="filter-search">
-          <Filter {...this.props} />
-        </div>
+        <Filter {...this.props} />
         <div className="members-section-mobile">
           <div className="members-mobile">
             <label htmlFor="menu" id="label-menu">

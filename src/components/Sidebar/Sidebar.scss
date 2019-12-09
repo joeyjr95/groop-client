@@ -72,14 +72,18 @@ Note: Beware of modifying this element as it can break the animations - you shou
   top: 60px;
   bottom: 0px;
   align-self: flex-start;
+  background-color: #134980;
 }
 .dashboard-sidenav {
   z-index: 1; /* Stay on top */
   position: sticky;
+  flex-direction: column;
+  display: flex;
   width: 200px;
   top: 60px;
+  bottom: 0;
   align-self: flex-start;
-  border-right: 2px solid rgb(31, 140, 191);
+  background-color: #134980;
 }
 .sidenav a {
   padding: 2rem 1rem;
@@ -87,8 +91,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-size: 18px;
   color: white;
   display: flex;
-  background-color: #336699;
-  background-color: #134980;
   width: 100%;
 }
 
@@ -98,7 +100,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-size: 18px;
   color: white;
   display: flex;
-  background-color: #134980;
   width: 100%;
 }
 .dashboard-sidenav a:hover {
@@ -110,8 +111,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-style: oblique;
 }
 .sidebar-section-label {
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 800;
+  background-color: rgb(31, 140, 191);
+  width: 100%;
   padding: 0.5rem;
+  color: #112334;
 }
 #outer-container {
   width: 100%;
@@ -122,18 +127,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
   align-items: flex-start;
   height: 100%;
 }
+.stretch {
+}
 @media only screen and (max-width: 790px) {
   .sidenav {
-    height: 92%;
     width: 150px;
-    border-top-left-radius: 65px;
-    border-bottom-left-radius: 65px;
   }
   .sidenav a {
-    padding-right: 45px;
-    padding-left: 32px;
-    padding-top: 45px;
-    padding-bottom: 45px;
     font-size: 22px;
   }
   .dashboard-sidenav {

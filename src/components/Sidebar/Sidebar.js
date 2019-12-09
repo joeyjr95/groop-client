@@ -24,6 +24,9 @@ export default class Sidebar extends Component {
       return (
         <div className="dashboard-sidenav">
           <div className="flexbox-container">
+            <div className="sidebar-section-label">
+              {this.props.user.username}
+            </div>
             <Link to="/add-group">New Group</Link>
             <Link to={`/calendar${this.props.location.pathname}`}>
               Calendar
@@ -33,6 +36,7 @@ export default class Sidebar extends Component {
             <div className="sidebar-section-label">Groups</div>
             {groupLinks}
           </div>
+          <div className="stretch"></div>
         </div>
       );
     } else {
