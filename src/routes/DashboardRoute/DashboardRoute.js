@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import Sidebar from '../../components/Sidebar/Sidebar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import './Dashboard.scss';
 
 export default class DashBoardRoute extends Component {
@@ -19,7 +21,9 @@ export default class DashBoardRoute extends Component {
           className="ham-button"
           type="button"
           onClick={() => this.setState({ showMenu: true })}
-        ></button>
+        >
+          <FontAwesomeIcon icon={faAngleRight} id="openIcon" />
+        </button>
         <Dashboard {...this.props} />
         <Sidebar
           {...this.props}

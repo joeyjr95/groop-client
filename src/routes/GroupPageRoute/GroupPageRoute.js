@@ -4,6 +4,8 @@ import './GroupPageRoute.scss';
 import GroopPage from '../../components/GroopPage/GroopPage';
 import GroopService from '../../services/groop-service';
 import GroopContext from '../../contexts/GroopContext';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import Sidebar from '../../components/Sidebar/Sidebar';
 
 export default class GroupPageRoute extends Component {
@@ -37,7 +39,9 @@ export default class GroupPageRoute extends Component {
           className="ham-button"
           type="button"
           onClick={() => this.setState({ showMenu: true })}
-        ></button>
+        >
+          <FontAwesomeIcon icon={faAngleRight} id="openIcon" />
+        </button>
         <div className="groop-page">
           <h2>{currentgroup.name}</h2>
           <p id="date">{this.date()}</p>

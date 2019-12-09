@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import './Sidebar.scss';
 import GroopContext from '../../contexts/GroopContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUsersCog } from '@fortawesome/free-solid-svg-icons';
-import { push as Menu } from 'react-burger-menu';
+import { faUsersCog, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import Image from './menuIcon.png';
 
 export default class Sidebar extends Component {
@@ -34,7 +33,9 @@ export default class Sidebar extends Component {
               className="ham-button-menu"
               type="button"
               onClick={() => this.props.hideMenu()}
-            ></button>
+            >
+              <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
+            </button>
             <div className="sidebar-section-label">
               {this.props.user.username}
             </div>
@@ -62,7 +63,9 @@ export default class Sidebar extends Component {
               className="ham-button-menu"
               type="button"
               onClick={() => this.props.hideMenu()}
-            ></button>
+            >
+              <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
+            </button>
             <Link to="/dashboard">Dashboard</Link>
             <Link to={`/calendar/${this.props.match.params.group_id}`}>
               Calendar
