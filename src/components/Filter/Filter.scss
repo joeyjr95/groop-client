@@ -30,7 +30,7 @@
   width: 100%;
 
   input {
-    flex: 2 1 60%;
+    flex: 5 1 60%;
   }
 
   > div {
@@ -77,10 +77,12 @@ select {
   .member-select {
     flex-direction: row;
     align-items: flex-end;
-  }
-
-  .member-select input {
-    height: 40px;
-    flex: 1 1 auto;
+    > input {
+      height: 40px;
+      flex: 5 1 auto;
+    }
+    > div {
+      width: auto;
+    }
   }
 }
