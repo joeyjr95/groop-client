@@ -9,17 +9,16 @@ export default class Filter extends Component {
     filter: "User Name",
     group: 0,
     categories: [],
-    category: 0,
+    category: 0
   };
-  componentDidMount= async () => {
+  componentDidMount() {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
     if (path === dashboard) {
       this.setState({ filter: "Task Name" });
       this.getUserGroups();
-    }else{
-    this.setState({group: this.props.match.params.group_id })
     }
+    console.log(this.context.userTasks);
   }
   getUserGroups = () => {
     GroopService.getUserGroups().then(data => {
@@ -250,7 +249,6 @@ export default class Filter extends Component {
     );
   }
 onGroupFilterChange = async(e) => {
-  
    await this.setState({
       group: e
     });
@@ -275,21 +273,16 @@ onGroupFilterChange = async(e) => {
     }
   };
   onCategoryFilterSubmit = async() =>{
-    if (this.state.category === 0){
-      let updatedTasks = await GroopService.getGroupTasks(this.state.group);
-      this.context.setFilteredTasks(updatedTasks);
-      this.context.setUserTasks(updatedTasks);
-    }else if(this.state.category !== 0){
     let filterTasks = this.context.userTasks.filter(tasks => {
-      
-      return tasks.category_id === this.state.category
-      })
+      if (this.state.group !== 0){
+       return tasks.category_id === this.state.category
+      }
+    });
     this.context.setFilteredTasks(filterTasks);
     this.context.setUserTasks(filterTasks);
-    }
   }
+  
   onCategoryChange = async(e) => {
-
     await this.setState({
        category: e
      });
@@ -326,7 +319,7 @@ onGroupFilterChange = async(e) => {
     }
   }
   render() {
-    console.log(this.state.category)
+    console.log(this.state.categories)
     const path = this.props.match.path;
     const dashboard = '/dashboard';
     if (path === dashboard) {
@@ -373,7 +366,6 @@ onGroupFilterChange = async(e) => {
     } else {
       return (
         <div className="filter">
-          {this.categorySelection()}
           <label htmlFor="member-select">
             {' '}
             Search by:
