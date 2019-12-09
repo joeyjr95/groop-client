@@ -6,7 +6,7 @@
 
 .filter {
  display: flex;
- flex-direction: row;
+ flex-direction: column;
  justify-content: center;
  align-items: center;
  width: 100%;
@@ -14,10 +14,12 @@
 .group-list-item a {
   background-color: transparent;
   text-decoration: none;
-  color: white;
+  color: #134980;
   font-size: 1em;
   list-style-type: none;
   font-weight: 100;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #134980;
 }
 
 .dashboard-c {
@@ -150,6 +152,7 @@
     color: #134980;
     font-size: 1.6em;
     font-weight: 600;
+    border-bottom: none;
   }
   .group-list-item a:hover {
     color: #4accff;
@@ -160,7 +163,6 @@
     width: 90%;
     justify-content: center;
     margin-top: 15px;
-    margin-left: 10%;
   }
   .dashboard-task-list-container {
     width: 70%;
@@ -176,7 +178,7 @@
     font-size: 18px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
-    color: white;
+    color: #134980;
     margin-bottom: 0px;
   }
 }
@@ -198,6 +200,5 @@
   }
   .main-dashboard-section {
     margin-top: 15px;
-    margin-left: 8%;
   }
 }

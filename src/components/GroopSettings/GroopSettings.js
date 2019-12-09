@@ -3,6 +3,7 @@ import GroopContext from "../../contexts/GroopContext";
 import GroopService from "../../services/groop-service";
 import React, { Component } from "react";
 import './GroopSetting.scss'
+import Button from "../Button/Button";
 
 export default class GroopSettings extends Component {
     static contextType = GroopContext;
@@ -56,13 +57,13 @@ export default class GroopSettings extends Component {
             name="addGroupMember"
             onChange={this.handleChangeAddMember}
           />
-          <button
+          <Button
             type="submit"
             onClick={this.handleAddMember}
-            className="AddGroopMemberButton"
+            className="AddMemmberButton"
           >
             Add New Member
-          </button>
+          </Button>
 
         </form>
         <form className="deleteGroupMember">
@@ -75,22 +76,22 @@ export default class GroopSettings extends Component {
             name="addGroupMember"
             onChange={this.handleChangeDeleteMember}
           />
-          <button
+          <Button
             type="submit"
             onClick={this.handleDeleteMember}
-            className="AddGroupMemberButton"
+            className="ButtonCancel RemoveMemmberButton"
           >
             Remove Member
-          </button>
+          </Button>
 
         </form>
-        <button
+        <Button
             type="submit"
             onClick={this.handleDeleteGroup}
-            className="DeleteGroupButton"
+            className="ButtonCancel DeleteGroupButton"
           >
             Delete Group
-          </button>
+          </Button>
       </section>     
     )
   }
