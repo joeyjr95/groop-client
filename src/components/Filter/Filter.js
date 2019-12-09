@@ -273,16 +273,25 @@ onGroupFilterChange = async(e) => {
     }
   };
   onCategoryFilterSubmit = () =>{
+    if(this.state.category === 0){
+      let filterTasks = this.context.userTasks
+      this.context.setFilteredTasks(filterTasks);
+    this.context.setUserTasks(filterTasks);
+    }else if(this.state.category !== 0){
     let filterTasks = this.context.userTasks.filter(tasks => {
-      if (this.state.group !== 0){
+      
        return tasks.category_id === this.state.category
-      }
+      
     });
     this.context.setFilteredTasks(filterTasks);
     this.context.setUserTasks(filterTasks);
   }
+  }
   
   onCategoryChange = async(e) => {
+    let updatedTasks = await GroopService.getGroupTasks(this.state.group);
+    await this.context.setFilteredTasks(updatedTasks);
+    await this.context.setUserTasks(updatedTasks);
     await this.setState({
        category: e
      });
@@ -319,8 +328,8 @@ onGroupFilterChange = async(e) => {
     }
   }
   render() {
-    console.log(this.state.category)
-    console.log(this.state.categories)
+    console.log(this.context.userTasks)
+    console.log(this.context.filteredTasks)
     const path = this.props.match.path;
     const dashboard = '/dashboard';
     if (path === dashboard) {
