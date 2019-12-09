@@ -11,9 +11,10 @@ export default class Filter extends Component {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
     if (path === dashboard) {
-      this.setState({ filter: 'Task Name' });
+      this.setState({ filter: "Task Name" });
+      this.getUserGroups();
     }
-    console.log(this.context.userTasks)
+    console.log(this.context.userTasks);
   }
 
   filterTasksByUser = e => {
