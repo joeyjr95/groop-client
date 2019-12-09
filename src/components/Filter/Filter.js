@@ -187,36 +187,36 @@ export default class Filter extends Component {
       this.context.setFilteredTasks(filterTasks);
     }
   };
-  groupFilter() {
-    const groups = this.context.groups || [];
-    return (
-      <label htmlFor="member-select">
-        {" "}
-        Group Filter:
-        <select
-          name="Groups"
-          onChange={e => this.onGroupFilterChange(Number(e.target.value))}
-        >
-          <option key={`group_all`} id={0} name="all_groups" value={0}>
-            All Groups
-          </option>
-          {groups.map(group => (
-            <option
-              key={`group_${group.group_id}`}
-              id={group.group_id}
-              name={group.name}
-              value={group.group_id}
-            >
-              {group.name}
-            </option>
-          ))}
-        </select>
-        <button className="Button" onClick={e => this.onGroupFilterSubmit(e)}>
-          Filter
-        </button>
-      </label>
-    );
-  }
+  // groupFilter() {
+  //   const groups = this.context.groups || [];
+  //   return (
+  //     <label htmlFor="member-select">
+  //       {" "}
+  //       Group Filter:
+  //       <select
+  //         name="Groups"
+  //         onChange={e => this.onGroupFilterChange(Number(e.target.value))}
+  //       >
+  //         <option key={`group_all`} id={0} name="all_groups" value={0}>
+  //           All Groups
+  //         </option>
+  //         {groups.map(group => (
+  //           <option
+  //             key={`group_${group.group_id}`}
+  //             id={group.group_id}
+  //             name={group.name}
+  //             value={group.group_id}
+  //           >
+  //             {group.name}
+  //           </option>
+  //         ))}
+  //       </select>
+  //       <button className="Button" onClick={e => this.onGroupFilterSubmit(e)}>
+  //         Filter
+  //       </button>
+  //     </label>
+  //   );
+  // }
   search = e => {
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
@@ -254,21 +254,21 @@ export default class Filter extends Component {
       selectedInput: e
     });
   };
-  onGroupFilterChange = e => {
-    this.setState({
-      group: e
-    });
-  };
-  onGroupFilterSubmit = async(e) => {
-    e.preventDefault();
-    if (this.state.group === 0){
-      let updatedTasks = await GroopService.getAllTasks();
-      this.context.setFilteredTasks(updatedTasks);
-    } else if(this.state.group !== 0){
-      let updatedTasks = await GroopService.getGroupTasks(this.state.group);
-      this.context.setFilteredTasks(updatedTasks);
-    }
-  };
+  // onGroupFilterChange = e => {
+  //   this.setState({
+  //     group: e
+  //   });
+  // };
+  // onGroupFilterSubmit = async(e) => {
+  //   e.preventDefault();
+  //   if (this.state.group === 0){
+  //     let updatedTasks = await GroopService.getAllTasks();
+  //     this.context.setFilteredTasks(updatedTasks);
+  //   } else if(this.state.group !== 0){
+  //     let updatedTasks = await GroopService.getGroupTasks(this.state.group);
+  //     this.context.setFilteredTasks(updatedTasks);
+  //   }
+  // };
   onReset = e => {
     const path = this.props.match.path;
     const dashboard = "/dashboard";
