@@ -1,4 +1,24 @@
-.edit-task-form{
+@import '../../variables.scss';
+
+
+.edit-task-form {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid $color-bg-secondary;
+  height: auto;
+  padding: 15px;
+  margin: 60px auto;
+  border-radius: 5px;
+  width: 500px;
+}
+
+.EditTaskButtonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.delete-confirmation {
   display: flex;
   flex-direction: column;
 }
@@ -13,4 +33,3 @@ select {
   option {
   }
 }
-

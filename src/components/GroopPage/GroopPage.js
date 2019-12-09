@@ -1,33 +1,52 @@
 /// <reference path='../../react-vis.d.ts'/>
 import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
-
+import Filter from '../../components/Filter/Filter';
 import React, { Component } from 'react';
 import { RadialChart } from 'react-vis';
 import TaskItem from '../TaskItem/TaskItem';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMedal } from '@fortawesome/free-solid-svg-icons';
 
 export default class GroopPage extends Component {
   static contextType = GroopContext;
 
-  componentDidMount() {
-    GroopService.getGroup(this.props.group_id).then(data => {
-      let groupId = parseInt(data.id);
-      this.context.setCurrentGroup(groupId);
-      console.log(this.props.group_id);
+  componentDidMount = async () => {
+    const group = await GroopService.getGroup(this.props.match.params.group_id);
+    this.getGroupTasks();
+    this.getGroupMembers();
+  };
+
+  getGroupTasks = async () => {
+    const tasks = await GroopService.getGroupTasks(this.props.group_id);
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // filter expired tasks (date due before today)
+    let filteredTasks = tasks.filter(task => {
+      let task_due_date = new Date(task.date_due);
+      return task_due_date >= today ? 1 : 0;
     });
 
-    GroopService.getGroupTasks(this.props.group_id).then(data => {
-      this.context.setCurrentGroupTasks(data);
+    // sort by ascending date due
+    filteredTasks.sort((a, b) => {
+      return new Date(a.date_due) < new Date(b.date_due) ? false : true;
     });
+    this.context.setCurrentGroupTasks(filteredTasks);
+    this.context.setFilteredTasks(filteredTasks);
+  };
+
+  getGroupMembers = () => {
     GroopService.getGroupMembers(this.props.group_id).then(data => {
       this.context.setCurrentGroupMembers(data);
     });
-  }
+  };
+
   render() {
-    const { currentGroupTasks = [], currentGroupMembers = [] } = this.context;
-    console.log(currentGroupMembers)
+    const { currentGroupMembers = [], filteredTasks = [] } = this.context;
     return (
       <>
+        <Filter {...this.props} />
         <div className="members-section-mobile">
           <div className="members-mobile">
             <label htmlFor="menu" id="label-menu">
@@ -60,6 +79,8 @@ export default class GroopPage extends Component {
                     aria-live="polite"
                   >
                     {member.username}
+                    <FontAwesomeIcon icon={faMedal} id="pointsIcon" />
+                    <span className="userScore">{member.score}</span>
                   </li>
                 ))}
               </ul>
@@ -67,22 +88,38 @@ export default class GroopPage extends Component {
             <div className="scores-section">
               <div className="scores-section1">
                 <label htmlFor="weekly-scores" id="weekly-scores-label">
-                  Top Scores for this week
+                  Top Scores for today
                 </label>
-                <ol className="weekly-scores">
-                  <li id="weekly-scores-name1">User: 22</li>
-                  <li id="weekly-scores-name2">Allie: 17</li>
-                  <li id="weekly-scores-name3">Derek: 9</li>
+                <ol className="AllTimeScore" role="menu">
+                  {currentGroupMembers.map(memScore => (
+                    <li
+                      key={memScore.member_id}
+                      id={memScore.member_id}
+                      aria-live="polite"
+                    >
+                      <p className="userScore">
+                        {memScore.username}: {memScore.score}
+                      </p>
+                    </li>
+                  ))}
                 </ol>
               </div>
               <div className="scores-section2">
                 <label htmlFor="total-scores" id="total-scores-label">
                   Top Scores all time
                 </label>
-                <ol className="total-scores">
-                  <li id="total-scores-name1">User: 122</li>
-                  <li id="total-scores-name2">Allie: 117</li>
-                  <li id="total-scores-name3">Derek: 91</li>
+                <ol className="AllTimeScore" role="menu">
+                  {currentGroupMembers.map(memScore => (
+                    <li
+                      key={memScore.member_id}
+                      id={memScore.member_id}
+                      aria-live="polite"
+                    >
+                      <p className="userScore">
+                        {memScore.username}: {memScore.score}
+                      </p>
+                    </li>
+                  ))}
                 </ol>
               </div>
             </div>
@@ -102,22 +139,33 @@ export default class GroopPage extends Component {
                 labelsStyle={{ fontSize: 16 }}
                 showLabels
                 style={{ stroke: '#fff', strokeWidth: 2 }}
-                width={window.innerWidth / 5}
-                height={window.innerWidth / 5}
+                width={250}
+                height={250}
               ></RadialChart>
-              <p> How tasks have been split this week</p>
+              <p> How tasks have been split today</p>
             </div>
           </div>
           <div className="task-list-container">
-            <div id="fixed-container">
-              <label htmlFor="task-list" id="label-task-list">
-                Today's tasks
-              </label>
-            </div>
+            <label htmlFor="task-list" id="label-task-list">
+              Upcoming Tasks
+            </label>
             <ul className="task-list">
-              {currentGroupTasks.map((task, i) => (
-                <TaskItem task={task} {...this.props} key={`task${i}`} />
-              ))}
+              {filteredTasks.length !== 0 ? (
+                filteredTasks.map((task, i) => {
+                  return (
+                    <TaskItem
+                      getTasks={() => this.getGroupTasks()}
+                      task={task}
+                      {...this.props}
+                      key={`task${i}`}
+                    />
+                  );
+                })
+              ) : (
+                <div className="empty-list">
+                  No Tasks Available. Add a task to get started.{' '}
+                </div>
+              )}
             </ul>
           </div>
         </section>

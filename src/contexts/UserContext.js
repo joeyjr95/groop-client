@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import AuthApiService from "../services/auth-api-service";
-import TokenService from "../services/token-service";
-import IdleService from "../services/idle-service";
+import React, { Component } from 'react';
+import AuthApiService from '../services/auth-api-service';
+import TokenService from '../services/token-service';
+import IdleService from '../services/idle-service';
 
 const UserContext = React.createContext({
   user: {},
@@ -10,7 +10,7 @@ const UserContext = React.createContext({
   clearError: () => {},
   setUser: () => {},
   processLogin: () => {},
-  processLogout: () => {}
+  processLogout: () => {},
 });
 
 export default UserContext;
@@ -25,8 +25,7 @@ export class UserProvider extends Component {
     if (jwtPayload)
       state.user = {
         id: jwtPayload.user_id,
-        name: jwtPayload.name,
-        username: jwtPayload.sub
+        username: jwtPayload.sub,
       };
 
     this.state = state;
@@ -65,8 +64,7 @@ export class UserProvider extends Component {
     const jwtPayload = TokenService.parseAuthToken();
     this.setUser({
       id: jwtPayload.user_id,
-      name: jwtPayload.name,
-      username: jwtPayload.sub
+      username: jwtPayload.sub,
     });
     IdleService.regiserIdleTimerResets();
     TokenService.queueCallbackBeforeExpiry(() => {
@@ -109,7 +107,7 @@ export class UserProvider extends Component {
       clearError: this.clearError,
       setUser: this.setUser,
       processLogin: this.processLogin,
-      processLogout: this.processLogout
+      processLogout: this.processLogout,
     };
 
     return (

@@ -1,51 +1,90 @@
 
-.sidenav {
-    height: 85%; /* Full-height: remove this if you want "auto" height */
-    width: 140px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    bottom: 0; 
-    right: 0;
-    overflow-x: hidden; /* Disable horizontal scroll */
-  }
-  .sidenav a {
-    padding-right: 45px;
-    padding-left: 30px;
-    padding-top: 45px;
-    padding-bottom: 45px;
-    text-decoration: none;
-    font-size: 20px;
-    color: white;
-    display: flex;
-    background-color: #112377;
-    width: 100%;
-    border-top-left-radius: 55px;
-    border-bottom-left-radius: 55px;
-    
-    
-  }
-  .sidenav a:hover{
-    background-color: #1F4CBF;
-    font-style: oblique;
-  }
-.flexbox-container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-evenly;
+@import "../../variables.scss";
+
+.dashboard-sidenav {
+  height: calc(100vh - 55px);
+  z-index: 1; /* Stay on top */
+  position: sticky;
+  flex-direction: column;
+  display: flex;
+  width: 200px;
+  top: 55px;
+  bottom: 0;
+  align-self: flex-start;
+  background-color: $color-bg-secondary;
+  border-right: 3px solid rgb(31, 140, 191);
 }
-@media only screen and (min-width: 1400px) {
-    .sidenav {
-        height: 92%;
-        width: 150px;
-        border-top-left-radius: 65px;
-        border-bottom-left-radius: 65px;
-    }
-    .sidenav a {
-    padding-right: 45px;
-    padding-left: 32px;
-    padding-top: 45px;
-    padding-bottom: 45px;
-    font-size: 22px;
-    }
+
+.dashboard-sidenav a {
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
+  display: flex;
+}
+.dashboard-sidenav a:hover {
+  background-color: $color-link;
+  font-style: oblique;
+}
+
+.sidebar-section-label {
+  font-size: 18px;
+  font-weight: 800;
+  background-color: $color-secondary;
+  width: 100%;
+  padding: 0.8rem;
+  color: #112334;
+}
+
+.outer-container {
+  display: flex;
+  flex-direction: column;
+}
+nav {
+  display: flex;
+  flex-flow: row-reverse nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.ham-button-menu,
+.settings-button-menu {
+  width: 50px;
+  height: 50px;
+  font-size: 28px;
+  margin: 0;
+  padding: 0;
+  background-color: inherit;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .dashboard-sidenav {
+    position: fixed;
+    left: 0;
+    transition: left 300ms ease-in-out;
+  }
+  .dashboard-sidenav--hidden {
+    display: hidden;
+    left: -100%;
+    transition: left 300ms ease-in-out;
+  }
+}
+@media only screen and (min-width: 750px) {
+  .dashboard-sidenav {
+    height: calc(100vh - 60px);
+    top: 60px;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  .ham-button-menu {
+    display: none;
+  }
 }

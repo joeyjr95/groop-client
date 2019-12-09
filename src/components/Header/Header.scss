@@ -1,5 +1,16 @@
 @import '../../variables.scss';
 
+#settingsIcon {
+  margin-right: 25px;
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+
+#settingsIcon:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
 header {
   width: 100%;
   position: fixed;
@@ -18,18 +29,19 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: #112377;
+  background-color: $color-bg-secondary;
+  border-bottom: 2px solid #32a1d4;
   height: 55px;
 }
 
 header a {
-  color: $color-font-normal;
+  color: $color-font-header;
   text-decoration: none;
   cursor: pointer;
 }
 
 header a:hover {
-  color: rgb(238, 210, 51);
+  color: $color-link;
 }
 
 .loginLinks {
@@ -60,7 +72,7 @@ header a:hover {
 }
 
 .div-span {
-  color: $color-alt-main;
+  color: $color-link;
   margin-right: 20px;
 }
 

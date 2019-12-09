@@ -6,17 +6,6 @@ footer {
   align-items: center;
 }
 
-button {
-  margin-top: 3vh;
-  margin-bottom: 4vh;
-  transition-duration: 0.4s;
-}
-
-button:hover {
-  background-color: rgb(206, 206, 206);
-  color: $color-font-normal;
-}
-
 .signup {
   display: flex;
   flex-direction: column;
@@ -24,28 +13,28 @@ button:hover {
   margin-top: 9vh;
   color: $color-font-normal;
 }
-.signup a {
-  color: $color-font-normal;
-  text-decoration: $color-font-normal;
-}
-
 
 .Required {
   color: $color-error;
 }
 
 .signup-h2 {
-  margin-bottom: 1.5%;
+  margin-bottom: 1.2rem;
 }
 
 .register-label {
-  font-size: 13px;
+  font-size: 14px;
+  margin-left: 0.2rem;
 }
 
 .toLogin-link {
   text-align: center;
-  width: 200px;
   font-size: 15px;
+  margin-top: 1rem;
+  color: $color-font-normal;
+  &:hover {
+    color: $color-link;
+  }
 }
 
 @media only screen and (min-width: 750px) {

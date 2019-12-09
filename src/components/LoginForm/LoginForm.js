@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { Input, Label } from "../Form/Form";
-import AuthApiService from "../../services/auth-api-service";
-import UserContext from "../../contexts/UserContext";
-import Button from "../Button/Button";
+import React, { Component } from 'react';
+import { Input, Label } from '../Form/Form';
+import AuthApiService from '../../services/auth-api-service';
+import UserContext from '../../contexts/UserContext';
+import Button from '../Button/Button';
 
 class LoginForm extends Component {
   static defaultProps = {
-    onLoginSuccess: () => {}
+    onLoginSuccess: () => {},
   };
 
   static contextType = UserContext;
 
-  state = { 
-    error: null 
+  state = {
+    error: null,
   };
 
   firstInput = React.createRef();
@@ -25,11 +25,11 @@ class LoginForm extends Component {
 
     AuthApiService.postLogin({
       username: username.value,
-      password: password.value
+      password: password.value,
     })
       .then(res => {
-        username.value = "";
-        password.value = "";
+        username.value = '';
+        password.value = '';
         this.context.processLogin(res.authToken);
         this.props.onLoginSuccess();
       })
@@ -49,7 +49,7 @@ class LoginForm extends Component {
         <div role="alert" className="alert">
           {error && <p>{error}</p>}
         </div>
-        <div>
+        <div className="login-field">
           <Label htmlFor="login-username-input" className="login-label">
             Username
           </Label>
@@ -61,7 +61,7 @@ class LoginForm extends Component {
             required
           />
         </div>
-        <div>
+        <div className="login-field">
           <Label htmlFor="login-password-input" className="login-label">
             Password
           </Label>

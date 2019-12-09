@@ -5,7 +5,6 @@ import GroopSettings from '../../components/GroopSettings/GroopSettings'
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import PublicOnlyRoute from '../PublicOnlyRoute/PublicOnlyRoute';
 import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute';
-import GroopsHubRoute from '../../routes/GroopsHubRoute/GroopsHubRoute';
 import GroupForm from '../../components/GroupForm/GroupForm';
 import TaskFormComponent from '../../components/TaskForm/TaskForm';
 import EditTask from '../../components/EditTask/EditTask';
@@ -15,6 +14,7 @@ import LoginRoute from '../../routes/LoginRoute/LoginRoute';
 import DashBoardRoute from '../../routes/DashboardRoute/DashboardRoute';
 import GroupPageRoute from '../../routes/GroupPageRoute/GroupPageRoute';
 import SettingsRoute from '../../routes/SettingsRoute/SettingsRoute';
+import Calender from '../../components/Calender/Calender';
 
 import './App.scss';
 
@@ -44,15 +44,15 @@ export default class App extends Component {
               component={GroupPageRoute}
             />
             <PrivateRoute 
-            exact
-            path={"/groupsettings/:group_id"}
-             component={GroopSettings}
+              exact
+              path={"/groupsettings/:group_id"}
+              component={GroopSettings}
              />
             <PrivateRoute path={'/add-task'} component={TaskFormComponent} />
+            <PrivateRoute exact path={'/calendar/:location'} component={Calender} {...this.props}/>
             <PrivateRoute path={'/edit-task'} component={EditTask} />
-            <PrivateRoute path={'/add-group'} component={GroupForm} />
+            <PrivateRoute path={'/add-group'} component={GroupForm} {...this.props}/>
             <PrivateRoute path={'/settings'} component={SettingsRoute} />
-            <PrivateRoute exact path={'/hub'} component={GroopsHubRoute} />
             <Route component={NotFoundRoute} />
           </Switch>
         </main>
