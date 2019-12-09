@@ -27,6 +27,7 @@
 .dashboard-c {
   color: #1b5690;
   flex-grow: 5;
+
 }
 .dashboard-c h2 {
   font-size: 40px;
@@ -38,7 +39,7 @@
 #dashboard-label-task-list {
   width: 100%;
   z-index: 1;
-  background-color: #134980;
+  background-color: $color-bg-secondary;
   text-align: center;
   color: white;
   font-size: 20px;
@@ -71,7 +72,7 @@
   background-color: rgba(255, 255, 255, 0.739);
 }
 .dashboard-task-list li {
-  border-bottom: 2px solid #134980;
+  border-bottom: 2px solid $color-bg-secondary;
   width: 100%;
   text-align: left;
 }
@@ -79,6 +80,7 @@
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
+
 @media screen and (min-width: 800px) {
   .dashboard-c {
   }

@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+
 $color-font-header: #ffffff;
-$color-link: #09d3ac;
+$color-link: #17adad;
 
 $color-bg-main: #bacacfcc;
-$color-bg-secondary: #999999;
+$color-bg-secondary: #134980;
 
 $color-error: #b13232;
 
-$color-alt-main: rgb(121, 204, 252);
+$color-alt-main: rgb(99, 100, 100);
 $color-alt-secondary: #b13232;
 $color-font-normal: #555555;
+
+$font-Family-header: 'Righteous', cursive;
+$font-Family-normal: 'Nanum Gothic', sans-serif;

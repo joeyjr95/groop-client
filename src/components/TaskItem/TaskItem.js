@@ -58,6 +58,7 @@ export default class TaskItem extends React.Component {
           this.state.completed ? 'task-item task-item--complete' : 'task-item'
         }
       >
+
         <input
           id={`task-item-check-${task.id}`}
           type="checkbox"

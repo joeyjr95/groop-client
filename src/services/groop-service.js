@@ -2,7 +2,6 @@ import config from '../config';
 import TokenService from '../services/token-service';
 
 const GroopService = {
-  ///TASK SECTION
 
   postTask(task) {
     return fetch(`${config.API_ENDPOINT}/tasks`, {
@@ -96,7 +95,6 @@ const GroopService = {
       },
     }).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
   },
-  ///GROUP MEMBERS SECTION
 
   deleteGroupMember(body) {
     return fetch(

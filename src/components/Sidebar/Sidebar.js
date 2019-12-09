@@ -64,6 +64,7 @@ export default class Sidebar extends Component {
             <Link to={`/calendar${this.props.location.pathname}`}>
               Calendar
             </Link>
+            </Menu>
           </div>
           <div className="groups-container">
             <div className="sidebar-section-label">Groups</div>

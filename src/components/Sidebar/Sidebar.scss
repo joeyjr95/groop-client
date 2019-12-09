@@ -1,3 +1,6 @@
+
+@import "../../variables.scss";
+
 .dashboard-sidenav {
   height: calc(100vh - 55px);
   z-index: 1; /* Stay on top */
@@ -20,9 +23,10 @@
   display: flex;
 }
 .dashboard-sidenav a:hover {
-  background-color: rgb(31, 140, 191);
+  background-color: $color-link;
   font-style: oblique;
 }
+
 .sidebar-section-label {
   font-size: 18px;
   font-weight: 800;
@@ -31,6 +35,7 @@
   padding: 0.8rem;
   color: #112334;
 }
+
 .outer-container {
   display: flex;
   flex-direction: column;
