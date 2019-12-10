@@ -8,9 +8,10 @@
 }
 
 .ham-button {
-  border: 2px solid $color-link;
+  border: 2px solid $color-font-offwhite;
   font-size: 28px;
   position: fixed;
+  color: $color-font-offwhite;
   background-color: inherit;
   border: none;
   width: 50px;
@@ -20,7 +21,7 @@
   &:hover {
     cursor: pointer;
     background-color: $color-link;
-    color: $color-font-header;
+    color: $color-font-offwhite;
   }
 }
 
@@ -89,6 +90,7 @@
 
 @media screen and (min-width: 800px) {
   .dashboard-c {
+    padding-left: 200px;
   }
   .dashboard-task-list {
     width: 100%;
