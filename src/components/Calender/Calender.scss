@@ -10,29 +10,32 @@
 }
 
 .rbc-toolbar span button{
-  color: $color-font-normal;
+  color: $color-font-offwhite;
 }
 .rbc-calendar{
-  color: rgb(78, 76, 76);
-
+  color: $color-font-offwhite;
 }
 
 .rbc-show-more {
   background-color: rgba(235, 168, 43, 0.3) !important;
   font-family: $font-Family-normal;
   text-decoration: none;
-  color: rgb(80, 79, 79);
+  color: $color-font-offwhite;
 }
 
 .rbc-show-more:visited {
   background-color: rgba(235, 168, 43, 0.3) !important;
   font-family: $font-Family-normal;
   text-decoration: none;
-  color: white;
+  color: $color-font-offwhite;
 }
 
 .rbc-month-header, .rbc-time-header-content {
-  background-color: azure;
+  background-color: $color-bg-main4;
+}
+
+.rbc-month-view {
+  border: 1px solid $color-bg-main5 !important;
 }
 
 .rbc-btn-group button:nth-child(4) {
@@ -40,43 +43,55 @@
 }
 
 .rbc-month-row {
-  border: 1px solid white;
+  border: 1px solid $color-bg-main5 !important;
+}
+.rbc-day-bg + .rbc-day-bg {
+  border-left: 1px solid $color-bg-main5 !important;
 }
 
 .rbc-day-bg, .rbc-time-header-gutter {
-  background-color: rgb(235, 237, 240);
+  background-color: $color-bg-main3;
+  color: $color-font-offwhite;
 }
 
-.rbc-event-allday {
-  box-shadow: 3px 3px 5px rgb(46, 46, 46) !important;
+.rbc-event.rbc-selected {
+  background-color: $color-bg-main5 !important;
+}
+
+.rbc-event {
+  background-color: $color-bg-main4 !important;
 }
 
 .rbc-today {
-  background-color: rgb(218, 252, 216) !important;
+  background-color: $color-bg-main6 !important;
 }
 
 .rbc-toolbar button.rbc-active {
-  color:rgb(80, 79, 79);
+  color:$color-font-normal;
+}
+
+.rbc-off-range-bg {
+  background-color: $color-bg-main !important;
 }
 
 .rbc-timeslot-group {
-  background-color: rgb(237, 243, 227) !important;
+  background-color: $color-bg-main3 !important;
 }
 
 .rbc-time-column{
-  background-color: rgb(201, 206, 193);
+  background-color: $color-bg-main3 !important;
 }
 
 .rbc-toolbar-label {
   font-size: 1em;
-  color: $color-bg-secondary;
+  color: $color-font-offwhite;
   font-family: $font-Family-normal;
 }
 
 @media only screen and (min-width: 750px) {
   .rbc-toolbar-label {
     font-size: 2em;
-    color: $color-bg-secondary;
+    color: $color-font-offwhite;
     font-family: $font-Family-normal;
   }
 }

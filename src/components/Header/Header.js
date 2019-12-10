@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import UserContext from '../../contexts/UserContext';
 import './Header.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 class Header extends Component {
   static contextType = UserContext;
@@ -16,8 +14,10 @@ class Header extends Component {
   renderLogoutLink() {
     return (
       <div className="link-logout" aria-live="polite">
-        <span className="div-span">{this.context.user.username}</span>
         <Link to="/settings">
+        <span className="div-span">{this.context.user.username}</span>
+        </Link>
+        {/* <Link to="/settings">
           <FontAwesomeIcon icon={faCog} id="settingsIcon" />
         </Link>
         <nav>
@@ -27,8 +27,8 @@ class Header extends Component {
             className="logout-nav"
           >
             Logout
-          </Link>
-        </nav>
+          </Link> 
+         </nav> */}
       </div>
     );
   }
@@ -56,7 +56,9 @@ class Header extends Component {
             <Link to="/dashboard">groop</Link>
           </h1>
           <div className="loginLinks" aria-live="polite">
-            {TokenService.hasAuthToken() ? null : this.renderLoginLink()}
+          {TokenService.hasAuthToken()
+              ? this.renderLogoutLink()
+              : this.renderLoginLink()}
           </div>
         </div>
       </header>

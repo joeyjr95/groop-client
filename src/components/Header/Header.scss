@@ -1,16 +1,5 @@
 @import '../../variables.scss';
 
-#settingsIcon {
-  margin-right: 25px;
-  -webkit-transition: -webkit-transform .8s ease-in-out;
-          transition:         transform .8s ease-in-out;
-}
-
-#settingsIcon:hover {
-  -webkit-transform: rotate(360deg);
-          transform: rotate(360deg);
-}
-
 header {
   width: 100%;
   position: fixed;
@@ -29,8 +18,8 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: $color-bg-secondary;
-  border-bottom: 2px solid #32a1d4;
+  background-color: $color-bg-main;
+  border-bottom: 2.3px solid $color-secondary;
   height: 55px;
 }
 
@@ -41,7 +30,7 @@ header a {
 }
 
 header a:hover {
-  color: $color-link;
+  color: $color-secondary;
 }
 
 .loginLinks {
@@ -72,8 +61,11 @@ header a:hover {
 }
 
 .div-span {
-  color: $color-link;
+  color: $color-font-header;
   margin-right: 20px;
+}
+.div-span:hover{
+  color: $color-secondary;
 }
 
 @media only screen and (min-width: 500px) {

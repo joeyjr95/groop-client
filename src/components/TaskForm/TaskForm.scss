@@ -47,6 +47,19 @@
 
 label {
   margin: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.CreateTaskButton {
+  border: 1px solid rgb(0, 82, 0) !important;
+}
+
+.deleteGroupMember select {
+  margin: 15px auto;
+}
+
+.deleteGroupMember button {
+  margin-bottom: 20px;
 }
 
 input {
@@ -57,10 +70,12 @@ select {
   margin: 0 auto;
   width: 100%;
   max-width: 300px;
+  color: $color-font-header;
+  background-color: $color-bg-main2;
 }
 @media only screen and (min-width: 520px) {
   .AddTaskForm {
-    border: 2px solid #134980;
+    border: 2px solid $color-bg-main5;
     width: 90%;
     padding: 1.5rem;
   }
@@ -68,7 +83,7 @@ select {
 
 @media only screen and (min-width: 750px) {
   .AddTaskForm {
-    border: 2px solid #134980;
+    border: 2px solid $color-bg-main5;
     width: 40%;
     padding: 2rem;
   }

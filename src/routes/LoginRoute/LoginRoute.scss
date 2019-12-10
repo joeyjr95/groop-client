@@ -9,7 +9,7 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: $color-font-normal;
+  color: $color-font-header;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
@@ -22,11 +22,11 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  color: $color-font-normal;
+  color: $color-font-header;
   width: 400px;
   padding: 15px;
   margin: 50px auto;
-  margin-top: 12%;
+  margin-top: 10%;
 }
 form {
   width: 100%;

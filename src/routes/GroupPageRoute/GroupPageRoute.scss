@@ -22,30 +22,35 @@
   flex-direction: column;
   align-items: center;
   padding-top: 35px;
-  color: $color-bg-secondary;
+  color: rgb(226, 226, 226);
+  padding-left: 200px;
 }
+
 .groop-page h2 {
   font-size: 40px;
   padding-bottom: 0px;
   margin-bottom: 0px;
   margin-top: 0;
+  font-family: $font-Family-other
 }
+
 .members-section {
   display: none;
 }
+
 .members-section-mobile {
   display: initial;
 }
 
 .groop-page-list {
-  width: 100%;
+  width: 97%;
   display: flex;
   flex-direction: row nowrap;
   margin-top: 1rem;
 }
 
 #label-task-list {
-  background-color: $color-bg-secondary;
+  background-color: $color-secondary;
   text-align: center;
   color: white;
   font-size: 20px;
@@ -69,9 +74,14 @@
 }
 .menu li {
   list-style-type: none;
+  margin-right: 15px;
+  font-size: 20px;
+  margin: 0 15px;
+}
+.menu li p {
+  margin: 0;
 }
 .task-list-container {
-  border: 3px solid $color-bg-secondary;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -79,11 +89,11 @@
 .task-list {
   list-style-type: none;
   padding-left: 0px;
-  color: black;
+  color: $color-font-offwhite;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: rgba(255, 255, 255, 0.739);
+  background-color: $color-bg-main2;
   margin: 0;
 }
 .task-list li {
@@ -113,21 +123,21 @@
   .groop-page-list {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 97%;
     justify-content: center;
   }
   .task-list-container {
     width: 50%;
     border: none;
     margin-left: 1.2%;
-    margin-right: 10.2%;
     color: $color-bg-secondary;
   }
   #label-task-list {
     font-size: 18px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     margin-bottom: 0px;
+    
   }
   .task-list {
     width: 100%;
@@ -135,20 +145,20 @@
   }
   .task-list li {
     border-bottom: 2px solid $color-bg-secondary;
-    color: $color-bg-secondary;
+    color: $color-font-offwhite;
     width: 100%;
   }
   
   #label-menu {
     display: inherit;
     font-size: 18px;
-    background-color: $color-bg-secondary;
+    background-color: $color-secondary;
     margin: 0 auto;
 
     color: white;
     width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     padding: 10px 0;
   }
   .menu {
@@ -159,7 +169,7 @@
   .menu li {
     font-size: 16px;
     line-height: 1.5rem;
-    margin: 0.25rem 0;
+    margin: 0.25rem .25rem;
   }
   .scores-section {
     display: flex;
@@ -190,11 +200,11 @@
   }
   .members {
     width: 100%;
-    color: $color-bg-secondary;
+    color: $color-font-offwhite;
     padding-bottom: 0.6%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.739);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: $color-bg-main2;
   }
   .AllTimeScore {
     color: $color-bg-secondary;
@@ -205,8 +215,8 @@
   #weekly-scores-label,
   #total-scores-label {
     font-size: 14px;
-    background-color: $color-bg-secondary;
-    border-top-right-radius: 10px;
+    background-color: $color-secondary;
+    border-top-right-radius: 5px;
     color: white;
     width: 100%;
     margin: 0 auto;
@@ -245,11 +255,10 @@
     width: 60%;
     border: none;
     margin-left: 1.2%;
-    margin-right: 8.2%;
   }
   .task-list li {
     border-bottom: 2px solid $color-bg-secondary;
-    color: $color-bg-secondary;
+    color: $color-font-offwhite;
   }
   .task-list li:not(:first-child) {
   }
@@ -259,8 +268,10 @@
     color: white;
     width: 100%;
   }
-  .menu li {
+  .menu li p {
     font-size: 18px;
+    line-height: 1.5rem;
+    margin-right: 10px;
   }
   .scores-section {
     display: flex;
@@ -293,7 +304,7 @@
   }
   .members {
     width: 100%;
-    color: $color-bg-secondary;
+    color: $color-font-offwhite;
     padding-bottom: 0.6%;
   }
   .AllTimeScore {
@@ -318,6 +329,6 @@
   }
   .pieChart p {
     margin-top: 4%;
-    color: $color-bg-secondary;
+    color: $color-font-offwhite;
   }
 }

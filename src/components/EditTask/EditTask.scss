@@ -4,12 +4,16 @@
 .edit-task-form {
   display: flex;
   flex-direction: column;
-  border: 2px solid $color-bg-secondary;
+  border: 2px solid $color-bg-main5;
   height: auto;
   padding: 15px;
   margin: 60px auto;
   border-radius: 5px;
   width: 500px;
+}
+
+.edit-task-form label {
+  margin-bottom: 5px;
 }
 
 .EditTaskButtonContainer {

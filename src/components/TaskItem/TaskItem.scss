@@ -6,6 +6,8 @@
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
+  background-color: $color-bg-main2;
+  color: $color-font-offwhite;
 
   &--complete {
   }
@@ -13,7 +15,7 @@
 
 .task-item__check-label {
   flex: 0 0 2rem;
-  border: 2px solid rgb(177, 50, 50);
+  border: 2px solid $color-bg-main4;
   height: 2rem;
   margin-right: 1rem;
   margin-left: 1rem;
@@ -23,6 +25,10 @@
   }
 }
 
+.task-item__edit {
+  border: 1px solid $color-secondary;
+}
+
 .task-item__check {
   width: 50px;
   position: absolute;
@@ -30,7 +36,7 @@
   display: hidden;
 
   &:checked + label {
-    background-color: $color-error;
+    background-color: $color-bg-main5;
   }
 }
 

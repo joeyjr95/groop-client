@@ -11,6 +11,7 @@ export default class TaskForm extends Component {
   state = {
     categories: [],
     tasks: [],
+    members: [],
     error: null,
     name: {
       value: '',
@@ -38,23 +39,42 @@ export default class TaskForm extends Component {
       value: 1,
       touched: false,
     },
+    user_assigned_id: {
+      value: '',
+      touched: false,
+    }
   };
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const group_id = Number(this.props.location.pathname.split('/')[2]);
-    this.setState({
-      group_id,
-    });
-    GroopService.getCategories(group_id).then(data =>
-      this.setState({ categories: data }),
+    const members = await GroopService.getGroupMembers(group_id);
+    console.log(members)
+    await GroopService.getCategories(group_id).then(data =>
+      this.setState(
+        { categories: data,
+      category:{ 
+        value: data[0].id,
+        touched: false,
+        
+      },
+      user_assigned_id: {
+        value: members[0].member_id,
+        touched: false,
+      }
+       }),
     );
+    this.setState({
+      group_id, 
+      members
+    });
+    
   };
 
   handleSubmit = async () => {
     const newTask = {
       name: this.state.name.value,
       description: this.state.description.value,
-      user_assigned_id: this.context.user.id,
+      user_assigned_id: this.state.user_assigned_id.value,
       time_start: `${this.state.time_start.date}T${this.state.time_start.time}`,
       date_due: `${this.state.date_due.date}T${this.state.date_due.time}`,
       group_id: this.state.group_id,
@@ -83,6 +103,9 @@ export default class TaskForm extends Component {
   handleChangeTaskdescription = value => {
     this.setState({ description: { value, touched: true } });
   };
+  handleChangeTaskAssignment = value => {
+    this.setState({ user_assigned_id: { value, touched: true } });
+  };
 
   handleChangeTaskDueDate = date => {
     this.setState({
@@ -110,7 +133,13 @@ export default class TaskForm extends Component {
 
   render() {
     const { categories = [] } = this.state;
-
+    console.log(this.state.user_assigned_id)
+    
+    const memberOptions = this.state.members.map(member => (
+      <option key={`member${member.member_id}`} value={member.member_id}>
+        {member.username}
+      </option>
+    ));
     return (
       <section>
         <form className="AddTaskForm">
@@ -228,7 +257,18 @@ export default class TaskForm extends Component {
             </select>
           </div>
           <div>
-            <Button type="button" onClick={this.handleSubmit}>
+          <label htmlFor="edit-task-assignment">Assigned to</label>
+          <select
+            id="edit-task-assignment"
+            name="edit-task-assignment"
+            onChange={e => this.handleChangeTaskAssignment(e.target.value)}
+            value={this.state.user_assigned_id.value}
+          >
+            {memberOptions}
+          </select>
+          </div>
+          <div>
+            <Button className="CreateTaskButton" type="button" onClick={this.handleSubmit}>
               Create New Task
             </Button>
             <Button

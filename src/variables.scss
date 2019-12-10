@@ -1,12 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
 @import url('https://fonts.googleapis.com/css?family=Righteous');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
 $color-font-header: #ffffff;
-$color-link: #17adad;
-$color-secondary: #1f8cbf;
+$color-font-offwhite: #ffffff99;
+$color-link: #262626;
+$color-secondary: rgb(25, 144, 199);
 
-$color-bg-main: #bacacfcc;
-$color-bg-secondary: #134980;
+$color-bg-main1: #1F2023;
+$color-bg-main:#1b1b1d;
+$color-bg-main2: #27292D;
+$color-bg-main3: #2d2f34;
+$color-bg-main4: #383840;
+$color-bg-main5: #6a6a75;
+$color-bg-main6: #81818b;
+
+$color-bg-secondary: #0D0D0D;
 
 $color-error: #b13232;
 $color-success: #136e29;
@@ -17,3 +26,4 @@ $color-font-normal: #555555;
 
 $font-Family-header: 'Righteous', cursive;
 $font-Family-normal: 'Nanum Gothic', sans-serif;
+$font-Family-other: 'Nanum Gothic', sans-serif;

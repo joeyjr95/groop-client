@@ -4,15 +4,16 @@
 .dashboard-sidenav {
   height: calc(100vh - 55px);
   z-index: 1; /* Stay on top */
-  position: sticky;
+  position: fixed;
+  left: 0;
   flex-direction: column;
   display: flex;
   width: 200px;
   top: 55px;
   bottom: 0;
   align-self: flex-start;
-  background-color: $color-bg-secondary;
-  border-right: 3px solid rgb(31, 140, 191);
+  background-color: $color-bg-main;
+  border-right: 3px solid $color-secondary;
 }
 
 .dashboard-sidenav a {
@@ -21,6 +22,7 @@
   font-size: 16px;
   color: white;
   display: flex;
+  text-align: left;
 }
 .dashboard-sidenav a:hover {
   background-color: $color-link;
@@ -33,7 +35,17 @@
   background-color: $color-secondary;
   width: 100%;
   padding: 0.8rem;
-  color: #112334;
+  color: $color-font-offwhite;
+}
+
+.fa-cog {
+  -webkit-transition: -webkit-transform .8s ease-in-out;
+          transition:         transform .8s ease-in-out;
+}
+
+.fa-cog:hover {
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
 }
 
 .outer-container {

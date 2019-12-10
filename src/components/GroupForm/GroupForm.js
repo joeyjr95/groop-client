@@ -35,29 +35,24 @@ export default class GroupForm extends Component {
       <section>
         <form className="AddGroupForm">
           <h2>Add Group</h2>
-          <br />
           <label htmlFor="addGroupname" className="AddGroupLabel">
             Group Name
           </label>
-          <br />
           <input
             type="text"
             id="addGroupname"
             name="addGroupname"
             onChange={this.handleChangeGroupname}
           />
-          {/* {this.state.name.touched && (
-            <div className="error">{this.validatename()}</div>
-          )} */}
-          <br />
           <Button
             type="submit"
+            className="CreateGroupButton"
             onClick={this.handleSubmit}
             disabled={this.state.name.value.length > 0 ? 0 : 1}
           >
             Create New Group
           </Button>
-          <Button type="button" onClick={() => this.props.history.goBack()}>
+          <Button type="button" className="ButtonCancel" onClick={() => this.props.history.goBack()}>
             Go Back
           </Button>
         </form>

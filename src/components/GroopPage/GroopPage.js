@@ -41,9 +41,63 @@ export default class GroopPage extends Component {
       this.context.setCurrentGroupMembers(data);
     });
   };
+  chartAngle(member){
+   let filteredTasks = this.context.currentGroupTasks.filter( tasks =>{
+      return tasks.user_assigned_id === member.member_id
+    }
+    )
+   let priorityAngle = filteredTasks.map( tasks =>{
+     return tasks.priority 
+    })
+    if (priorityAngle.length === 0){
+      return 0
+    }else{
+   return Number(priorityAngle.reduce((a, b) => a + b))
+    }
+  }
+  
+  renderChart(){
+    const { currentGroupMembers = []} = this.context;
+    let colors =['#1c939a', '#72bce0','#bad7e6','#5891ad','#1780B0','#1653A6','#126266','#52A6AA','#105659','#A62E7B']
+    if(currentGroupMembers.length < 2){
+      return <> </>
+    }else{
+    let chartInfo = currentGroupMembers.map((member, i) => (
+      {
+         angle: this.chartAngle(member),
+         color: colors[i%(colors.length - 1)], 
+         name: member.username 
+      }
+    ))
+    console.log(chartInfo)
+    return (
+      <div className="pieChart">
+              <RadialChart
+                colorType={'literal'}
+                colorDomain={[0, 100]}
+                colorRange={[0, 10]}
+                getLabel={d => d.name}
+                data={
+                  chartInfo
+                }
+                labelsRadiusMultiplier={1}
+                labelsStyle={{ fontSize: 16 }}
+                showLabels
+                style={{ stroke: '#fff', strokeWidth: 2 }}
+                width={250}
+                height={250}
+              ></RadialChart>
+              <p> Point totals for assigned tasks</p>
+            </div>
+  
+    )
+
+    }
+  }
 
   render() {
     const { currentGroupMembers = [], filteredTasks = [] } = this.context;
+    console.log(this.context.currentGroupTasks)
     return (
       <>
         <Filter {...this.props} />
@@ -53,15 +107,15 @@ export default class GroopPage extends Component {
               Members
             </label>
             <ul className="menu" role="menu">
-              {currentGroupMembers.map(member => (
-                <li
+              {currentGroupMembers.map(member => {
+               return( <li
                   key={member.member_id}
                   id={member.member_id}
                   aria-live="polite"
                 >
                   <p>{member.username}</p>
                 </li>
-              ))}
+               ) })}
             </ul>
           </div>
         </div>
@@ -85,7 +139,7 @@ export default class GroopPage extends Component {
                 ))}
               </ul>
             </div>
-            <div className="scores-section">
+            {/* <div className="scores-section">
               <div className="scores-section1">
                 <label htmlFor="weekly-scores" id="weekly-scores-label">
                   Top Scores for today
@@ -122,19 +176,16 @@ export default class GroopPage extends Component {
                   ))}
                 </ol>
               </div>
-            </div>
-            <div className="pieChart">
+            </div> */}
+            {/* <div className="pieChart">
               <RadialChart
                 colorType={'literal'}
                 colorDomain={[0, 100]}
                 colorRange={[0, 10]}
                 getLabel={d => d.name}
-                data={[
-                  { angle: Number(17), color: '#1c939a', name: 'allie' },
-                  { angle: Number(22), color: '#72bce0', name: 'User' },
-                  { angle: Number(9), color: '#BAD7E6', name: 'Derek' },
-                  { angle: Number(5), color: '#5891AD', name: 'Brian' },
-                ]}
+                data={
+                  this.renderChart()
+                }
                 labelsRadiusMultiplier={1}
                 labelsStyle={{ fontSize: 16 }}
                 showLabels
@@ -143,7 +194,8 @@ export default class GroopPage extends Component {
                 height={250}
               ></RadialChart>
               <p> How tasks have been split today</p>
-            </div>
+            </div> */}
+            {this.renderChart()}
           </div>
           <div className="task-list-container">
             <label htmlFor="task-list" id="label-task-list">
