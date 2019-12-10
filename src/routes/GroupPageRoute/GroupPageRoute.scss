@@ -23,6 +23,7 @@
   align-items: center;
   padding-top: 35px;
   color: rgb(226, 226, 226);
+  padding-left: 200px;
 }
 
 .groop-page h2 {
@@ -129,7 +130,6 @@
     width: 50%;
     border: none;
     margin-left: 1.2%;
-    margin-right: 10.2%;
     color: $color-bg-secondary;
   }
   #label-task-list {
@@ -255,7 +255,6 @@
     width: 60%;
     border: none;
     margin-left: 1.2%;
-    margin-right: 8.2%;
   }
   .task-list li {
     border-bottom: 2px solid $color-bg-secondary;
@@ -330,6 +329,6 @@
   }
   .pieChart p {
     margin-top: 4%;
-    color: $color-bg-secondary;
+    color: $color-font-offwhite;
   }
 }

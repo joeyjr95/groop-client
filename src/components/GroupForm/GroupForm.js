@@ -44,12 +44,9 @@ export default class GroupForm extends Component {
             name="addGroupname"
             onChange={this.handleChangeGroupname}
           />
-          {/* {this.state.name.touched && (
-            <div className="error">{this.validatename()}</div>
-          )} */}
-          <br />
           <Button
             type="submit"
+            className="CreateGroupButton"
             onClick={this.handleSubmit}
             disabled={this.state.name.value.length > 0 ? 0 : 1}
           >
