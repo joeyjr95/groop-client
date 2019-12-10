@@ -48,8 +48,9 @@
   padding: 0.8rem 0;
 }
 
-.empty-list a{
+.empty-list a{  
   text-decoration-line: none;
+  color: $color-secondary;
 }
 
 #grouplink, #grouplink2{
