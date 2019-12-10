@@ -59,7 +59,7 @@ export default class Dashboard extends Component {
     const { filteredTasks = [] } = this.context;
     return (
       <section className="dashboard-c">
-        <h2>Agenda</h2>
+        <h2>Taskboard</h2>
         <p id="date">{this.date()}</p>
         <Filter {...this.props} />
         <div className="main-dashboard-section">

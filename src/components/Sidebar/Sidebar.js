@@ -59,7 +59,7 @@ export default class Sidebar extends Component {
             <div className="sidebar-section-label">
               {this.props.user.username}
             </div>
-            <Link to="/add-group">Create Group</Link>
+            <Link to="/add-group">New Group</Link>
             <Link to={`/calendar${this.props.location.pathname}`}>
               Calendar
             </Link>
