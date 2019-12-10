@@ -11,14 +11,21 @@ export default class Filter extends Component {
     categories: [],
     category: 0
   };
-  componentDidMount() {
+  componentDidMount= async () => {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
+    
     if (path === dashboard) {
       this.setState({ filter: "Task Name" });
       this.getUserGroups();
+    }else{
+     let groupCategories = await GroopService.getCategories(this.props.match.params.group_id)
+      this.setState({ 
+        group: this.props.match.params.group_id,
+        categories: groupCategories 
+      });
+
     }
-    console.log(this.context.userTasks);
   }
   getUserGroups = () => {
     GroopService.getUserGroups().then(data => {
@@ -328,8 +335,7 @@ onGroupFilterChange = async(e) => {
     }
   }
   render() {
-    console.log(this.context.userTasks)
-    console.log(this.context.filteredTasks)
+    console.log(this.props)
     const path = this.props.match.path;
     const dashboard = '/dashboard';
     if (path === dashboard) {
@@ -376,6 +382,7 @@ onGroupFilterChange = async(e) => {
     } else {
       return (
         <div className="filter">
+          {this.categorySelection()}
           <label htmlFor="member-select">
             {' '}
             Search by:
