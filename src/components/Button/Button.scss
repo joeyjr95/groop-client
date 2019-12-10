@@ -1,8 +1,19 @@
 @import '../../variables.scss';
 
-.Button,
+.Button {
+  border: 1px solid $color-secondary;
+  background-color: $color-bg-main2;
+  color: $color-font-header;
+  font-size: 1.1em;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-weight: bold;
+  cursor: pointer;
+  margin: 5px 10px;
+}
+
 .ButtonCancel {
-  border: 1px solid $color-bg-main5;
+  border: 1px solid $color-error;
   background-color: $color-bg-main2;
   color: $color-font-header;
   font-size: 1.1em;

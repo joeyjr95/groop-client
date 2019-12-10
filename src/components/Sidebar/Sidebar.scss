@@ -12,8 +12,8 @@
   top: 55px;
   bottom: 0;
   align-self: flex-start;
-  background-color: $color-bg-secondary;
-  border-right: 3px solid rgb(25, 144, 199);
+  background-color: $color-bg-main;
+  border-right: 3px solid $color-secondary;
 }
 
 .dashboard-sidenav a {
@@ -35,7 +35,7 @@
   background-color: $color-secondary;
   width: 100%;
   padding: 0.8rem;
-  color: white;
+  color: $color-font-offwhite;
 }
 
 .fa-cog {

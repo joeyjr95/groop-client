@@ -18,8 +18,8 @@ header {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-color: $color-bg-secondary;
-  border-bottom: 2.3px solid rgb(25, 144, 199);
+  background-color: $color-bg-main;
+  border-bottom: 2.3px solid $color-secondary;
   height: 55px;
 }
 
