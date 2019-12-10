@@ -22,7 +22,7 @@
   flex-direction: column;
   align-items: center;
   padding-top: 35px;
-  color: $color-bg-secondary;
+  color: rgb(226, 226, 226);
 }
 
 .groop-page h2 {
@@ -30,6 +30,7 @@
   padding-bottom: 0px;
   margin-bottom: 0px;
   margin-top: 0;
+  font-family: $font-Family-other
 }
 
 .members-section {
@@ -48,7 +49,7 @@
 }
 
 #label-task-list {
-  background-color: $color-bg-secondary;
+  background-color: $color-secondary;
   text-align: center;
   color: white;
   font-size: 20px;
@@ -128,9 +129,10 @@
   }
   #label-task-list {
     font-size: 18px;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
     margin-bottom: 0px;
+    
   }
   .task-list {
     width: 100%;
@@ -145,13 +147,13 @@
   #label-menu {
     display: inherit;
     font-size: 18px;
-    background-color: $color-bg-secondary;
+    background-color: $color-secondary;
     margin: 0 auto;
 
     color: white;
     width: 100%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     padding: 10px 0;
   }
   .menu {
@@ -195,8 +197,8 @@
     width: 100%;
     color: $color-bg-secondary;
     padding-bottom: 0.6%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background-color: rgba(255, 255, 255, 0.739);
   }
   .AllTimeScore {
@@ -208,8 +210,8 @@
   #weekly-scores-label,
   #total-scores-label {
     font-size: 14px;
-    background-color: $color-bg-secondary;
-    border-top-right-radius: 10px;
+    background-color: $color-secondary;
+    border-top-right-radius: 5px;
     color: white;
     width: 100%;
     margin: 0 auto;

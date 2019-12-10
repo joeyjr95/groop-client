@@ -30,7 +30,7 @@ header {
   align-items: center;
   justify-content: space-between;
   background-color: $color-bg-secondary;
-  border-bottom: 2px solid #32a1d4;
+  border-bottom: 2.3px solid rgb(25, 144, 199);
   height: 55px;
 }
 
@@ -41,7 +41,7 @@ header a {
 }
 
 header a:hover {
-  color: $color-link;
+  color: #32a1d4;
 }
 
 .loginLinks {
@@ -76,7 +76,7 @@ header a:hover {
   margin-right: 20px;
 }
 .div-span:hover{
-  color: $color-link;
+  color: #32a1d4;
 }
 
 @media only screen and (min-width: 500px) {
