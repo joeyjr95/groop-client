@@ -16,7 +16,11 @@ export default class Filter extends Component {
     const dashboard = "/dashboard";
 
     if (path === dashboard) {
-      this.setState({ filter: "Task Name" });
+      this.setState({ 
+        filter: "Task Name",
+        categories: [],
+        category: 0,
+      });
       this.getUserGroups();
     } else {
       let groupCategories = await GroopService.getCategories(
