@@ -4,7 +4,8 @@
 .dashboard-sidenav {
   height: calc(100vh - 55px);
   z-index: 1; /* Stay on top */
-  position: sticky;
+  position: fixed;
+  left: 0;
   flex-direction: column;
   display: flex;
   width: 200px;

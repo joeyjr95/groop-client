@@ -57,8 +57,10 @@
 
 .dashboard-task-list-container {
   display: flex;
+  overflow-y: auto;
   flex-direction: column;
   width: 97%;
+  height: 500px;
   margin: 1rem auto;
   border-radius: 3px;
 }
@@ -104,6 +106,7 @@
     border-radius: 0px;
     margin-left: 1.2%;
     margin-right: 1.2%;
+    height: 400px;
   }
   #dashboard-label-task-list {
     font-size: 18px;
@@ -115,6 +118,7 @@
 }
 @media screen and (min-width: 1300px) {
   .dashboard-task-list-container {
+    height: 500px;
     width: 70%;
   }
   #dashboard-label-task-list {
