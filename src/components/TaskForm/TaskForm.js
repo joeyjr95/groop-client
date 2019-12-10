@@ -236,7 +236,7 @@ export default class TaskForm extends Component {
             </select>
           </div>
           <div>
-            <Button type="button" onClick={this.handleSubmit}>
+            <Button className="CreateTaskButton" type="button" onClick={this.handleSubmit}>
               Create New Task
             </Button>
             <Button

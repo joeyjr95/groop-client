@@ -157,7 +157,7 @@ export default class SettingsRoute extends React.Component {
         >
           <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
         </button>
-        <h1>Account Settings</h1>
+        <h2>Account Settings</h2>
         <div role="alert" className="alert">
           {error && <p>{error}</p>}
         </div>
@@ -186,7 +186,7 @@ export default class SettingsRoute extends React.Component {
             </Button>
           </div>
         </form>
-        <h2>Change Your Password</h2>
+        <h3>Change Your Password</h3>
 
         <form className="form-pass" onSubmit={e => this.handlePassword(e)}>
           <fieldset>

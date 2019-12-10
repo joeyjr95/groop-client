@@ -2,9 +2,9 @@
 
 .Button,
 .ButtonCancel {
-  border: 1px solid #aaa;
-  background-color: white;
-  color: black;
+  border: 1px solid $color-bg-main5;
+  background-color: $color-bg-main2;
+  color: $color-font-header;
   font-size: 1.1em;
   border-radius: 4px;
   padding: 8px 12px;
