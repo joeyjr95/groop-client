@@ -7,6 +7,7 @@ import { RadialChart } from 'react-vis';
 import TaskItem from '../TaskItem/TaskItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 export default class GroopPage extends Component {
   static contextType = GroopContext;
@@ -215,7 +216,7 @@ export default class GroopPage extends Component {
                 })
               ) : (
                 <div className="empty-list">
-                  No Tasks Available. Add a task to get started.{' '}
+                  No Tasks Available. <Link to={`/add-task/${this.props.match.params.group_id}`}>Add a task</Link> to get started.{' '}
                 </div>
               )}
             </ul>
