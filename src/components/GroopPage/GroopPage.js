@@ -86,7 +86,7 @@ export default class GroopPage extends Component {
                 ))}
               </ul>
             </div>
-            <div className="scores-section">
+            {/* <div className="scores-section">
               <div className="scores-section1">
                 <label htmlFor="weekly-scores" id="weekly-scores-label">
                   Top Scores for today
@@ -123,7 +123,7 @@ export default class GroopPage extends Component {
                   ))}
                 </ol>
               </div>
-            </div>
+            </div> */}
             <div className="pieChart">
               <RadialChart
                 colorType={'literal'}
