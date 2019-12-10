@@ -34,12 +34,13 @@
   padding-bottom: 0px;
   margin-bottom: 0px;
   font-weight: 600;
+  font-family: $font-Family-other
 }
 
 #dashboard-label-task-list {
   width: 100%;
   z-index: 1;
-  background-color: $color-bg-secondary;
+  background-color:$color-secondary;
   text-align: center;
   color: white;
   font-size: 20px;
@@ -109,8 +110,8 @@
   }
   #dashboard-label-task-list {
     font-size: 18px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     color: white;
     margin-bottom: 0px;
   }
