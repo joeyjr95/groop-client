@@ -333,7 +333,6 @@ export default class Filter extends Component {
     }
   }
   render() {
-    console.log(this.props);
     const path = this.props.match.path;
     const dashboard = "/dashboard";
     if (path === dashboard) {
