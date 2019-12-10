@@ -18,7 +18,10 @@ export default class Filter extends Component {
     if (path === dashboard) {
       this.setState({ filter: "Task Name" });
       this.getUserGroups();
-    } else {
+      
+    } 
+    
+    else {
       let groupCategories = await GroopService.getCategories(
         this.props.match.params.group_id
       );
@@ -28,6 +31,7 @@ export default class Filter extends Component {
       });
     }
   };
+
   getUserGroups = () => {
     GroopService.getUserGroups().then(data => {
       this.context.setGroups(data);
@@ -329,9 +333,10 @@ export default class Filter extends Component {
     }
   }
   render() {
-    console.log(this.props);
     const path = this.props.match.path;
     const dashboard = "/dashboard";
+    console.log(this.state.category)
+    console.log(this.state.group)
     if (path === dashboard) {
       return (
         <div className="filter">
