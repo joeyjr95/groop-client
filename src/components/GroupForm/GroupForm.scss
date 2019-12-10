@@ -1,7 +1,7 @@
 @import "../../variables.scss";
 
 .AddGroupForm {
-  border: 2px solid $color-bg-secondary;
+  border: 2px solid $color-bg-main5;
   height: auto;
   padding: 15px;
   width: 97%;
@@ -17,15 +17,15 @@ form input {
   width: 100%;
   padding: 15px;
   margin: 0 auto;
-  border: 1px solid $color-link;
-  background: $color-font-header;
+  border: 1px solid $color-bg-main5;
+  background: $color-bg-main2;
   font-size: 1em;
   font-weight: 100;
 }
 
 @media only screen and (min-width: 750px) {
   .AddGroupForm {
-    border: 2px solid $color-bg-secondary;
+    border: 2px solid $color-bg-main5;
     height: auto;
     padding: 15px;
     margin: 65px auto;
@@ -35,8 +35,9 @@ form input {
     width: 100%;
     padding: 15px;
     margin: 0 auto;
-    border: 1px solid $color-link;
-    background: $color-font-offwhite;
+    border: 1px solid $color-bg-main5;
+    background: $color-bg-main2;
+    color: $color-font-offwhite;
     font-size: 1em;
     font-weight: 100;
   }

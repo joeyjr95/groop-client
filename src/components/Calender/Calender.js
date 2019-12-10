@@ -69,14 +69,14 @@ class Calender extends Component{
       return { events: state.events };
     });
   };
- getRandomColor =()=> {
+ /* getRandomColor =()=> {
    let min = Math.ceil(70)
    let max = Math.floor(78)
 const h = 920,
 s = 100+ '%',
 l = Math.floor(Math.random() * ((max - min) + min))+ '%';
 return `hsl(${h},${s},${l})`;
-  }
+  } */
 
   render() {
     //const { userTasks = [] } = this.context;
@@ -91,11 +91,11 @@ return `hsl(${h},${s},${l})`;
           localizer={localizer}
           resizable
           style={{ height: "80vh" }}
-          eventPropGetter={() => { 
+          /* eventPropGetter={() => { 
             
               const backgroundColor = this.getRandomColor(); 
               return { style: { backgroundColor } }; }
-            }
+            } */
         />
       </div>
     );
