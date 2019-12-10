@@ -74,6 +74,7 @@ class LoginForm extends Component {
             required
           />
         </div>
+        <p className="email-message">Please check your email for our verification request!</p>
         <Button type="submit">Login</Button>
       </form>
     );
