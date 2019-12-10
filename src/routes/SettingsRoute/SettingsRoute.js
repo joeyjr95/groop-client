@@ -134,7 +134,7 @@ export default class SettingsRoute extends React.Component {
     const editEmailButton = this.state.editEmail ? (
       <Button
         type="button"
-        className={this.state.editEmail}
+        className='ButtonCancel'
         onClick={this.handleEditEmail}
       >
         Cancel

@@ -75,7 +75,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: rgba(255, 255, 255, 0.739);
+  background-color: $color-bg-main2;
+  color: $color-font-offwhite;
 }
 
 .dashboard-task-list li {
