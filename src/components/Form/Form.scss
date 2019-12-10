@@ -20,8 +20,8 @@ input {
 }
 
 .Button {
-  border: 1px solid #aaa;
-  background-color: #eee;
+  border: 1px solid $color-font-offwhite;
+  background-color: $color-font-header;
   font-size: 1.1em;
   border-radius: 4px;
   padding: 8px 12px;
@@ -32,4 +32,6 @@ input {
 textarea {
   width: 100%;
   min-height: 8rem;
+  margin-bottom: 15px;
+  border-radius: 3px;
 }

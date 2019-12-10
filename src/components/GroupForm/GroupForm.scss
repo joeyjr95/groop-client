@@ -4,16 +4,21 @@
   border: 2px solid $color-bg-secondary;
   height: auto;
   padding: 15px;
-  margin: 60px 15px;
+  width: 97%;
+  margin: 60px auto;
   border-radius: 5px;
+}
+
+.AddGroupForm label {
+  margin-bottom: 5px;
 }
 
 form input {
   width: 100%;
   padding: 15px;
   margin: 0 auto;
-  border: 1px solid #231F20;
-  background: #f1f1f1;
+  border: 1px solid $color-link;
+  background: $color-font-header;
   font-size: 1em;
   font-weight: 100;
 }
@@ -30,8 +35,8 @@ form input {
     width: 100%;
     padding: 15px;
     margin: 0 auto;
-    border: 1px solid #231F20;
-    background: #f1f1f1;
+    border: 1px solid $color-link;
+    background: $color-font-offwhite;
     font-size: 1em;
     font-weight: 100;
   }

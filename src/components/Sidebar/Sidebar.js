@@ -46,7 +46,7 @@ export default class Sidebar extends Component {
                 <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
               </button>
               <Link to="/settings" className="settings-button-menu">
-                <FontAwesomeIcon icon={faCog} />
+                <FontAwesomeIcon id="SettingsIcon" icon={faCog} />
               </Link>
               <Link
                 onClick={() => this.handleLogout()}

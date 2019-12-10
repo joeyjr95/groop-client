@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
 import UserContext from '../../contexts/UserContext';
 import './Header.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 class Header extends Component {
   static contextType = UserContext;

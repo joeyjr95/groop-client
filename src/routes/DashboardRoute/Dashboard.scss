@@ -8,7 +8,7 @@
 }
 
 .ham-button {
-  border: 2px solid black;
+  border: 2px solid $color-link;
   font-size: 28px;
   position: fixed;
   background-color: inherit;
@@ -20,12 +20,12 @@
   &:hover {
     cursor: pointer;
     background-color: $color-link;
-    color: white;
+    color: $color-font-header;
   }
 }
 
 .dashboard-c {
-  color: rgb(226, 226, 226);
+  color: $color-font-offwhite;
   flex-grow: 5;
 
 }
@@ -39,22 +39,18 @@
 
 #dashboard-label-task-list {
   width: 100%;
-  z-index: 1;
   background-color:$color-secondary;
   text-align: center;
-  color: white;
+  color: $color-font-header;
   font-size: 20px;
   margin: 0 auto;
   padding: 0.8rem 0;
 }
-#dashboard-fixed-container {
-  // position: sticky;
-  // position: -webkit-sticky;
-  // top: 0;
-}
+
 .empty-list a{
   text-decoration-line: none;
 }
+
 #grouplink, #grouplink2{
   border-bottom: none;
 }
@@ -62,27 +58,28 @@
 .dashboard-task-list-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  // margin-left: 5%;
+  width: 97%;
   margin: 1rem auto;
-  // margin-right: 5%;
-  // margin-bottom: 40px;
+  border-radius: 3px;
 }
+
 .dashboard-task-list {
   list-style-type: none;
   padding-left: 0px;
   margin-top: 0;
-  color: black;
+  color: $color-link;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: rgba(255, 255, 255, 0.739);
 }
+
 .dashboard-task-list li {
   border-bottom: 2px solid $color-bg-secondary;
   width: 100%;
   text-align: left;
 }
+
 .dashboard-task-list li:not(:first-child) {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -112,7 +109,7 @@
     font-size: 18px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    color: white;
+    color: $color-font-header;
     margin-bottom: 0px;
   }
 }
