@@ -113,13 +113,13 @@ export default class TaskItem extends React.Component {
       </div>
     ) : null;
     const taskItemPriority =
-      this.state.priority === 3 ? (
+      task.priority === 3 ? (
         <>
           <div className="priority-box priority-box--high" />
           <div className="priority-box priority-box--high" />
           <div className="priority-box priority-box--high" />
         </>
-      ) : this.state.priority === 2 ? (
+      ) : task.priority === 2 ? (
         <>
           <div className="priority-box priority-box--med" />
           <div className="priority-box priority-box--med" />
