@@ -10,6 +10,7 @@
   color: $color-font-offwhite;
 
   &--complete {
+    color: $color-bg-main6;
   }
 }
 
@@ -88,14 +89,15 @@
   flex-flow: column;
   justify-content: center;
   padding: 0.25rem 0;
+  &--complete {
+    text-decoration: line-through;
+    color: $color-bg-main6;
+  }
 }
 
 .task-item__name {
   margin-bottom: 0.25rem;
   margin-top: 0.25rem;
-  &--complete {
-    text-decoration: line-through;
-  }
 }
 .task-item__date_due {
   margin: 0.25rem 0;

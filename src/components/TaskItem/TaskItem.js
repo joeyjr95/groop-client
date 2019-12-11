@@ -152,7 +152,13 @@ export default class TaskItem extends React.Component {
             htmlFor={`task-item-check-${task.id}`}
             onMouseDown={e => e.preventDefault()}
           ></label>
-          <div className="task-item__info">
+          <div
+            className={
+              this.state.completed
+                ? 'task-item__info task-item__info--complete'
+                : 'task-item__info'
+            }
+          >
             <h3
               className={
                 this.state.completed
