@@ -208,6 +208,12 @@ export default class Filter extends Component {
       filter: e,
     });
   };
+  onFilterByChange = async(e) => {
+    await this.setState({
+      filterBy: e,
+    });
+    this.filter(e)
+  };
 
   // controlled input for search input
   onSelectChange = e => {
