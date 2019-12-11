@@ -93,7 +93,14 @@ export default class TaskItem extends React.Component {
             </p>
           ) : null}
           <p className="task-detail__item">
-            <b>Start Time:</b> {task.time_start}
+            <b>Start Time:</b>{' '}
+            {new Date(task.time_start).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+            })}
           </p>
           <p className="task-detail__item">
             <b>Category:</b> {this.state.categoryName}

@@ -38,6 +38,12 @@ select {
   }
 }
 
+textarea {
+  padding: 0.5rem;
+  background-color: $color-bg-main2;
+  color: $color-font-offwhite;
+}
+
 @media only screen and (min-width: 530px) {
   .edit-task-form {
     margin: 100%;

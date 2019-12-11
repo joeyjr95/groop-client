@@ -16,7 +16,7 @@
 .task-heading {
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   background-color: $color-bg-main2;
@@ -82,7 +82,8 @@
 }
 
 .task-item__info {
-  width: 75%;
+  // width: 75%;
+  flex: 1 1 75%;
   display: flex;
   flex-flow: column;
   justify-content: center;
