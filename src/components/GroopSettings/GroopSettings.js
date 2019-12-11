@@ -1,29 +1,34 @@
-import GroopContext from '../../contexts/GroopContext';
-import GroopService from '../../services/groop-service';
-import React, { Component } from 'react';
-import Button from '../Button/Button';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import './GroopSetting.scss';
+import GroopContext from "../../contexts/GroopContext";
+import GroopService from "../../services/groop-service";
+import React, { Component } from "react";
+import Button from "../Button/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import "./GroopSetting.scss";
 
 export default class GroopSettings extends Component {
   static contextType = GroopContext;
   state = {
-    newMember: '',
-    deletedMember: 'select',
+    newMember: "",
+    deletedMember: "select",
     addConfirmation: null,
     addError: null,
     deleteConfirmation: null,
     deleteError: null,
+    categoryDeleteConfirmation: null,
+    categoryDeleteError: null,
     confirmGroupDelete: false,
     categoryConfirmation: null,
     categoryError: null,
-    newCategory: '',
+    newCategory: "",
+    categories: [],
+    deletedCategory: 0
   };
 
   componentDidMount = async () => {
     const group = await GroopService.getGroup(this.props.match.params.group_id);
     this.context.setCurrentGroup(group);
+    this.getGroupCategories(group.id);
     this.getGroupMembers(group.id);
   };
   handleAddCategory = async e => {
@@ -32,26 +37,24 @@ export default class GroopSettings extends Component {
       let body = {
         category_name: this.state.newCategory,
         group_id: this.props.match.params.group_id
-        
-      }
+      };
       const newCategory = await GroopService.addNewCategory(body);
       if (newCategory) {
         this.setState({
-          newMember: '',
+          newMember: "",
           categoryConfirmation: `${newCategory.category_name} has been added to the group`,
-          categoryError: null,
+          categoryError: null
         });
+        this.getGroupCategories(this.context.currentGroup.id)
       }
-  }catch (error) {
-    this.setState({ categoryError: error.error, categoryConfirmation: null });
-  }
-}
+    } catch (error) {
+      this.setState({ categoryError: error.error, categoryConfirmation: null });
+    }
+  };
 
   handleDeleteGroup = async e => {
     e.preventDefault();
-    await GroopService.deleteGroup(
-      this.context.currentGroup.id,
-    );
+    await GroopService.deleteGroup(this.context.currentGroup.id);
     this.props.history.go(-2);
   };
 
@@ -59,27 +62,50 @@ export default class GroopSettings extends Component {
     const groupmembers = await GroopService.getGroupMembers(group_id);
     this.context.setCurrentGroupMembers(groupmembers);
   };
+  getGroupCategories = async group_id => {
+    let categories = await GroopService.getCategories(group_id);
+        this.setState({categories})
+  }
 
   handleDeleteMember = async e => {
     e.preventDefault();
     const member = this.context.currentGroupMembers.filter(
-      member => member.id === this.state.deletedMember,
+      member => member.id === this.state.deletedMember
     );
     try {
       const deleted = await GroopService.deleteGroupMember({
         group_id: this.context.currentGroup.id,
-        member_id: this.state.deletedMember,
+        member_id: this.state.deletedMember
       });
 
       if (deleted == null) {
         this.setState({
           deleteConfirmation: `${member[0].username} removed from the group`,
-          deleteError: null,
+          deleteError: null
         });
         this.getGroupMembers(this.context.currentGroup.id);
       }
     } catch (error) {
       this.setState({ deleteError: error.error, deleteConfirmation: null });
+    }
+  };
+  handleDeleteCategory = async e => {
+    e.preventDefault();
+    try {
+      const deleted = await GroopService.deleteCategory(
+        this.state.deletedCategory
+      );
+
+      if (deleted == null) {
+        this.setState({
+          categoryDeleteConfirmation: `category removed from the group`,
+          categoryDeleteError: null,
+          deletedCategory: 0
+        });
+        this.getGroupCategories(this.context.currentGroup.id)
+      }
+    } catch (error) {
+      this.setState({ categoryDeleteError: error.error, categoryDeleteConfirmation: null });
     }
   };
 
@@ -88,14 +114,14 @@ export default class GroopSettings extends Component {
     try {
       const newMember = await GroopService.addNewGroupMember({
         group_id: this.context.currentGroup.id,
-        username: this.state.newMember,
+        username: this.state.newMember
       });
 
       if (newMember) {
         this.setState({
-          newMember: '',
+          newMember: "",
           addConfirmation: `${newMember.username} has been added to the group`,
-          addError: null,
+          addError: null
         });
         this.getGroupMembers(this.context.currentGroup.id);
       }
@@ -118,13 +144,20 @@ export default class GroopSettings extends Component {
       deleteConfirmation,
       deleteError,
       categoryConfirmation,
-    categoryError
+      categoryDeleteConfirmation,
+      categoryDeleteError,
+      categoryError
     } = this.state;
 
     // remove signed-in user from list of members to delete
     const members = this.context.currentGroupMembers.filter(
-      member => member.id !== this.props.user.id,
+      member => member.id !== this.props.user.id
     );
+    // remove default category from list of categories to delete
+    const categories = this.state.categories.filter(
+      category => category.category_name !== "General"
+    );
+    console.log(this.state.deletedCategory);
     const memberoptions = members.map(member => (
       <option key={`member${member.member_id}`} value={member.member_id}>
         {member.username}
@@ -138,7 +171,21 @@ export default class GroopSettings extends Component {
     );
     memberdropdown.push(memberoptions);
 
-    const group = this.context.currentGroup || '';
+    const categoryoptions = categories.map(category => (
+      <option key={`category${category.id}`} value={category.id}>
+        {category.category_name}
+      </option>
+    ));
+    let categorydropdown = [];
+    categorydropdown[0] = (
+      <option key={`categorynill`} value={0}>
+        select a category
+      </option>
+    );
+    categorydropdown.push(categoryoptions);
+    console.log(categorydropdown);
+
+    const group = this.context.currentGroup || "";
 
     const groupDelete = !this.state.confirmGroupDelete ? (
       <Button
@@ -150,14 +197,14 @@ export default class GroopSettings extends Component {
       </Button>
     ) : (
       <>
-        {' '}
+        {" "}
         <Button
           type="button"
           onClick={() => this.setState({ confirmGroupDelete: false })}
           className="CancelDeleteGroupButton"
         >
           Cancel
-        </Button>{' '}
+        </Button>{" "}
         <Button
           type="button"
           onClick={this.handleDeleteGroup}
@@ -238,7 +285,7 @@ export default class GroopSettings extends Component {
           onSubmit={e => this.handleDeleteMember(e)}
         >
           <label htmlFor="deleteGroupMember" className="deleteGroupMemberLabel">
-            Remove a member
+            Remove a Member
           </label>
           <div role="alert" className="alert">
             {deleteError && <p>{deleteError}</p>}
@@ -262,7 +309,37 @@ export default class GroopSettings extends Component {
             Remove
           </Button>
         </form>
-        
+        <form
+          className="deleteGroupCategory"
+          onSubmit={e => this.handleDeleteCategory(e)}
+        >
+          <label
+            htmlFor="deleteGroupCategory"
+            className="deleteGroupCategoryLabel"
+          >
+            Remove a Category
+          </label>
+          <div role="alert" className="category-alert">
+            {categoryDeleteError && <p>{categoryDeleteError}</p>}
+          </div>
+          <div role="alert" className="category-alert--success">
+            {categoryDeleteConfirmation && <p>{categoryDeleteConfirmation}</p>}
+          </div>
+          <select
+            onChange={e => this.setState({ deletedCategory: e.target.value })}
+            value={this.state.deletedCategory}
+          >
+            {categorydropdown}
+          </select>
+          <Button
+            type="submit"
+            className="ButtonCancel"
+            disabled={Number(this.state.deletedCategory) === 0}
+          >
+            Remove
+          </Button>
+        </form>
+
         {groupDelete}
       </section>
     );
