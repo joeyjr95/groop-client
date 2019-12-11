@@ -28,7 +28,7 @@
     }
   }
 }
-.member-select {
+.filter-search-form {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,6 +38,8 @@
   input {
     flex: 5 1 60%;
     margin-right: 1rem;
+    height: 40px;
+    margin-bottom: 1rem;
   }
 
   > div {
@@ -52,19 +54,15 @@
   }
 }
 
-select {
-  -webkit-appearance: none;
-  padding: 5px 10px;
-}
-
-.member-select input {
-  height: 40px;
-  margin-bottom: 1rem;
-}
-.member-select button {
+.filter-search-form button {
   display: inline-flex;
   flex-direction: column;
   align-items: center;
+}
+
+select {
+  -webkit-appearance: none;
+  padding: 5px 10px;
 }
 
 @media screen and (min-width: 800px) {
@@ -83,7 +81,7 @@ select {
       }
     }
   }
-  .member-select {
+  .filter-search-form {
     flex-direction: row;
     align-items: flex-end;
     > input {
