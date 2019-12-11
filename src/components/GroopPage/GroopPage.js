@@ -25,7 +25,15 @@ export default class GroopPage extends Component {
 
     // filter expired tasks (date due before today)
     let filteredTasks = tasks.filter(task => {
-      let task_due_date = new Date(task.date_due);
+      let tddstring = new Date(task.date_due).toISOString();
+      let task_due_date = new Date(
+        tddstring.substring(0, 4),
+        tddstring.substring(5, 7) - 1,
+        tddstring.substring(8, 10),
+        tddstring.substring(11, 13),
+        tddstring.substring(14, 16),
+      );
+
       return task_due_date >= today ? 1 : 0;
     });
 

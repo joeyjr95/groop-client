@@ -58,7 +58,7 @@ export default class EditTask extends Component {
       description: { value: task.description, touched: false },
       date_due: {
         date: task.date_due.substring(0, 10),
-        time: new Date(task.date_due).toLocaleTimeString('en-GB'),
+        time: new Date(task.date_due).toISOString().substring(11, 19),
         touched: false,
       },
       time_start: {
@@ -69,7 +69,7 @@ export default class EditTask extends Component {
         time:
           task.time_start == null
             ? '00:00'
-            : new Date(task.time_start).toLocaleTimeString('en-GB'),
+            : new Date(task.time_start).toISOString().substring(11, 19),
         touched: false,
       },
       user_assigned_id: { value: task.user_assigned_id, touched: false },

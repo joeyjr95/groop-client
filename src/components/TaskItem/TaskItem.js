@@ -99,6 +99,7 @@ export default class TaskItem extends React.Component {
               day: 'numeric',
               hour: 'numeric',
               minute: 'numeric',
+              timeZone: 'UTC',
             })}
           </p>
           <p className="task-detail__item">
@@ -174,6 +175,7 @@ export default class TaskItem extends React.Component {
                 day: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric',
+                timeZone: 'UTC',
               })}
             </h4>
           </div>
