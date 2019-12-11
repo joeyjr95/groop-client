@@ -156,7 +156,7 @@ export default class Filter extends Component {
           onChange={e => this.onGroupFilterChange(Number(e.target.value))}
         >
           <option key={`group_all`} id={0} name="all_groups" value={0}>
-            All Groups
+            My Tasks (no group selected)
           </option>
           {groups.map(group => (
             <option
