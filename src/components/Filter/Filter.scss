@@ -4,6 +4,7 @@
   display: flex;
   padding: 0.25rem 1rem;
   flex-direction: column;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: flex-end;
   margin-right: 0;
@@ -31,9 +32,11 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+  flex-wrap: wrap;
 
   input {
     flex: 5 1 60%;
+    margin-right: 1rem;
   }
 
   > div {
@@ -43,7 +46,7 @@
     flex: 1 1 auto;
 
     > button {
-      margin-bottom: 0;
+      margin: 0 1rem 1rem 0;
     }
   }
 }
@@ -55,6 +58,7 @@ select {
 
 .member-select input {
   height: 40px;
+  margin-bottom: 1rem;
 }
 .member-select button {
   display: inline-flex;
@@ -73,7 +77,7 @@ select {
     > label {
       flex: 1 1 150px;
       > select {
-        margin-bottom: 0;
+        margin-left: 0;
       }
     }
   }
