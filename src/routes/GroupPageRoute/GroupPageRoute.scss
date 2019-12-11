@@ -14,7 +14,6 @@
   display: flex;
   flex-flow: row-reverse nowrap;
   justify-content: space-between;
-  
 }
 
 .groop-page {
@@ -25,6 +24,7 @@
   padding-top: 35px;
   width: 100%;
   color: rgb(226, 226, 226);
+  padding-bottom: 2.5rem;
 }
 
 .groop-page h2 {
@@ -66,8 +66,7 @@
   font-weight: bold;
   margin: 15px auto;
   color: $color-font-offwhite;
-    font-family: $font-Family-other;
-  
+  font-family: $font-Family-other;
 }
 #label-menu {
   display: none;

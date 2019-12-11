@@ -168,7 +168,6 @@ export default class TaskItem extends React.Component {
               {task.name}{' '}
             </h3>
             <h4 className="task-item__date_due">
-              Due{' '}
               {new Date(task.date_due).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
