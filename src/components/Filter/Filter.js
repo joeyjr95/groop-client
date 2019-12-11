@@ -7,7 +7,6 @@ export default class Filter extends Component {
 
   state = {
     selectedInput: '',
-    filter: 'User Name',
     group: 0,
     categories: [],
     groupmembers: [],
@@ -19,7 +18,6 @@ export default class Filter extends Component {
   componentDidMount = async () => {
     if (this.props.match.path === '/dashboard') {
       this.setState({
-        filter: 'Task Name',
         categories: [],
         category: 0,
       });
@@ -47,44 +45,7 @@ export default class Filter extends Component {
   };
 
   // search for string included in task description
-  searchDescription = e => {
-    e.preventDefault();
-
-    let groupTasks = this.context.currentGroupTasks;
-    let selectedInput = this.state.selectedInput.toUpperCase();
-
-    if (this.props.match.path === '/dashboard') {
-      let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.description.toUpperCase().includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    } else {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.description.includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
-
-  // search for string included in task name
-  searchTaskName = e => {
-    e.preventDefault();
-
-    let groupTasks = this.context.currentGroupTasks;
-    let selectedInput = this.state.selectedInput.toUpperCase();
-
-    if (this.props.match.path === '/dashboard') {
-      let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.name.toUpperCase().includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    } else {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.name.includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
+  
 
   // searchIncompleted = e => {
   //   const path = this.props.match.path;
@@ -157,15 +118,22 @@ export default class Filter extends Component {
 
   search = e => {
     e.preventDefault();
-
-    let filter = this.state.filter;
     let groupTasks = this.context.currentGroupTasks;
+
     this.context.setFilteredTasks(groupTasks);
 
-    if (filter === 'Task Name') {
-      this.searchTaskName(e);
-    } else if (filter === 'Description') {
-      this.searchDescription(e);
+    let selectedInput = this.state.selectedInput.toUpperCase();
+
+    if (this.props.match.path === '/dashboard') {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return tasks.description.toUpperCase().includes(selectedInput) || tasks.name.toUpperCase().includes(selectedInput);
+      });
+      this.context.setFilteredTasks(filterTasks);
+    } else {
+      let filterTasks = groupTasks.filter(tasks => {
+        return tasks.description.toUpperCase().includes(selectedInput) || tasks.name.toUpperCase().includes(selectedInput);
+      });
+      this.context.setFilteredTasks(filterTasks);
     }
   };
   filter = e => {
@@ -183,11 +151,6 @@ export default class Filter extends Component {
     }
   };
 
-  onFilterChange = e => {
-    this.setState({
-      filter: e,
-    });
-  };
   onFilterByChange = async(e) => {
     await this.setState({
       filterBy: e,
@@ -410,23 +373,12 @@ export default class Filter extends Component {
             <option value="Low Priority">Low Priority</option>
           </select>
         </label>
-          <label htmlFor="search-cat-select">
-            Search by:
-            <select
-              name="select-search-category"
-              id="search-cat-select"
-              onChange={e => this.onFilterChange(e.target.value)}
-            >
-              <option value="Task Name">Task Name</option>
-              <option value="Description">Description</option>
-            </select>
-          </label>
           <form className="filter-search-form">
             <input
               type="text"
               id="filter-search-from__input"
               name="filter-search-form-input"
-              placeholder="search here"
+              placeholder="search task name or description here"
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
@@ -459,19 +411,6 @@ export default class Filter extends Component {
             <option value="Low Priority">Low Priority</option>
           </select>
         </label>
-
-          <label htmlFor="search-cat-select">
-            Search by:
-            <select
-              name="select-search-category"
-              id="search-cat-select"
-              onChange={e => this.onFilterChange(e.target.value)}
-            >
-              <option value="User Name">User Name</option>
-              <option value="Task Name">Task Name</option>
-              <option value="Description">Description</option>
-            </select>
-          </label>
 
           <form className="filter-search-form">
             <input
