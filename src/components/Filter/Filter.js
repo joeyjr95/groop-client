@@ -86,23 +86,91 @@ export default class Filter extends Component {
     }
   };
 
-  // searchCompleted = e => {
-  //   const path = this.props.match.path;
-  //   const dashboard = '/dashboard';
-  //   e.preventDefault();
-  //   let groupTasks = this.context.currentGroupTasks;
-  //   if (path === dashboard) {
-  //     let filterTasks = this.context.userTasks.filter(tasks => {
-  //       return tasks.completed === true;
-  //     });
-  //     this.context.setFilteredTasks(filterTasks);
-  //   } else {
-  //     let filterTasks = groupTasks.filter(tasks => {
-  //       return tasks.completed === true;
-  //     });
-  //     this.context.setFilteredTasks(filterTasks);
-  //   }
-  // };
+  searchCompleted = e => {
+    const path = this.props.match.path;
+    const dashboard = '/dashboard';
+    e.preventDefault();
+    let groupTasks = this.context.currentGroupTasks;
+    if (path === dashboard) {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return tasks.completed === true;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    } else {
+      let filterTasks = groupTasks.filter(tasks => {
+        return tasks.completed === true;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    }
+  };
+  searchIncompleted = e => {
+    const path = this.props.match.path;
+    const dashboard = '/dashboard';
+    e.preventDefault();
+    let groupTasks = this.context.currentGroupTasks;
+    if (path === dashboard) {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return tasks.completed === false;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    } else {
+      let filterTasks = groupTasks.filter(tasks => {
+        return tasks.completed === false;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    }
+  };
+  searchHighPriority = e => {
+    const path = this.props.match.path;
+    const dashboard = '/dashboard';
+    e.preventDefault();
+    let groupTasks = this.context.currentGroupTasks;
+    if (path === dashboard) {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return tasks.priority === 3;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    } else {
+      let filterTasks = groupTasks.filter(tasks => {
+        return tasks.priority === 3;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    }
+  };
+  searchMediumPriority = e => {
+    const path = this.props.match.path;
+    const dashboard = '/dashboard';
+    e.preventDefault();
+    let groupTasks = this.context.currentGroupTasks;
+    if (path === dashboard) {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return tasks.priority === 2;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    } else {
+      let filterTasks = groupTasks.filter(tasks => {
+        return tasks.priority === 2;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    }
+  };
+  searchLowPriority = e => {
+    const path = this.props.match.path;
+    const dashboard = '/dashboard';
+    e.preventDefault();
+    let groupTasks = this.context.currentGroupTasks;
+    if (path === dashboard) {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return tasks.priority === 1;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    } else {
+      let filterTasks = groupTasks.filter(tasks => {
+        return tasks.priority === 1;
+      });
+      this.context.setFilteredTasks(filterTasks);
+    }
+  };
 
   search = e => {
     e.preventDefault();
