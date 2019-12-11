@@ -51,11 +51,11 @@ export default class Filter extends Component {
     e.preventDefault();
 
     let groupTasks = this.context.currentGroupTasks;
-    let selectedInput = this.state.selectedInput;
+    let selectedInput = this.state.selectedInput.toUpperCase();
 
     if (this.props.match.path === '/dashboard') {
       let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.description.includes(selectedInput);
+        return tasks.description.toUpperCase().includes(selectedInput);
       });
       this.context.setFilteredTasks(filterTasks);
     } else {
@@ -71,11 +71,11 @@ export default class Filter extends Component {
     e.preventDefault();
 
     let groupTasks = this.context.currentGroupTasks;
-    let selectedInput = this.state.selectedInput;
+    let selectedInput = this.state.selectedInput.toUpperCase();
 
     if (this.props.match.path === '/dashboard') {
       let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.name.includes(selectedInput);
+        return tasks.name.toUpperCase().includes(selectedInput);
       });
       this.context.setFilteredTasks(filterTasks);
     } else {
@@ -86,23 +86,6 @@ export default class Filter extends Component {
     }
   };
 
-  // searchCompleted = e => {
-  //   const path = this.props.match.path;
-  //   const dashboard = '/dashboard';
-   
-  //   let groupTasks = this.context.currentGroupTasks;
-  //   if (path === dashboard) {
-  //     let filterTasks = this.context.userTasks.filter(tasks => {
-  //       return tasks.completed === true;
-  //     });
-  //     this.context.setFilteredTasks(filterTasks);
-  //   } else {
-  //     let filterTasks = groupTasks.filter(tasks => {
-  //       return tasks.completed === true;
-  //     });
-  //     this.context.setFilteredTasks(filterTasks);
-  //   }
-  // };
   // searchIncompleted = e => {
   //   const path = this.props.match.path;
   //   const dashboard = '/dashboard';
