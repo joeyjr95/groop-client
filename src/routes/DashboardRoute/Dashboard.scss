@@ -31,19 +31,19 @@
 .dashboard-c {
   color: $color-font-offwhite;
   flex-grow: 5;
-
+  width: 100%;
 }
 .dashboard-c h2 {
   font-size: 40px;
   padding-bottom: 0px;
   margin-bottom: 0px;
   font-weight: 600;
-  font-family: $font-Family-other
+  font-family: $font-Family-other;
 }
 
 #dashboard-label-task-list {
   width: 100%;
-  background-color:$color-secondary;
+  background-color: $color-secondary;
   text-align: center;
   color: $color-font-header;
   font-size: 20px;
@@ -51,12 +51,13 @@
   padding: 0.8rem 0;
 }
 
-.empty-list a{  
+.empty-list a {
   text-decoration-line: none;
   color: $color-secondary;
 }
 
-#grouplink, #grouplink2{
+#grouplink,
+#grouplink2 {
   border-bottom: none;
 }
 
@@ -68,6 +69,7 @@
   height: 500px;
   margin: 1rem auto;
   border-radius: 3px;
+  box-shadow: 5px 3px 8px $color-bg-main;
 }
 
 .dashboard-task-list {
@@ -86,9 +88,6 @@
   border-bottom: 2px solid $color-bg-secondary;
   width: 100%;
   text-align: left;
-}
-
-.dashboard-task-list li:not(:first-child) {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }

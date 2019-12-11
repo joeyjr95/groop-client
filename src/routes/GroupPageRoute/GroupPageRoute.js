@@ -38,9 +38,10 @@ export default class GroupPageRoute extends Component {
         <button
           className="ham-button"
           type="button"
+          aria-label="open sidebar"
           onClick={() => this.setState({ showMenu: true })}
         >
-          <FontAwesomeIcon icon={faAngleRight} id="openIcon" />
+          <FontAwesomeIcon icon={faAngleRight} />
         </button>
         <div className="groop-page">
           <h2>{currentgroup.name}</h2>

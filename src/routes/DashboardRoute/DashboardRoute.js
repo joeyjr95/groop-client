@@ -20,6 +20,7 @@ export default class DashBoardRoute extends Component {
         <button
           className="ham-button"
           type="button"
+          aria-label="open sidebar"
           onClick={() => this.setState({ showMenu: true })}
         >
           <FontAwesomeIcon icon={faAngleRight} id="openIcon" />

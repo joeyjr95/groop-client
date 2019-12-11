@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 // import config from "../../config";
 // import TokenService from "../../services/token-service";
-//import GroopContext from '../../contexts/GroopContext';
+import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
-import UserContext from '../../contexts/UserContext';
 import Button from '../Button/Button';
 import { Input, Textarea } from '../Form/Form';
 import './EditTask.scss';
 
 export default class EditTask extends Component {
-  static contextType = UserContext;
+  static contextType = GroopContext;
   state = {
     task: null,
     error: null,
