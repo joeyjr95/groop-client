@@ -39,6 +39,7 @@
   -webkit-align-items: center;
   font-family: $font-Family-normal;
   width: 100%;
+  font-size: 12px;
   overflow: hidden;
   padding: 8px;
   -webkit-padding-start: 1px;
@@ -78,6 +79,9 @@ select {
     border: 2px solid $color-bg-main5;
     width: 90%;
     padding: 1.5rem;
+  }
+  .dateInput {
+    font-size: inherit;
   }
 }
 

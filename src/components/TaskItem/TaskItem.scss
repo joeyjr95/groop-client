@@ -74,7 +74,7 @@
   width: 50px;
   position: absolute;
   left: -999px;
-  display: hidden;
+  display: none;
 
   &:checked + label {
     background-color: $color-bg-main5;

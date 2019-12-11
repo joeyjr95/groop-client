@@ -170,20 +170,25 @@ export default class TaskItem extends React.Component {
           <div className="task-item__actions">
             <Button
               type="button"
+              aria-label={
+                this.state.showMore
+                  ? 'show less information'
+                  : 'show more information'
+              }
               onClick={() => this.setState({ showMore: !this.state.showMore })}
               className="task-item__edit"
             >
               <FontAwesomeIcon
                 icon={this.state.showMore ? faAngleUp : faAngleDown}
-                id="showMoreIcon"
               />
             </Button>
             <Button
               type="button"
+              aria-label="edit task"
               onClick={() => this.goEdit(task.id)}
               className="task-item__edit"
             >
-              <FontAwesomeIcon icon={faEdit} id="editIcon" />
+              <FontAwesomeIcon icon={faEdit} />
             </Button>
           </div>
         </div>

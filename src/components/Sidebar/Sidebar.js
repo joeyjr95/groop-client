@@ -41,16 +41,22 @@ export default class Sidebar extends Component {
               <button
                 className="ham-button-menu"
                 type="button"
+                aria-label="close sidebar"
                 onClick={() => this.props.hideMenu()}
               >
-                <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
+                <FontAwesomeIcon icon={faAngleLeft} id="closeIcon" />
               </button>
-              <Link to="/settings" className="settings-button-menu">
+              <Link
+                to="/settings"
+                aria-label="account settings"
+                className="settings-button-menu"
+              >
                 <FontAwesomeIcon id="SettingsIcon" icon={faCog} />
               </Link>
               <Link
                 onClick={() => this.handleLogout()}
                 to="/login"
+                aria-label="sign out"
                 className="settings-button-menu"
               >
                 <FontAwesomeIcon icon={faSignOutAlt} />
@@ -84,16 +90,22 @@ export default class Sidebar extends Component {
               <button
                 className="ham-button-menu"
                 type="button"
+                aria-label="close sidebar"
                 onClick={() => this.props.hideMenu()}
               >
                 <FontAwesomeIcon icon={faAngleLeft} id="openIcon" />
               </button>
-              <Link to="/settings" className="settings-button-menu">
+              <Link
+                to="/settings"
+                aria-label="account settings"
+                className="settings-button-menu"
+              >
                 <FontAwesomeIcon icon={faCog} />
               </Link>
               {currentGroup.owner_id === this.props.user.id ? (
                 <Link
                   to={`/groupsettings/${this.props.match.params.group_id}`}
+                  aria-label="group-settings"
                   className="settings-button-menu"
                 >
                   <FontAwesomeIcon icon={faUsersCog} id="groupSettingsIcon" />
@@ -102,6 +114,7 @@ export default class Sidebar extends Component {
               <Link
                 onClick={() => this.handleLogout()}
                 to="/login"
+                arialabel="sign out"
                 className="settings-button-menu"
               >
                 <FontAwesomeIcon icon={faSignOutAlt} />
