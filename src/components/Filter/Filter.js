@@ -13,6 +13,7 @@ export default class Filter extends Component {
     groupmembers: [],
     category: 0,
     groupmember: '',
+    filterBy: '',
   };
 
   componentDidMount = async () => {
@@ -114,6 +115,23 @@ export default class Filter extends Component {
       this.searchTaskName(e);
     } else if (filter === 'Description') {
       this.searchDescription(e);
+    }
+  };
+  filter = e => {
+    e.preventDefault();
+    let groupTasks = this.context.currentGroupTasks;
+    this.context.setFilteredTasks(groupTasks);
+    let filter = this.state.filterBy;
+    if (filter === "Completed") {
+      this.searchCompleted(e);
+    } else if (filter === "Incompleted") {
+      this.searchIncompleted(e);
+    } else if (filter === "High Priority") {
+      this.searchHighPriority(e);
+    } else if (filter === "Medium Priority") {
+      this.searchMediumPriority(e);
+    } else if (filter === "Low Priority") {
+      this.searchLowPriority(e);
     }
   };
 
