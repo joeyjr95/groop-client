@@ -40,12 +40,12 @@
 }
 
 button:disabled {
-  color: $color-bg-main5;
+  color: $color-bg-main;
   background-color: $color-font-offwhite;
 }
 
 button:disabled:hover {
-  color: $color-bg-main5;
+  color: $color-bg-main;
   background-color: $color-font-offwhite;
   border: 1px solid #aaaaaa;
 }

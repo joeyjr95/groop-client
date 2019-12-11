@@ -33,6 +33,7 @@ class Calender extends Component{
   }
   reMap(){
     const path = this.props.location.pathname;
+    console.log(path)
     const dashboard = "/calendar/dashboard";
 
     let userTasks = this.context.userTasks;
@@ -43,8 +44,7 @@ class Calender extends Component{
         return {
           start: new Date(task.time_start),
           end: new Date(task.date_due),
-          title: task.name,
-          id: task.id
+          title: task.name
         }
       })
       this.setState({events: [...newEvents]});
@@ -59,6 +59,7 @@ class Calender extends Component{
       })
       this.setState({events: [...newEvents]});
     }
+    console.log(this.state.events)
   }
 
   onEventResize = (type, { event, start, end, allDay }) => {
@@ -68,15 +69,18 @@ class Calender extends Component{
       return { events: state.events };
     });
   };
-
-  handleSelectEvent(event) {
-    let path = `/edit-task/${event.id}`;
-    this.props.history.push(path);
-}
-
+ /* getRandomColor =()=> {
+   let min = Math.ceil(70)
+   let max = Math.floor(78)
+const h = 920,
+s = 100+ '%',
+l = Math.floor(Math.random() * ((max - min) + min))+ '%';
+return `hsl(${h},${s},${l})`;
+  } */
 
   render() {
     //const { userTasks = [] } = this.context;
+    //console.log(userTasks);
     return (
       <div className="CalenderContainer">
         <Calendar
@@ -84,10 +88,14 @@ class Calender extends Component{
           defaultView="month"
           showMultiDayTimes
           events={this.state.events}
-          onSelectEvent={(event) =>this.handleSelectEvent(event)}
           localizer={localizer}
           resizable
           style={{ height: "80vh" }}
+          /* eventPropGetter={() => { 
+            
+              const backgroundColor = this.getRandomColor(); 
+              return { style: { backgroundColor } }; }
+            } */
         />
       </div>
     );

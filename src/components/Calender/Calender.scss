@@ -1,20 +1,18 @@
 @import '../../variables.scss';
-
+ 
 .CalenderContainer {
   width: 97%;
   margin: 25px auto;
 }
 
-.rbc-month-view,
-.rbc-time-view {
+.rbc-month-view, .rbc-time-view{
   border-radius: 3px;
 }
 
-.rbc-toolbar span button {
+.rbc-toolbar span button{
   color: $color-font-offwhite;
 }
-
-.rbc-calendar {
+.rbc-calendar{
   color: $color-font-offwhite;
 }
 
@@ -32,8 +30,7 @@
   color: $color-font-offwhite;
 }
 
-.rbc-month-header,
-.rbc-time-header-content {
+.rbc-month-header, .rbc-time-header-content {
   background-color: $color-bg-main4;
 }
 
@@ -52,8 +49,7 @@
   border-left: 1px solid $color-bg-main5 !important;
 }
 
-.rbc-day-bg,
-.rbc-time-header-gutter {
+.rbc-day-bg, .rbc-time-header-gutter {
   background-color: $color-bg-main3;
   color: $color-font-offwhite;
 }
@@ -71,7 +67,7 @@
 }
 
 .rbc-toolbar button.rbc-active {
-  color: $color-font-normal;
+  color:$color-font-normal;
 }
 
 .rbc-off-range-bg {
@@ -82,7 +78,7 @@
   background-color: $color-bg-main3 !important;
 }
 
-.rbc-time-column {
+.rbc-time-column{
   background-color: $color-bg-main3 !important;
 }
 
@@ -91,24 +87,11 @@
   color: $color-font-offwhite;
   font-family: $font-Family-normal;
 }
-.rbc-toolbar button {
-  padding: 0 !important;
-}
-.rbc-toolbar {
-  font-size: 1.5em;
-}
 
 @media only screen and (min-width: 750px) {
   .rbc-toolbar-label {
     font-size: 2em;
     color: $color-font-offwhite;
     font-family: $font-Family-normal;
-  }
-  .rbc-toolbar {
-    font-size: 1em;
-    flex-wrap: nowrap;
-  }
-  .rbc-toolbar button {
-    padding: .375rem 1rem !important;
   }
 }

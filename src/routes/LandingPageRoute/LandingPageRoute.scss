@@ -11,52 +11,6 @@
   color: $color-font-header;
 }
 
-.Aboutdescription {
-  padding: 0 20%;
-}
-
-.SectionAboutCont {
-  padding-bottom: 15px;
-  border-bottom: 1px solid $color-font-offwhite;
-}
-
-.AboutContainer li {
-  list-style-type: none;
-  margin: 0 1%;
-}
-
-.AboutContainer ul {
-  padding-left: 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: space-between;
-}
-
-.AboutContainer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  color: $color-font-offwhite;
-}
-
-.TutInnerCont {
-  padding: 15px;
-}
-
-.AboutContainer img {
-  width: auto;
-  height: auto;
-  border: 2px solid $color-font-offwhite;
-  border-radius: 3px;
-  max-height: 400px;
-}
-
-.MarryContainer {
-  display: flex;
-  flex-direction: row;
-}
-
 .landing-page-bg {
   background-image: url('https://i.imgur.com/Qg3cEoS.jpg');
   filter: blur(3px);
@@ -107,19 +61,11 @@
 @media screen and (min-width: 540px) {
 }
 
-@media screen and (max-width: 800px) {
-  .MarryContainer {
-    display: flex;
-    flex-direction: column;
-  }
-  .AboutContainer img {
-    width: 100%;
-    height: auto;
-    border: 2px solid $color-font-offwhite;
-    border-radius: 3px;
-    max-height: 700px;
-  }
-  .Aboutdescription {
-    padding: 15px 15px;
-  }
+@media screen and (min-width: 800px) {
+}
+
+@media screen and (min-width: 1200px) {
+}
+
+@media screen and (min-width: 1600px) {
 }

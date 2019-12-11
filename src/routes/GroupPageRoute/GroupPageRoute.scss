@@ -22,9 +22,8 @@
   flex-direction: column;
   align-items: center;
   padding-top: 35px;
-  width: 100%;
   color: rgb(226, 226, 226);
-  padding-bottom: 2.5rem;
+  padding-left: 200px;
 }
 
 .groop-page h2 {
@@ -32,8 +31,7 @@
   padding-bottom: 0px;
   margin-bottom: 0px;
   margin-top: 0;
-  font-family: $font-Family-other;
-  color: $color-font-offwhite;
+  font-family: $font-Family-other
 }
 
 .members-section {
@@ -65,8 +63,6 @@
   font-size: 30px;
   font-weight: bold;
   margin: 15px auto;
-  color: $color-font-offwhite;
-  font-family: $font-Family-other;
 }
 #label-menu {
   display: none;
@@ -89,7 +85,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 3px 8px $color-bg-main;
 }
 .task-list {
   list-style-type: none;
@@ -105,6 +100,8 @@
   border-bottom: 2px solid $color-bg-secondary;
   width: 100%;
   text-align: left;
+}
+.task-list li:not(:first-child) {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
@@ -113,12 +110,6 @@
   padding: 2rem;
   font-size: 1.2rem;
   margin: 0 auto;
-}
-
-@media screen and (min-width: 800px) {
-  .groop-page {
-    padding-left: 200px;
-  }
 }
 @media screen and (min-width: 1200px) {
   .groop-page {
@@ -146,6 +137,7 @@
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
     margin-bottom: 0px;
+    
   }
   .task-list {
     width: 100%;
@@ -156,7 +148,7 @@
     color: $color-font-offwhite;
     width: 100%;
   }
-
+  
   #label-menu {
     display: inherit;
     font-size: 18px;
@@ -177,7 +169,7 @@
   .menu li {
     font-size: 16px;
     line-height: 1.5rem;
-    margin: 0.25rem 0.25rem;
+    margin: 0.25rem .25rem;
   }
   .scores-section {
     display: flex;
@@ -213,7 +205,6 @@
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     background-color: $color-bg-main2;
-    box-shadow: 5px 3px 8px $color-bg-main;
   }
   .AllTimeScore {
     color: $color-bg-secondary;
