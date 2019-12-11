@@ -134,7 +134,7 @@ export default class SettingsRoute extends React.Component {
     const editEmailButton = this.state.editEmail ? (
       <Button
         type="button"
-        className="ButtonCancel"
+        className='ButtonCancel'
         onClick={this.handleEditEmail}
       >
         Cancel
@@ -152,7 +152,6 @@ export default class SettingsRoute extends React.Component {
       <section className="settings-page">
         <button
           className="back-button"
-          aria-label="previous page"
           type="button"
           onClick={() => this.props.history.goBack()}
         >
@@ -166,12 +165,9 @@ export default class SettingsRoute extends React.Component {
           {success && <p>{success}</p>}
         </div>
         <form className="account-item" onSubmit={e => this.handleEmail(e)}>
-          <label htmlFor="email-change-input">
-            <h3>Email</h3>
-          </label>
+          <h3>Email</h3>
           <input
             type="email"
-            id="email-change-input"
             className="input-disabled"
             placeholder="user's email"
             value={this.state.email}
@@ -247,9 +243,7 @@ export default class SettingsRoute extends React.Component {
         </form>
 
         <h2>Manage Notifications</h2>
-        <label id="notifications-heading">
-          <p>Do you want to receive email notifications?</p>
-        </label>
+        <p>Do you want to receive email notifications?</p>
         <form
           className="NotificationContainer"
           onSubmit={e => this.handleNotification(e)}
@@ -267,7 +261,6 @@ export default class SettingsRoute extends React.Component {
                 type="radio"
                 id="notify-button--yes"
                 name="email-updates"
-                aria-labelledby="notifications-heading"
                 value={true}
                 onChange={() => this.notificationOn()}
                 checked={this.state.notifications ? 1 : 0}
@@ -280,7 +273,6 @@ export default class SettingsRoute extends React.Component {
                 type="radio"
                 id="notify-button--no"
                 name="email-updates"
-                aria-labelledby="notifications-heading"
                 value={false}
                 onChange={() => this.notificationOff()}
                 checked={this.state.notifications ? 0 : 1}
