@@ -56,7 +56,6 @@ export default class TaskItem extends React.Component {
     });
 
     if (!newTask) {
-      console.log(`toggle didn't work`);
     } else {
       this.setState({ completed: newTask.completed });
     }
