@@ -115,7 +115,7 @@ export default class Filter extends Component {
       this.context.setFilteredTasks(filterTasks);
     }
   };
-
+// search for string included in task description / taskname
   search = e => {
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
