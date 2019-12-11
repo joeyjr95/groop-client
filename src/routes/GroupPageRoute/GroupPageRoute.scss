@@ -14,6 +14,7 @@
   display: flex;
   flex-flow: row-reverse nowrap;
   justify-content: space-between;
+  
 }
 
 .groop-page {
@@ -32,6 +33,7 @@
   margin-bottom: 0px;
   margin-top: 0;
   font-family: $font-Family-other;
+  color: $color-font-offwhite;
 }
 
 .members-section {
@@ -63,6 +65,9 @@
   font-size: 30px;
   font-weight: bold;
   margin: 15px auto;
+  color: $color-font-offwhite;
+    font-family: $font-Family-other;
+  
 }
 #label-menu {
   display: none;

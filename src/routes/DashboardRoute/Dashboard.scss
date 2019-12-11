@@ -6,6 +6,9 @@
   flex-flow: row-reverse nowrap;
   justify-content: space-between;
 }
+#date{
+  font-family: $font-Family-other;
+}
 
 .ham-button {
   border: 2px solid $color-font-offwhite;
