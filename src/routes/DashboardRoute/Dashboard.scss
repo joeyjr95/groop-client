@@ -30,8 +30,10 @@
 
 .dashboard-c {
   color: $color-font-offwhite;
-  flex-grow: 5;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2.5rem;
 }
 .dashboard-c h2 {
   font-size: 40px;
@@ -80,6 +82,7 @@
   align-items: flex-start;
   background-color: $color-bg-main2;
   color: $color-font-offwhite;
+  margin-bottom: 2.5rem;
 }
 
 .dashboard-task-list li {
@@ -88,6 +91,9 @@
   text-align: left;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+.main-dashboard-section {
+  margin-bottom: 2.5rem;
 }
 
 @media screen and (min-width: 800px) {
@@ -122,13 +128,9 @@
 }
 @media screen and (min-width: 1300px) {
   .dashboard-task-list-container {
-    height: 500px;
     width: 70%;
   }
   #dashboard-label-task-list {
     font-size: 20px;
-  }
-  .main-dashboard-section {
-    margin-top: 15px;
   }
 }
