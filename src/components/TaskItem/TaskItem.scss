@@ -2,7 +2,7 @@
 
 .task-item {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
@@ -13,12 +13,48 @@
   }
 }
 
+.task-heading {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background-color: $color-bg-main2;
+  color: $color-font-offwhite;
+}
+
+.task-detail {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.task-detail-spacer {
+  flex: 0 0 2rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+  height: 2rem;
+}
+.task-detail-spacer2 {
+  width: calc(80px + 5.6rem);
+  padding: 0 0.5rem;
+}
+
+.task-detail__info {
+  border-top: 2px solid $color_bg_main;
+  width: 75%;
+}
+.task-detail__item {
+  line-height: 1rem;
+}
+
 .task-item__check-label {
   flex: 0 0 2rem;
   border: 2px solid $color-bg-main4;
   height: 2rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
+  margin: auto 1rem;
   border-radius: 50%;
   &:hover {
     cursor: pointer;
@@ -27,6 +63,11 @@
 
 .task-item__edit {
   border: 1px solid $color-secondary;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .task-item__check {
@@ -42,16 +83,21 @@
 
 .task-item__info {
   width: 75%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  padding: 0.25rem 0;
 }
 
 .task-item__name {
   margin-bottom: 0.25rem;
+  margin-top: 0.25rem;
   &--complete {
     text-decoration: line-through;
   }
 }
 .task-item__date_due {
-  margin: 0.1rem 0;
+  margin: 0.25rem 0;
 }
 
 .task-item__description {
@@ -59,13 +105,39 @@
 }
 
 .task-item__actions {
-  width: 75px;
+  width: calc(80px + 1rem);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  padding: 0 0.5rem;
 
   > button {
     margin: 0.25rem 0.25rem;
+  }
+}
+.task-item__priority {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 3rem;
+  height: 100%;
+  margin: 0 0.8rem;
+}
+.priority-box {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: 0.2rem 0.2rem;
+  border-radius: 4px;
+  background-color: $color-bg-main6;
+  &--high {
+    background-color: #a02030;
+  }
+  &--med {
+    background-color: $color-error;
+  }
+  &--low {
+    background-color: $color-secondary;
   }
 }
