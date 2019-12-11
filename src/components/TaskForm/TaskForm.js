@@ -74,7 +74,7 @@ export default class TaskForm extends Component {
     const newTask = {
       name: this.state.name.value,
       description: this.state.description.value,
-      user_assigned_id: this.state.user_assigned_id.value,
+      user_assigned_id: parseInt(this.state.user_assigned_id.value),
       time_start: `${this.state.time_start.date}T${this.state.time_start.time}`,
       date_due: `${this.state.date_due.date}T${this.state.date_due.time}`,
       group_id: this.state.group_id,
