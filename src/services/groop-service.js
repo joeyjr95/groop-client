@@ -160,5 +160,16 @@ const GroopService = {
       !res.ok ? res.json().then(e => Promise.reject(e)) : res.json(),
     );
   },
+  deleteCategory(id) {
+    return fetch(
+      `${config.API_ENDPOINT}/categories/${id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `bearer ${TokenService.getAuthToken()}`,
+        },
+      },
+    ).then(res => (!res.ok ? res.json().then(e => Promise.reject(e)) : null));
+  },
 };
 export default GroopService;

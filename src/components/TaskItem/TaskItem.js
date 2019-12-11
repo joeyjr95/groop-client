@@ -45,7 +45,7 @@ export default class TaskItem extends React.Component {
     );
     this.setState({
       categoryName: currentCategory ? currentCategory.category_name : '',
-      assignedUserName: assignedUser.username,
+      assignedUserName: assignedUser ? assignedUser.username : '',
     });
   };
 
