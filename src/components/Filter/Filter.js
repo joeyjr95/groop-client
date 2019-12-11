@@ -196,7 +196,7 @@ export default class Filter extends Component {
     } else if (filter === "Low Priority") {
       this.searchLowPriority(e);
     } else if(filter === "None") {
-      this.onReset()
+      this.hardReset()
     }
   };
 
@@ -221,6 +221,19 @@ export default class Filter extends Component {
 
   // clear search and reset task list
   onReset = e => {
+    e.preventDefault()
+    let groupTasks = this.context.currentGroupTasks;
+    this.setState({
+      selectedInput: '',
+    });
+
+    if (this.props.match.path === '/dashboard') {
+      this.context.setFilteredTasks(this.context.userTasks);
+    } else {
+      this.context.setFilteredTasks(groupTasks);
+    }
+  };
+  hardReset = e => {
     let groupTasks = this.context.currentGroupTasks;
     this.setState({
       selectedInput: '',
