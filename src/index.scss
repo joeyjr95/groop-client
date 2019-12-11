@@ -28,6 +28,10 @@ body {
   --font-size: calc(10px + 1vmin);
 }
 
+select {
+  border-radius: 4px;
+}
+
 .alert {
   color: $color-error;
   &--success {

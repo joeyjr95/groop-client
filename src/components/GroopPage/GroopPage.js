@@ -13,7 +13,7 @@ export default class GroopPage extends Component {
   static contextType = GroopContext;
 
   componentDidMount = async () => {
-    const group = await GroopService.getGroup(this.props.match.params.group_id);
+    await GroopService.getGroup(this.props.match.params.group_id);
     this.getGroupTasks();
     this.getGroupMembers();
   };
@@ -42,63 +42,65 @@ export default class GroopPage extends Component {
       this.context.setCurrentGroupMembers(data);
     });
   };
-  chartAngle(member){
-   let filteredTasks = this.context.currentGroupTasks.filter( tasks =>{
-      return tasks.user_assigned_id === member.member_id
-    }
-    )
-   let priorityAngle = filteredTasks.map( tasks =>{
-     return tasks.priority 
-    })
-    if (priorityAngle.length === 0){
-      return 0
-    }else{
-   return Number(priorityAngle.reduce((a, b) => a + b))
+  chartAngle(member) {
+    let filteredTasks = this.context.currentGroupTasks.filter(tasks => {
+      return tasks.user_assigned_id === member.member_id;
+    });
+    let priorityAngle = filteredTasks.map(tasks => {
+      return tasks.priority;
+    });
+    if (priorityAngle.length === 0) {
+      return 0;
+    } else {
+      return Number(priorityAngle.reduce((a, b) => a + b));
     }
   }
-  
-  renderChart(){
-    const { currentGroupMembers = []} = this.context;
-    let colors =['#1c939a', '#72bce0','#bad7e6','#5891ad','#1780B0','#1653A6','#126266','#52A6AA','#105659','#A62E7B']
-    if(currentGroupMembers.length < 2){
-      return <> </>
-    }else{
-    let chartInfo = currentGroupMembers.map((member, i) => (
-      {
-         angle: this.chartAngle(member),
-         color: colors[i%(colors.length - 1)], 
-         name: member.username 
-      }
-    ))
-    console.log(chartInfo)
-    return (
-      <div className="pieChart">
-              <RadialChart
-                colorType={'literal'}
-                colorDomain={[0, 100]}
-                colorRange={[0, 10]}
-                getLabel={d => d.name}
-                data={
-                  chartInfo
-                }
-                labelsRadiusMultiplier={1}
-                labelsStyle={{ fontSize: 16 }}
-                showLabels
-                style={{ stroke: '#fff', strokeWidth: 2 }}
-                width={250}
-                height={250}
-              ></RadialChart>
-              <p> Point totals for assigned tasks</p>
-            </div>
-  
-    )
 
+  renderChart() {
+    const { currentGroupMembers = [] } = this.context;
+    let colors = [
+      '#1c939a',
+      '#72bce0',
+      '#bad7e6',
+      '#5891ad',
+      '#1780B0',
+      '#1653A6',
+      '#126266',
+      '#52A6AA',
+      '#105659',
+      '#A62E7B',
+    ];
+    if (currentGroupMembers.length < 2) {
+      return <> </>;
+    } else {
+      let chartInfo = currentGroupMembers.map((member, i) => ({
+        angle: this.chartAngle(member),
+        color: colors[i % (colors.length - 1)],
+        name: member.username,
+      }));
+      return (
+        <div className="pieChart">
+          <RadialChart
+            colorType={'literal'}
+            colorDomain={[0, 100]}
+            colorRange={[0, 10]}
+            getLabel={d => d.name}
+            data={chartInfo}
+            labelsRadiusMultiplier={1}
+            labelsStyle={{ fontSize: 16, backgroundColor: '#202020' }}
+            showLabels
+            style={{ stroke: '#202020', strokeWidth: 2 }}
+            width={250}
+            height={250}
+          ></RadialChart>
+          <p> Point totals for assigned tasks</p>
+        </div>
+      );
     }
   }
 
   render() {
     const { currentGroupMembers = [], filteredTasks = [] } = this.context;
-    console.log(this.context.currentGroupTasks)
     return (
       <>
         <Filter {...this.props} />
@@ -109,14 +111,16 @@ export default class GroopPage extends Component {
             </label>
             <ul className="menu" role="menu">
               {currentGroupMembers.map(member => {
-               return( <li
-                  key={member.member_id}
-                  id={member.member_id}
-                  aria-live="polite"
-                >
-                  <p>{member.username}</p>
-                </li>
-               ) })}
+                return (
+                  <li
+                    key={member.member_id}
+                    id={member.member_id}
+                    aria-live="polite"
+                  >
+                    <p>{member.username}</p>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
@@ -216,7 +220,11 @@ export default class GroopPage extends Component {
                 })
               ) : (
                 <div className="empty-list">
-                  No Tasks Available. <Link to={`/add-task/${this.props.match.params.group_id}`}>Add a task</Link> to get started.{' '}
+                  No Tasks Available.{' '}
+                  <Link to={`/add-task/${this.props.match.params.group_id}`}>
+                    Add a task
+                  </Link>{' '}
+                  to get started.{' '}
                 </div>
               )}
             </ul>
