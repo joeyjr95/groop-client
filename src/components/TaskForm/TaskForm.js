@@ -251,8 +251,6 @@ export default class TaskForm extends Component {
               <option value={2}>Medium</option>
               <option value={3}>High</option>
             </select>
-          </div>
-          <div>
             <label htmlFor="edit-task-assignment">Assigned to</label>
             <select
               id="edit-task-assignment"

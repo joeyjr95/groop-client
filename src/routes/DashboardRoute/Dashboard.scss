@@ -6,7 +6,7 @@
   flex-flow: row-reverse nowrap;
   justify-content: space-between;
 }
-#date{
+#date {
   font-family: $font-Family-other;
 }
 
@@ -63,10 +63,8 @@
 
 .dashboard-task-list-container {
   display: flex;
-  overflow-y: auto;
   flex-direction: column;
   width: 97%;
-  height: 500px;
   margin: 1rem auto;
   border-radius: 3px;
   box-shadow: 5px 3px 8px $color-bg-main;
