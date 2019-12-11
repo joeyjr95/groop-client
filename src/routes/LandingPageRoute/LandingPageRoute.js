@@ -43,8 +43,8 @@ export default class LandingPageRoute extends Component {
               Our intention was to create an app that can be used for a wide
               variety of task planning and event organization all while being
               fun at the same time! Once logged in and registered a user can
-              create groops. and within those groops invite/remove members,
-              create/edit tasks, view scoreboard to effectively get tasks done on
+              create groops, and within those groops invite/remove members,
+              create/edit tasks, and view a scoreboard to effectively get tasks done on
               time.
             </p>
             <h3> How to use groop</h3>
