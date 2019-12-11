@@ -86,44 +86,44 @@ export default class Filter extends Component {
     }
   };
 
-  searchCompleted = e => {
-    const path = this.props.match.path;
-    const dashboard = '/dashboard';
-    e.preventDefault();
-    let groupTasks = this.context.currentGroupTasks;
-    if (path === dashboard) {
-      let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.completed === true;
-      });
-      this.context.setFilteredTasks(filterTasks);
-    } else {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.completed === true;
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
-  searchIncompleted = e => {
-    const path = this.props.match.path;
-    const dashboard = '/dashboard';
-    e.preventDefault();
-    let groupTasks = this.context.currentGroupTasks;
-    if (path === dashboard) {
-      let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.completed === false;
-      });
-      this.context.setFilteredTasks(filterTasks);
-    } else {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.completed === false;
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
+  // searchCompleted = e => {
+  //   const path = this.props.match.path;
+  //   const dashboard = '/dashboard';
+   
+  //   let groupTasks = this.context.currentGroupTasks;
+  //   if (path === dashboard) {
+  //     let filterTasks = this.context.userTasks.filter(tasks => {
+  //       return tasks.completed === true;
+  //     });
+  //     this.context.setFilteredTasks(filterTasks);
+  //   } else {
+  //     let filterTasks = groupTasks.filter(tasks => {
+  //       return tasks.completed === true;
+  //     });
+  //     this.context.setFilteredTasks(filterTasks);
+  //   }
+  // };
+  // searchIncompleted = e => {
+  //   const path = this.props.match.path;
+  //   const dashboard = '/dashboard';
+    
+  //   let groupTasks = this.context.currentGroupTasks;
+  //   if (path === dashboard) {
+  //     let filterTasks = this.context.userTasks.filter(tasks => {
+  //       return tasks.completed === false;
+  //     });
+  //     this.context.setFilteredTasks(filterTasks);
+  //   } else {
+  //     let filterTasks = groupTasks.filter(tasks => {
+  //       return tasks.completed === false;
+  //     });
+  //     this.context.setFilteredTasks(filterTasks);
+  //   }
+  // };
   searchHighPriority = e => {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
-    e.preventDefault();
+    
     let groupTasks = this.context.currentGroupTasks;
     if (path === dashboard) {
       let filterTasks = this.context.userTasks.filter(tasks => {
@@ -140,7 +140,7 @@ export default class Filter extends Component {
   searchMediumPriority = e => {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
-    e.preventDefault();
+    
     let groupTasks = this.context.currentGroupTasks;
     if (path === dashboard) {
       let filterTasks = this.context.userTasks.filter(tasks => {
@@ -157,7 +157,7 @@ export default class Filter extends Component {
   searchLowPriority = e => {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
-    e.preventDefault();
+   
     let groupTasks = this.context.currentGroupTasks;
     if (path === dashboard) {
       let filterTasks = this.context.userTasks.filter(tasks => {
@@ -186,20 +186,17 @@ export default class Filter extends Component {
     }
   };
   filter = e => {
-    e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
     this.context.setFilteredTasks(groupTasks);
     let filter = this.state.filterBy;
-    if (filter === "Completed") {
-      this.searchCompleted(e);
-    } else if (filter === "Incompleted") {
-      this.searchIncompleted(e);
-    } else if (filter === "High Priority") {
+    if (filter === "High Priority") {
       this.searchHighPriority(e);
     } else if (filter === "Medium Priority") {
       this.searchMediumPriority(e);
     } else if (filter === "Low Priority") {
       this.searchLowPriority(e);
+    } else if(filter === "None") {
+      this.onReset()
     }
   };
 
@@ -225,7 +222,6 @@ export default class Filter extends Component {
   // clear search and reset task list
   onReset = e => {
     let groupTasks = this.context.currentGroupTasks;
-    e.preventDefault();
     this.setState({
       selectedInput: '',
     });
@@ -405,6 +401,19 @@ export default class Filter extends Component {
           {this.groupFilter()}
           {this.categorySelection()}
           {this.memberSelection()}
+          <label htmlFor="filter">
+          {" "}
+          Filter by:
+          <select
+            name="filter-dropdown"
+            onChange={e => this.onFilterByChange(e.target.value)}
+          >
+            <option value="None">No filter</option>
+            <option value="High Priority">High Priority</option>
+            <option value="Medium Priority">Medium Priority</option>
+            <option value="Low Priority">Low Priority</option>
+          </select>
+        </label>
           <label htmlFor="search-cat-select">
             Search by:
             <select
@@ -441,6 +450,19 @@ export default class Filter extends Component {
         <div className="filter">
           {this.categorySelection()}
           {this.memberSelection()}
+          <label htmlFor="filter">
+          {" "}
+          Filter by:
+          <select
+            name="filter-dropdown"
+            onChange={e => this.onFilterByChange(e.target.value)}
+          >
+            <option value="None">No filter</option>
+            <option value="High Priority">High Priority</option>
+            <option value="Medium Priority">Medium Priority</option>
+            <option value="Low Priority">Low Priority</option>
+          </select>
+        </label>
 
           <label htmlFor="search-cat-select">
             Search by:
