@@ -48,7 +48,6 @@ export default class TaskForm extends Component {
   componentDidMount = async () => {
     const group_id = Number(this.props.location.pathname.split('/')[2]);
     const members = await GroopService.getGroupMembers(group_id);
-    console.log(members);
     await GroopService.getCategories(group_id).then(data =>
       this.setState({
         categories: data,
@@ -79,8 +78,6 @@ export default class TaskForm extends Component {
       priority: parseInt(this.state.priority.value),
       category_id: parseInt(this.state.category.value),
     };
-
-    console.log(newTask);
 
     const returnedNewTask = await GroopService.postTask(newTask);
     if (!returnedNewTask) {
@@ -131,7 +128,6 @@ export default class TaskForm extends Component {
 
   render() {
     const { categories = [] } = this.state;
-    console.log(this.state.user_assigned_id);
 
     const memberOptions = this.state.members.map(member => (
       <option key={`member${member.member_id}`} value={member.member_id}>

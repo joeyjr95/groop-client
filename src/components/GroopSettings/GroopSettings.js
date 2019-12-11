@@ -34,7 +34,6 @@ export default class GroopSettings extends Component {
         group_id: this.props.match.params.group_id
         
       }
-      console.log(body)
       const newCategory = await GroopService.addNewCategory(body);
       if (newCategory) {
         this.setState({
@@ -50,7 +49,7 @@ export default class GroopSettings extends Component {
 
   handleDeleteGroup = async e => {
     e.preventDefault();
-    const deleted = await GroopService.deleteGroup(
+    await GroopService.deleteGroup(
       this.context.currentGroup.id,
     );
     this.props.history.go(-2);
@@ -168,7 +167,6 @@ export default class GroopSettings extends Component {
         </Button>
       </>
     );
-      console.log(this.state.newCategory)
     return (
       <section className="GroupSettingsSection">
         <button

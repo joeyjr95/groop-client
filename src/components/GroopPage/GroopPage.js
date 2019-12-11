@@ -13,7 +13,7 @@ export default class GroopPage extends Component {
   static contextType = GroopContext;
 
   componentDidMount = async () => {
-    const group = await GroopService.getGroup(this.props.match.params.group_id);
+    await GroopService.getGroup(this.props.match.params.group_id);
     this.getGroupTasks();
     this.getGroupMembers();
   };
@@ -70,7 +70,6 @@ export default class GroopPage extends Component {
          name: member.username 
       }
     ))
-    console.log(chartInfo)
     return (
       <div className="pieChart">
               <RadialChart
@@ -98,7 +97,6 @@ export default class GroopPage extends Component {
 
   render() {
     const { currentGroupMembers = [], filteredTasks = [] } = this.context;
-    console.log(this.context.currentGroupTasks)
     return (
       <>
         <Filter {...this.props} />
