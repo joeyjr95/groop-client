@@ -73,8 +73,9 @@
 }
 .menu {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   justify-content: center;
+  padding-left: 0;
 }
 .menu li {
   list-style-type: none;

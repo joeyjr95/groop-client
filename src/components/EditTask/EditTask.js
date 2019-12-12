@@ -289,6 +289,7 @@ export default class EditTask extends Component {
           </label>
           <select
             name="Categories"
+            id="addtaskcategory"
             onChange={e => this.handleCategory(e.target.value)}
             value={this.state.category.value}
           >
@@ -304,11 +305,12 @@ export default class EditTask extends Component {
             ))}
           </select>
 
-          <label htmlFor="Priorities" className="Priorities">
+          <label htmlFor="PrioritiesSelect" className="Priorities">
             Priority
           </label>
           <select
             name="Priorities"
+            id="PrioritiesSelect"
             onChange={e => this.onPriorityChange(e.target.value)}
             value={this.state.priority.value}
           >
