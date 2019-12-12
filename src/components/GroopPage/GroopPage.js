@@ -3,7 +3,7 @@ import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
 import Filter from '../../components/Filter/Filter';
 import React, { Component } from 'react';
-import { RadialChart, Hint } from 'react-vis';
+import { RadialChart} from 'react-vis';
 import TaskItem from '../TaskItem/TaskItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
