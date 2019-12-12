@@ -371,8 +371,9 @@ export default class Filter extends Component {
     if (path === dashboard) {
       return (
         <div className="filter">
+          <span>Filters:</span>{' '}
            <button className="FilterToggle"onClick={() => this.setState({ showFilter: !showFilter })}>
-                    { showFilter ? <><span>filters</span>{' '}<FontAwesomeIcon icon={faMinus} id="closeIcon" /></> :<><span>filters</span>{' '}<FontAwesomeIcon icon={faPlus} id="closeIcon" /></> }
+                    { showFilter ? <><FontAwesomeIcon icon={faMinus} id="closeIcon" /></> :<><FontAwesomeIcon icon={faPlus} id="closeIcon" /></> }
                 </button>
                 { showFilter && (
                     <>
@@ -418,8 +419,9 @@ export default class Filter extends Component {
     } else {
       return (
         <div className="filter">
+          <span>Filters:</span>{' '}
            <button className="FilterToggle" onClick={() => this.setState({ showFilter: !showFilter })}>
-           { showFilter ? <><span>filters</span>{' '}<FontAwesomeIcon icon={faMinus} id="closeIcon" /></> :<><span>filters</span>{' '}<FontAwesomeIcon icon={faPlus} id="closeIcon" /></> }
+           { showFilter ? <>{' '}<FontAwesomeIcon icon={faMinus} id="closeIcon" /></> :<>{' '}<FontAwesomeIcon icon={faPlus} id="closeIcon" /></> }
                 </button>
                 { showFilter && (
                     <>
