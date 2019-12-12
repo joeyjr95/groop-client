@@ -19,6 +19,11 @@ export default class Filter extends Component {
   };
 
   componentDidMount = async () => {
+    if(window.innerWidth > 800){
+      this.setState({
+      showFilter: true,
+      })
+    }
     if (this.props.match.path === '/dashboard') {
       this.setState({
         categories: [],
