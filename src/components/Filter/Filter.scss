@@ -6,20 +6,38 @@
 }
 
 .FilterButton {
-  color: $color-font-offwhite;
+  color: $color-bg-main6;
   margin-left: 0;
   border-top: 1px solid $color-bg-main5;
   background-color: transparent;
   border-bottom: 1px solid $color-bg-main5;
   border-right:1px solid $color-bg-main5;
   border-left: none;
+  cursor: pointer;
   height: 40px;
   width: 40px;
+}
+
+.FilterButtonCancel:hover {
+  color: $color-font-offwhite;
+  border-top: 1px solid $color-error;
+  border-bottom: 1px solid $color-error;
+  border-right:1px solid $color-error;
+  background-color: $color-error;
+}
+
+.FilterButton:hover {
+  color: $color-font-offwhite;
+  border-top: 1px solid $color-font-offwhite;
+  border-bottom: 1px solid $color-font-offwhite;
+  border-right:1px solid $color-font-offwhite;
+  border-left: 1px solid $color-font-offwhite;
 }
 
 .FilterButtonCancel {
   color: $color-error;
   margin-left: 0;
+  cursor: pointer;
   border-top: 1px solid $color-bg-main5;
   background-color: transparent;
   border-bottom: 1px solid $color-bg-main5;

@@ -36,10 +36,9 @@ export default class LandingPageRoute extends Component {
               <li>Brock Boutwell</li>
               <li>Joey Romo</li>
               <li>Laura Elias</li>
-              <li>Steven Rodriquez</li>
             </ul>
             <p className="Aboutdescription">
-              This is a collaborative project by 5 aspiring developers.
+              This is a collaborative project by 4 aspiring developers.
               Our intention was to create an app that can be used for a wide
               variety of collaboration and event organization purposes, while being
               fun at the same time! Once logged in and registered, a user can
