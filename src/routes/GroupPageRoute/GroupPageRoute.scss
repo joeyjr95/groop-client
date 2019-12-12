@@ -60,7 +60,17 @@
   padding: 0.8rem 0;
   margin: 0 auto;
 }
+.rv-xy-plot__series--label {
+  fill: rgb(255, 255, 255);
+}
+.hoveredRadial{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 
+.rv-radial-chart__series--pie__slice:hover{
+  fill: $color-bg-main3!important;
+}
 #date {
   font-size: 30px;
   font-weight: bold;
@@ -268,8 +278,7 @@
   .task-list li {
     border-bottom: 2px solid $color-bg-secondary;
   }
-  .task-list li:not(:first-child) {
-  }
+  
   #label-menu {
     display: inherit;
     font-size: 20px;

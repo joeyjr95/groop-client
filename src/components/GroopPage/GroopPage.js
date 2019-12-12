@@ -3,7 +3,7 @@ import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
 import Filter from '../../components/Filter/Filter';
 import React, { Component } from 'react';
-import { RadialChart } from 'react-vis';
+import { RadialChart} from 'react-vis';
 import TaskItem from '../TaskItem/TaskItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,9 @@ import { Link } from 'react-router-dom';
 
 export default class GroopPage extends Component {
   static contextType = GroopContext;
+  state = {
+    hoveredRadial: false
+  }
 
   componentDidMount = async () => {
     await GroopService.getGroup(this.props.match.params.group_id);
@@ -55,8 +58,15 @@ export default class GroopPage extends Component {
       return Number(priorityAngle.reduce((a, b) => a + b));
     }
   }
+  buildValue(hoveredRadial){
+    return {
+      name: hoveredRadial
+    }
+  }
+  
 
   renderChart() {
+    const {hoveredRadial} = this.state
     const { currentGroupMembers = [] } = this.context;
     let colors = [
       '#1c939a',
@@ -77,29 +87,44 @@ export default class GroopPage extends Component {
         angle: this.chartAngle(member),
         color: colors[i % (colors.length - 1)],
         name: member.username,
+        label: String(this.chartAngle(member)),
       }));
       return (
+        
         <div className="pieChart">
+           <p> How tasks have been split for this week weighted by priority</p>
           <RadialChart
+          onValueMouseOver={d => {
+            this.setState({hoveredRadial: d.name})
+            }}
+          onValueMouseOut={v => this.setState({hoveredRadial: false})}
             colorType={'literal'}
+            innerRadius={92}
+            radius={120}
             colorDomain={[0, 100]}
             colorRange={[0, 10]}
-            getLabel={d => d.name}
+            getLabel={d => d.label}
             data={chartInfo}
-            labelsRadiusMultiplier={1}
-            labelsStyle={{ fontSize: 16, backgroundColor: '#202020' }}
+            labelsRadiusMultiplier={0.7}
+            labelsStyle={{ fontSize: 18, backgroundColor: '#202020' }}
             showLabels
-            style={{ stroke: '#202020', strokeWidth: 2 }}
+            
+            style={{ stroke: '#202020', strokeWidth: 5 }}
             width={250}
             height={250}
           ></RadialChart>
-          <p> Point totals for assigned tasks</p>
+           {hoveredRadial ? (
+         <span className="hoveredRadial">{hoveredRadial}</span>
+        ) : <span className="hoveredRadial"></span>}
+          
+          
         </div>
       );
     }
   }
 
   render() {
+    console.log(this.state.hoveredRadial)
     const { currentGroupMembers = [], filteredTasks = [] } = this.context;
     return (
       <>
