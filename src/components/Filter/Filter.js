@@ -15,6 +15,7 @@ export default class Filter extends Component {
     category: 0,
     groupmember: '',
     filterBy: '',
+    showFilter: false,
   };
 
   componentDidMount = async () => {
@@ -361,9 +362,15 @@ export default class Filter extends Component {
   render() {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
+    const { showFilter } = this.state
     if (path === dashboard) {
       return (
         <div className="filter">
+           <button onClick={() => this.setState({ showFilter: !showFilter })}>
+                    { showFilter ? 'hide filters' : 'show filters' }
+                </button>
+                { showFilter && (
+                    <>
           {this.groupFilter()}
           {this.categorySelection()}
           {this.memberSelection()}
@@ -380,6 +387,8 @@ export default class Filter extends Component {
               <option value="Low Priority">Low Priority</option>
             </select>
           </label>
+          </>
+          )}
           <form className="filter-search-form">
             <input
               type="text"
@@ -404,6 +413,12 @@ export default class Filter extends Component {
     } else {
       return (
         <div className="filter">
+           <button onClick={() => this.setState({ showFilter: !showFilter })}>
+                    { showFilter ? 'hide filters' : 'show filters' }
+                </button>
+                { showFilter && (
+                    <>
+         
           {this.categorySelection()}
           {this.memberSelection()}
           <label htmlFor="filter">
@@ -413,13 +428,14 @@ export default class Filter extends Component {
               name="filter-dropdown"
               onChange={e => this.onFilterByChange(e.target.value)}
             >
-              <option value="None">No Filter(No Filter Selected)</option>
+              <option value="None">No Filter (No Filter Selected)</option>
               <option value="High Priority">High Priority</option>
               <option value="Medium Priority">Medium Priority</option>
               <option value="Low Priority">Low Priority</option>
             </select>
           </label>
-
+          </>
+          )}
           <form className="filter-search-form">
             <input
               type="text"
