@@ -130,6 +130,7 @@ class RegistrationForm extends Component {
             required
           />
         </div>
+        <p className='passwordTip'>TIP: Choose a password between 8 and 72 characters that includes at least one number, and one uppercase, lowercase, and special character.</p>
         <footer>
           <Button type="submit">Sign up</Button>{' '}
           <Link to="/login" className="toLogin-link">

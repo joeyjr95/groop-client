@@ -31,6 +31,11 @@ main {
 form {
   width: 100%;
 }
+.passwordTip {
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-top: 0;
+}
 .successMsg {
   width: 100%;
   background-color: $color-bg-main4;
