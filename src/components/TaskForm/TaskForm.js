@@ -83,11 +83,13 @@ export default class TaskForm extends Component {
       category_id: parseInt(this.state.category.value),
     };
 
-    const returnedNewTask = await GroopService.postTask(newTask);
-    if (!returnedNewTask) {
-      this.setState({ error: 'error creating new task' });
-    } else {
-      this.props.history.goBack();
+    try {
+      const returnedNewTask = await GroopService.postTask(newTask);
+      if (returnedNewTask) this.props.history.goBack();
+    } catch (error) {
+      this.setState({
+        error: "error creating new task. 'Name' and 'Due Date' are required.",
+      });
     }
   };
 
@@ -131,7 +133,7 @@ export default class TaskForm extends Component {
   };
 
   render() {
-    const { categories = [] } = this.state;
+    const { categories = [], error } = this.state;
 
     const memberOptions = this.state.members.map(member => (
       <option key={`member${member.member_id}`} value={member.member_id}>
@@ -142,6 +144,9 @@ export default class TaskForm extends Component {
       <section>
         <form className="AddTaskForm">
           <h2>Add Task</h2>
+          <div role="alert" className="alert">
+            {error && <p>{error}</p>}
+          </div>
           <label htmlFor="addtaskname" className="AddTaskLabel">
             Task Name
           </label>

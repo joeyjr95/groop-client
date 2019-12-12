@@ -25,7 +25,11 @@ export default class Sidebar extends Component {
 
     const groupLinks = groups.map(group => {
       return (
-        <Link to={`../group/${group.group_id}`} className="sb-links">
+        <Link
+          to={`../group/${group.group_id}`}
+          key={`group${group.group_id}`}
+          className="sb-links"
+        >
           {group.name}
         </Link>
       );
