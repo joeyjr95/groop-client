@@ -1,5 +1,10 @@
 @import '../../variables.scss';
 
+.filter-search-form {
+display:flex;
+flex-direction: row;
+}
+
 .filter {
   display: flex;
   padding: 0.25rem 1rem;
@@ -86,7 +91,6 @@ select {
     align-items: flex-end;
     > input {
       height: 40px;
-      flex: 5 1 auto;
     }
     > div {
       width: auto;
