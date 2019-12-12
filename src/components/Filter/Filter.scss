@@ -1,4 +1,4 @@
-@import "../../variables.scss";
+@import '../../variables.scss';
 
 .filter-search-form {
   display: flex;
@@ -11,7 +11,7 @@
   border-top: 1px solid $color-bg-main5;
   background-color: transparent;
   border-bottom: 1px solid $color-bg-main5;
-  border-right:1px solid $color-bg-main5;
+  border-right: 1px solid $color-bg-main5;
   border-left: none;
   cursor: pointer;
   height: 40px;
@@ -22,7 +22,7 @@
   color: $color-font-offwhite;
   border-top: 1px solid $color-error;
   border-bottom: 1px solid $color-error;
-  border-right:1px solid $color-error;
+  border-right: 1px solid $color-error;
   background-color: $color-error;
 }
 
@@ -30,7 +30,7 @@
   color: $color-font-offwhite;
   border-top: 1px solid $color-font-offwhite;
   border-bottom: 1px solid $color-font-offwhite;
-  border-right:1px solid $color-font-offwhite;
+  border-right: 1px solid $color-font-offwhite;
   border-left: 1px solid $color-font-offwhite;
 }
 
@@ -62,6 +62,7 @@
   margin-bottom: 5px;
   height: auto;
   width: auto;
+  margin-right: 0.5em;
 }
 
 .FilterToggle:hover {
@@ -85,7 +86,8 @@
   display: flex;
 }
 
-.FilterButton svg, .FilterButtonCancel svg {
+.FilterButton svg,
+.FilterButtonCancel svg {
   margin-top: 10px;
 }
 
@@ -109,6 +111,7 @@
     margin-right: 0%;
     margin-left: 0;
     margin-top: 5px;
+    margin-right: 1%;
 
     > select {
       margin: 5px auto;
@@ -156,6 +159,11 @@ select {
   padding: 5px 10px;
 }
 
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
 @media screen and (min-width: 800px) {
   .FilterToggle {
     margin-bottom: 1.3rem;
@@ -183,12 +191,11 @@ select {
     display: flex;
     width: 100%;
     margin: 0 auto;
-    margin-top: 3rem;
     flex-direction: row;
     align-items: flex-end;
     justify-content: left;
     > label {
-      width: 21%;
+      // width: 21%;
       margin-right: 1%;
 
       > select {

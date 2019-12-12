@@ -9,6 +9,7 @@ import GroupSettingsImage from '../../images/groupsettings.png';
 import taskitemimg from '../../images/taskitem.jpg';
 import searchfilterimg from '../../images/searchfilter.jpg';
 import sidebarimg from '../../images/sidebar.jpg';
+import weeklyglance from '../../images/weeklyglance.jpg';
 
 export default class LandingPageRoute extends Component {
   render() {
@@ -95,7 +96,7 @@ export default class LandingPageRoute extends Component {
           </div>
           <div className="feature-section">
             <div className="img-container">
-              <img alt="create groops" src={GroupSettingsImage} />
+              <img alt="create groops" src={weeklyglance} />
             </div>
             <div className="feature-description">
               <h2>Email Notifications</h2>
