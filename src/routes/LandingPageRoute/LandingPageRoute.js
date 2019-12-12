@@ -39,11 +39,11 @@ export default class LandingPageRoute extends Component {
               <li>Steven Rodriquez</li>
             </ul>
             <p className="Aboutdescription">
-              This was a collaborative project between 5 aspiring developers.
+              This is a collaborative project by 5 aspiring developers.
               Our intention was to create an app that can be used for a wide
-              variety of task planning and event organization all while being
-              fun at the same time! Once logged in and registered a user can
-              create groops, and within those groops invite/remove members,
+              variety of collaboration and event organization purposes, while being
+              fun at the same time! Once logged in and registered, a user can
+              create groups, and within those groups invite/remove members,
               create/edit tasks, and view a scoreboard to effectively get tasks done on
               time.
             </p>
