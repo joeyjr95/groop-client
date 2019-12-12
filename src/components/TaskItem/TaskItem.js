@@ -26,28 +26,9 @@ export default class TaskItem extends React.Component {
     priority: this.props.task.priority,
     delete_confirm: false,
     showMore: false,
-    categoryName: '',
-    assignedUserName: '',
   };
 
-  componentDidMount = async () => {
-    const categories = await GroopService.getCategories(
-      this.props.task.group_id,
-    );
-    const currentCategory = categories.find(
-      c => c.id === this.props.task.category_id,
-    );
-    const groupmembers = await GroopService.getGroupMembers(
-      this.props.task.group_id,
-    );
-    const assignedUser = groupmembers.find(
-      m => m.id === this.props.task.user_assigned_id,
-    );
-    this.setState({
-      categoryName: currentCategory ? currentCategory.category_name : '',
-      assignedUserName: assignedUser ? assignedUser.username : '',
-    });
-  };
+  componentDidMount = async () => {};
 
   toggleTaskCompleted = async () => {
     const newStatus = this.state.completed ? false : true;
@@ -88,7 +69,7 @@ export default class TaskItem extends React.Component {
         <div className="task-detail__info">
           {!this.props.dashboard ? (
             <p className="task-detail__item">
-              <b>Assigned to:</b> {this.state.assignedUserName}
+              <b>Assigned to:</b> {task.username}
             </p>
           ) : null}
           <p className="task-detail__item">
@@ -102,7 +83,7 @@ export default class TaskItem extends React.Component {
             })}
           </p>
           <p className="task-detail__item">
-            <b>Category:</b> {this.state.categoryName}
+            <b>Category:</b> {task.category_name}
           </p>
           <p className="task-detail__item">
             <b>Description:</b> {task.description}
