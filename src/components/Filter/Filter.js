@@ -45,12 +45,11 @@ export default class Filter extends Component {
   };
 
   // search for string included in task description
-  
 
   // searchIncompleted = e => {
   //   const path = this.props.match.path;
   //   const dashboard = '/dashboard';
-    
+
   //   let groupTasks = this.context.currentGroupTasks;
   //   if (path === dashboard) {
   //     let filterTasks = this.context.userTasks.filter(tasks => {
@@ -67,7 +66,7 @@ export default class Filter extends Component {
   searchHighPriority = e => {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
-    
+
     let groupTasks = this.context.currentGroupTasks;
     if (path === dashboard) {
       let filterTasks = this.context.userTasks.filter(tasks => {
@@ -84,7 +83,7 @@ export default class Filter extends Component {
   searchMediumPriority = e => {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
-    
+
     let groupTasks = this.context.currentGroupTasks;
     if (path === dashboard) {
       let filterTasks = this.context.userTasks.filter(tasks => {
@@ -101,7 +100,7 @@ export default class Filter extends Component {
   searchLowPriority = e => {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
-   
+
     let groupTasks = this.context.currentGroupTasks;
     if (path === dashboard) {
       let filterTasks = this.context.userTasks.filter(tasks => {
@@ -115,7 +114,7 @@ export default class Filter extends Component {
       this.context.setFilteredTasks(filterTasks);
     }
   };
-// search for string included in task description / taskname
+  // search for string included in task description / taskname
   search = e => {
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
@@ -126,12 +125,18 @@ export default class Filter extends Component {
 
     if (this.props.match.path === '/dashboard') {
       let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.description.toUpperCase().includes(selectedInput) || tasks.name.toUpperCase().includes(selectedInput);
+        return (
+          tasks.description.toUpperCase().includes(selectedInput) ||
+          tasks.name.toUpperCase().includes(selectedInput)
+        );
       });
       this.context.setFilteredTasks(filterTasks);
     } else {
       let filterTasks = groupTasks.filter(tasks => {
-        return tasks.description.toUpperCase().includes(selectedInput) || tasks.name.toUpperCase().includes(selectedInput);
+        return (
+          tasks.description.toUpperCase().includes(selectedInput) ||
+          tasks.name.toUpperCase().includes(selectedInput)
+        );
       });
       this.context.setFilteredTasks(filterTasks);
     }
@@ -140,22 +145,22 @@ export default class Filter extends Component {
     let groupTasks = this.context.currentGroupTasks;
     this.context.setFilteredTasks(groupTasks);
     let filter = this.state.filterBy;
-    if (filter === "High Priority") {
+    if (filter === 'High Priority') {
       this.searchHighPriority(e);
-    } else if (filter === "Medium Priority") {
+    } else if (filter === 'Medium Priority') {
       this.searchMediumPriority(e);
-    } else if (filter === "Low Priority") {
+    } else if (filter === 'Low Priority') {
       this.searchLowPriority(e);
-    } else if(filter === "None") {
-      this.hardReset()
+    } else if (filter === 'None') {
+      this.hardReset();
     }
   };
 
-  onFilterByChange = async(e) => {
+  onFilterByChange = async e => {
     await this.setState({
       filterBy: e,
     });
-    this.filter(e)
+    this.filter(e);
   };
 
   // controlled input for search input
@@ -167,7 +172,7 @@ export default class Filter extends Component {
 
   // clear search and reset task list
   onReset = e => {
-    e.preventDefault()
+    e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
     this.setState({
       selectedInput: '',
@@ -361,18 +366,18 @@ export default class Filter extends Component {
           {this.categorySelection()}
           {this.memberSelection()}
           <label htmlFor="filter">
-          {" "}
-          Filter by:
-          <select
-            name="filter-dropdown"
-            onChange={e => this.onFilterByChange(e.target.value)}
-          >
-            <option value="None">No filter</option>
-            <option value="High Priority">High Priority</option>
-            <option value="Medium Priority">Medium Priority</option>
-            <option value="Low Priority">Low Priority</option>
-          </select>
-        </label>
+            {' '}
+            Filter by:
+            <select
+              name="filter-dropdown"
+              onChange={e => this.onFilterByChange(e.target.value)}
+            >
+              <option value="None">No filter</option>
+              <option value="High Priority">High Priority</option>
+              <option value="Medium Priority">Medium Priority</option>
+              <option value="Low Priority">Low Priority</option>
+            </select>
+          </label>
           <form className="filter-search-form">
             <input
               type="text"
@@ -399,18 +404,18 @@ export default class Filter extends Component {
           {this.categorySelection()}
           {this.memberSelection()}
           <label htmlFor="filter">
-          {" "}
-          Filter by:
-          <select
-            name="filter-dropdown"
-            onChange={e => this.onFilterByChange(e.target.value)}
-          >
-            <option value="None">No filter</option>
-            <option value="High Priority">High Priority</option>
-            <option value="Medium Priority">Medium Priority</option>
-            <option value="Low Priority">Low Priority</option>
-          </select>
-        </label>
+            {' '}
+            Filter by:
+            <select
+              name="filter-dropdown"
+              onChange={e => this.onFilterByChange(e.target.value)}
+            >
+              <option value="None">No filter</option>
+              <option value="High Priority">High Priority</option>
+              <option value="Medium Priority">Medium Priority</option>
+              <option value="Low Priority">Low Priority</option>
+            </select>
+          </label>
 
           <form className="filter-search-form">
             <input

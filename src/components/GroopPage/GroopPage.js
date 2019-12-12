@@ -109,7 +109,7 @@ export default class GroopPage extends Component {
             <label htmlFor="menu" id="label-menu">
               Members
             </label>
-            <ul className="menu" role="menu">
+            <ul className="menu">
               {currentGroupMembers.map(member => {
                 return (
                   <li
@@ -130,7 +130,7 @@ export default class GroopPage extends Component {
               <label htmlFor="menu" id="label-menu">
                 Members
               </label>
-              <ul className="menu" role="menu">
+              <ul className="menu">
                 {currentGroupMembers.map(member => (
                   <li
                     key={member.member_id}
@@ -144,62 +144,6 @@ export default class GroopPage extends Component {
                 ))}
               </ul>
             </div>
-            {/* <div className="scores-section">
-              <div className="scores-section1">
-                <label htmlFor="weekly-scores" id="weekly-scores-label">
-                  Top Scores for today
-                </label>
-                <ol className="AllTimeScore" role="menu">
-                  {currentGroupMembers.map(memScore => (
-                    <li
-                      key={memScore.member_id}
-                      id={memScore.member_id}
-                      aria-live="polite"
-                    >
-                      <p className="userScore">
-                        {memScore.username}: {memScore.score}
-                      </p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-              <div className="scores-section2">
-                <label htmlFor="total-scores" id="total-scores-label">
-                  Top Scores all time
-                </label>
-                <ol className="AllTimeScore" role="menu">
-                  {currentGroupMembers.map(memScore => (
-                    <li
-                      key={memScore.member_id}
-                      id={memScore.member_id}
-                      aria-live="polite"
-                    >
-                      <p className="userScore">
-                        {memScore.username}: {memScore.score}
-                      </p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div> */}
-            {/* <div className="pieChart">
-              <RadialChart
-                colorType={'literal'}
-                colorDomain={[0, 100]}
-                colorRange={[0, 10]}
-                getLabel={d => d.name}
-                data={
-                  this.renderChart()
-                }
-                labelsRadiusMultiplier={1}
-                labelsStyle={{ fontSize: 16 }}
-                showLabels
-                style={{ stroke: '#fff', strokeWidth: 2 }}
-                width={250}
-                height={250}
-              ></RadialChart>
-              <p> How tasks have been split today</p>
-            </div> */}
             {this.renderChart()}
           </div>
           <div className="task-list-container">
