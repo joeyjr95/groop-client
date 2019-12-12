@@ -3,7 +3,7 @@ import GroopContext from '../../contexts/GroopContext';
 import './Filter.scss';
 import GroopService from '../../services/groop-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTimes  } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 export default class Filter extends Component {
   static contextType = GroopContext;
 
@@ -366,8 +366,8 @@ export default class Filter extends Component {
     if (path === dashboard) {
       return (
         <div className="filter">
-           <button onClick={() => this.setState({ showFilter: !showFilter })}>
-                    { showFilter ? 'hide filters' : 'show filters' }
+           <button className="FilterToggle"onClick={() => this.setState({ showFilter: !showFilter })}>
+                    { showFilter ? <><span>filters</span>{' '}<FontAwesomeIcon icon={faMinus} id="closeIcon" /></> :<><span>filters</span>{' '}<FontAwesomeIcon icon={faPlus} id="closeIcon" /></> }
                 </button>
                 { showFilter && (
                     <>
@@ -413,8 +413,8 @@ export default class Filter extends Component {
     } else {
       return (
         <div className="filter">
-           <button onClick={() => this.setState({ showFilter: !showFilter })}>
-                    { showFilter ? 'hide filters' : 'show filters' }
+           <button className="FilterToggle" onClick={() => this.setState({ showFilter: !showFilter })}>
+           { showFilter ? <><span>filters</span>{' '}<FontAwesomeIcon icon={faMinus} id="closeIcon" /></> :<><span>filters</span>{' '}<FontAwesomeIcon icon={faPlus} id="closeIcon" /></> }
                 </button>
                 { showFilter && (
                     <>
