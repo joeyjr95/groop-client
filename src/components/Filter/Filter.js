@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import GroopContext from '../../contexts/GroopContext';
 import './Filter.scss';
 import GroopService from '../../services/groop-service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faSearch,
+  faTimes
+} from '@fortawesome/free-solid-svg-icons';
 export default class Filter extends Component {
   static contextType = GroopContext;
 
@@ -208,7 +213,7 @@ export default class Filter extends Component {
           onChange={e => this.onGroupFilterChange(Number(e.target.value))}
         >
           <option key={`group_all`} id={0} name="all_groups" value={0}>
-            My Tasks (no group selected)
+            My Tasks (No Group Selected)
           </option>
           {groups.map(group => (
             <option
@@ -366,18 +371,18 @@ export default class Filter extends Component {
           {this.categorySelection()}
           {this.memberSelection()}
           <label htmlFor="filter">
-            {' '}
-            Filter by:
-            <select
-              name="filter-dropdown"
-              onChange={e => this.onFilterByChange(e.target.value)}
-            >
-              <option value="None">No filter</option>
-              <option value="High Priority">High Priority</option>
-              <option value="Medium Priority">Medium Priority</option>
-              <option value="Low Priority">Low Priority</option>
-            </select>
-          </label>
+          {" "}
+          Filter by:
+          <select
+            name="filter-dropdown"
+            onChange={e => this.onFilterByChange(e.target.value)}
+          >
+            <option value="None">No Filter (No Filter Selected)</option>
+            <option value="High Priority">High Priority</option>
+            <option value="Medium Priority">Medium Priority</option>
+            <option value="Low Priority">Low Priority</option>
+          </select>
+        </label>
           <form className="filter-search-form">
             <input
               type="text"
@@ -387,14 +392,12 @@ export default class Filter extends Component {
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
-            <div className="FilterButtonContainer">
-              <button className="Button" onClick={e => this.search(e)}>
-                Search
+              <button className="FilterButton" onClick={e => this.search(e)}>
+              <FontAwesomeIcon icon={faSearch} id="closeIcon" />
               </button>
-              <button className="ButtonCancel" onClick={e => this.onReset(e)}>
-                Clear
+              <button className="FilterButtonCancel" onClick={e => this.onReset(e)}>
+              <FontAwesomeIcon icon={faTimes} id="closeIcon" />
               </button>
-            </div>
           </form>
         </div>
       );
@@ -404,18 +407,18 @@ export default class Filter extends Component {
           {this.categorySelection()}
           {this.memberSelection()}
           <label htmlFor="filter">
-            {' '}
-            Filter by:
-            <select
-              name="filter-dropdown"
-              onChange={e => this.onFilterByChange(e.target.value)}
-            >
-              <option value="None">No filter</option>
-              <option value="High Priority">High Priority</option>
-              <option value="Medium Priority">Medium Priority</option>
-              <option value="Low Priority">Low Priority</option>
-            </select>
-          </label>
+          {" "}
+          Filter by:
+          <select
+            name="filter-dropdown"
+            onChange={e => this.onFilterByChange(e.target.value)}
+          >
+            <option value="None">No Filter(No Filter Selected)</option>
+            <option value="High Priority">High Priority</option>
+            <option value="Medium Priority">Medium Priority</option>
+            <option value="Low Priority">Low Priority</option>
+          </select>
+        </label>
 
           <form className="filter-search-form">
             <input
@@ -426,14 +429,12 @@ export default class Filter extends Component {
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
-            <div className="FilterButtonContainer">
               <button className="Button" onClick={e => this.search(e)}>
-                Search
+              <FontAwesomeIcon icon={faSearch} id="closeIcon" />
               </button>
               <button className="ButtonCancel" onClick={e => this.onReset(e)}>
-                Clear
+              <FontAwesomeIcon icon={faTimes} id="closeIcon" />
               </button>
-            </div>
           </form>
         </div>
       );
