@@ -3,10 +3,7 @@ import GroopContext from '../../contexts/GroopContext';
 import './Filter.scss';
 import GroopService from '../../services/groop-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faSearch,
-  faTimes
-} from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 export default class Filter extends Component {
   static contextType = GroopContext;
 
@@ -371,18 +368,18 @@ export default class Filter extends Component {
           {this.categorySelection()}
           {this.memberSelection()}
           <label htmlFor="filter">
-          {" "}
-          Filter by:
-          <select
-            name="filter-dropdown"
-            onChange={e => this.onFilterByChange(e.target.value)}
-          >
-            <option value="None">No Filter (No Filter Selected)</option>
-            <option value="High Priority">High Priority</option>
-            <option value="Medium Priority">Medium Priority</option>
-            <option value="Low Priority">Low Priority</option>
-          </select>
-        </label>
+            {' '}
+            Filter by:
+            <select
+              name="filter-dropdown"
+              onChange={e => this.onFilterByChange(e.target.value)}
+            >
+              <option value="None">No Filter (No Filter Selected)</option>
+              <option value="High Priority">High Priority</option>
+              <option value="Medium Priority">Medium Priority</option>
+              <option value="Low Priority">Low Priority</option>
+            </select>
+          </label>
           <form className="filter-search-form">
             <input
               type="text"
@@ -392,12 +389,15 @@ export default class Filter extends Component {
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
-              <button className="FilterButton" onClick={e => this.search(e)}>
+            <button className="FilterButton" onClick={e => this.search(e)}>
               <FontAwesomeIcon icon={faSearch} id="closeIcon" />
-              </button>
-              <button className="FilterButtonCancel" onClick={e => this.onReset(e)}>
+            </button>
+            <button
+              className="FilterButtonCancel"
+              onClick={e => this.onReset(e)}
+            >
               <FontAwesomeIcon icon={faTimes} id="closeIcon" />
-              </button>
+            </button>
           </form>
         </div>
       );
@@ -407,18 +407,18 @@ export default class Filter extends Component {
           {this.categorySelection()}
           {this.memberSelection()}
           <label htmlFor="filter">
-          {" "}
-          Filter by:
-          <select
-            name="filter-dropdown"
-            onChange={e => this.onFilterByChange(e.target.value)}
-          >
-            <option value="None">No Filter(No Filter Selected)</option>
-            <option value="High Priority">High Priority</option>
-            <option value="Medium Priority">Medium Priority</option>
-            <option value="Low Priority">Low Priority</option>
-          </select>
-        </label>
+            {' '}
+            Filter by:
+            <select
+              name="filter-dropdown"
+              onChange={e => this.onFilterByChange(e.target.value)}
+            >
+              <option value="None">No Filter(No Filter Selected)</option>
+              <option value="High Priority">High Priority</option>
+              <option value="Medium Priority">Medium Priority</option>
+              <option value="Low Priority">Low Priority</option>
+            </select>
+          </label>
 
           <form className="filter-search-form">
             <input
@@ -429,12 +429,15 @@ export default class Filter extends Component {
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
-              <button className="Button" onClick={e => this.search(e)}>
+            <button className="FilterButton" onClick={e => this.search(e)}>
               <FontAwesomeIcon icon={faSearch} id="closeIcon" />
-              </button>
-              <button className="ButtonCancel" onClick={e => this.onReset(e)}>
+            </button>
+            <button
+              className="FilterButtonCancel"
+              onClick={e => this.onReset(e)}
+            >
               <FontAwesomeIcon icon={faTimes} id="closeIcon" />
-              </button>
+            </button>
           </form>
         </div>
       );
