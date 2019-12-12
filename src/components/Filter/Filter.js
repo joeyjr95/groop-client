@@ -3,7 +3,7 @@ import GroopContext from '../../contexts/GroopContext';
 import './Filter.scss';
 import GroopService from '../../services/groop-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimes, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 export default class Filter extends Component {
   static contextType = GroopContext;
 
@@ -15,9 +15,15 @@ export default class Filter extends Component {
     category: 0,
     groupmember: '',
     filterBy: '',
+    showFilter: false,
   };
 
   componentDidMount = async () => {
+    if(window.innerWidth > 800){
+      this.setState({
+      showFilter: true,
+      })
+    }
     if (this.props.match.path === '/dashboard') {
       this.setState({
         categories: [],
@@ -361,9 +367,16 @@ export default class Filter extends Component {
   render() {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
+    const { showFilter } = this.state
     if (path === dashboard) {
       return (
         <div className="filter">
+          <span>Filters:</span>{' '}
+           <button className="FilterToggle"onClick={() => this.setState({ showFilter: !showFilter })}>
+                    { showFilter ? <><FontAwesomeIcon icon={faMinus} id="closeIcon" /></> :<><FontAwesomeIcon icon={faPlus} id="closeIcon" /></> }
+                </button>
+                { showFilter && (
+                    <>
           {this.groupFilter()}
           {this.categorySelection()}
           {this.memberSelection()}
@@ -380,6 +393,8 @@ export default class Filter extends Component {
               <option value="Low Priority">Low Priority</option>
             </select>
           </label>
+          </>
+          )}
           <form className="filter-search-form">
             <input
               type="text"
@@ -404,6 +419,13 @@ export default class Filter extends Component {
     } else {
       return (
         <div className="filter">
+          <span>Filters:</span>{' '}
+           <button className="FilterToggle" onClick={() => this.setState({ showFilter: !showFilter })}>
+           { showFilter ? <>{' '}<FontAwesomeIcon icon={faMinus} id="closeIcon" /></> :<>{' '}<FontAwesomeIcon icon={faPlus} id="closeIcon" /></> }
+                </button>
+                { showFilter && (
+                    <>
+         
           {this.categorySelection()}
           {this.memberSelection()}
           <label htmlFor="filter">
@@ -413,13 +435,14 @@ export default class Filter extends Component {
               name="filter-dropdown"
               onChange={e => this.onFilterByChange(e.target.value)}
             >
-              <option value="None">No Filter(No Filter Selected)</option>
+              <option value="None">No Filter (No Filter Selected)</option>
               <option value="High Priority">High Priority</option>
               <option value="Medium Priority">Medium Priority</option>
               <option value="Low Priority">Low Priority</option>
             </select>
           </label>
-
+          </>
+          )}
           <form className="filter-search-form">
             <input
               type="text"
