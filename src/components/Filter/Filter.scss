@@ -67,15 +67,19 @@
   > label {
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: flex-start;
+    width: auto;
+    margin-right: 0%;
+    margin-left: 0;
+    margin-top: 5px;
 
     > select {
       margin: 5px auto;
       height: 30px;
       border: 1px solid $color-bg-main5;
       padding: 3px;
+      min-width: 250px;
     }
   }
 }
@@ -126,6 +130,9 @@ select {
     align-items: flex-end;
     justify-content: center;
     > label {
+      width: 22%;
+      margin-right: 1%;
+
       > select {
         margin-right: 0px;
         margin-top: 5px;
