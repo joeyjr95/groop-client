@@ -369,7 +369,7 @@ export default class Filter extends Component {
           {this.memberSelection()}
           <label htmlFor="filter">
             {' '}
-            Filter by:
+            Priority:
             <select
               name="filter-dropdown"
               onChange={e => this.onFilterByChange(e.target.value)}
@@ -408,7 +408,7 @@ export default class Filter extends Component {
           {this.memberSelection()}
           <label htmlFor="filter">
             {' '}
-            Filter by:
+            Priority:
             <select
               name="filter-dropdown"
               onChange={e => this.onFilterByChange(e.target.value)}
