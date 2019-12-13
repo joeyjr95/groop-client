@@ -1,11 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # Groop Client
+
 [Live App](https://grooplist.com/)  
 Demo username: username1  
 Demo password: Password1!  
 [Client Repo](https://github.com/joeyjr95/groop-client)  
-[API Repo](https://github.com/quasarwei/groop-api)  
+[API Repo](https://github.com/quasarwei/groop-api)
 
 ## Tech Stack
 
@@ -20,11 +21,20 @@ effectively finish tasks done on time. Members accumulate points
 based on a finished task's priority level. Get status updates and
 weekly reminders with optional email notifications.
 
-
 ## Screenshots
 
 <p align="center">
-<img src="./src/images/dashboard.png" width="200"> <img src="./src/images/groupdashboard.png" width="200"> <img src="./src/images/groupsettings.png" width="200"> <img src="./src/images/accountsettings.png" width="200"><img src="./src/images/sidebar.jpg" width="200">
+<img src="./src/images/mobile/groop_landing_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_about_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_agenda_new_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_agenda_all_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_filter_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_sidebar_dash_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_sidebar_group_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_add_task_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_edit_task_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_group_settings_rs.jpg" width="200"> 
+<img src="./src/images/mobile/groop_account_settings_rs.jpg" width="200"> 
 </p>
 
 ### Landing Page
@@ -46,5 +56,3 @@ Allows users to create and delete categories, add and remove users from the grou
 ### Settings
 
 Allows users to change their email and their password, and also opt out of the email notifications
-
-
