@@ -1,68 +1,38 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+#Groop Client
 
-In the project directory, you can run:
+##Overview
 
-### `npm start`
+Groop is a task manager for family, friends, or work. Organize
+tasks and members from multiple groups and view a scoreboard to
+effectively finish tasks done on time. Members accumulate points
+based on a finished task's priority level. Get status updates and
+weekly reminders with optional email notifications.
+##Screenshots
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<p align="center">
+<img src="./images/dashboard.png" width="200"> <img src="./images/groupdashboard.png" width="200"> <img src="./images/groupsettings" width="200"> <img src="./images/accountsettings.png" width="200"><img src="./images/sidebar.jpg" width="200">
+</p>
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+###Landing Page
 
-### `npm test`
+The Landing page has access to Login and Signup while also displaying what each page on the app does in the about section
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+###Dashboard
 
-### `npm run build`
+Allows users access to create a group, view their specific tasks, view all their different group's tasks, filter by group, category, group members, priority, and also search for tasks by description and taskname. Users also have access to editing their tasks and deleting them from this page.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+###Group Page
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Allows users access to create tasks, filter and search categories, group members, priorities, descriptions, and tasknames. There is also a chart that compares all the Users by their tasks weighted by priority. Users also have access to editing their tasks and deleting them from this page.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+###Group Settings
 
-### `npm run eject`
+Allows users to create and delete categories, add and remove users from the group, and also has an option to delete the group.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+###Settings
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Allows users to change their email and their password, and also opt out of the email notifications
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
