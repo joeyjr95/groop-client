@@ -23,7 +23,7 @@ export default class LandingPageRoute extends Component {
           <Link to="/register" className="landing-signup-a">
             Sign up
           </Link>
-          <a href="#about" className="landing-to-about">
+          <a href="#About" className="landing-to-about">
             <FontAwesomeIcon icon={faAngleDoubleDown} id="icon" />
           </a>
         </section>
@@ -108,7 +108,6 @@ export default class LandingPageRoute extends Component {
             </div>
           </div>
         </section>
-
         <div className="landing-page-bg"></div>
         <div className=" feature-section--about">
           <ul>

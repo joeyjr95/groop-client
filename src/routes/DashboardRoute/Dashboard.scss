@@ -6,6 +6,9 @@
   flex-flow: row-reverse nowrap;
   justify-content: space-between;
 }
+#date {
+  font-family: $font-Family-other;
+}
 
 .ham-button {
   border: 2px solid $color-font-offwhite;
@@ -27,8 +30,10 @@
 
 .dashboard-c {
   color: $color-font-offwhite;
-  flex-grow: 5;
-
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2.5rem;
 }
 .dashboard-c h2 {
   font-size: 40px;
@@ -41,7 +46,7 @@
 
 #dashboard-label-task-list {
   width: 100%;
-  background-color:$color-secondary;
+  background-color: $color-secondary;
   text-align: center;
   color: $color-font-header;
   font-size: 20px;
@@ -49,23 +54,23 @@
   padding: 0.8rem 0;
 }
 
-.empty-list a{  
+.empty-list a {
   text-decoration-line: none;
   color: $color-secondary;
 }
 
-#grouplink, #grouplink2{
+#grouplink,
+#grouplink2 {
   border-bottom: none;
 }
 
 .dashboard-task-list-container {
   display: flex;
-  overflow-y: auto;
   flex-direction: column;
   width: 97%;
-  height: 500px;
   margin: 1rem auto;
   border-radius: 3px;
+  box-shadow: 5px 3px 8px $color-bg-main;
 }
 
 .dashboard-task-list {
@@ -78,17 +83,18 @@
   align-items: flex-start;
   background-color: $color-bg-main2;
   color: $color-font-offwhite;
+  margin-bottom: 2.5rem;
 }
 
 .dashboard-task-list li {
   border-bottom: 2px solid $color-bg-secondary;
   width: 100%;
   text-align: left;
-}
-
-.dashboard-task-list li:not(:first-child) {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+.main-dashboard-section {
+  margin-bottom: 2.5rem;
 }
 
 @media screen and (min-width: 800px) {
@@ -123,13 +129,9 @@
 }
 @media screen and (min-width: 1300px) {
   .dashboard-task-list-container {
-    height: 500px;
     width: 70%;
   }
   #dashboard-label-task-list {
     font-size: 20px;
-  }
-  .main-dashboard-section {
-    margin-top: 15px;
   }
 }

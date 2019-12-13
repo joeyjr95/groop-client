@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Header from '../Header/Header';
-import GroopSettings from '../../components/GroopSettings/GroopSettings'
+import GroopSettings from '../../components/GroopSettings/GroopSettings';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import PublicOnlyRoute from '../PublicOnlyRoute/PublicOnlyRoute';
 import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute';
@@ -43,15 +43,24 @@ export default class App extends Component {
               path={'/group/:group_id'}
               component={GroupPageRoute}
             />
-            <PrivateRoute 
+            <PrivateRoute
               exact
-              path={"/groupsettings/:group_id"}
+              path={'/groupsettings/:group_id'}
               component={GroopSettings}
-             />
+            />
             <PrivateRoute path={'/add-task'} component={TaskFormComponent} />
-            <PrivateRoute exact path={'/calendar/:location'} component={Calender} {...this.props}/>
+            <PrivateRoute
+              exact
+              path={'/calendar/:location'}
+              component={Calender}
+              {...this.props}
+            />
             <PrivateRoute path={'/edit-task'} component={EditTask} />
-            <PrivateRoute path={'/add-group'} component={GroupForm} {...this.props}/>
+            <PrivateRoute
+              path={'/add-group'}
+              component={GroupForm}
+              {...this.props}
+            />
             <PrivateRoute path={'/settings'} component={SettingsRoute} />
             <Route component={NotFoundRoute} />
           </Switch>

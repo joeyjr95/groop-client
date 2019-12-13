@@ -217,7 +217,6 @@ export default class GroopSettings extends Component {
         </Button>
       </>
     );
-      console.log(this.state.newCategory)
     return (
       <section className="GroupSettingsSection">
         <button

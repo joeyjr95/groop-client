@@ -127,6 +127,7 @@
   flex-direction: row;
   align-items: center;
   width: 100%;
+  flex-wrap: wrap;
 
   input {
     flex: 5 1 60%;
@@ -188,7 +189,7 @@ select {
 
   .filter {
     display: flex;
-    width: 70%;
+    width: 100%;
     margin: 0 auto;
     flex-direction: row;
     align-items: flex-end;
@@ -219,5 +220,11 @@ select {
         margin: 0 1rem 1rem 0;
       }
     }
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .filter {
+    width: 70%;
   }
 }
