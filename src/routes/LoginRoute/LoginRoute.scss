@@ -7,6 +7,7 @@ main {
 .loginSection {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   color: $color-font-header;
   width: 100%;
@@ -14,7 +15,6 @@ main {
   margin: 0 auto;
   height: 100%;
   padding: 1rem;
-  padding-top: 5%;
 }
 
 .signup {
@@ -26,35 +26,10 @@ main {
   width: 400px;
   padding: 15px;
   margin: 50px auto;
-  margin-top: 3%;
+  margin-top: 10%;
 }
 form {
   width: 100%;
-}
-.passwordTip {
-  font-size: 0.8rem;
-  font-style: italic;
-  margin-top: 0;
-}
-.successMsg {
-  width: 100%;
-  background-color: $color-bg-main4;
-  border-radius: 4px;
-  font-family: $font-Family-other;
-  color: $color-font-header;
-  font-size: 1.2rem;
-  margin: 2%;
-  padding: 2% 5%;
-}
-.toLogin {
-  color: $color-font-header;
-}
-.toLogin:hover {
-  color: $color-secondary;
-}
-.footnote{
-  font-size: 1.1rem;
-  font-style: italic;
 }
 
 .login-field {
@@ -65,7 +40,7 @@ form {
 
 .login-h2 {
   margin-bottom: 1.5rem;
-  font-size: 30px;
+  font-size: 36px;
 }
 
 .login-label {

@@ -1,5 +1,4 @@
 @import '../../variables.scss';
-
 .landing-page {
   padding: 1rem 1rem;
   display: flex;
@@ -10,129 +9,6 @@
   height: 1200px;
   height: calc(100vh - 60px);
   color: $color-font-header;
-
-  h2 {
-    margin-top: 6rem;
-    font-size: 4rem;
-    font-weight: 100;
-    margin-bottom: 2rem;
-    font-family: $font-Family-header;
-  }
-  h3 {
-    font-size: 2rem;
-    font-weight: 100;
-  }
-  a {
-    font-size: 2rem;
-    color: $color-font-header;
-    text-decoration: none;
-    cursor: pointer;
-  }
-}
-
-#About {
-  height: 60px;
-  background-color: $color-bg-main;
-}
-
-.AboutContainer {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
-  color: $color-font-offwhite;
-  background-color: $color-bg-main;
-
-  ul {
-    padding-left: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: space-between;
-  }
-
-  li {
-    list-style-type: none;
-    margin: 0 0.75rem;
-    font-weight: 800;
-  }
-}
-
-.Aboutdescription {
-  line-height: 1.5em;
-  text-align: left;
-}
-
-.feature-section {
-  padding-bottom: 15px;
-  display: flex;
-  flex-flow: column-reverse wrap;
-  justify-content: space-between;
-  border: 1px solid $color-bg-main4;
-  padding: 0;
-  margin: 1.5rem auto;
-  width: 100%;
-  background-color: $color-bg-main1;
-  color: $color-font-offwhite;
-
-  img {
-    width: 100%;
-  }
-}
-
-.img-container {
-  margin: 0 auto;
-  width: 100%;
-  max-height: 350px;
-  text-align: center;
-  overflow: hidden;
-  > img {
-    margin: 0 auto;
-    max-height: 110%;
-    max-width: 100%;
-    object-fit: contain;
-  }
-}
-.feature-section--about {
-  padding-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem 1.5rem;
-  margin: 1.5rem auto;
-  width: 100%;
-  border: 1px solid $color-bg-main4;
-  background-color: $color-bg-main1;
-  color: $color-font-offwhite;
-
-  ul {
-    padding-left: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-content: space-between;
-  }
-
-  li {
-    list-style-type: none;
-    margin: 0 0.75rem;
-    font-weight: 800;
-  }
-}
-
-.feature-description {
-  > h2 {
-    font-size: 20px;
-    margin: 0.5rem 0;
-  }
-  > p {
-    margin: 0.5rem 0;
-  }
-  padding: 0.8rem 0.8rem;
-  display: flex;
-  flex: 1 1 50%;
-  flex-direction: column;
-  line-height: 1.5rem;
-  text-align: left;
 }
 
 .landing-page-bg {
@@ -154,6 +30,23 @@
   height: calc(100vh - 60px);
 }
 
+.landing-page h2 {
+  margin-top: 6rem;
+  font-size: 4rem;
+  font-weight: 100;
+  margin-bottom: 2rem;
+  font-family: $font-Family-header;
+}
+.landing-page h3 {
+  font-size: 2rem;
+  font-weight: 100;
+}
+.landing-page a {
+  font-size: 2rem;
+  color: $color-font-header;
+  text-decoration: none;
+  cursor: pointer;
+}
 .landing-signup-a {
   border: 3px solid $color-font-header;
   font-weight: 600;
@@ -166,73 +59,13 @@
 }
 
 @media screen and (min-width: 540px) {
-  .feature-section {
-    flex-flow: row nowrap;
-    margin: 1.5rem 0;
-    height: 100%;
-    align-items: center;
-    &:nth-child(odd) {
-      flex-flow: row-reverse nowrap;
-    }
-    img {
-      width: 50%;
-    }
-  }
-
-  .img-container {
-    // max-height: 350px;
-    height: auto;
-    width: 50%;
-    margin: 0 2rem;
-    > img {
-      width: 100%;
-    }
-  }
-
-  .feature-section--filter {
-    flex-flow: column-reverse nowrap;
-    align-items: initial;
-
-    > img {
-      width: 100%;
-    }
-  }
 }
 
 @media screen and (min-width: 800px) {
-  .feature-section {
-    padding: 1rem 1rem;
-    > img {
-      max-height: 350px;
-      width: auto;
-    }
-  }
-
-  .feature-section--filter > img {
-    width: 100%;
-  }
-  .feature-section--about {
-    margin: 0 auto;
-    padding: 1rem 10%;
-  }
 }
 
 @media screen and (min-width: 1200px) {
-  .feature-section {
-    padding: 1.2rem 10vw;
-    justify-content: space-around;
-    img {
-      margin: 0 2rem;
-    }
-  }
-  .feature-section--about {
-    margin: 0 auto;
-    padding: 1rem 20%;
-  }
 }
 
 @media screen and (min-width: 1600px) {
-  .feature-section {
-    padding: 1.5rem 20vw;
-  }
 }

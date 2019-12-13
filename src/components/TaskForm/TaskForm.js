@@ -74,25 +74,21 @@ export default class TaskForm extends Component {
     const newTask = {
       name: this.state.name.value,
       description: this.state.description.value,
-      user_assigned_id: parseInt(this.state.user_assigned_id.value),
-      time_start: new Date(
-        `${this.state.time_start.date}T${this.state.time_start.time}`,
-      ),
-      date_due: new Date(
-        `${this.state.date_due.date}T${this.state.date_due.time}`,
-      ),
+      user_assigned_id: this.state.user_assigned_id.value,
+      time_start: `${this.state.time_start.date}T${this.state.time_start.time}`,
+      date_due: `${this.state.date_due.date}T${this.state.date_due.time}`,
       group_id: this.state.group_id,
       priority: parseInt(this.state.priority.value),
       category_id: parseInt(this.state.category.value),
     };
 
-    try {
-      const returnedNewTask = await GroopService.postTask(newTask);
-      if (returnedNewTask) this.props.history.goBack();
-    } catch (error) {
-      this.setState({
-        error: "error creating new task. 'Name' and 'Due Date' are required.",
-      });
+    console.log(newTask);
+
+    const returnedNewTask = await GroopService.postTask(newTask);
+    if (!returnedNewTask) {
+      this.setState({ error: 'error creating new task' });
+    } else {
+      this.props.history.goBack();
     }
   };
 
@@ -136,8 +132,9 @@ export default class TaskForm extends Component {
   };
 
   render() {
-    const { categories = [], error } = this.state;
-
+    const { categories = [] } = this.state;
+    console.log(this.state.user_assigned_id)
+    
     const memberOptions = this.state.members.map(member => (
       <option key={`member${member.member_id}`} value={member.member_id}>
         {member.username}
@@ -147,10 +144,7 @@ export default class TaskForm extends Component {
       <section>
         <form className="AddTaskForm">
           <h2>Add Task</h2>
-          <div role="alert" className="alert">
-            {error && <p>{error}</p>}
-          </div>
-          <label htmlFor="addtaskname" className="AddTaskLabel">
+          <label htmlFor="addTaskname" className="AddTaskLabel">
             Task Name
           </label>
           <input

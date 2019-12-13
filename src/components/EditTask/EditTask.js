@@ -54,18 +54,11 @@ export default class EditTask extends Component {
     const members = await GroopService.getGroupMembers(task.group_id);
     const categories = await GroopService.getCategories(task.group_id);
 
-    let datedue_arr = new Date(task.date_due)
-      .toLocaleDateString('en-US')
-      .split('/');
-    let timestart_arr = new Date(task.time_start)
-      .toLocaleDateString('en-US')
-      .split('/');
-
     this.setState({
       name: { value: task.name, touched: false },
       description: { value: task.description, touched: false },
       date_due: {
-        date: `${datedue_arr[2]}-${datedue_arr[0]}-${datedue_arr[1]}`,
+        date: task.date_due.substring(0, 10),
         time: new Date(task.date_due).toLocaleTimeString('en-GB'),
         touched: false,
       },
@@ -73,7 +66,7 @@ export default class EditTask extends Component {
         date:
           task.time_start == null
             ? new Date().toISOString().substring(0, 10)
-            : `${timestart_arr[2]}-${timestart_arr[0]}-${timestart_arr[1]}`,
+            : task.time_start.substring(0, 10),
         time:
           task.time_start == null
             ? '00:00'
@@ -94,12 +87,8 @@ export default class EditTask extends Component {
     const editedTask = {
       name: this.state.name.value,
       description: this.state.description.value,
-      time_start: new Date(
-        `${this.state.time_start.date}T${this.state.time_start.time}`,
-      ),
-      date_due: new Date(
-        `${this.state.date_due.date}T${this.state.date_due.time}`,
-      ),
+      time_start: `${this.state.time_start.date}T${this.state.time_start.time}`,
+      date_due: `${this.state.date_due.date}T${this.state.date_due.time}`,
       user_assigned_id: this.state.user_assigned_id.value,
       priority: this.state.priority.value,
       category_id: this.state.category.value,
@@ -290,7 +279,6 @@ export default class EditTask extends Component {
           </label>
           <select
             name="Categories"
-            id="addtaskcategory"
             onChange={e => this.handleCategory(e.target.value)}
             value={this.state.category.value}
           >
@@ -306,12 +294,11 @@ export default class EditTask extends Component {
             ))}
           </select>
 
-          <label htmlFor="PrioritiesSelect" className="Priorities">
+          <label htmlFor="Priorities" className="Priorities">
             Priority
           </label>
           <select
             name="Priorities"
-            id="PrioritiesSelect"
             onChange={e => this.onPriorityChange(e.target.value)}
             value={this.state.priority.value}
           >

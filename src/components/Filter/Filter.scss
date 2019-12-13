@@ -1,128 +1,32 @@
 @import '../../variables.scss';
 
-.filter-search-form {
-  display: flex;
-  flex-direction: row;
-}
-
-.FilterButton {
-  color: $color-bg-main6;
-  margin-left: 0;
-  border-top: 1px solid $color-bg-main5;
-  background-color: transparent;
-  border-bottom: 1px solid $color-bg-main5;
-  border-right: 1px solid $color-bg-main5;
-  border-left: none;
-  cursor: pointer;
-  height: 40px;
-  width: 40px;
-}
-
-.FilterButtonCancel:hover {
-  color: $color-font-offwhite;
-  border-top: 1px solid $color-error;
-  border-bottom: 1px solid $color-error;
-  border-right: 1px solid $color-error;
-  background-color: $color-error;
-}
-
-.FilterButton:hover {
-  color: $color-font-offwhite;
-  border-top: 1px solid $color-font-offwhite;
-  border-bottom: 1px solid $color-font-offwhite;
-  border-right: 1px solid $color-font-offwhite;
-  border-left: 1px solid $color-font-offwhite;
-}
-
-.FilterButtonCancel {
-  color: $color-error;
-  margin-left: 0;
-  cursor: pointer;
-  border-top: 1px solid $color-bg-main5;
-  background-color: transparent;
-  border-bottom: 1px solid $color-bg-main5;
-  border-right: 1px solid $color-bg-main5;
-  border-left: none;
-  height: 40px;
-  width: 40px;
-  border-top-right-radius: 3px;
-  border-bottom-right-radius: 3px;
-}
-
-.FilterToggle {
-  display: flex;
-  color: $color-font-offwhite;
-  margin-left: 0;
-  border: 1px solid $color-bg-main5;
-  border-radius: 3px;
-  background-color: transparent;
-  cursor: pointer;
-  padding: 5px;
-  width: auto;
-  margin-bottom: 5px;
-  height: auto;
-  width: auto;
-  margin-right: 0.5em;
-}
-
-.FilterToggle:hover {
-  display: flex;
-  color: $color-font-offwhite;
-  margin-left: 0;
-  border: 1px solid $color-font-offwhite;
-  border-radius: 3px;
-  background-color: transparent;
-  cursor: pointer;
-  padding: 5px;
-  width: auto;
-  margin-bottom: 5px;
-  height: auto;
-  width: auto;
-}
-
-.filter span {
-  margin-right: 5px;
-  margin-bottom: 5px;
-  display: flex;
-}
-
-.FilterButton svg,
-.FilterButtonCancel svg {
-  margin-top: 10px;
-}
-
 .filter {
   display: flex;
   padding: 0.25rem 1rem;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: left;
-  margin-top: 0rem;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
   margin-right: 0;
   width: 100%;
 
   > label {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    margin: 0;
+    justify-content: flex-end;
     align-items: flex-start;
-    width: auto;
-    margin-right: 0%;
-    margin-left: 0;
-    margin-top: 5px;
-    margin-right: 1%;
+    margin-right: 1rem;
 
     > select {
-      margin: 5px auto;
-      height: 30px;
+      margin-right: 0px;
+      margin-top: 5px;
+      margin-bottom: 1rem;
+      height: 40px;
       border: 1px solid $color-bg-main5;
-      padding: 3px;
-      min-width: 250px;
     }
   }
 }
-.filter-search-form {
+.member-select {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -130,27 +34,18 @@
 
   input {
     flex: 5 1 60%;
-    height: 40px;
-    border-top-right-radius: unset;
-    border-bottom-right-radius: unset;
   }
 
   > div {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     flex: 1 1 auto;
 
     > button {
-      margin: 0 1rem 0rem 0;
+      margin-bottom: 0;
     }
   }
-}
-
-.filter-search-form button {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 select {
@@ -158,66 +53,39 @@ select {
   padding: 5px 10px;
 }
 
-.break {
-  flex-basis: 100%;
-  height: 0;
+.member-select input {
+  height: 40px;
+}
+.member-select button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media screen and (min-width: 800px) {
-  .FilterToggle {
-    margin-bottom: 1.3rem;
-    padding: 12px;
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-  }
-
-  .FilterToggle:hover {
-    margin-bottom: 1.3rem;
-    padding: 12px;
-    height: 40px;
-    width: 40px;
-    margin-right: 10px;
-    border: 1px solid $color-font-offwhite;
-  }
-
-  .filter span {
-    margin-right: 5px;
-    margin-bottom: 2rem;
-  }
-
   .filter {
     display: flex;
     width: 70%;
     margin: 0 auto;
     flex-direction: row;
     align-items: flex-end;
-    justify-content: left;
+    justify-content: center;
     > label {
-      // width: 21%;
-      margin-right: 1%;
-
+      flex: 1 1 150px;
       > select {
-        margin-right: 0px;
-        margin-top: 5px;
-        margin-bottom: 1rem;
-        height: 40px;
-        border: 1px solid $color-bg-main5;
+        margin-bottom: 0;
       }
     }
   }
-  .filter-search-form {
+  .member-select {
     flex-direction: row;
     align-items: flex-end;
     > input {
       height: 40px;
+      flex: 5 1 auto;
     }
     > div {
       width: auto;
-
-      > button {
-        margin: 0 1rem 1rem 0;
-      }
     }
   }
 }
