@@ -5,6 +5,7 @@ import GroopService from '../../services/groop-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSearch,
+  
   faTimes,
   faPlus,
   faMinus,
