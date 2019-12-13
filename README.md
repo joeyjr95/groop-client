@@ -14,7 +14,7 @@ weekly reminders with optional email notifications.
 ##Screenshots
 
 <p align="center">
-<img src="./src/images/dashboard.png" width="200"> <img src="./src/images/groupdashboard.png" width="200"> <img src="./src/images/groupsettings" width="200"> <img src="./src/images/accountsettings.png" width="200"><img src="./src/images/sidebar.jpg" width="200">
+<img src="./src/images/dashboard.png" width="200"> <img src="./src/images/groupdashboard.png" width="200"> <img src="./src/images/groupsettings.png" width="200"> <img src="./src/images/accountsettings.png" width="200"><img src="./src/images/sidebar.jpg" width="200">
 </p>
 
 ###Landing Page
