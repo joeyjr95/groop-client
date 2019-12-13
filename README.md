@@ -12,7 +12,7 @@ weekly reminders with optional email notifications.
 ##Screenshots
 
 <p align="center">
-<img src="../images/dashboard.png" width="200"> <img src="../images/groupdashboard.png" width="200"> <img src="../images/groupsettings" width="200"> <img src="../images/accountsettings.png" width="200"><img src="../images/sidebar.jpg" width="200">
+<img src="../../images/dashboard.png" width="200"> <img src="../../images/groupdashboard.png" width="200"> <img src="../../images/groupsettings" width="200"> <img src="../../images/accountsettings.png" width="200"><img src="../../images/sidebar.jpg" width="200">
 </p>
 
 ###Landing Page
