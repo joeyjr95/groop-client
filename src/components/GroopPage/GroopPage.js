@@ -92,7 +92,7 @@ export default class GroopPage extends Component {
       return (
         
         <div className="pieChart">
-           <p> This chart represents the workload split between group members for upcoming tasks. The numbers in the chart show each members total priority number to represent how much tasks have been split between members by priority.</p>
+           <p> This chart represents the workload split between group members for upcoming tasks. The numbers in the chart show each member's total priority number to represent how many tasks have been split between members by priority.</p>
           <RadialChart
           onValueMouseOver={d => {
             this.setState({hoveredRadial: d.name})
