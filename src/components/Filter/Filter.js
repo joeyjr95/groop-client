@@ -1,23 +1,37 @@
-import React, { Component } from "react";
-import GroopContext from "../../contexts/GroopContext";
-import "./Filter.scss";
-import GroopService from "../../services/groop-service";
+
+import React, { Component } from 'react';
+import GroopContext from '../../contexts/GroopContext';
+import './Filter.scss';
+import GroopService from '../../services/groop-service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faSearch,
+  faTimes,
+  faPlus,
+  faMinus,
+} from '@fortawesome/free-solid-svg-icons';
 export default class Filter extends Component {
   static contextType = GroopContext;
+
   state = {
-    selectedInput: "",
-    filter: "User Name",
+    selectedInput: '',
     group: 0,
     categories: [],
-    category: 0
+    groupmembers: [],
+    category: 0,
+    groupmember: '',
+    filterBy: '',
+    showFilter: false,
   };
-  componentDidMount = async () => {
-    const path = this.props.match.path;
-    const dashboard = "/dashboard";
 
-    if (path === dashboard) {
-      this.setState({ 
-        filter: "Task Name",
+  componentDidMount = async () => {
+    if (window.innerWidth > 800) {
+      this.setState({
+        showFilter: true,
+      });
+    }
+    if (this.props.match.path === '/dashboard') {
+      this.setState({
         categories: [],
         category: 0,
       });
@@ -26,115 +40,47 @@ export default class Filter extends Component {
       let groupCategories = await GroopService.getCategories(
         this.props.match.params.group_id
       );
+      let groupMembers = await GroopService.getGroupMembers(
+        this.props.match.params.group_id,
+      );
       this.setState({
         group: this.props.match.params.group_id,
-        categories: groupCategories
+        categories: groupCategories,
+        groupmembers: groupMembers,
       });
     }
   };
+
+  // get groups user is a member of
   getUserGroups = () => {
     GroopService.getUserGroups().then(data => {
       this.context.setGroups(data);
     });
   };
 
-  filterTasksByUser = e => {
-    e.preventDefault();
-    let group = this.context.currentGroupMembers;
-    let groupTasks = this.context.currentGroupTasks;
-    let selectedInput = this.state.selectedInput;
-    let user = group.find(u => u.username === this.state.selectedInput);
-    if (!selectedInput) {
-      this.context.setFilteredTasks(groupTasks);
-    } else if (!user) {
-      this.context.setFilteredTasks(groupTasks);
-      alert("user not in group");
-      this.setState({
-        selectedInput: ""
-      });
-    } else if (user.username === selectedInput) {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.user_assigned_id === user.member_id;
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
+  // search for string included in task description
 
-  searchDescription = e => {
-    const path = this.props.match.path;
-    const dashboard = "/dashboard";
-    e.preventDefault();
-    let groupTasks = this.context.currentGroupTasks;
-    let selectedInput = this.state.selectedInput;
-    if (path === dashboard) {
-      let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.description.includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    } else {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.description.includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
-  searchTaskName = e => {
-    const path = this.props.match.path;
-    const dashboard = "/dashboard";
-    e.preventDefault();
-    let groupTasks = this.context.currentGroupTasks;
+  // searchIncompleted = e => {
+  //   const path = this.props.match.path;
+  //   const dashboard = '/dashboard';
 
-    let selectedInput = this.state.selectedInput;
-    if (path === dashboard) {
-      let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.name.includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    } else {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.name.includes(selectedInput);
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
-  searchCompleted = e => {
-    const path = this.props.match.path;
-    const dashboard = "/dashboard";
-    e.preventDefault();
-    let groupTasks = this.context.currentGroupTasks;
-    if (path === dashboard) {
-      let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.completed === true;
-      });
-      this.context.setFilteredTasks(filterTasks);
-    } else {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.completed === true;
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
-  searchIncompleted = e => {
-    const path = this.props.match.path;
-    const dashboard = "/dashboard";
-    e.preventDefault();
-    let groupTasks = this.context.currentGroupTasks;
-    if (path === dashboard) {
-      let filterTasks = this.context.userTasks.filter(tasks => {
-        return tasks.completed === false;
-      });
-      this.context.setFilteredTasks(filterTasks);
-    } else {
-      let filterTasks = groupTasks.filter(tasks => {
-        return tasks.completed === false;
-      });
-      this.context.setFilteredTasks(filterTasks);
-    }
-  };
+  //   let groupTasks = this.context.currentGroupTasks;
+  //   if (path === dashboard) {
+  //     let filterTasks = this.context.userTasks.filter(tasks => {
+  //       return tasks.completed === false;
+  //     });
+  //     this.context.setFilteredTasks(filterTasks);
+  //   } else {
+  //     let filterTasks = groupTasks.filter(tasks => {
+  //       return tasks.completed === false;
+  //     });
+  //     this.context.setFilteredTasks(filterTasks);
+  //   }
+  // };
   searchHighPriority = e => {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
-    e.preventDefault();
+    const dashboard = '/dashboard';
+
     let groupTasks = this.context.currentGroupTasks;
     if (path === dashboard) {
       let filterTasks = this.context.userTasks.filter(tasks => {
@@ -150,8 +96,8 @@ export default class Filter extends Component {
   };
   searchMediumPriority = e => {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
-    e.preventDefault();
+    const dashboard = '/dashboard';
+
     let groupTasks = this.context.currentGroupTasks;
     if (path === dashboard) {
       let filterTasks = this.context.userTasks.filter(tasks => {
@@ -167,8 +113,8 @@ export default class Filter extends Component {
   };
   searchLowPriority = e => {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
-    e.preventDefault();
+    const dashboard = '/dashboard';
+
     let groupTasks = this.context.currentGroupTasks;
     if (path === dashboard) {
       let filterTasks = this.context.userTasks.filter(tasks => {
@@ -182,68 +128,101 @@ export default class Filter extends Component {
       this.context.setFilteredTasks(filterTasks);
     }
   };
-
+  // search for string included in task description / taskname
   search = e => {
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
+
     this.context.setFilteredTasks(groupTasks);
-    let filter = this.state.filter;
-    if (filter === "Task Name") {
-      this.searchTaskName(e);
-    } else if (filter === "Description") {
-      this.searchDescription(e);
-    } else if (filter === "User Name") {
-      this.filterTasksByUser(e);
-    } else if (filter === "Completed") {
-      this.searchCompleted(e);
-    } else if (filter === "Incompleted") {
-      this.searchIncompleted(e);
-    } else if (filter === "High Priority") {
+
+    let selectedInput = this.state.selectedInput.toUpperCase();
+
+    if (this.props.match.path === '/dashboard') {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return (
+          tasks.description.toUpperCase().includes(selectedInput) ||
+          tasks.name.toUpperCase().includes(selectedInput)
+        );
+      });
+      this.context.setFilteredTasks(filterTasks);
+    } else {
+      let filterTasks = groupTasks.filter(tasks => {
+        return (
+          tasks.description.toUpperCase().includes(selectedInput) ||
+          tasks.name.toUpperCase().includes(selectedInput)
+        );
+      });
+      this.context.setFilteredTasks(filterTasks);
+    }
+  };
+  filter = e => {
+    let groupTasks = this.context.currentGroupTasks;
+    this.context.setFilteredTasks(groupTasks);
+    let filter = this.state.filterBy;
+    if (filter === 'High Priority') {
       this.searchHighPriority(e);
     } else if (filter === "Medium Priority") {
       this.searchMediumPriority(e);
     } else if (filter === "Low Priority") {
       this.searchLowPriority(e);
+    } else if (filter === 'None') {
+      this.hardReset();
     }
   };
 
-  onFilterChange = e => {
-    this.setState({
-      filter: e
+  onFilterByChange = async e => {
+    await this.setState({
+      filterBy: e,
     });
+    this.filter(e);
   };
 
+  // controlled input for search input
   onSelectChange = e => {
     this.setState({
       selectedInput: e
     });
   };
+
+  // clear search and reset task list
   onReset = e => {
-    const path = this.props.match.path;
-    const dashboard = "/dashboard";
-    let groupTasks = this.context.currentGroupTasks;
     e.preventDefault();
+    let groupTasks = this.context.currentGroupTasks;
     this.setState({
       selectedInput: ""
     });
-    if (path === dashboard) {
+
+    if (this.props.match.path === '/dashboard') {
       this.context.setFilteredTasks(this.context.userTasks);
     } else {
       this.context.setFilteredTasks(groupTasks);
     }
   };
+  hardReset = e => {
+    let groupTasks = this.context.currentGroupTasks;
+    this.setState({
+      selectedInput: '',
+    });
+
+    if (this.props.match.path === '/dashboard') {
+      this.context.setFilteredTasks(this.context.userTasks);
+    } else {
+      this.context.setFilteredTasks(groupTasks);
+    }
+  };
+
   groupFilter() {
     const groups = this.context.groups || [];
     return (
-      <label htmlFor="member-select">
-        {" "}
-        Group Filter:
+      <label htmlFor="group-filter-select">
+        Group:
         <select
           name="Groups"
+          id="group-filter-select"
           onChange={e => this.onGroupFilterChange(Number(e.target.value))}
         >
           <option key={`group_all`} id={0} name="all_groups" value={0}>
-            All Groups
+            My Tasks (No Group Selected)
           </option>
           {groups.map(group => (
             <option
@@ -276,10 +255,14 @@ export default class Filter extends Component {
       await GroopService.getCategories(this.state.group).then(data =>
         this.setState({ categories: data })
       );
+      await GroopService.getGroupMembers(this.state.group).then(data =>
+        this.setState({ groupmembers: data }),
+      );
       this.context.setFilteredTasks(updatedTasks);
       this.context.setUserTasks(updatedTasks);
     }
   };
+
   onCategoryFilterSubmit = () => {
     if (this.state.category === 0) {
       let filterTasks = this.context.userTasks;
@@ -288,6 +271,20 @@ export default class Filter extends Component {
     } else if (this.state.category !== 0) {
       let filterTasks = this.context.userTasks.filter(tasks => {
         return tasks.category_id === this.state.category;
+      });
+      this.context.setFilteredTasks(filterTasks);
+      this.context.setUserTasks(filterTasks);
+    }
+  };
+
+  onMemberFilterSubmit = () => {
+    if (this.state.groupmember === 0) {
+      let filterTasks = this.context.userTasks;
+      this.context.setFilteredTasks(filterTasks);
+      this.context.setUserTasks(filterTasks);
+    } else if (this.state.groupmember !== 0) {
+      let filterTasks = this.context.userTasks.filter(tasks => {
+        return tasks.user_assigned_id === this.state.groupmember;
       });
       this.context.setFilteredTasks(filterTasks);
       this.context.setUserTasks(filterTasks);
@@ -303,15 +300,17 @@ export default class Filter extends Component {
     });
     this.onCategoryFilterSubmit();
   };
+
   categorySelection() {
     if (this.state.group !== 0) {
       const { categories = [] } = this.state;
       return (
-        <label htmlFor="member-select">
-          {" "}
+        <label htmlFor="category-select">
+          {' '}
           Category:
           <select
-            name="Groups"
+            name="categories"
+            id="category-select"
             onChange={e => this.onCategoryChange(Number(e.target.value))}
           >
             <option key={`category_all`} id={0} name="all_categories" value={0}>
@@ -332,85 +331,167 @@ export default class Filter extends Component {
       );
     }
   }
+
+  onMemberChange = async e => {
+    let updatedTasks = await GroopService.getGroupTasks(this.state.group);
+    await this.context.setFilteredTasks(updatedTasks);
+    await this.context.setUserTasks(updatedTasks);
+    await this.setState({
+      groupmember: e,
+    });
+    this.onMemberFilterSubmit();
+  };
+  memberSelection() {
+    if (this.state.group !== 0) {
+      const { groupmembers = [] } = this.state;
+      return (
+        <label htmlFor="member-select">
+          Members:
+          <select
+            name="members"
+            id="member-select"
+            onChange={e => this.onMemberChange(Number(e.target.value))}
+          >
+            <option key={`member_all`} id={0} name="all_members" value={0}>
+              All Members
+            </option>
+            {groupmembers.map(member => (
+              <option
+                key={`member_${member.id}`}
+                id={`member_${member.id}`}
+                name={member.username}
+                value={member.id}
+              >
+                {member.username}
+              </option>
+            ))}
+          </select>
+        </label>
+      );
+    }
+  }
   render() {
     const path = this.props.match.path;
-    const dashboard = "/dashboard";
+    const dashboard = '/dashboard';
+    const { showFilter } = this.state;
     if (path === dashboard) {
       return (
         <div className="filter">
-          {this.groupFilter()}
-          {this.categorySelection()}
-          <label htmlFor="member-select">
-            {" "}
-            Search by:
-            <select
-              name="Categories"
-              onChange={e => this.onFilterChange(e.target.value)}
-            >
-              <option value="Task Name">Task Name</option>
-              <option value="Description">Description</option>
-              <option value="Completed">Completed tasks</option>
-              <option value="Incompleted">Incomplete tasks</option>
-              <option value="High Priority">High Priority</option>
-              <option value="Medium Priority">Medium Priority</option>
-              <option value="Low Priority">Low Priority</option>
-            </select>
-          </label>
-          <form className="member-select">
+          <span>Filters:</span>{' '}
+          <button
+            className="FilterToggle"
+            onClick={() => this.setState({ showFilter: !showFilter })}
+          >
+            {showFilter ? (
+              <>
+                <FontAwesomeIcon icon={faMinus} id="closeIcon" />
+              </>
+            ) : (
+              <>
+                <FontAwesomeIcon icon={faPlus} id="closeIcon" />
+              </>
+            )}
+          </button>
+          {showFilter && (
+            <>
+              {this.groupFilter()}
+              {this.categorySelection()}
+              {this.memberSelection()}
+              <label htmlFor="filter">
+                {' '}
+                Priority:
+                <select
+                  name="filter-dropdown"
+                  onChange={e => this.onFilterByChange(e.target.value)}
+                >
+                  <option value="None">No Filter (No Filter Selected)</option>
+                  <option value="High Priority">High Priority</option>
+                  <option value="Medium Priority">Medium Priority</option>
+                  <option value="Low Priority">Low Priority</option>
+                </select>
+              </label>
+            </>
+          )}
+          <div className="break"></div>
+          <form className="filter-search-form">
             <input
               type="text"
-              id="member-select"
-              name="member-select"
-              placeholder="search here"
+              id="filter-search-from__input"
+              name="filter-search-form-input"
+              placeholder="search task name or description here"
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
-            <div className="FilterButtonContainer">
-              <button className="Button" onClick={e => this.search(e)}>
-                Search
-              </button>
-              <button className="ButtonCancel" onClick={e => this.onReset(e)}>
-                Clear
-              </button>
-            </div>
+            <button className="FilterButton" onClick={e => this.search(e)}>
+              <FontAwesomeIcon icon={faSearch} id="closeIcon" />
+            </button>
+            <button
+              className="FilterButtonCancel"
+              onClick={e => this.onReset(e)}
+            >
+              <FontAwesomeIcon icon={faTimes} id="closeIcon" />
+            </button>
           </form>
         </div>
       );
     } else {
       return (
         <div className="filter">
-          {this.categorySelection()}
-          <label htmlFor="member-select">
-            {" "}
-            Search by:
-            <select
-              name="Categories"
-              onChange={e => this.onFilterChange(e.target.value)}
-            >
-              <option value="User Name">User Name</option>
-              <option value="Task Name">Task Name</option>
-              <option value="Description">Description</option>
-              <option value="Completed">Completed tasks</option>
-              <option value="Incompleted">Incomplete tasks</option>
-            </select>
-          </label>
-          <form className="member-select">
+          <span>Filters:</span>{' '}
+          <button
+            className="FilterToggle"
+            onClick={() => this.setState({ showFilter: !showFilter })}
+          >
+            {showFilter ? (
+              <>
+                {' '}
+                <FontAwesomeIcon icon={faMinus} id="closeIcon" />
+              </>
+            ) : (
+              <>
+                {' '}
+                <FontAwesomeIcon icon={faPlus} id="closeIcon" />
+              </>
+            )}
+          </button>
+          {showFilter && (
+            <>
+              {this.categorySelection()}
+              {this.memberSelection()}
+              <label htmlFor="filter">
+                {' '}
+                Priority:
+                <select
+                  name="filter-dropdown"
+                  onChange={e => this.onFilterByChange(e.target.value)}
+                >
+                  <option value="None">No Filter (No Filter Selected)</option>
+                  <option value="High Priority">High Priority</option>
+                  <option value="Medium Priority">Medium Priority</option>
+                  <option value="Low Priority">Low Priority</option>
+                </select>
+              </label>
+            </>
+          )}
+          <form className="filter-search-form">
+
             <input
               type="text"
-              id="member-select"
-              name="member-select"
+              id="filter-search-form__input"
+              name="filter-search-form-input"
               placeholder="search here"
               value={this.state.selectedInput}
               onChange={e => this.onSelectChange(e.target.value)}
             />
-            <div className="FilterButtonContainer">
-              <button className="Button" onClick={e => this.search(e)}>
-                Search
-              </button>
-              <button className="ButtonCancel" onClick={e => this.onReset(e)}>
-                Clear
-              </button>
-            </div>
+            <button className="FilterButton" onClick={e => this.search(e)}>
+              <FontAwesomeIcon icon={faSearch} id="closeIcon" />
+            </button>
+            <button
+              className="FilterButtonCancel"
+              onClick={e => this.onReset(e)}
+            >
+              <FontAwesomeIcon icon={faTimes} id="closeIcon" />
+            </button>
           </form>
         </div>
       );

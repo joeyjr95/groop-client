@@ -24,7 +24,15 @@ export default class Sidebar extends Component {
     const groups = this.context.groups || [];
 
     const groupLinks = groups.map(group => {
-      return <Link to={`../group/${group.group_id}`}>{group.name}</Link>;
+      return (
+        <Link
+          to={`../group/${group.group_id}`}
+          key={`group${group.group_id}`}
+          className="sb-links"
+        >
+          {group.name}
+        </Link>
+      );
     });
 
     if (path === dashboard) {

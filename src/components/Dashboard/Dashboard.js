@@ -82,10 +82,19 @@ export default class Dashboard extends Component {
               ) : (
                 <div className="empty-list">
                   No Tasks Available.
-                  <ol >
-                    <li id="grouplink"> <Link to="/add-group">Create a group</Link> to get started. </li>
-                    <li id="grouplink2"> After the group is created, click the group's name on the sidebar under the "Groups" section to create a task.</li>
-                    </ol>
+                  <ol>
+                    <li id="grouplink">
+                      {' '}
+                      <Link to="/add-group">Create a group</Link> to get
+                      started.{' '}
+                    </li>
+                    <li id="grouplink2">
+                      {' '}
+                      After a group is created, click the group's name on the
+                      sidebar under "Groups" to create a task.
+                    </li>
+                  </ol>
+
                 </div>
               )}
             </ul>

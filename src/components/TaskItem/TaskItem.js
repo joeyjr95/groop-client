@@ -16,7 +16,10 @@ export default class TaskItem extends React.Component {
     date_due: this.props.task.date_due.substring(0, 10),
     user_assigned_id: this.props.task.user_assigned_id,
     delete_confirm: false,
+    showMore: false,
   };
+
+  componentDidMount = async () => {};
 
   toggleTaskCompleted = async () => {
     const newStatus = this.state.completed ? false : true;
@@ -52,6 +55,53 @@ export default class TaskItem extends React.Component {
 
   render() {
     const task = this.props.task;
+    const taskDetail = this.state.showMore ? (
+      <div className="task-detail">
+        <div className="task-detail-spacer"></div>
+        <div className="task-detail__info">
+          {!this.props.dashboard ? (
+            <p className="task-detail__item">
+              <b>Assigned to:</b> {task.username}
+            </p>
+          ) : null}
+          <p className="task-detail__item">
+            <b>Start Time:</b>{' '}
+            {new Date(task.time_start).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: 'numeric',
+              minute: 'numeric',
+            })}
+          </p>
+          <p className="task-detail__item">
+            <b>Category:</b> {task.category_name}
+          </p>
+          <p className="task-detail__item">
+            <b>Description:</b> {task.description}
+          </p>
+        </div>
+        <div className="task-detail-spacer2"></div>
+      </div>
+    ) : null;
+    const taskItemPriority =
+      task.priority === 3 ? (
+        <>
+          <div className="priority-box priority-box--high" />
+          <div className="priority-box priority-box--high" />
+          <div className="priority-box priority-box--high" />
+        </>
+      ) : task.priority === 2 ? (
+        <>
+          <div className="priority-box priority-box--med" />
+          <div className="priority-box priority-box--med" />
+        </>
+      ) : (
+        <>
+          <div className="priority-box priority-box--low" />
+        </>
+      );
+
     return (
       <li
         className={

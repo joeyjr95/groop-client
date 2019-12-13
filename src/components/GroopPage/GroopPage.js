@@ -3,7 +3,7 @@ import GroopContext from '../../contexts/GroopContext';
 import GroopService from '../../services/groop-service';
 import Filter from '../../components/Filter/Filter';
 import React, { Component } from 'react';
-import { RadialChart } from 'react-vis';
+import { RadialChart} from 'react-vis';
 import TaskItem from '../TaskItem/TaskItem';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMedal } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +11,9 @@ import { Link } from 'react-router-dom';
 
 export default class GroopPage extends Component {
   static contextType = GroopContext;
+  state = {
+    hoveredRadial: false
+  }
 
   componentDidMount = async () => {
     const group = await GroopService.getGroup(this.props.match.params.group_id);
@@ -56,47 +59,73 @@ export default class GroopPage extends Component {
    return Number(priorityAngle.reduce((a, b) => a + b))
     }
   }
+  buildValue(hoveredRadial){
+    return {
+      name: hoveredRadial
+    }
+  }
   
-  renderChart(){
-    const { currentGroupMembers = []} = this.context;
-    let colors =['#1c939a', '#72bce0','#bad7e6','#5891ad','#1780B0','#1653A6','#126266','#52A6AA','#105659','#A62E7B']
-    if(currentGroupMembers.length < 2){
-      return <> </>
-    }else{
-    let chartInfo = currentGroupMembers.map((member, i) => (
-      {
-         angle: this.chartAngle(member),
-         color: colors[i%(colors.length - 1)], 
-         name: member.username 
-      }
-    ))
-    console.log(chartInfo)
-    return (
-      <div className="pieChart">
-              <RadialChart
-                colorType={'literal'}
-                colorDomain={[0, 100]}
-                colorRange={[0, 10]}
-                getLabel={d => d.name}
-                data={
-                  chartInfo
-                }
-                labelsRadiusMultiplier={1}
-                labelsStyle={{ fontSize: 16 }}
-                showLabels
-                style={{ stroke: '#fff', strokeWidth: 2 }}
-                width={250}
-                height={250}
-              ></RadialChart>
-              <p> Point totals for assigned tasks</p>
-            </div>
-  
-    )
 
+  renderChart() {
+    const {hoveredRadial} = this.state
+    const { currentGroupMembers = [] } = this.context;
+    let colors = [
+      '#1c939a',
+      '#72bce0',
+      '#bad7e6',
+      '#5891ad',
+      '#1780B0',
+      '#1653A6',
+      '#126266',
+      '#52A6AA',
+      '#105659',
+      '#A62E7B',
+    ];
+    if (currentGroupMembers.length < 2) {
+      return <> </>;
+    } else {
+      let chartInfo = currentGroupMembers.map((member, i) => ({
+        angle: this.chartAngle(member),
+        color: colors[i % (colors.length - 1)],
+        name: member.username,
+        label: String(this.chartAngle(member)),
+      }));
+      return (
+        
+        <div className="pieChart">
+           <p> How tasks have been split for this week weighted by priority</p>
+          <RadialChart
+          onValueMouseOver={d => {
+            this.setState({hoveredRadial: d.name})
+            }}
+          onValueMouseOut={v => this.setState({hoveredRadial: false})}
+            colorType={'literal'}
+            innerRadius={92}
+            radius={120}
+            colorDomain={[0, 100]}
+            colorRange={[0, 10]}
+            getLabel={d => d.label}
+            data={chartInfo}
+            labelsRadiusMultiplier={0.7}
+            labelsStyle={{ fontSize: 18, backgroundColor: '#202020' }}
+            showLabels
+            
+            style={{ stroke: '#202020', strokeWidth: 5 }}
+            width={250}
+            height={250}
+          ></RadialChart>
+           {hoveredRadial ? (
+         <span className="hoveredRadial">{hoveredRadial}</span>
+        ) : <span className="hoveredRadial"></span>}
+          
+          
+        </div>
+      );
     }
   }
 
   render() {
+    console.log(this.state.hoveredRadial)
     const { currentGroupMembers = [], filteredTasks = [] } = this.context;
     console.log(this.context.currentGroupTasks)
     return (
@@ -107,7 +136,7 @@ export default class GroopPage extends Component {
             <label htmlFor="menu" id="label-menu">
               Members
             </label>
-            <ul className="menu" role="menu">
+            <ul className="menu">
               {currentGroupMembers.map(member => {
                return( <li
                   key={member.member_id}
@@ -126,7 +155,7 @@ export default class GroopPage extends Component {
               <label htmlFor="menu" id="label-menu">
                 Members
               </label>
-              <ul className="menu" role="menu">
+              <ul className="menu">
                 {currentGroupMembers.map(member => (
                   <li
                     key={member.member_id}
@@ -140,62 +169,6 @@ export default class GroopPage extends Component {
                 ))}
               </ul>
             </div>
-            {/* <div className="scores-section">
-              <div className="scores-section1">
-                <label htmlFor="weekly-scores" id="weekly-scores-label">
-                  Top Scores for today
-                </label>
-                <ol className="AllTimeScore" role="menu">
-                  {currentGroupMembers.map(memScore => (
-                    <li
-                      key={memScore.member_id}
-                      id={memScore.member_id}
-                      aria-live="polite"
-                    >
-                      <p className="userScore">
-                        {memScore.username}: {memScore.score}
-                      </p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-              <div className="scores-section2">
-                <label htmlFor="total-scores" id="total-scores-label">
-                  Top Scores all time
-                </label>
-                <ol className="AllTimeScore" role="menu">
-                  {currentGroupMembers.map(memScore => (
-                    <li
-                      key={memScore.member_id}
-                      id={memScore.member_id}
-                      aria-live="polite"
-                    >
-                      <p className="userScore">
-                        {memScore.username}: {memScore.score}
-                      </p>
-                    </li>
-                  ))}
-                </ol>
-              </div>
-            </div> */}
-            {/* <div className="pieChart">
-              <RadialChart
-                colorType={'literal'}
-                colorDomain={[0, 100]}
-                colorRange={[0, 10]}
-                getLabel={d => d.name}
-                data={
-                  this.renderChart()
-                }
-                labelsRadiusMultiplier={1}
-                labelsStyle={{ fontSize: 16 }}
-                showLabels
-                style={{ stroke: '#fff', strokeWidth: 2 }}
-                width={250}
-                height={250}
-              ></RadialChart>
-              <p> How tasks have been split today</p>
-            </div> */}
             {this.renderChart()}
           </div>
           <div className="task-list-container">

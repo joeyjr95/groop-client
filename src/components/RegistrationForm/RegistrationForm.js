@@ -20,7 +20,7 @@ class RegistrationForm extends Component {
     ev.preventDefault();
     const { name, username, email, password, confirmPassword } = ev.target;
     if (password.value !== confirmPassword.value) {
-      alert('passwords do not match');
+      this.setState({ error: 'Passwords do not match' });
     } else {
       AuthApiService.postUser({
         fullname: name.value,
@@ -49,9 +49,6 @@ class RegistrationForm extends Component {
     const { error } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
-        <div role="alert" className="alert">
-          {error && <p>{error}</p>}
-        </div>
         <div className="login-field">
           <Label
             htmlFor="registration-name-input"
@@ -129,6 +126,13 @@ class RegistrationForm extends Component {
             aria-required="true"
             required
           />
+        </div>
+        <p className="passwordTip">
+          TIP: Choose a password between 8 and 72 characters that includes at
+          least one number, and one uppercase, lowercase, and special character.
+        </p>
+        <div role="alert" className="alert">
+          {error && <p>{error}</p>}
         </div>
         <footer>
           <Button type="submit">Sign up</Button>{' '}
