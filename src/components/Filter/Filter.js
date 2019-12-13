@@ -5,6 +5,7 @@ import GroopService from '../../services/groop-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faSearch,
+  
   faTimes,
   faPlus,
   faMinus,
@@ -68,14 +69,31 @@ export default class Filter extends Component {
   //     let filterTasks = this.context.userTasks.filter(tasks => {
   //       return tasks.completed === false;
   //     });
-  //     this.context.setFilteredTasks(filterTasks);
+  //     this.getAllTasks(filterTasks);
   //   } else {
   //     let filterTasks = groupTasks.filter(tasks => {
   //       return tasks.completed === false;
   //     });
-  //     this.context.setFilteredTasks(filterTasks);
+  //     this.getAllTasks(filterTasks);
   //   }
   // };
+  getAllTasks =(tasks) => {
+    let today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // filter expired tasks (date due before today)
+    let filteredTasks = tasks.filter(task => {
+      let task_due_date = new Date(task.date_due);
+      return task_due_date >= today ? 1 : 0;
+    });
+
+    // sort by ascending date due
+    filteredTasks.sort((a, b) => {
+      return new Date(a.date_due) < new Date(b.date_due) ? false : true;
+    });
+
+    this.context.setFilteredTasks(filteredTasks);
+  };
   searchHighPriority = e => {
     const path = this.props.match.path;
     const dashboard = '/dashboard';
@@ -85,12 +103,12 @@ export default class Filter extends Component {
       let filterTasks = this.context.userTasks.filter(tasks => {
         return tasks.priority === 3;
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
     } else {
       let filterTasks = groupTasks.filter(tasks => {
         return tasks.priority === 3;
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
     }
   };
   searchMediumPriority = e => {
@@ -102,12 +120,12 @@ export default class Filter extends Component {
       let filterTasks = this.context.userTasks.filter(tasks => {
         return tasks.priority === 2;
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
     } else {
       let filterTasks = groupTasks.filter(tasks => {
         return tasks.priority === 2;
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
     }
   };
   searchLowPriority = e => {
@@ -119,12 +137,12 @@ export default class Filter extends Component {
       let filterTasks = this.context.userTasks.filter(tasks => {
         return tasks.priority === 1;
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
     } else {
       let filterTasks = groupTasks.filter(tasks => {
         return tasks.priority === 1;
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
     }
   };
   // search for string included in task description / taskname
@@ -132,7 +150,7 @@ export default class Filter extends Component {
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
 
-    this.context.setFilteredTasks(groupTasks);
+    this.getAllTasks(groupTasks);
 
     let selectedInput = this.state.selectedInput.toUpperCase();
 
@@ -143,7 +161,7 @@ export default class Filter extends Component {
           tasks.name.toUpperCase().includes(selectedInput)
         );
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
     } else {
       let filterTasks = groupTasks.filter(tasks => {
         return (
@@ -151,12 +169,12 @@ export default class Filter extends Component {
           tasks.name.toUpperCase().includes(selectedInput)
         );
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
     }
   };
   filter = e => {
     let groupTasks = this.context.currentGroupTasks;
-    this.context.setFilteredTasks(groupTasks);
+    this.getAllTasks(groupTasks);
     let filter = this.state.filterBy;
     if (filter === 'High Priority') {
       this.searchHighPriority(e);
@@ -192,9 +210,9 @@ export default class Filter extends Component {
     });
 
     if (this.props.match.path === '/dashboard') {
-      this.context.setFilteredTasks(this.context.userTasks);
+      this.getAllTasks(this.context.userTasks);
     } else {
-      this.context.setFilteredTasks(groupTasks);
+      this.getAllTasks(groupTasks);
     }
   };
   hardReset = e => {
@@ -204,9 +222,9 @@ export default class Filter extends Component {
     });
 
     if (this.props.match.path === '/dashboard') {
-      this.context.setFilteredTasks(this.context.userTasks);
+      this.getAllTasks(this.context.userTasks);
     } else {
-      this.context.setFilteredTasks(groupTasks);
+      this.getAllTasks(groupTasks);
     }
   };
 
@@ -247,7 +265,7 @@ export default class Filter extends Component {
   onGroupFilterSubmit = async () => {
     if (this.state.group === 0) {
       let updatedTasks = await GroopService.getAllTasks();
-      this.context.setFilteredTasks(updatedTasks);
+      this.getAllTasks(updatedTasks);
       this.context.setUserTasks(updatedTasks);
     } else if (this.state.group !== 0) {
       let updatedTasks = await GroopService.getGroupTasks(this.state.group);
@@ -257,7 +275,7 @@ export default class Filter extends Component {
       await GroopService.getGroupMembers(this.state.group).then(data =>
         this.setState({ groupmembers: data }),
       );
-      this.context.setFilteredTasks(updatedTasks);
+      this.getAllTasks(updatedTasks);
       this.context.setUserTasks(updatedTasks);
     }
   };
@@ -265,13 +283,13 @@ export default class Filter extends Component {
   onCategoryFilterSubmit = () => {
     if (this.state.category === 0) {
       let filterTasks = this.context.userTasks;
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
       this.context.setUserTasks(filterTasks);
     } else if (this.state.category !== 0) {
       let filterTasks = this.context.userTasks.filter(tasks => {
         return tasks.category_id === this.state.category;
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
       this.context.setUserTasks(filterTasks);
     }
   };
@@ -279,20 +297,20 @@ export default class Filter extends Component {
   onMemberFilterSubmit = () => {
     if (this.state.groupmember === 0) {
       let filterTasks = this.context.userTasks;
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
       this.context.setUserTasks(filterTasks);
     } else if (this.state.groupmember !== 0) {
       let filterTasks = this.context.userTasks.filter(tasks => {
         return tasks.user_assigned_id === this.state.groupmember;
       });
-      this.context.setFilteredTasks(filterTasks);
+      this.getAllTasks(filterTasks);
       this.context.setUserTasks(filterTasks);
     }
   };
 
   onCategoryChange = async e => {
     let updatedTasks = await GroopService.getGroupTasks(this.state.group);
-    await this.context.setFilteredTasks(updatedTasks);
+    await this.getAllTasks(updatedTasks);
     await this.context.setUserTasks(updatedTasks);
     await this.setState({
       category: e,
@@ -333,7 +351,7 @@ export default class Filter extends Component {
 
   onMemberChange = async e => {
     let updatedTasks = await GroopService.getGroupTasks(this.state.group);
-    await this.context.setFilteredTasks(updatedTasks);
+    await this.getAllTasks(updatedTasks);
     await this.context.setUserTasks(updatedTasks);
     await this.setState({
       groupmember: e,
