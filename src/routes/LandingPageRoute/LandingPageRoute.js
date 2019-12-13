@@ -23,7 +23,7 @@ export default class LandingPageRoute extends Component {
           <Link to="/register" className="landing-signup-a">
             Sign up
           </Link>
-          <a href="#about" className="landing-to-about">
+          <a href="#About" className="landing-to-about">
             <FontAwesomeIcon icon={faAngleDoubleDown} id="icon" />
           </a>
         </section>
@@ -31,12 +31,11 @@ export default class LandingPageRoute extends Component {
         <section className="AboutContainer">
           <div className=" feature-section--about">
             <p className="Aboutdescription">
-              Groop is an an app that can be used for a variety of collaboration
-              and event organization purposes while being fun at the same time!
-              Once logged in and registered, a user can create groups, and
-              within those groups invite/remove members, create/edit tasks, and
-              view a scoreboard to effectively get tasks done on time. Keep
-              track of tasks with optional email notifications.
+              Groop is a task manager for family, friends, or work. Organize
+              tasks and members from multiple groups and view a scoreboard to
+              effectively finish tasks done on time. Members accumulate points
+              based on a finished task's priority level. Get status updates and
+              weekly reminders with optional email notifications.
             </p>
           </div>
           <div className="feature-section">
@@ -60,7 +59,10 @@ export default class LandingPageRoute extends Component {
             <img alt="create groops" src={searchfilterimg} />
             <div className="feature-description">
               <h2>Search</h2>
-              <p>Search for tasks using different filters and a search query</p>
+              <p>
+                Search through all tasks in all groups from the dashboard using
+                different filters and a search query
+              </p>
             </div>
           </div>
           <div className="feature-section">
@@ -106,7 +108,6 @@ export default class LandingPageRoute extends Component {
             </div>
           </div>
         </section>
-
         <div className="landing-page-bg"></div>
         <div className=" feature-section--about">
           <ul>
