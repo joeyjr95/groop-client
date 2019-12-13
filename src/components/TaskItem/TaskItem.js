@@ -1,17 +1,9 @@
 import React from 'react';
 import GroopService from '../../services/groop-service';
 import Button from '../Button/Button';
-import GroopContext from '../../contexts/GroopContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faAngleDown,
-  faAngleUp,
-  faEdit,
-} from '@fortawesome/free-solid-svg-icons';
 import './TaskItem.scss';
 
 export default class TaskItem extends React.Component {
-  static contextType = GroopContext;
   goEdit = id => {
     this.props.history.push(`/edit-task/${id}`);
   };
@@ -23,7 +15,6 @@ export default class TaskItem extends React.Component {
     description: this.props.task.description,
     date_due: this.props.task.date_due.substring(0, 10),
     user_assigned_id: this.props.task.user_assigned_id,
-    priority: this.props.task.priority,
     delete_confirm: false,
     showMore: false,
   };
@@ -37,6 +28,7 @@ export default class TaskItem extends React.Component {
     });
 
     if (!newTask) {
+      console.log(`toggle didn't work`);
     } else {
       this.setState({ completed: newTask.completed });
     }
@@ -116,75 +108,51 @@ export default class TaskItem extends React.Component {
           this.state.completed ? 'task-item task-item--complete' : 'task-item'
         }
       >
-        <div className="task-heading">
-          <input
-            id={`task-item-check-${task.id}`}
-            type="checkbox"
-            className="task-item__check"
-            onChange={() => this.toggleTaskCompleted()}
-            onMouseDown={e => e.preventDefault()}
-            value={this.state.completed}
-            checked={this.state.completed ? 1 : 0}
-          />
-          <label
-            id={`task-item-check-label-${task.id}`}
-            className="task-item__check-label"
-            htmlFor={`task-item-check-${task.id}`}
-            onMouseDown={e => e.preventDefault()}
-          ></label>
-          <div
+
+        <input
+          id={`task-item-check-${task.id}`}
+          type="checkbox"
+          className="task-item__check"
+          onChange={() => this.toggleTaskCompleted()}
+          onMouseDown={e => e.preventDefault()}
+          value={this.state.completed}
+          checked={this.state.completed ? 1 : 0}
+        />
+        <label
+          id={`task-item-check-label-${task.id}`}
+          className="task-item__check-label"
+          htmlFor={`task-item-check-${task.id}`}
+          onMouseDown={e => e.preventDefault()}
+        ></label>
+        <div className="task-item__info">
+          <h3
             className={
               this.state.completed
-                ? 'task-item__info task-item__info--complete'
-                : 'task-item__info'
+                ? 'task-item__name task-item__name--complete'
+                : 'task-item__name'
             }
           >
-            <h3
-              className={
-                this.state.completed
-                  ? 'task-item__name task-item__name--complete'
-                  : 'task-item__name'
-              }
-            >
-              {task.name}{' '}
-            </h3>
-            <h4 className="task-item__date_due">
-              {new Date(task.date_due).toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-              })}
-            </h4>
-          </div>
-          <div className="task-item__priority">{taskItemPriority}</div>
-          <div className="task-item__actions">
-            <Button
-              type="button"
-              aria-label={
-                this.state.showMore
-                  ? 'show less information'
-                  : 'show more information'
-              }
-              onClick={() => this.setState({ showMore: !this.state.showMore })}
-              className="task-item__edit"
-            >
-              <FontAwesomeIcon
-                icon={this.state.showMore ? faAngleUp : faAngleDown}
-              />
-            </Button>
-            <Button
-              type="button"
-              aria-label="edit task"
-              onClick={() => this.goEdit(task.id)}
-              className="task-item__edit"
-            >
-              <FontAwesomeIcon icon={faEdit} />
-            </Button>
-          </div>
+            {task.name}{' '}
+          </h3>
+          <h4 className="task-item__date_due">
+            Due{' '}
+            {new Date(task.date_due).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </h4>
+          <p className="task-item__description">{task.description}</p>
         </div>
-        {taskDetail}
+        <div className="task-item__actions">
+          <Button
+            type="button"
+            onClick={() => this.goEdit(task.id)}
+            className="task-item__edit"
+          >
+            Edit
+          </Button>
+        </div>
       </li>
     );
   }

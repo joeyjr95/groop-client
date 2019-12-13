@@ -2,7 +2,7 @@
 
 .task-item {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
@@ -10,55 +10,15 @@
   color: $color-font-offwhite;
 
   &--complete {
-    color: $color-bg-main6;
   }
-}
-
-.task-heading {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  word-wrap: break-word;
-  background-color: $color-bg-main2;
-  color: $color-font-offwhite;
-}
-
-.task-detail {
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.task-detail-spacer {
-  flex: 0 0 2rem;
-  margin-right: 1rem;
-  margin-left: 1rem;
-  height: 2rem;
-}
-.task-detail-spacer2 {
-  width: calc(80px + 5.6rem);
-  padding: 0 0.5rem;
-}
-
-.task-detail__info {
-  border-top: 2px solid $color_bg_main;
-  margin-top: 0.5rem;
-  width: 75%;
-}
-.task-detail__item {
-  line-height: 1.5rem;
-  margin: 0.5rem auto;
 }
 
 .task-item__check-label {
   flex: 0 0 2rem;
   border: 2px solid $color-bg-main4;
   height: 2rem;
-  margin: auto 1rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
   border-radius: 50%;
   &:hover {
     cursor: pointer;
@@ -67,18 +27,13 @@
 
 .task-item__edit {
   border: 1px solid $color-secondary;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .task-item__check {
   width: 50px;
   position: absolute;
   left: -999px;
-  display: none;
+  display: hidden;
 
   &:checked + label {
     background-color: $color-bg-main5;
@@ -86,31 +41,17 @@
 }
 
 .task-item__info {
-  flex: 1 1 75%;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  word-break: break-all;
-  padding: 0.25rem 0;
-  max-width: 250px;
-  &--complete {
-    text-decoration: line-through;
-    color: $color-bg-main6;
-  }
+  width: 75%;
 }
 
 .task-item__name {
   margin-bottom: 0.25rem;
-  margin-top: 0.25rem;
-  // font-size: 18;
-  overflow: hidden;
-  word-break: break-all;
+  &--complete {
+    text-decoration: line-through;
+  }
 }
-
 .task-item__date_due {
-  margin: 0.25rem 0;
-  font-size: 16px;
-  font-weight: 100;
+  margin: 0.1rem 0;
 }
 
 .task-item__description {
@@ -118,7 +59,7 @@
 }
 
 .task-item__actions {
-  width: calc(80px + 1rem);
+  width: 75px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -128,43 +69,5 @@
 
   > button {
     margin: 0.25rem 0.25rem;
-  }
-}
-.task-item__priority {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  width: 3rem;
-  height: 100%;
-  margin: 0 0.8rem;
-}
-.priority-box {
-  width: 0.5rem;
-  height: 0.5rem;
-  margin: 0.2rem 0.2rem;
-  border-radius: 4px;
-  background-color: $color-bg-main6;
-  &--high {
-    background-color: #a02030;
-  }
-  &--med {
-    background-color: $color-error;
-  }
-  &--low {
-    background-color: #20a080;
-  }
-}
-
-@media only screen and (min-width: 320px) {
-  .task-heading {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-  }
-}
-
-@media only screen and (min-width: 320px) {
-  .task-item__info {
-    max-width: none;
   }
 }

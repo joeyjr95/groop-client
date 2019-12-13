@@ -75,7 +75,6 @@ export default class Dashboard extends Component {
                       getTasks={() => this.getAllTasks()}
                       task={task}
                       {...this.props}
-                      dashboard={true}
                       key={`task${i}`}
                     />
                   );
@@ -95,6 +94,7 @@ export default class Dashboard extends Component {
                       sidebar under "Groups" to create a task.
                     </li>
                   </ol>
+
                 </div>
               )}
             </ul>

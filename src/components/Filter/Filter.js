@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import GroopContext from '../../contexts/GroopContext';
 import './Filter.scss';
@@ -37,7 +38,7 @@ export default class Filter extends Component {
       this.getUserGroups();
     } else {
       let groupCategories = await GroopService.getCategories(
-        this.props.match.params.group_id,
+        this.props.match.params.group_id
       );
       let groupMembers = await GroopService.getGroupMembers(
         this.props.match.params.group_id,
@@ -160,9 +161,9 @@ export default class Filter extends Component {
     let filter = this.state.filterBy;
     if (filter === 'High Priority') {
       this.searchHighPriority(e);
-    } else if (filter === 'Medium Priority') {
+    } else if (filter === "Medium Priority") {
       this.searchMediumPriority(e);
-    } else if (filter === 'Low Priority') {
+    } else if (filter === "Low Priority") {
       this.searchLowPriority(e);
     } else if (filter === 'None') {
       this.hardReset();
@@ -179,7 +180,7 @@ export default class Filter extends Component {
   // controlled input for search input
   onSelectChange = e => {
     this.setState({
-      selectedInput: e,
+      selectedInput: e
     });
   };
 
@@ -188,7 +189,7 @@ export default class Filter extends Component {
     e.preventDefault();
     let groupTasks = this.context.currentGroupTasks;
     this.setState({
-      selectedInput: '',
+      selectedInput: ""
     });
 
     if (this.props.match.path === '/dashboard') {
@@ -239,7 +240,7 @@ export default class Filter extends Component {
   }
   onGroupFilterChange = async e => {
     await this.setState({
-      group: e,
+      group: e
     });
     this.onGroupFilterSubmit();
   };
@@ -252,7 +253,7 @@ export default class Filter extends Component {
     } else if (this.state.group !== 0) {
       let updatedTasks = await GroopService.getGroupTasks(this.state.group);
       await GroopService.getCategories(this.state.group).then(data =>
-        this.setState({ categories: data }),
+        this.setState({ categories: data })
       );
       await GroopService.getGroupMembers(this.state.group).then(data =>
         this.setState({ groupmembers: data }),
@@ -295,7 +296,7 @@ export default class Filter extends Component {
     await this.context.setFilteredTasks(updatedTasks);
     await this.context.setUserTasks(updatedTasks);
     await this.setState({
-      category: e,
+      category: e
     });
     this.onCategoryFilterSubmit();
   };
@@ -473,6 +474,7 @@ export default class Filter extends Component {
             </>
           )}
           <form className="filter-search-form">
+
             <input
               type="text"
               id="filter-search-form__input"

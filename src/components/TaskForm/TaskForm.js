@@ -42,29 +42,32 @@ export default class TaskForm extends Component {
     user_assigned_id: {
       value: '',
       touched: false,
-    },
+    }
   };
 
   componentDidMount = async () => {
     const group_id = Number(this.props.location.pathname.split('/')[2]);
     const members = await GroopService.getGroupMembers(group_id);
+    console.log(members)
     await GroopService.getCategories(group_id).then(data =>
-      this.setState({
-        categories: data,
-        category: {
-          value: data[0].id,
-          touched: false,
-        },
-        user_assigned_id: {
-          value: members[0].member_id,
-          touched: false,
-        },
-      }),
+      this.setState(
+        { categories: data,
+      category:{ 
+        value: data[0].id,
+        touched: false,
+        
+      },
+      user_assigned_id: {
+        value: members[0].member_id,
+        touched: false,
+      }
+       }),
     );
     this.setState({
-      group_id,
-      members,
+      group_id, 
+      members
     });
+    
   };
 
   handleSubmit = async () => {
@@ -233,7 +236,6 @@ export default class TaskForm extends Component {
             </label>
             <select
               name="Categories"
-              id="addtaskcategory"
               onChange={e => this.handleCategory(e.target.value)}
             >
               {categories.map(category => (
@@ -252,7 +254,6 @@ export default class TaskForm extends Component {
               Priority
             </label>
             <select
-              id="Priorities"
               name="Priorities"
               onChange={e => this.onPriorityChange(e.target.value)}
             >
@@ -260,22 +261,20 @@ export default class TaskForm extends Component {
               <option value={2}>Medium</option>
               <option value={3}>High</option>
             </select>
-            <label htmlFor="edit-task-assignment">Assigned to</label>
-            <select
-              id="edit-task-assignment"
-              name="edit-task-assignment"
-              onChange={e => this.handleChangeTaskAssignment(e.target.value)}
-              value={this.state.user_assigned_id.value}
-            >
-              {memberOptions}
-            </select>
           </div>
           <div>
-            <Button
-              className="CreateTaskButton"
-              type="button"
-              onClick={this.handleSubmit}
-            >
+          <label htmlFor="edit-task-assignment">Assigned to</label>
+          <select
+            id="edit-task-assignment"
+            name="edit-task-assignment"
+            onChange={e => this.handleChangeTaskAssignment(e.target.value)}
+            value={this.state.user_assigned_id.value}
+          >
+            {memberOptions}
+          </select>
+          </div>
+          <div>
+            <Button className="CreateTaskButton" type="button" onClick={this.handleSubmit}>
               Create New Task
             </Button>
             <Button

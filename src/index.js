@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { GroopProvider } from './contexts/GroopContext';
 import { UserProvider } from './contexts/UserContext';
+import * as serviceWorker from './serviceWorker';
 
 import 'normalize.css';
 import './index.scss';
@@ -18,3 +19,5 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById('root'),
 );
+
+serviceWorker.unregister();

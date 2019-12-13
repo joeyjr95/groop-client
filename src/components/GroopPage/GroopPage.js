@@ -16,7 +16,7 @@ export default class GroopPage extends Component {
   }
 
   componentDidMount = async () => {
-    await GroopService.getGroup(this.props.match.params.group_id);
+    const group = await GroopService.getGroup(this.props.match.params.group_id);
     this.getGroupTasks();
     this.getGroupMembers();
   };
@@ -45,17 +45,18 @@ export default class GroopPage extends Component {
       this.context.setCurrentGroupMembers(data);
     });
   };
-  chartAngle(member) {
-    let filteredTasks = this.context.currentGroupTasks.filter(tasks => {
-      return tasks.user_assigned_id === member.member_id;
-    });
-    let priorityAngle = filteredTasks.map(tasks => {
-      return tasks.priority;
-    });
-    if (priorityAngle.length === 0) {
-      return 0;
-    } else {
-      return Number(priorityAngle.reduce((a, b) => a + b));
+  chartAngle(member){
+   let filteredTasks = this.context.currentGroupTasks.filter( tasks =>{
+      return tasks.user_assigned_id === member.member_id
+    }
+    )
+   let priorityAngle = filteredTasks.map( tasks =>{
+     return tasks.priority 
+    })
+    if (priorityAngle.length === 0){
+      return 0
+    }else{
+   return Number(priorityAngle.reduce((a, b) => a + b))
     }
   }
   buildValue(hoveredRadial){
@@ -126,6 +127,7 @@ export default class GroopPage extends Component {
   render() {
     console.log(this.state.hoveredRadial)
     const { currentGroupMembers = [], filteredTasks = [] } = this.context;
+    console.log(this.context.currentGroupTasks)
     return (
       <>
         <Filter {...this.props} />
@@ -136,16 +138,14 @@ export default class GroopPage extends Component {
             </label>
             <ul className="menu">
               {currentGroupMembers.map(member => {
-                return (
-                  <li
-                    key={member.member_id}
-                    id={member.member_id}
-                    aria-live="polite"
-                  >
-                    <p>{member.username}</p>
-                  </li>
-                );
-              })}
+               return( <li
+                  key={member.member_id}
+                  id={member.member_id}
+                  aria-live="polite"
+                >
+                  <p>{member.username}</p>
+                </li>
+               ) })}
             </ul>
           </div>
         </div>
@@ -189,11 +189,7 @@ export default class GroopPage extends Component {
                 })
               ) : (
                 <div className="empty-list">
-                  No Tasks Available.{' '}
-                  <Link to={`/add-task/${this.props.match.params.group_id}`}>
-                    Add a task
-                  </Link>{' '}
-                  to get started.{' '}
+                  No Tasks Available. <Link to={`/add-task/${this.props.match.params.group_id}`}>Add a task</Link> to get started.{' '}
                 </div>
               )}
             </ul>
