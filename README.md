@@ -9,10 +9,12 @@ tasks and members from multiple groups and view a scoreboard to
 effectively finish tasks done on time. Members accumulate points
 based on a finished task's priority level. Get status updates and
 weekly reminders with optional email notifications.
+
+
 ##Screenshots
 
 <p align="center">
-<img src="../../images/dashboard.png" width="200"> <img src="../../images/groupdashboard.png" width="200"> <img src="../../images/groupsettings" width="200"> <img src="../../images/accountsettings.png" width="200"><img src="../../images/sidebar.jpg" width="200">
+<img src="./src/images/dashboard.png" width="200"> <img src="./src/images/groupdashboard.png" width="200"> <img src="./src/images/groupsettings" width="200"> <img src="./src/images/accountsettings.png" width="200"><img src="./src/images/sidebar.jpg" width="200">
 </p>
 
 ###Landing Page
